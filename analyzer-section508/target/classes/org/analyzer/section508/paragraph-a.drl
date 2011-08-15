@@ -1,0 +1,21 @@
+package org.analyzer.section508
+
+#list any import classes here.
+import org.analyzer.html.*
+import org.analyzer.section508.ReportFactory
+
+//dialect "mvel"
+
+rule "img without alt"
+    when
+        $element : ImgTag( alt == null )
+    then
+    	insert(ReportFactory.newAltMissingReport($element));
+end
+
+rule "decorative img"
+	when
+		$element : ImgTag( alt == "" )
+	then
+		insert(ReportFactory.newAltEmptyReport($element));
+end
