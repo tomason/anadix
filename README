@@ -1,0 +1,59 @@
+Background
+--------
+ This project is currently under developement as a part of my bachelor thesis. The
+bachelor thesis itself is about writing an application to analyze web pages compliance
+with Section 508 rules. I took the job more seriously and I'm trying to make a general
+analyzer where you can actualy change any part to analyze whatever you want. As the
+project is currently under developement the API and range of usage may (and will)
+change over time.
+
+Building
+--------
+ This project uses maven. That means you can just checkout the code, run 
+'mvn install' and you are good to go. Currently there is no 'distribution' part of the
+project that would build a bundle of jar files for you so you have to add the
+dependencies to your project either using maven (which makes it easier for transitive
+dependencies) or copy all the jars created by this project and add third party libraries.
+If you are not using your own components you have to copy all jars. Otherwise you will
+be fine with analyzer-api, analyzer-core.
+
+API
+---
+ Right now to analyze a web page for compliance with Section 508 you have to write
+your own main method where you instantiate the Analyzer class (by calling
+org.analyzer.factories.ObjectFactory.newAnalyzer()). To do so you have to privide
+class names for Parser and ConditionSet which will change in the future to enable you
+to insert null and default (SwingParser, Section508) will be used. Parser and condition
+set must both use the same factory. About that - it's because analyzer uses drools
+engine and if parser used other set of facts than the condition set the analysis would
+be useless.
+ Once you have instance of Analyzer use org.analyzer.factories.SourceFactory to create
+a new source either as FileSource or StringSource and add it as a parameter to
+Analyzer's method analyze. What you will get is a class Report which contains set of
+ReportItems which are results of analysis. If you call method report() you'll get a
+String representation (simple format listing errors, warnings and ok things).
+ The current implementations contain three components - HTML domain, Swing parser and
+Section 508 condition set. The domain contains definitions for few types of html tags
+and more will come later. Swing parser uses javax.swing.text.html.parser classes to
+parse given HTML file (if you are unconfortable with Swing parser you can write your own)
+the swing parser was used for convenience and may be replaced in the future (or another
+parser implementation may be added).
+ 
+Analyzing anything
+------------------
+ If you don't want to analyze web pages for compliance with Section 508 or you don't
+want to use Swing parser you can change any of these parts with your own
+implementations by just changing the class used for parser, condition set or domain.
+
+Used technology
+---------------
+ > Drools 5.3.0.Beta1
+ > javax.swing.text.html.parser
+
+Current state (as of 2011-08-16)
+--------------------------------
+ > ability to instantiate a new analyzer using custom classes for domain, parser and
+  condition set
+ > existing HTML (very incomplete) domain, swing parser (with a few bugs) and
+  Section 508 condition set (containing only two of the requirements)
+ > simple report format to print the results
