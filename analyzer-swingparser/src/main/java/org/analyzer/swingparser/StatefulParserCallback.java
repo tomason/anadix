@@ -37,7 +37,11 @@ public class StatefulParserCallback extends ParserCallback {
 				ID, t.toString(), parseAttributes(a), pos,
 				getSource(t.toString(), pos));
 
-		factory.insertEvent(ENTRY_POINT, e);
+		if (e.getSource().replace(" ", "").length() == e.getTagName().length() + 3) {
+			System.err.println("end simple tag: " + e.getSource());
+		} else {
+			factory.insertEvent(ENTRY_POINT, e);
+		}
 	}
 
 	@Override
@@ -48,7 +52,11 @@ public class StatefulParserCallback extends ParserCallback {
 				ID, t.toString(), parseAttributes(a), pos,
 				getSource(t.toString(), pos));
 
-		factory.insertEvent(ENTRY_POINT, e);
+		if (e.getSource().replace(" ", "").length() == e.getTagName().length() + 3) {
+			System.err.println("end start tag: " + e.getSource());
+		} else {
+			factory.insertEvent(ENTRY_POINT, e);
+		}
 
 		ID = ID.multiply(JUMP);
 	}
@@ -84,7 +92,7 @@ public class StatefulParserCallback extends ParserCallback {
 			return null;
 		}
 
-		int beginIndex = source.substring(0, position + tagName.length()).lastIndexOf("<" + tagName);
+		int beginIndex = source.substring(0, position + tagName.length()).lastIndexOf("<"/* + tagName*/);
 		int endIndex = source.indexOf(">", beginIndex);
 
 		if (Boolean.getBoolean("debug")) {
