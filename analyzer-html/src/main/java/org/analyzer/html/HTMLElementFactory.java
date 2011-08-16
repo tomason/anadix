@@ -3,11 +3,11 @@ package org.analyzer.html;
 import java.math.BigInteger;
 import java.util.Properties;
 
-import org.analyzer.ElementFactory;
+import org.analyzer.impl.AbstractElementFactory;
 import org.drools.runtime.StatefulKnowledgeSession;
 
 
-public class HTMLElementFactory extends ElementFactory {
+public class HTMLElementFactory extends AbstractElementFactory {
 
 	public HTMLElementFactory(StatefulKnowledgeSession ksession) {
 		super(ksession);

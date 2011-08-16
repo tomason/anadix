@@ -44,7 +44,7 @@ public class AnalyzerImpl implements Analyzer {
 		}
 
 		try {
-			ElementFactory ef = ElementFactory.createFactory(
+			ElementFactory ef = AbstractElementFactory.createFactory(
 					ObjectFactory.getElementFactoryClass(null),
 					ksession
 					);
