@@ -10,7 +10,7 @@ import org.analyzer.utils.DroolsResource;
  * condition set has to be of a same class or subclass of ElementFactory used
  * in parser. This is checked during creation of analyzer.
  * 
- * @author Tomas Schlosser
+ * @author tomason
  */
 public interface ConditionSet {
 
