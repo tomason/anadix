@@ -23,4 +23,8 @@ public abstract class SourceFactory {
 	public static Source newStringSource(String source) {
 		return new StringSource(source);
 	}
+
+	public static Source newClassPathSource(String resource) {
+		return new ClassPathSource(resource);
+	}
 }
