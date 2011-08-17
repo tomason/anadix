@@ -80,4 +80,9 @@ public class ReportImpl implements Report {
 
 		return sb.toString();
 	}
+
+	@Override
+	public String toString() {
+		return report();
+	}
 }
