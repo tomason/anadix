@@ -1,35 +1,15 @@
 package org.analyzer;
 
-public abstract class ReportItem {
-	private final ItemStatus status;
-	//private String shortText;
-	private String description;
-	private String advice;
-	private final String itemText;
+public interface ReportItem {
+	ItemStatus getStatus();
 
-	public ReportItem(ItemStatus status, String itemText) {
-		this.status = status;
-		this.itemText = itemText;
-	}
+	String getItemText();
 
-	public ItemStatus getStatus() {
-		return status;
-	}
+	void setAdvice(String advice);
 
-	public String getItemText() {
-		return itemText;
-	}
+	String getAdvice();
 
-	public String getAdvice() {
-		return advice;
-	}
+	void setDescription(String description);
 
-	public String getDescription() {
-		return description;
-	}
-
-	@Override
-	public String toString() {
-		return getStatus() + " - " + getItemText();
-	}
+	String getDescription();
 }

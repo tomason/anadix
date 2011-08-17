@@ -7,12 +7,13 @@ import org.analyzer.ReportItem;
 import org.analyzer.html.FrameTag;
 import org.analyzer.html.HtmlElement;
 import org.analyzer.html.ImgTag;
+import org.analyzer.impl.AbstractReportItem;
 
 public class ReportFactory {
 	private static final ResourceBundle i18n = ResourceBundle.getBundle("org.analyzer.section508.reports");
 
 	private static ReportItem newReportItem(ItemStatus status, String key, HtmlElement cause) {
-		return new ReportItem(status, String.format(i18n.getString(key), cause.getSource(), cause.getPosition())) {};
+		return new AbstractReportItem(status, String.format(i18n.getString(key), cause.getSource(), cause.getPosition())) {};
 	}
 
 	public static ReportItem newAltMissingReport(ImgTag cause) {

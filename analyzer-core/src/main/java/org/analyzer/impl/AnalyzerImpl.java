@@ -59,7 +59,7 @@ public class AnalyzerImpl implements Analyzer {
 
 		ksession.fireAllRules();
 
-		Report report = new Report(ksession);
+		Report report = new ReportImpl(ksession);
 
 		ksession.dispose();
 
