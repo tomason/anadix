@@ -4,7 +4,10 @@ import java.util.Collection;
 
 /**
  * ElementFactory is a class representing domain objects for use by parser and
- * conditions. All elements should be inserted using ElementFactory
+ * conditions. All elements should be inserted using ElementFactory.
+ * Importatnt note - the implementing classes MUST have constructor with parameter
+ * StatefulKnowledgeSession as it's the constructor analyzer is looking for!
+ * This will be a subject to further improvements.
  * 
  * @author tomason
  */

@@ -8,6 +8,11 @@ import org.analyzer.ElementFactory;
 import org.analyzer.Parser;
 import org.analyzer.exceptions.InstantiationException;
 
+/**
+ * Creates instances of various objects used by analyzer
+ * 
+ * @author tomason
+ */
 public abstract class ObjectFactory {
 	private static final String defaultParser = "org.analyzer.swingparser.SwingParser";
 	private static final String defaultConditions = "org.analyzer.section508.Section508";
@@ -16,6 +21,16 @@ public abstract class ObjectFactory {
 
 	private static final String errorMessaageFormat = "Could not instantiate %s: %s";
 
+	/**
+	 * Creates new instance of Parser by invoking default constructor in
+	 * class defined by given class name. If null is given as a parameter
+	 * default Parser is constructed.
+	 * 
+	 * @param className - name of the class to be constructed
+	 * @return new instance of Parser
+	 * @throws InstantiationException - when exception occurs during creating
+	 * new instance
+	 */
 	public static Parser newParser(String className) throws InstantiationException {
 		if (className == null || className.length() == 0) {
 			className = defaultParser;
@@ -28,8 +43,18 @@ public abstract class ObjectFactory {
 		}
 	}
 
+	/**
+	 * Creates new instance of ConditionSet by invoking default constructor in
+	 * class defined by given class name. If null is given as a parameter
+	 * default ConditionSet is constructed.
+	 * 
+	 * @param className - name of the class to be constructed
+	 * @return new instance of ConditionSet
+	 * @throws InstantiationException - when exception occurs during creating
+	 * new instance
+	 */
 	public static ConditionSet newConditionSet(String className) throws InstantiationException {
-		if (className == null) {
+		if (className == null || className.length() == 0) {
 			className = defaultConditions;
 		}
 		try {
@@ -39,6 +64,16 @@ public abstract class ObjectFactory {
 		}
 	}
 
+	/**
+	 * Creates instance of Class<? extends ElementFactory> defined by
+	 * given class name. If null is given as a parameter default
+	 * Class<? extends ElementFactory> is returned
+	 * 
+	 * @param className - name of the class to be constructed
+	 * @return instance of Class<? extends ElementFactory>
+	 * @throws InstantiationException - when exception occurs during creating
+	 * new instance
+	 */
 	@SuppressWarnings("unchecked")
 	public static <T extends ElementFactory>
 	Class<T> getElementFactoryClass(String className) throws InstantiationException {
@@ -52,10 +87,28 @@ public abstract class ObjectFactory {
 		}
 	}
 
+	/**
+	 * Creates a new instance of analyzer using default Parser and default
+	 * ConditionSet
+	 * 
+	 * @return new instance of Analyzer
+	 * @throws InstantiationException - when exception occurs during creating
+	 * new instance
+	 */
 	public static Analyzer newAnalyzer() throws InstantiationException {
 		return newAnalyzer(null, null);
 	}
 
+	/**
+	 * Creates a new instance of analyzer using given Parser and given
+	 * ConditionSet
+	 * 
+	 * @param parserClassName - name of the Parser class to be used
+	 * @param conditionClassName - name of the ConditionSet class to be used
+	 * @return new instance of Analyzer
+	 * @throws InstantiationException - when exception occurs during creating
+	 * new instance
+	 */
 	@SuppressWarnings("unchecked")
 	public static Analyzer newAnalyzer(String parserClassName, String conditionClassName)
 			throws InstantiationException {
