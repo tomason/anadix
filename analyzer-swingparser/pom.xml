@@ -8,8 +8,6 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>analyzer-swingparser</artifactId>
-  <name>analyzer-swingparser</name>
-  <url>http://maven.apache.org</url>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
@@ -24,5 +22,17 @@
   		<artifactId>drools-decisiontables</artifactId>
   		<version>5.3.0.Beta1</version>
   	</dependency>
+  	<dependency>
+  		<groupId>org.drools</groupId>
+  		<artifactId>drools-templates</artifactId>
+  		<version>5.3.0.Beta1</version>
+  	</dependency>
+  	<dependency>
+	    <groupId>log4j</groupId>
+	    <artifactId>log4j</artifactId>
+	    <version>1.2.16</version>
+	</dependency>  	
   </dependencies>
+  <name>Parser for analyzer</name>
+  <description>Parser based on javax.swing.text.html.parser.ParserDelegator used by analyzer to analyze HTML files.</description>
 </project>

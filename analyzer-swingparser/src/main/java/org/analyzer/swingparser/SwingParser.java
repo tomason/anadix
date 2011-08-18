@@ -14,6 +14,7 @@ import org.analyzer.Source;
 import org.analyzer.exceptions.ParserException;
 import org.analyzer.html.HTMLElementFactory;
 import org.analyzer.utils.DroolsResource;
+import org.apache.log4j.Logger;
 import org.drools.builder.ResourceType;
 import org.drools.decisiontable.ExternalSpreadsheetCompiler;
 import org.drools.decisiontable.InputType;
@@ -21,6 +22,8 @@ import org.drools.io.ResourceFactory;
 
 
 public class SwingParser implements Parser {
+	private static final Logger logger = Logger.getLogger(SwingParser.class);
+
 	private final ParserDelegator parser;
 	private HTMLElementFactory factory;
 
@@ -34,9 +37,11 @@ public class SwingParser implements Parser {
 			try {
 				parser.parse(source.getReader(), new StatefulParserCallback(factory, source.getText()), true);
 			} catch (IOException e) {
+				logger.fatal("Exception during parsing", e);
 				throw new ParserException("Unable to parse source", e);
 			}
 		} else {
+			logger.fatal("Factory '" + getElementFactoryClass().getName() + "' is uninitialised!");
 			throw new RuntimeException("Uninitialised factory");
 		}
 	}
@@ -50,33 +55,14 @@ public class SwingParser implements Parser {
 		InputStream templateStream = getClass().getResourceAsStream("rule-template.drt");
 
 		String generated = compiler.compile(csvStream, templateStream, InputType.CSV, 2, 1);
-		/*
-		DecisionTableConfiguration conf = KnowledgeBuilderFactory.newDecisionTableConfiguration();
-		conf.setInputType(DecisionTableInputType.XLS);
-		 */
-
-		if (Boolean.getBoolean("debug")) {
-			/*
-			System.out.println(DecisionTableFactory.loadFromInputStream(
-					getClass().getResourceAsStream("HtmlTagDT.xls"),
-					conf));
-			 */
-			System.out.println(generated);
-		}
-
+		logger.debug(generated);
 
 		// add expanded template
 		result.add(new DroolsResource(
 				ResourceFactory.newReaderResource(new StringReader(generated)),
 				ResourceType.DRL));
-		/*
-		// add decision table?
-		result.add(new DroolsResource(
-				ResourceFactory.newClassPathResource("org/jboss/qa/analyzer/swingparser/HtmlTagDT.xls"),
-				ResourceType.DTABLE, conf));
 
-		 */
-		// add common things
+		// add common rules - to insert <html>
 		result.add(new DroolsResource(
 				ResourceFactory.newClassPathResource("org/analyzer/swingparser/swingparser.drl"),
 				ResourceType.DRL));
@@ -95,6 +81,8 @@ public class SwingParser implements Parser {
 			this.factory = (HTMLElementFactory)factory;
 			this.factory.setAsGlobal("elementFactory");
 		} else {
+			logger.fatal(String.format("Wrong element factory given: expected '%s' and got '%s'",
+					getElementFactoryClass().getName(), factory.getClass().getName()));
 			throw new RuntimeException("Can't assign " + factory.getClass() + " to " + getClass());
 		}
 	}

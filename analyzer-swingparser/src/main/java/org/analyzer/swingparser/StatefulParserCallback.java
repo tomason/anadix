@@ -9,9 +9,11 @@ import javax.swing.text.html.HTML.Tag;
 import javax.swing.text.html.HTMLEditorKit.ParserCallback;
 
 import org.analyzer.html.HTMLElementFactory;
+import org.apache.log4j.Logger;
 
 
 public class StatefulParserCallback extends ParserCallback {
+	private static final Logger logger = Logger.getLogger(SwingParser.class);
 	private static final BigInteger JUMP = BigInteger.valueOf(100L);
 	private static final String ENTRY_POINT = "parser";
 
@@ -38,7 +40,7 @@ public class StatefulParserCallback extends ParserCallback {
 				getSource(t.toString(), pos));
 
 		if (e.getSource().replace(" ", "").length() == e.getTagName().length() + 3) {
-			System.err.println("end simple tag: " + e.getSource());
+			logger.warn("end simple tag: " + e.getSource());
 		} else {
 			factory.insertEvent(ENTRY_POINT, e);
 		}
@@ -53,7 +55,7 @@ public class StatefulParserCallback extends ParserCallback {
 				getSource(t.toString(), pos));
 
 		if (e.getSource().replace(" ", "").length() == e.getTagName().length() + 3) {
-			System.err.println("end start tag: " + e.getSource());
+			logger.warn("end simple tag: " + e.getSource());
 		} else {
 			factory.insertEvent(ENTRY_POINT, e);
 		}
@@ -68,6 +70,11 @@ public class StatefulParserCallback extends ParserCallback {
 		TagEvent e = new EndTagEvent(ID, t.toString().toLowerCase(), pos);
 
 		factory.insertEvent(ENTRY_POINT, e);
+	}
+
+	@Override
+	public void handleError(String errorMsg, int pos) {
+		logger.error(errorMsg);
 	}
 
 	private Properties parseAttributes(MutableAttributeSet attributes) {
@@ -116,6 +123,7 @@ public class StatefulParserCallback extends ParserCallback {
 			return result;
 		}
 
+		logger.error(String.format("Could not find tag %s starting at %s", tagName, position));
 		return "!" + tagName + "(" + beginIndex + "," + endIndex + ") - " + source.substring(position, position + 50);
 	}
 }
