@@ -13,7 +13,7 @@ import org.apache.log4j.Logger;
 
 
 public class StatefulParserCallback extends ParserCallback {
-	private static final Logger logger = Logger.getLogger(SwingParser.class);
+	private static final Logger logger = Logger.getLogger(StatefulParserCallback.class);
 	private static final BigInteger JUMP = BigInteger.valueOf(100L);
 	private static final String ENTRY_POINT = "parser";
 
