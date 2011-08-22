@@ -47,7 +47,7 @@ public abstract class AbstractElementFactory implements ElementFactory {
 		return result;
 	}
 
-	protected void setGlobal(String name, Object instance) {
+	public void setGlobal(String name, Object instance) {
 		getSession().setGlobal(name, instance);
 	}
 

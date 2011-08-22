@@ -21,6 +21,14 @@ public interface ElementFactory {
 	Collection<Element> getElements();
 
 	/**
+	 * Sets a global variable with given name with given value
+	 * 
+	 * @param name - name of the global to set
+	 * @param instance -value of the global to set
+	 */
+	void setGlobal(String name, Object instance);
+
+	/**
 	 * Sets this instance of ElementFactory as a global variable with given name
 	 * 
 	 * @param name - name of the global to set with this instance
