@@ -70,6 +70,7 @@ public class SwingParser implements Parser {
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Class<HTMLElementFactory> getElementFactoryClass() {
 		return HTMLElementFactory.class;
