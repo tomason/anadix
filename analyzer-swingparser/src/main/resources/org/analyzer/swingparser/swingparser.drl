@@ -7,6 +7,7 @@ import org.analyzer.html.HTMLElementFactory
 import org.analyzer.html.HtmlElement
 
 global HTMLElementFactory elementFactory
+global BigInteger jump
 
 declare SimpleTagEvent
 	@role (event)
@@ -35,7 +36,7 @@ rule "InsertElement"
 	salience -5
 	when
 		e : StartTagEvent( $id : id, tagName != "html" ) from entry-point "parser"
-		parent : HtmlElement( id == ($id.divide(new BigInteger("100"))) )
+		parent : HtmlElement( id == ($id.divide(jump)) )
 		
 		# the element is not yet inserted
 		not ( HtmlElement( id == $id ) )

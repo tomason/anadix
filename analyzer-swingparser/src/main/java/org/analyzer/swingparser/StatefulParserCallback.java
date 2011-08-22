@@ -29,6 +29,8 @@ public class StatefulParserCallback extends ParserCallback {
 	public StatefulParserCallback(HTMLElementFactory factory, String source) {
 		this.factory = factory;
 		this.source = source;
+
+		factory.setGlobal("jump", JUMP);
 	}
 
 	@Override

@@ -17,7 +17,7 @@ template "htmlelements"
 rule "@{tagName} pair"
     when
         tag : StartTagEvent( tagName == "@{tagName}" ) from entry-point "parser"
-        parent : HtmlElement (id == (tag.getId().divide(new BigInteger("100"))))
+        parent : HtmlElement (id == (tag.getId().divide(jump)))
         
         not (
         	HtmlElement( source == tag.source )
@@ -34,7 +34,7 @@ end
 rule "@{tagName} single"
     when
         tag : SimpleTagEvent( tagName == "@{tagName}" ) from entry-point "parser"
-        parent : HtmlElement (id == (tag.getId().divide(new BigInteger("100"))))
+        parent : HtmlElement (id == (tag.getId().divide(jump)))
         
         /*
         not (
