@@ -19,5 +19,6 @@
     <module>analyzer-html</module>
     <module>analyzer-section508</module>
     <module>analyzer-swingparser</module>
+    <module>analyzer-ant</module>
   </modules>
 </project>
