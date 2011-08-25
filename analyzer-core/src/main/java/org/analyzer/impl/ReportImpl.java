@@ -58,42 +58,7 @@ public class ReportImpl implements Report {
 	}
 
 	public String report() {
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("*******************************************************").append("\n");
-		sb.append("*                 Drools report                       *").append("\n");
-		sb.append("*******************************************************").append("\n");
-		sb.append("\n");
-		sb.append("\n");
-		sb.append("ERROR:").append("\n");
-		sb.append("-------").append("\n");
-		for (ReportItem i : errors) {
-			sb.append(" > ").append(i.getItemText()).append("\n");
-		}
-		sb.append("\n");
-
-		sb.append("WARNING:").append("\n");
-		sb.append("---------").append("\n");
-		for (ReportItem i : warnings) {
-			sb.append(" > ").append(i.getItemText()).append("\n");
-		}
-
-		sb.append("\n");
-
-		sb.append("OK:").append("\n");
-		sb.append("---").append("\n");
-		for (ReportItem i : oks) {
-			sb.append(" > ").append(i.getItemText()).append("\n");
-		}
-
-
-		sb.append("\n");
-		sb.append("*******************************************************").append("\n");
-		sb.append(String.format("* Errors: % 9d | Warnings: % 9d             *",
-				errors.size(), warnings.size())).append("\n");
-		sb.append("*******************************************************").append("\n");
-
-		return sb.toString();
+		return new SimpleReportFormatter().format(this);
 	}
 
 	@Override
