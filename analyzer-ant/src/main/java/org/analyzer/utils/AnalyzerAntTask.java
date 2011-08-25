@@ -23,6 +23,7 @@ import java.util.Map;
 
 import org.analyzer.Analyzer;
 import org.analyzer.Report;
+import org.analyzer.ReportFormatter;
 import org.analyzer.Source;
 import org.analyzer.exceptions.InstantiationException;
 import org.analyzer.exceptions.SourceException;
@@ -35,6 +36,7 @@ import org.apache.tools.ant.taskdefs.MatchingTask;
 public class AnalyzerAntTask extends MatchingTask {
 	private String parserClass;
 	private String conditionSetClass;
+	private String formatterClass;
 	private File sourcesDir;
 	private File reportsDir;
 
@@ -44,6 +46,10 @@ public class AnalyzerAntTask extends MatchingTask {
 
 	public void setConditionSetClass(String conditionSetClass) {
 		this.conditionSetClass = conditionSetClass;
+	}
+
+	public void setFormatterClass(String formatterClass) {
+		this.formatterClass = formatterClass;
 	}
 
 	public void setSourcesDir(File dir) {
@@ -77,7 +83,8 @@ public class AnalyzerAntTask extends MatchingTask {
 					pw = new PrintWriter(result);
 
 					// TODO add formatting
-					pw.println(results.get(path).report());
+					ReportFormatter formatter = ObjectFactory.newFormatter(formatterClass);
+					formatter.formatAndStore(results.get(path), pw);
 				} catch (IOException ex) {
 					throw new BuildException("Unable to save report " + result, ex);
 				} finally {
