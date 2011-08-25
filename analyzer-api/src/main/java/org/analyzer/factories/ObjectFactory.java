@@ -21,6 +21,7 @@ import org.analyzer.Analyzer;
 import org.analyzer.ConditionSet;
 import org.analyzer.ElementFactory;
 import org.analyzer.Parser;
+import org.analyzer.ReportFormatter;
 import org.analyzer.exceptions.InstantiationException;
 
 /**
@@ -33,6 +34,7 @@ public abstract class ObjectFactory {
 	private static final String defaultConditions = "org.analyzer.section508.Section508";
 	private static final String defaultAnalyzer = "org.analyzer.impl.AnalyzerImpl";
 	private static final String defaultElementFactory = "org.analyzer.html.HTMLElementFactory";
+	private static final String defaultFormatter = "org.analyzer.impl.SimpleReportFormatter";
 
 	private static final String errorMessaageFormat = "Could not instantiate %s: %s";
 
@@ -137,6 +139,27 @@ public abstract class ObjectFactory {
 					newConditionSet(conditionClassName));
 		} catch (Exception ex) {
 			throw newInstantiationException("Analyzer", defaultAnalyzer, ex);
+		}
+	}
+
+	/**
+	 * Creates a new instance of ReportFormatter by invoking default constructor in
+	 * class defined by given class name. If null is given as a parameter
+	 * default ReportFormatter is constructed.
+	 * 
+	 * @param className - name of the class to be constructed
+	 * @return new instance of ReportFormatter
+	 * @throws InstantiationException - when exception occurs during creating
+	 * new instance
+	 */
+	public static ReportFormatter newFormatter(String className) throws InstantiationException {
+		if (className == null || className.length() == 0) {
+			className = defaultFormatter;
+		}
+		try {
+			return (ReportFormatter)Class.forName(className).newInstance();
+		} catch (Exception ex) {
+			throw newInstantiationException("Formatter", className, ex);
 		}
 	}
 
