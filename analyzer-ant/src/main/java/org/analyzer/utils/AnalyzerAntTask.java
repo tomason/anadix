@@ -29,6 +29,7 @@ import org.analyzer.exceptions.SourceException;
 import org.analyzer.factories.ObjectFactory;
 import org.analyzer.factories.SourceFactory;
 import org.apache.tools.ant.BuildException;
+import org.apache.tools.ant.Project;
 import org.apache.tools.ant.taskdefs.MatchingTask;
 
 public class AnalyzerAntTask extends MatchingTask {
@@ -56,8 +57,9 @@ public class AnalyzerAntTask extends MatchingTask {
 	@Override
 	public void execute() throws BuildException {
 		try {
+			log("Starting...", Project.MSG_INFO);
 			Analyzer a = ObjectFactory.newAnalyzer(parserClass, conditionSetClass);
-
+			log("Created an instance of analyzer", Project.MSG_INFO);
 			Map<String, Report> results = analyze(a, sourcesDir);
 
 			if (!reportsDir.exists()) {
@@ -90,21 +92,23 @@ public class AnalyzerAntTask extends MatchingTask {
 		}
 	}
 
-	private Map<String, Report> analyze(Analyzer analyzer, File parent) {
+	private Map<String, Report> analyze(Analyzer analyzer, File file) {
 		Map<String, Report> result = new HashMap<String, Report>();
 
-		if (parent.isDirectory()) {
-			for (File child : parent.listFiles()) {
+		if (file.isDirectory()) {
+			for (File child : file.listFiles()) {
 				result.putAll(analyze(analyzer, child));
 			}
 		} else {
-			String fileName = getRelativePath(sourcesDir, parent);
+			log("Starting analysis of " + file, Project.MSG_VERBOSE);
+			String fileName = getRelativePath(sourcesDir, file);
 			if (fileName.contains(".") && fileName.lastIndexOf('.') > 0) {
 				fileName = fileName.substring(0, fileName.lastIndexOf('.'));
 			}
 			result.put(
-					getRelativePath(sourcesDir, parent),
-					analyzeFile(analyzer, parent));
+					getRelativePath(sourcesDir, file),
+					analyzeFile(analyzer, file));
+			log("Finished analysis of " + file, Project.MSG_VERBOSE);
 		}
 
 		return result;
