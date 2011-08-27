@@ -29,12 +29,10 @@ import org.drools.io.ResourceFactory;
 public class Section508 implements ConditionSet {
 	private static final String classpath = "org/analyzer/section508";
 
-	@Override
 	public String getName() {
 		return "Section 508";
 	}
 
-	@Override
 	public Collection<DroolsResource> getDroolsResources() {
 		Collection<DroolsResource> result = new ArrayList<DroolsResource>();
 
@@ -49,7 +47,6 @@ public class Section508 implements ConditionSet {
 		return result;
 	}
 
-	@Override
 	public Class<? extends ElementFactory> getElementFactoryUsed() {
 		return HTMLElementFactory.class;
 	}
