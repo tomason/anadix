@@ -1,0 +1,5 @@
+"mvn3 clean install" builds you an executable JAR with all the dependencies 
+bundled.
+
+"mvn3 exec:java" can launch the JAR for you. Otherwise a simple 
+"java -jar filename" should work as well. 
