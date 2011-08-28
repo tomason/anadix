@@ -46,7 +46,6 @@ public class SwingParser implements Parser {
 		parser = new ParserDelegator();
 	}
 
-	@Override
 	public void parse(Source source) throws ParserException {
 		if (factory != null) {
 			try {
@@ -61,7 +60,6 @@ public class SwingParser implements Parser {
 		}
 	}
 
-	@Override
 	public Collection<DroolsResource> getDroolsResources() {
 		Collection<DroolsResource> result = new ArrayList<DroolsResource>();
 
@@ -86,12 +84,10 @@ public class SwingParser implements Parser {
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
 	public Class<HTMLElementFactory> getElementFactoryClass() {
 		return HTMLElementFactory.class;
 	}
 
-	@Override
 	public <T extends ElementFactory> void setElementFactory(T factory) {
 		if (getElementFactoryClass().isAssignableFrom(factory.getClass())) {
 			this.factory = (HTMLElementFactory)factory;
