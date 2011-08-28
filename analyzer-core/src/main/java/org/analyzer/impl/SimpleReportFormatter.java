@@ -5,7 +5,6 @@ import org.analyzer.ReportItem;
 
 public class SimpleReportFormatter extends DefaultReportFormatter {
 
-	@Override
 	public String format(Report report) {
 		StringBuilder sb = new StringBuilder();
 
