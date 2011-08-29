@@ -24,9 +24,6 @@ import org.analyzer.exceptions.SourceException;
 /**
  * Creates instances of Source for different types of sources
  * 
- * FIXME Reconsider the need for source factories. So far they don't do much.
- * (Although I can see their value as being a single unifying place for all the
- * sources to be found at.)
  * FIXME If SourceFactory is never instantiated, which I assume was the
  * intention, how will additional (perhaps even user-defined) Sources get their
  * factory methods? This is probably another reason to get rid of (or at least
@@ -34,6 +31,7 @@ import org.analyzer.exceptions.SourceException;
  * @author tomason
  */
 public final class SourceFactory {
+	private static final boolean cacheByDefault = true;
 	private SourceFactory() {
 	}
 
@@ -45,8 +43,25 @@ public final class SourceFactory {
 	 * @throws SourceException - if any error occurs during creation of new Source
 	 */
 	public static Source newFileSource(File file) throws SourceException {
+		return newFileSource(file, cacheByDefault);
+	}
+
+	/**
+	 * Creates a new source pointing at a file
+	 * 
+	 * @param file - file to read a source from
+	 * @param cache - whether to cache the result in memory
+	 * @return instance of Source
+	 * @throws SourceException - if any error occurs during creation of new Source
+	 */
+	public static Source newFileSource(File file, boolean cache) throws SourceException {
 		try {
-			return new FileSource(file);
+			Source s = new FileSource(file);
+			if (cache) {
+				return newStringSource(s.getText(), s.getDescription());
+			} else {
+				return s;
+			}
 		} catch (FileNotFoundException ex) {
 			throw new SourceException("Unable to create source", ex);
 		}
@@ -60,7 +75,19 @@ public final class SourceFactory {
 	 * @throws SourceException - if any error occurs during creation of new Source
 	 */
 	public static Source newFileSource(String filename) throws SourceException {
-		return newFileSource(new File(filename));
+		return newFileSource(filename, cacheByDefault);
+	}
+
+	/**
+	 * Creates a new source pointing at a file
+	 * 
+	 * @param filename - path to file to read a source from
+	 * @param cache - whether to cache the result in memory
+	 * @return instance of Source
+	 * @throws SourceException - if any error occurs during creation of new Source
+	 */
+	public static Source newFileSource(String filename, boolean cache) throws SourceException {
+		return newFileSource(new File(filename), cache);
 	}
 
 	/**
@@ -74,6 +101,17 @@ public final class SourceFactory {
 	}
 
 	/**
+	 * Creates a new source from a String
+	 * 
+	 * @param source - String containing the actual source
+	 * @param description - descripton of the Source
+	 * @return instance of Source
+	 */
+	public static Source newStringSource(String source, String description) {
+		return new StringSource(source, description);
+	}
+
+	/**
 	 * Creates a new Source from a classpath resource.
 	 * The resource must be on classpath and reachable by default classloader!
 	 * 
@@ -81,6 +119,23 @@ public final class SourceFactory {
 	 * @return instance of Source
 	 */
 	public static Source newClassPathSource(String resource) {
-		return new ClassPathSource(resource);
+		return newClassPathSource(resource, cacheByDefault);
+	}
+
+	/**
+	 * Creates a new Source from a classpath resource.
+	 * The resource must be on classpath and reachable by default classloader!
+	 * 
+	 * @param resource - path to the resource
+	 * @param cache - whether to cache the result in memory
+	 * @return instance of Source
+	 */
+	public static Source newClassPathSource(String resource, boolean cache) {
+		Source s = new ClassPathSource(resource);
+		if (cache) {
+			return newStringSource(s.getText(), s.getDescription());
+		} else {
+			return s;
+		}
 	}
 }
