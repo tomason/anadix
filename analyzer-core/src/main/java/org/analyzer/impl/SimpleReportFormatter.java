@@ -11,7 +11,7 @@ public class SimpleReportFormatter extends DefaultReportFormatter {
 		sb.append("*******************************************************").append("\n");
 		sb.append("*                 Drools report                       *").append("\n");
 		sb.append("*******************************************************").append("\n");
-		sb.append(report.getSource().getDescription()).append("\n");
+		sb.append("Analyzing: ").append(report.getSource().getDescription()).append("\n");
 		sb.append("\n");
 		sb.append("\n");
 		sb.append("ERROR:").append("\n");
