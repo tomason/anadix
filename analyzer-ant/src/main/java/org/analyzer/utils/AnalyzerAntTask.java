@@ -20,12 +20,12 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.analyzer.Analyzer;
 import org.analyzer.Report;
 import org.analyzer.ReportFormatter;
 import org.analyzer.Source;
-import org.analyzer.exceptions.InstantiationException;
 import org.analyzer.exceptions.SourceException;
 import org.analyzer.factories.ObjectFactory;
 import org.analyzer.factories.SourceFactory;
@@ -34,11 +34,11 @@ import org.apache.tools.ant.Project;
 import org.apache.tools.ant.taskdefs.MatchingTask;
 
 public class AnalyzerAntTask extends MatchingTask {
-	private String parserClass;
-	private String conditionSetClass;
-	private String formatterClass;
-	private File sourcesDir;
-	private File reportsDir;
+	private String parserClass = null;
+	private String conditionSetClass = null;
+	private String formatterClass = null;
+	private File sourcesDir = new File("src");
+	private File reportsDir = new File("report");
 
 	public void setParserClass(String parserClass) {
 		this.parserClass = parserClass;
@@ -69,14 +69,20 @@ public class AnalyzerAntTask extends MatchingTask {
 			Map<String, Report> results = analyze(a, sourcesDir);
 
 			if (!reportsDir.exists()) {
-				reportsDir.mkdirs();
-			}
-			for (String path : results.keySet()) {
-				File result = new File(reportsDir, path);
-				if (result.exists()) {
-					result.delete();
+				if (!reportsDir.mkdirs()) {
+					throw new BuildException("Could not create directory structure for " + reportsDir);
 				}
-				result.getParentFile().mkdirs();
+			}
+			for (Entry<String, Report> entry : results.entrySet()) {
+				File result = new File(reportsDir, entry.getKey());
+				if (result.exists()) {
+					if (!result.delete()) {
+						throw new BuildException("Could not delete " + result);
+					}
+				}
+				if (!result.getParentFile().mkdirs()) {
+					throw new BuildException("Could not create directory structure for " + result);
+				}
 
 				PrintWriter pw = null;
 				try {
@@ -84,7 +90,7 @@ public class AnalyzerAntTask extends MatchingTask {
 
 					// TODO add formatting
 					ReportFormatter formatter = ObjectFactory.newFormatter(formatterClass);
-					formatter.formatAndStore(results.get(path), pw);
+					formatter.formatAndStore(entry.getValue(), pw);
 				} catch (IOException ex) {
 					throw new BuildException("Unable to save report " + result, ex);
 				} finally {
@@ -113,7 +119,7 @@ public class AnalyzerAntTask extends MatchingTask {
 				fileName = fileName.substring(0, fileName.lastIndexOf('.'));
 			}
 			result.put(
-					getRelativePath(sourcesDir, file),
+					fileName,
 					analyzeFile(analyzer, file));
 			log("Finished analysis of " + file, Project.MSG_VERBOSE);
 		}
