@@ -36,7 +36,7 @@ public abstract class ObjectFactory {
 	private static final String defaultElementFactory = "org.analyzer.html.HTMLElementFactory";
 	private static final String defaultFormatter = "org.analyzer.impl.SimpleReportFormatter";
 
-	private static final String errorMessaageFormat = "Could not instantiate %s: %s";
+	private static final String errorMessageFormat = "Could not instantiate %s: %s";
 
 	/**
 	 * Creates new instance of Parser by invoking default constructor in
@@ -125,6 +125,10 @@ public abstract class ObjectFactory {
 	 * @return new instance of Analyzer
 	 * @throws InstantiationException - when exception occurs during creating
 	 * new instance
+	 * FIXME This method should take the actual classes instead of the class
+	 * names as strings. Attribute types such as Class<? extends Parser> will 
+	 * make it immediately obvious what this method expects. Even without having
+	 * to look at any documentation.
 	 */
 	@SuppressWarnings("unchecked")
 	public static Analyzer newAnalyzer(String parserClassName, String conditionClassName)
@@ -166,6 +170,6 @@ public abstract class ObjectFactory {
 	private static InstantiationException newInstantiationException(String type, String className,
 			Throwable cause) {
 		return new InstantiationException(
-				String.format(errorMessaageFormat, type, className), cause);
+				String.format(errorMessageFormat, type, className), cause);
 	}
 }
