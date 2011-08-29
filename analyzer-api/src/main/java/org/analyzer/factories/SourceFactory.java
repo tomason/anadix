@@ -24,19 +24,18 @@ import org.analyzer.exceptions.SourceException;
 /**
  * Creates instances of Source for different types of sources
  * 
- * FIXME Reconsider the need for source factories. So far they don't do much. 
- * (Although I can see their value as being a single unifying place for all the 
- * sources to be found at.) 
- * FIXME If SourceFactory is never instantiated, which I assume was the 
- * intention, how will additional (perhaps even user-defined) Sources get their 
+ * FIXME Reconsider the need for source factories. So far they don't do much.
+ * (Although I can see their value as being a single unifying place for all the
+ * sources to be found at.)
+ * FIXME If SourceFactory is never instantiated, which I assume was the
+ * intention, how will additional (perhaps even user-defined) Sources get their
  * factory methods? This is probably another reason to get rid of (or at least
- * rethink) this factory. 
- * FIXME Abstract class that's never inherited from? Your intention of having a
- * class with no instances will be better expressed by making the class final 
- * with a private constructor.
+ * rethink) this factory.
  * @author tomason
  */
-public abstract class SourceFactory {
+public final class SourceFactory {
+	private SourceFactory() {
+	}
 
 	/**
 	 * Creates a new source pointing at a file
