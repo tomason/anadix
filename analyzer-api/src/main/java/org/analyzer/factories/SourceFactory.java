@@ -17,6 +17,8 @@ package org.analyzer.factories;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URL;
 
 import org.analyzer.Source;
 import org.analyzer.exceptions.SourceException;
@@ -136,6 +138,40 @@ public final class SourceFactory {
 			return newStringSource(s.getText(), s.getDescription());
 		} else {
 			return s;
+		}
+	}
+
+	/**
+	 * Creates a new Source from an URL resource.
+	 * The URL must exist and be valid!
+	 * 
+	 * @param url - URL to get resource from
+	 * @return instance of Source
+	 * @throws SourceException - if any error occurs during creation of new Source
+	 */
+	public static Source newURLSource(URL url) throws SourceException {
+		return newURLSource(url, cacheByDefault);
+	}
+
+	/**
+	 * Creates a new Source from an URL resource.
+	 * The URL must exist and be valid!
+	 * 
+	 * @param url - URL to get resource from
+	 * @param cache - whether to cache the result in memory
+	 * @return instance of Source
+	 * @throws SourceException - if any error occurs during creation of new Source
+	 */
+	public static Source newURLSource(URL url, boolean cache) throws SourceException {
+		try {
+			Source s = new URLSource(url);
+			if (cache) {
+				return newStringSource(s.getText(), s.getDescription());
+			} else {
+				return s;
+			}
+		} catch (IOException ex) {
+			throw new SourceException("Unable to create source", ex);
 		}
 	}
 }
