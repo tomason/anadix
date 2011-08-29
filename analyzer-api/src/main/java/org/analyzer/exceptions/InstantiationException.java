@@ -18,7 +18,7 @@ package org.analyzer.exceptions;
 
 /**
  * Exception during creation of a new instance.
- * Consider removing this class and using java.lang.InstantiationException
+ * FIXME Consider removing this class and using java.lang.InstantiationException
  * 
  * @author tomason
  */
