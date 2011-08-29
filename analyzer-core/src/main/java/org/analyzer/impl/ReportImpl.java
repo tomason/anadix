@@ -41,6 +41,8 @@ public class ReportImpl implements Report {
 			case ERROR:
 				errors.add(item);
 				break;
+			default:
+				throw new RuntimeException("Unexpected enum value " + item.getStatus());
 			}
 		}
 	}
