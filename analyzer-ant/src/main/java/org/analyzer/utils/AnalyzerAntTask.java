@@ -88,7 +88,6 @@ public class AnalyzerAntTask extends MatchingTask {
 				try {
 					pw = new PrintWriter(result);
 
-					// TODO add formatting
 					ReportFormatter formatter = ObjectFactory.newFormatter(formatterClass);
 					formatter.formatAndStore(entry.getValue(), pw);
 				} catch (IOException ex) {
