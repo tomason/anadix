@@ -22,7 +22,7 @@ import org.analyzer.ConditionSet;
 import org.analyzer.ElementFactory;
 import org.analyzer.Parser;
 import org.analyzer.ReportFormatter;
-import org.analyzer.exceptions.InstantiationException;
+
 
 /**
  * Creates instances of various objects used by analyzer
@@ -126,7 +126,7 @@ public abstract class ObjectFactory {
 	 * @throws InstantiationException - when exception occurs during creating
 	 * new instance
 	 * FIXME This method should take the actual classes instead of the class
-	 * names as strings. Attribute types such as Class<? extends Parser> will 
+	 * names as strings. Attribute types such as Class<? extends Parser> will
 	 * make it immediately obvious what this method expects. Even without having
 	 * to look at any documentation.
 	 */
@@ -141,6 +141,8 @@ public abstract class ObjectFactory {
 			return c.newInstance(
 					newParser(parserClassName),
 					newConditionSet(conditionClassName));
+		} catch (RuntimeException ex) {
+			throw ex;
 		} catch (Exception ex) {
 			throw newInstantiationException("Analyzer", defaultAnalyzer, ex);
 		}
@@ -170,6 +172,6 @@ public abstract class ObjectFactory {
 	private static InstantiationException newInstantiationException(String type, String className,
 			Throwable cause) {
 		return new InstantiationException(
-				String.format(errorMessageFormat, type, className), cause);
+				String.format(errorMessageFormat, type, className));
 	}
 }
