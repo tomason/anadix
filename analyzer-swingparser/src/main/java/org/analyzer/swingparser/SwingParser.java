@@ -64,8 +64,8 @@ public class SwingParser implements Parser {
 		Collection<DroolsResource> result = new ArrayList<DroolsResource>();
 
 		ExternalSpreadsheetCompiler compiler = new ExternalSpreadsheetCompiler();
-		InputStream csvStream = getClass().getResourceAsStream("tags.csv");
-		InputStream templateStream = getClass().getResourceAsStream("rule-template.drt");
+		InputStream csvStream = SwingParser.class.getResourceAsStream("tags.csv");
+		InputStream templateStream = SwingParser.class.getResourceAsStream("rule-template.drt");
 
 		String generated = compiler.compile(csvStream, templateStream, InputType.CSV, 2, 1);
 		logger.debug(generated);
@@ -77,7 +77,7 @@ public class SwingParser implements Parser {
 
 		// add common rules - to insert <html>
 		result.add(new DroolsResource(
-				ResourceFactory.newClassPathResource("org/analyzer/swingparser/swingparser.drl"),
+				ResourceFactory.newInputStreamResource(SwingParser.class.getResourceAsStream("swingparser.drl")),
 				ResourceType.DRL));
 
 		return result;
