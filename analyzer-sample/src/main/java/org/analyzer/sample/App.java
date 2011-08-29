@@ -1,7 +1,11 @@
 package org.analyzer.sample;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import org.analyzer.Analyzer;
 import org.analyzer.Report;
+import org.analyzer.exceptions.SourceException;
 import org.analyzer.factories.ObjectFactory;
 import org.analyzer.factories.SourceFactory;
 
@@ -31,8 +35,13 @@ public class App {
 				Report r = a.analyze(SourceFactory.newClassPathSource("/" + filename));
 				System.out.println(r.report());
 			}
+			Report r = a.analyze(SourceFactory.newURLSource(new URL("http://section508.gov")));
+			System.out.println(r.report());
 		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (SourceException e) {
 			e.printStackTrace();
 		}
 	}
