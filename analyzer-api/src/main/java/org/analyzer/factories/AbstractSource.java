@@ -24,7 +24,7 @@ import org.analyzer.Source;
 
 abstract class AbstractSource implements Source {
 	public String getText() {
-		String result = "";
+		StringBuilder result = new StringBuilder();
 		BufferedReader br = null;
 
 		try {
@@ -32,7 +32,7 @@ abstract class AbstractSource implements Source {
 			String line;
 
 			while ((line = br.readLine()) != null) {
-				result += line + "\n";
+				result.append(line).append("\n");
 			}
 		} catch (IOException ex) {
 			System.err.println(ex);
@@ -48,7 +48,7 @@ abstract class AbstractSource implements Source {
 			}
 		}
 
-		return result;
+		return result.toString();
 	}
 
 	public Reader getReader() {
