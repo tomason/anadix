@@ -24,6 +24,15 @@ import org.analyzer.html.HtmlElement;
 import org.analyzer.html.ImgTag;
 import org.analyzer.impl.AbstractReportItem;
 
+/**
+ * FIXME JBoss Logging 3.0 provides support for everything you are trying to do 
+ * with this class. It supports message internationalization, message bundle 
+ * classes, message types (ERROR, WARNING, ...) etc. It would be good to re-use 
+ * what's already implemented elsewhere - although I must admit I am not sure if
+ * that would be proper use of a logging framework. If you decide to use 
+ * jblogging, the following Github repo has some examples: 
+ * https://github.com/jamezp/jboss-logging-example 
+ */
 public class ReportFactory {
 	private static final ResourceBundle i18n = ResourceBundle.getBundle("org.analyzer.section508.reports");
 
