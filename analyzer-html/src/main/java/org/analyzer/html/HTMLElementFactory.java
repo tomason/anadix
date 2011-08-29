@@ -55,6 +55,12 @@ public class HTMLElementFactory extends AbstractElementFactory {
 							id, name, parent, new Attributes(attributes)));
 		}
 
-		return new HtmlElement(id, name, parent, new Attributes(attributes)) {};
+		return new DefaultElement(id, name, parent, new Attributes(attributes));
+	}
+
+	public static class DefaultElement extends HtmlElement {
+		public DefaultElement(BigInteger id, String name, HtmlElement parent, Attributes attributes) {
+			super(id, name, parent, attributes);
+		}
 	}
 }
