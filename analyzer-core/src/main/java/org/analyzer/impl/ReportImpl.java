@@ -16,10 +16,12 @@
 package org.analyzer.impl;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.analyzer.Report;
 import org.analyzer.ReportItem;
+import org.analyzer.Source;
 import org.drools.runtime.ClassObjectFilter;
 import org.drools.runtime.StatefulKnowledgeSession;
 
@@ -28,7 +30,11 @@ public class ReportImpl implements Report {
 	private final List<ReportItem> warnings = new ArrayList<ReportItem>();
 	private final List<ReportItem> oks = new ArrayList<ReportItem>();
 
-	public ReportImpl(StatefulKnowledgeSession ksession) {
+	private final Source source;
+
+	public ReportImpl(StatefulKnowledgeSession ksession, Source source) {
+		this.source = source;
+
 		for (Object i : ksession.getObjects(new ClassObjectFilter(ReportItem.class))) {
 			ReportItem item = (ReportItem)i;
 			switch (item.getStatus()) {
@@ -47,16 +53,20 @@ public class ReportImpl implements Report {
 		}
 	}
 
+	public Source getSource() {
+		return source;
+	}
+
 	public List<ReportItem> getOks() {
-		return oks;
+		return Collections.unmodifiableList(oks);
 	}
 
 	public List<ReportItem> getWarnings() {
-		return warnings;
+		return Collections.unmodifiableList(warnings);
 	}
 
 	public List<ReportItem> getErrors() {
-		return errors;
+		return Collections.unmodifiableList(errors);
 	}
 
 	public String report() {
