@@ -22,8 +22,6 @@ import java.util.List;
  * grouped by their status. Also enables to get simple textual report.
  * Please note that it should be used for debug purposes only!
  * 
- * FIXME A report should show on which Source it was invoked. (Showing a 
- * file name or something.)
  * @author tomason
  */
 public interface Report {
@@ -58,4 +56,11 @@ public interface Report {
 	 * @return string representation of this instance
 	 */
 	String report();
+
+	/**
+	 * Gets the Source this report was generated for
+	 * 
+	 * @return Source this Report was generated from
+	 */
+	Source getSource();
 }
