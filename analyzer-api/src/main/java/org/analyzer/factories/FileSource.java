@@ -24,6 +24,7 @@ class FileSource extends AbstractSource {
 	private final File source;
 
 	public FileSource(File source) throws FileNotFoundException {
+		super(source.getAbsolutePath());
 		if (!source.exists()) {
 			throw new FileNotFoundException(source.getName());
 		}

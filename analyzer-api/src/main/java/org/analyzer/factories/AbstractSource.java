@@ -23,6 +23,16 @@ import java.io.Reader;
 import org.analyzer.Source;
 
 abstract class AbstractSource implements Source {
+	private final String description;
+
+	public AbstractSource(String description) {
+		this.description = description;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
 	public String getText() {
 		StringBuilder result = new StringBuilder();
 		BufferedReader br = null;

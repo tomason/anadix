@@ -25,6 +25,11 @@ import java.io.Reader;
  */
 public interface Source {
 	/**
+	 * @return description of the source (eg. filename, url, classpath)
+	 */
+	String getDescription();
+
+	/**
 	 * @return source as a String
 	 */
 	String getText();

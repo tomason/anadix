@@ -24,9 +24,19 @@ import org.analyzer.Source;
 
 class StringSource implements Source {
 	private final String source;
+	private final String description;
 
 	public StringSource(String source) {
+		this(source, null);
+	}
+
+	public StringSource(String source, String description) {
 		this.source = source;
+		this.description = description;
+	}
+
+	public String getDescription() {
+		return description;
 	}
 
 	public String getText() {

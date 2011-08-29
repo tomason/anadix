@@ -21,6 +21,7 @@ class ClassPathSource extends AbstractSource {
 	private final String resourceName;
 
 	public ClassPathSource(String resource) {
+		super(resource);
 		this.resourceName = resource;
 	}
 
