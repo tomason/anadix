@@ -2,20 +2,34 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
+  
   <parent>
-    <artifactId>analyzer-parent</artifactId>
+    <artifactId>anadix-parser</artifactId>
     <groupId>org</groupId>
     <version>0.0.1-SNAPSHOT</version>
+    <relativePath>..</relativePath>
   </parent>
-  <artifactId>analyzer-swingparser</artifactId>
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+  
+  <artifactId>anadix-swingparser</artifactId>
+  <name>Anadix default parser</name>
+  
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  
   <dependencies>
   	<dependency>
   		<groupId>org</groupId>
-  		<artifactId>analyzer-html</artifactId>
-  		<version>0.0.1-SNAPSHOT</version>
+  		<artifactId>anadix-html</artifactId>
+  		<version>${project.version}</version>
   	</dependency>
   	<dependency>
   		<groupId>org.drools</groupId>
@@ -33,6 +47,4 @@
 	    <version>1.2.16</version>
 	</dependency>  	
   </dependencies>
-  <name>Parser for analyzer</name>
-  <description>Parser based on javax.swing.text.html.parser.ParserDelegator used by analyzer to analyze HTML files.</description>
 </project>

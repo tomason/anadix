@@ -3,23 +3,21 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org</groupId>
-  <artifactId>analyzer-parent</artifactId>
+  <artifactId>anadix-parent</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>Analyzer parent project</name>
-
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+  <name>Anadix parent project</name>
 
   <modules>
-    <module>analyzer-api</module>
-    <module>analyzer-core</module>
-    <module>analyzer-html</module>
-    <module>analyzer-section508</module>
-    <module>analyzer-swingparser</module>
-    <module>analyzer-ant</module>
-    <module>analyzer-sample</module>
+  	<module>anadix-api</module>
+    <module>anadix-core</module>
+    
+    <module>anadix-domain</module>
+    <module>anadix-parser</module>
+    <module>anadix-condition</module>
+  	
+  	<module>anadix-integration</module>
+    <module>anadix-example</module>
   </modules>
 </project>

@@ -1,0 +1,43 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <parent>
+    <artifactId>anadix-integration</artifactId>
+    <groupId>org</groupId>
+    <version>0.0.1-SNAPSHOT</version>
+    <relativePath>..</relativePath>
+  </parent>
+  
+  <artifactId>anadix-ant</artifactId>
+  <name>Anadix Ant task</name>
+  
+  <build>
+    <plugins>
+  	  <plugin>
+  	    <artifactId>maven-compiler-plugin</artifactId>
+  	    <configuration>
+  	      <source>1.6</source>
+  	      <target>1.6</target>
+  	    </configuration>  
+  	  </plugin>
+    </plugins>
+  </build>
+  
+  <dependencies>
+    <dependency>
+  	  <groupId>ant</groupId>
+  	  <artifactId>ant</artifactId>
+  	  <version>1.7.0</version>
+    </dependency>
+    <dependency>
+  	  <groupId>org</groupId>
+  	  <artifactId>anadix-api</artifactId>
+  	  <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org</groupId>
+      <artifactId>anadix-core</artifactId>
+  	  <version>${project.version}</version>
+    </dependency>
+  </dependencies>
+</project>
