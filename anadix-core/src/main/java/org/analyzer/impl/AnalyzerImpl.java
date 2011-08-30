@@ -21,7 +21,6 @@ import org.analyzer.ElementFactory;
 import org.analyzer.Parser;
 import org.analyzer.Report;
 import org.analyzer.Source;
-import org.analyzer.factories.ObjectFactory;
 import org.analyzer.utils.DroolsResource;
 import org.drools.KnowledgeBase;
 import org.drools.KnowledgeBaseFactory;
@@ -59,7 +58,7 @@ public class AnalyzerImpl implements Analyzer {
 
 		try {
 			ElementFactory ef = AbstractElementFactory.createFactory(
-					ObjectFactory.getElementFactoryClass(null),
+					conditions.getElementFactoryUsed(),
 					ksession
 					);
 

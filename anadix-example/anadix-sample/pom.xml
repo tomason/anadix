@@ -24,11 +24,6 @@
       <artifactId>anadix-section508</artifactId>
       <version>${analyzer.version}</version>
     </dependency>
-    <dependency>
-      <groupId>org</groupId>
-      <artifactId>anadix-swingparser</artifactId>
-      <version>${analyzer.version}</version>
-    </dependency>
   </dependencies>
   
   <build>

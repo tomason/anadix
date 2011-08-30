@@ -62,43 +62,58 @@ public class AnalyzerAntTask extends MatchingTask {
 
 	@Override
 	public void execute() throws BuildException {
+		log("Starting...", Project.MSG_INFO);
+		Analyzer a = createAnalyzer();
+		log("Created an instance of analyzer", Project.MSG_INFO);
+		Map<String, Report> results = analyze(a, sourcesDir);
+
+		if (!reportsDir.exists()) {
+			if (!reportsDir.mkdirs()) {
+				throw new BuildException("Could not create directory structure for " + reportsDir);
+			}
+		}
+		for (Entry<String, Report> entry : results.entrySet()) {
+			File result = new File(reportsDir, entry.getKey());
+			if (result.exists()) {
+				if (!result.delete()) {
+					throw new BuildException("Could not delete " + result);
+				}
+			}
+			if (!result.getParentFile().mkdirs()) {
+				throw new BuildException("Could not create directory structure for " + result);
+			}
+
+			PrintWriter pw = null;
+			try {
+				pw = new PrintWriter(result);
+
+				ReportFormatter formatter = ObjectFactory.newFormatter(formatterClass);
+				formatter.formatAndStore(entry.getValue(), pw);
+			} catch (InstantiationException ex) {
+				throw new BuildException("Unable to instantiate formatter", ex);
+			} catch (IOException ex) {
+				throw new BuildException("Unable to save report " + result, ex);
+			} finally {
+				if (pw != null) {
+					pw.flush();
+					pw.close();
+				}
+			}
+		}
+	}
+
+	private Analyzer createAnalyzer() throws BuildException {
 		try {
-			log("Starting...", Project.MSG_INFO);
-			Analyzer a = ObjectFactory.newAnalyzer(parserClass, conditionSetClass);
-			log("Created an instance of analyzer", Project.MSG_INFO);
-			Map<String, Report> results = analyze(a, sourcesDir);
-
-			if (!reportsDir.exists()) {
-				if (!reportsDir.mkdirs()) {
-					throw new BuildException("Could not create directory structure for " + reportsDir);
-				}
+			Analyzer a;
+			if (parserClass != null && parserClass.length() > 0) {
+				a = ObjectFactory.newAnalyzer(
+						ObjectFactory.newParser(parserClass),
+						ObjectFactory.newConditionSet(conditionSetClass));
+			} else {
+				a = ObjectFactory.newAnalyzer(null, ObjectFactory.newConditionSet(conditionSetClass));
 			}
-			for (Entry<String, Report> entry : results.entrySet()) {
-				File result = new File(reportsDir, entry.getKey());
-				if (result.exists()) {
-					if (!result.delete()) {
-						throw new BuildException("Could not delete " + result);
-					}
-				}
-				if (!result.getParentFile().mkdirs()) {
-					throw new BuildException("Could not create directory structure for " + result);
-				}
 
-				PrintWriter pw = null;
-				try {
-					pw = new PrintWriter(result);
-
-					ReportFormatter formatter = ObjectFactory.newFormatter(formatterClass);
-					formatter.formatAndStore(entry.getValue(), pw);
-				} catch (IOException ex) {
-					throw new BuildException("Unable to save report " + result, ex);
-				} finally {
-					if (pw != null) {
-						pw.flush();
-						pw.close();
-					}
-				}
-			}
+			return a;
 		} catch (InstantiationException ex) {
 			throw new BuildException("Unable to istantiate Analyzer " + ex, ex);
 		}
