@@ -35,7 +35,6 @@
   		<groupId>org</groupId>
   		<artifactId>anadix-swingparser</artifactId>
   		<version>${project.version}</version>
-  		<scope>runtime</scope>
   	</dependency>
   </dependencies>
 </project>

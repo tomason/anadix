@@ -20,7 +20,9 @@ import java.util.Collection;
 
 import org.analyzer.ConditionSet;
 import org.analyzer.ElementFactory;
+import org.analyzer.Parser;
 import org.analyzer.html.HTMLElementFactory;
+import org.analyzer.swingparser.SwingParser;
 import org.analyzer.utils.DroolsResource;
 import org.drools.builder.ResourceType;
 import org.drools.io.ResourceFactory;
@@ -49,5 +51,9 @@ public class Section508 implements ConditionSet {
 
 	public Class<? extends ElementFactory> getElementFactoryUsed() {
 		return HTMLElementFactory.class;
+	}
+
+	public Class<? extends Parser> getDefaultParser() {
+		return SwingParser.class;
 	}
 }
