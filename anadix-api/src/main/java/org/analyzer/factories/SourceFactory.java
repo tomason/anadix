@@ -26,10 +26,6 @@ import org.analyzer.exceptions.SourceException;
 /**
  * Creates instances of Source for different types of sources
  * 
- * FIXME If SourceFactory is never instantiated, which I assume was the
- * intention, how will additional (perhaps even user-defined) Sources get their
- * factory methods? This is probably another reason to get rid of (or at least
- * rethink) this factory.
  * @author tomason
  */
 public final class SourceFactory {
