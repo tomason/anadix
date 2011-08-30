@@ -11,6 +11,7 @@
   </parent>
   
   <artifactId>anadix-example</artifactId>
+  <name>Anadix examples</name>
   <packaging>pom</packaging>
   
   <modules>

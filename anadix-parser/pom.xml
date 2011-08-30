@@ -11,6 +11,7 @@
   </parent>
   
   <artifactId>anadix-parser</artifactId>
+  <name>Anadix parsers</name>
   <packaging>pom</packaging>
   
   <modules>

@@ -11,6 +11,7 @@
   </parent>
   
   <artifactId>anadix-condition</artifactId>
+  <name>Anadix condition sets</name>
   <packaging>pom</packaging>  
 
   <modules>

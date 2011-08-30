@@ -11,6 +11,7 @@
   </parent>
   
   <artifactId>anadix-domain</artifactId>
+  <name>Anadix domains</name>
   <packaging>pom</packaging>
   
   <modules>
