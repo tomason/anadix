@@ -19,5 +19,7 @@
   	
   	<module>anadix-integration</module>
     <module>anadix-example</module>
+    
+    <module>anadix-distribution</module>
   </modules>
 </project>
