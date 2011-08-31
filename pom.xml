@@ -22,4 +22,10 @@
     
     <module>anadix-distribution</module>
   </modules>
+  
+  <scm>
+  	<url>scm:git:git@github.com:tomason/analyzer.git</url>
+  	<connection>scm:git:git@github.com:tomason/analyzer.git</connection>
+  	<developerConnection>scm:git:git@github.com:tomason/analyzer.git</developerConnection>
+  </scm>
 </project>
