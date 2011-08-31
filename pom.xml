@@ -23,6 +23,17 @@
     <module>anadix-distribution</module>
   </modules>
   
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-release-plugin</artifactId>
+        <configuration>
+          <autoVersionSubmodules>true</autoVersionSubmodules>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  
   <scm>
   	<url>scm:git:git@github.com:tomason/analyzer.git</url>
   	<connection>scm:git:git@github.com:tomason/analyzer.git</connection>
