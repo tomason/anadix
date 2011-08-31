@@ -13,7 +13,6 @@
   <name>Sample app for the analyzer</name>
   
   <properties>
-    <analyzer.version>0.1.0</analyzer.version>
     <analyzer.sample.main.class>org.analyzer.sample.App</analyzer.sample.main.class>
   </properties>
   
@@ -21,7 +20,7 @@
     <dependency>
       <groupId>org</groupId>
       <artifactId>anadix-section508</artifactId>
-      <version>${analyzer.version}</version>
+      <version>${project.version}</version>
     </dependency>
   </dependencies>
   
