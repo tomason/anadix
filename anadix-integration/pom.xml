@@ -9,6 +9,7 @@
   </parent>
   
   <artifactId>anadix-integration</artifactId>
+  <version>0.1.0</version>
   <name>Anadix integration with other tools</name>
   <packaging>pom</packaging>
   
