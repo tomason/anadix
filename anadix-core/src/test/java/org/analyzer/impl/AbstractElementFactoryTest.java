@@ -20,7 +20,7 @@ public class AbstractElementFactoryTest {
 	private StatefulKnowledgeSession ksession;
 
 	@Test(groups = { "constructor" })
-	public void AbstractElementFactory() {
+	public void testConstructor() {
 		new AbstractElementFactory(mock(StatefulKnowledgeSession.class)) {};
 
 		try {
@@ -32,7 +32,7 @@ public class AbstractElementFactoryTest {
 	}
 
 	@Test(groups = { "constructor" })
-	public void createFactory() {
+	public void testCreateFactory() {
 		Class<? extends ElementFactory> cls;
 
 		try {
@@ -72,7 +72,7 @@ public class AbstractElementFactoryTest {
 	}
 
 	@Test(dependsOnGroups = { "constructor" })
-	public void getElements() {
+	public void testGetElements() {
 		Element e1 = mock(Element.class);
 		Element e2 = mock(Element.class);
 		when(ksession.getObjects(notNull(ObjectFilter.class))).thenReturn(Arrays.asList((Object)e1, e2));
@@ -85,7 +85,7 @@ public class AbstractElementFactoryTest {
 	}
 
 	@Test(dependsOnGroups = { "constructor" })
-	public void insertElement() {
+	public void testInsertElement() {
 		Element e = mock(Element.class);
 		ef.insertElement(e);
 
@@ -93,7 +93,7 @@ public class AbstractElementFactoryTest {
 	}
 
 	@Test(dependsOnGroups = { "constructor" })
-	public void insertEvent() {
+	public void testInsertEvent() {
 		String entryPoint = "test";
 		Object event = mock(Element.class);
 		WorkingMemoryEntryPoint ep = mock(WorkingMemoryEntryPoint.class);
@@ -135,7 +135,7 @@ public class AbstractElementFactoryTest {
 	}
 
 	@Test(dependsOnGroups = { "constructor" })
-	public void setAsGlobal() {
+	public void testSetAsGlobal() {
 		String identifier = "global";
 		try {
 			ef.setAsGlobal(null);
@@ -150,7 +150,7 @@ public class AbstractElementFactoryTest {
 	}
 
 	@Test(dependsOnGroups = { "constructor" })
-	public void setGlobal() {
+	public void testSetGlobal() {
 		String identifier = "global";
 		Object global = mock(Analyzer.class);
 
