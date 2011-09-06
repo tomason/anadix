@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   
   <parent>
-    <artifactId>analyzer-parent</artifactId>
+    <artifactId>anadix-parent</artifactId>
     <groupId>org</groupId>
     <version>0.0.1-SNAPSHOT</version>
     <relativePath>..</relativePath>

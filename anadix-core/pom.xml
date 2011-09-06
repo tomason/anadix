@@ -12,36 +12,6 @@
   <artifactId>anadix-core</artifactId>
   <name>Anadix implementation</name>
   
-  <build>
-    <plugins>
-  	  <plugin>
-  	    <artifactId>maven-compiler-plugin</artifactId>
-  	    <configuration>
-  	      <source>1.6</source>
-  	      <target>1.6</target>
-  	    </configuration>  
-  	  </plugin>
-  	  <plugin>
-  	    <groupId>org.codehaus.mojo</groupId>
-  	    <artifactId>cobertura-maven-plugin</artifactId>
-  	    <configuration>
-  	      <instrumentation>
-  	        <excludes>
-  	          <exclude>**/*Test*.class</exclude>
-  	        </excludes>
-  	      </instrumentation>
-  	    </configuration>
-  	    <executions>
-  	      <execution>
-  	        <goals>
-  	          <goal>clean</goal>
-  	        </goals>
-  	      </execution>
-  	    </executions>
-  	  </plugin>
-    </plugins>
-  </build>
-  
   <dependencies>
   	<dependency>
   		<groupId>org</groupId>
@@ -49,21 +19,14 @@
   		<version>${project.version}</version>
   	</dependency>
   	<dependency>
-  		<groupId>org.mockito</groupId>
-  		<artifactId>mockito-all</artifactId>
-  		<version>1.9.0-rc1</version>
-  		<scope>test</scope>
-  	</dependency>
-  	<dependency>
-  		<groupId>org.testng</groupId>
-  		<artifactId>testng</artifactId>
-  		<version>6.2</version>
-  		<scope>test</scope>
-  	</dependency>
-  	<dependency>
   		<groupId>org.drools</groupId>
   		<artifactId>drools-compiler</artifactId>
   		<version>5.3.0.Beta1</version>
+  	</dependency>
+  	<dependency>
+  	  <groupId>org.drools</groupId>
+  	  <artifactId>drools-core</artifactId>
+  	  <version>5.3.0.Beta1</version>
   	</dependency>
   </dependencies>
 </project>
