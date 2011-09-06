@@ -1,14 +1,22 @@
 package org.analyzer.impl;
 
+import static org.mockito.Matchers.*;
 import static org.mockito.Mockito.*;
 import static org.testng.Assert.*;
+
+import java.io.StringReader;
+import java.util.Arrays;
 
 import org.analyzer.ConditionSet;
 import org.analyzer.ElementFactory;
 import org.analyzer.Parser;
-import org.analyzer.Report;
 import org.analyzer.Source;
+import org.analyzer.exceptions.ParserException;
 import org.analyzer.factories.SourceFactory;
+import org.analyzer.utils.DroolsResource;
+import org.drools.builder.KnowledgeBuilder;
+import org.drools.builder.ResourceType;
+import org.drools.io.ResourceFactory;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 import org.testng.annotations.BeforeMethod;
@@ -27,45 +35,61 @@ public class AnalyzerImplTest {
 		s = mock(Source.class);
 		ef = mock(AbstractElementFactory.class);
 
-		Answer<?> a = new Answer() {
-			public Object answer(InvocationOnMock invocation) throws Throwable {
-				return ef.getClass();
-			}
-		};
+		when(p.getElementFactoryClass()).thenAnswer(new ElementFactoryAnswer(ef));
+		when(c.getElementFactoryUsed()).thenAnswer(new ElementFactoryAnswer(ef));
+	}
 
-		when(p.getElementFactoryClass()).thenAnswer(a);
-		when(c.getElementFactoryUsed()).thenAnswer(a);
+	@Test(expectedExceptions = { NullPointerException.class })
+	public void testConstructor1() {
+		new AnalyzerImpl(null, null);
+	}
+	@Test(expectedExceptions = { NullPointerException.class })
+	public void testConstructor2() {
+		new AnalyzerImpl(null, c);
+	}
+	@Test(expectedExceptions = { NullPointerException.class })
+	public void testConstructor3() {
+		new AnalyzerImpl(p, null);
+	}
+
+	@Test(expectedExceptions = { IllegalStateException.class })
+	public void testConstructor4() {
+		Parser parser = mock(Parser.class);
+		ConditionSet conditions = mock(ConditionSet.class);
+
+		ElementFactory ef1 = mock(AbstractElementFactory.class);
+		ElementFactory ef2 = mock(ElementFactory.class);
+
+		when(parser.getElementFactoryClass()).thenAnswer(new ElementFactoryAnswer(ef1));
+		when(conditions.getElementFactoryUsed()).thenAnswer(new ElementFactoryAnswer(ef2));
+
+		new AnalyzerImpl(parser, conditions);
 	}
 
 	@Test
-	public void AnalyzerImpl() {
-		try {
-			new AnalyzerImpl(null, null);
-			fail("Accepted null Parser and ConditionSet");
-		} catch (NullPointerException ex) {
-			//ok
-		}
-		try {
-			new AnalyzerImpl(null, c);
-			fail("Accepted null Parser");
-		} catch (NullPointerException ex) {
-			//ok
-		}
-		try {
-			new AnalyzerImpl(p, null);
-			fail("Accepted null ConditionSet");
-		} catch (NullPointerException ex) {
-			//ok
-		}
-
+	public void testConstructor5() {
 		new AnalyzerImpl(p, c);
 	}
 
-	@Test
-	public void analyze() throws Exception {
-		AnalyzerImpl a = new AnalyzerImpl(p, c);
+	@Test(expectedExceptions = { RuntimeException.class })
+	public void testAnalyze1() throws Exception {
+		Parser parser = mock(Parser.class);
+		ConditionSet conditions = mock(ConditionSet.class);
+		ElementFactory ef = mock(ElementFactory.class);
 
-		Report r;
+		when(parser.getElementFactoryClass()).thenAnswer(new ElementFactoryAnswer(ef));
+		when(conditions.getElementFactoryUsed()).thenAnswer(new ElementFactoryAnswer(ef));
+
+		AnalyzerImpl analyzer = new AnalyzerImpl(parser, conditions);
+		analyzer.analyze(s);
+
+		verify(parser).setElementFactory(ef);
+		verify(parser).parse(s);
+	}
+
+	@Test
+	public void testAnalyze2() throws Exception {
+		AnalyzerImpl a = new AnalyzerImpl(p, c);
 
 		try {
 			a.analyze(null);
@@ -74,12 +98,73 @@ public class AnalyzerImplTest {
 			//ok
 		}
 
-		assertNotNull(r = a.analyze(SourceFactory.newStringSource("")));
-		System.out.println(r);
-
-		assertNotNull(r = a.analyze(s));
-		System.out.println(r);
+		assertNotNull(a.analyze(SourceFactory.newStringSource("")));
+		assertNotNull(a.analyze(s));
 
 		verify(p).parse(s);
+	}
+
+	@Test
+	public void testAnalyze3() throws Exception {
+		doThrow(new ParserException()).when(p).parse(s);
+
+		AnalyzerImpl a = new AnalyzerImpl(p, c);
+		a.analyze(s);
+	}
+
+	@Test
+	public void testCreateKnowledgeBuilder1() {
+		when(p.getDroolsResources()).thenReturn(null);
+		when(c.getDroolsResources()).thenReturn(null);
+
+		new AnalyzerImpl(p, c);
+	}
+
+	@Test
+	public void testCreateKnowledgeBuilder2() {
+		DroolsResource dr1 = mock(DroolsResource.class);
+		DroolsResource dr2 = mock(DroolsResource.class);
+		DroolsResource dr3 = mock(DroolsResource.class);
+
+		when(p.getDroolsResources()).thenReturn(Arrays.asList(dr1, dr2));
+		when(c.getDroolsResources()).thenReturn(Arrays.asList(dr3));
+
+		new AnalyzerImpl(p, c);
+
+		verify(dr1).insertInto(any(KnowledgeBuilder.class));
+		verify(dr2).insertInto(any(KnowledgeBuilder.class));
+		verify(dr3).insertInto(any(KnowledgeBuilder.class));
+	}
+
+	@Test(expectedExceptions = { RuntimeException.class })
+	public void testCreateKnowledgeBuilder3() {
+		String drl = "package org.sample\nrule nonsense\nwhen\nn : Nonsense( )\nthen\nend\n";
+		DroolsResource resource = new DroolsResource(ResourceFactory.newReaderResource(new StringReader(drl)), ResourceType.DRL);
+
+		when(p.getDroolsResources()).thenReturn(Arrays.asList(resource));
+
+		new AnalyzerImpl(p, c);
+	}
+
+	@Test(expectedExceptions = { RuntimeException.class })
+	public void testCreateKnowledgeBuilder4() {
+		String drl = "package org.sample\nrule nonsense\nwhen\nn : Nonsense( )\nthen\nend\n";
+		DroolsResource resource = new DroolsResource(ResourceFactory.newReaderResource(new StringReader(drl)), ResourceType.DRL);
+
+		when(c.getDroolsResources()).thenReturn(Arrays.asList(resource));
+
+		new AnalyzerImpl(p, c);
+	}
+
+	public static class ElementFactoryAnswer implements Answer<Object> {
+		private final ElementFactory ef;
+
+		public ElementFactoryAnswer(ElementFactory ef) {
+			this.ef = ef;
+		}
+
+		public Object answer(InvocationOnMock invocation) throws Throwable {
+			return ef.getClass();
+		}
 	}
 }

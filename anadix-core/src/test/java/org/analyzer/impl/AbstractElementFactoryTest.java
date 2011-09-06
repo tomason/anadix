@@ -1,4 +1,5 @@
 package org.analyzer.impl;
+import static org.mockito.Matchers.*;
 import static org.mockito.Mockito.*;
 import static org.testng.Assert.*;
 
@@ -8,6 +9,7 @@ import java.util.Collection;
 import org.analyzer.Analyzer;
 import org.analyzer.Element;
 import org.analyzer.ElementFactory;
+import org.drools.runtime.ObjectFilter;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.drools.runtime.rule.WorkingMemoryEntryPoint;
 import org.testng.annotations.BeforeMethod;
@@ -31,9 +33,10 @@ public class AbstractElementFactoryTest {
 
 	@Test(groups = { "constructor" })
 	public void createFactory() {
-		Class<? extends ElementFactory> cls = mock(AbstractElementFactory.class).getClass();
+		Class<? extends ElementFactory> cls;
 
 		try {
+			cls = mock(AbstractElementFactory.class).getClass();
 			AbstractElementFactory.createFactory(cls, null);
 			fail("accepted null session");
 		} catch (NullPointerException ex) {
@@ -47,6 +50,15 @@ public class AbstractElementFactoryTest {
 			//ok
 		}
 
+		try {
+			// this class won't have constructor with StatefulKnowledgeSession as parameter
+			cls = mock(ElementFactory.class).getClass();
+			AbstractElementFactory.createFactory(cls, ksession);
+		} catch (RuntimeException ex) {
+			//ok
+		}
+
+		cls = mock(AbstractElementFactory.class).getClass();
 		AbstractElementFactory.createFactory(cls, ksession);
 	}
 
@@ -63,7 +75,7 @@ public class AbstractElementFactoryTest {
 	public void getElements() {
 		Element e1 = mock(Element.class);
 		Element e2 = mock(Element.class);
-		when(ksession.getObjects()).thenReturn(Arrays.asList(e1, e2, new Object()));
+		when(ksession.getObjects(notNull(ObjectFilter.class))).thenReturn(Arrays.asList((Object)e1, e2));
 
 		Collection<Element> elements = ef.getElements();
 		assertNotNull(elements);
