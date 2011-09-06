@@ -25,6 +25,12 @@ public abstract class AbstractReportItem implements ReportItem {
 	private String advice;
 
 	public AbstractReportItem(ItemStatus status, String itemText) {
+		if (status == null) {
+			throw new NullPointerException("status must not be null");
+		}
+		if (itemText == null) {
+			throw new NullPointerException("itemText must not be null");
+		}
 		this.status = status;
 		this.itemText = itemText;
 	}

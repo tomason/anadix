@@ -33,6 +33,12 @@ public class ReportImpl implements Report {
 	private final Source source;
 
 	public ReportImpl(StatefulKnowledgeSession ksession, Source source) {
+		if (source == null) {
+			throw new NullPointerException("source must not be null");
+		}
+		if (ksession == null) {
+			throw new NullPointerException("ksession must not be null");
+		}
 		this.source = source;
 
 		for (Object i : ksession.getObjects(new ClassObjectFilter(ReportItem.class))) {

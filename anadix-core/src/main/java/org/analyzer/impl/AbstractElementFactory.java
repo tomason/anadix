@@ -29,6 +29,12 @@ public abstract class AbstractElementFactory implements ElementFactory {
 	private final StatefulKnowledgeSession ksession;
 
 	public static <T extends ElementFactory> T createFactory(Class<T> clazz, StatefulKnowledgeSession session) {
+		if (clazz == null) {
+			throw new NullPointerException("clazz cannot be null");
+		}
+		if (session == null) {
+			throw new NullPointerException("session must not be null");
+		}
 		try {
 			return clazz.getConstructor(StatefulKnowledgeSession.class).newInstance(session);
 		} catch (Exception ex) {
@@ -63,6 +69,12 @@ public abstract class AbstractElementFactory implements ElementFactory {
 	}
 
 	public void setGlobal(String name, Object instance) {
+		if (name == null) {
+			throw new NullPointerException("name cannot be null");
+		}
+		if (instance == null) {
+			throw new NullPointerException("instance cannot be null");
+		}
 		getSession().setGlobal(name, instance);
 	}
 
@@ -71,6 +83,13 @@ public abstract class AbstractElementFactory implements ElementFactory {
 	}
 
 	public void insertEvent(String entrypoint, Object event) {
+		if (entrypoint == null) {
+			throw new NullPointerException("entrypoint cannot be null");
+		}
+		if (event == null) {
+			throw new NullPointerException("event cannot be null");
+		}
+
 		WorkingMemoryEntryPoint ep = getSession().getWorkingMemoryEntryPoint(entrypoint);
 		if (ep != null) {
 			ep.insert(event);
