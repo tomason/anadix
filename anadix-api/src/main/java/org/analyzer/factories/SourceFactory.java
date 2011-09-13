@@ -29,6 +29,7 @@ import org.analyzer.exceptions.SourceException;
  * @author tomason
  */
 public final class SourceFactory {
+	// FIXME add some settings to change caching policy
 	private static final boolean cacheByDefault = true;
 	private SourceFactory() {
 	}
@@ -54,6 +55,9 @@ public final class SourceFactory {
 	 */
 	public static Source newFileSource(File file, boolean cache) throws SourceException {
 		try {
+			if (!file.canRead()) {
+				throw new SourceException("Can't read file " + file.getPath());
+			}
 			Source s = new FileSource(file);
 			if (cache) {
 				return newStringSource(s.getText(), s.getDescription());
@@ -61,7 +65,8 @@ public final class SourceFactory {
 				return s;
 			}
 		} catch (FileNotFoundException ex) {
-			throw new SourceException("Unable to create source", ex);
+			// this is excluded by if(!file.canRead()) and should never occur
+			throw new SourceException("This should not happen", ex);
 		}
 	}
 

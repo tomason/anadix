@@ -45,6 +45,7 @@ abstract class AbstractSource implements Source {
 				result.append(line).append("\n");
 			}
 		} catch (IOException ex) {
+			// FIXME logging, logging, logging!!!
 			System.err.println(ex);
 			ex.printStackTrace();
 		} finally {
@@ -52,8 +53,7 @@ abstract class AbstractSource implements Source {
 				try {
 					br.close();
 				} catch (IOException e) {
-					System.err.println(e);
-					e.printStackTrace();
+					throw new RuntimeException("This should not happen", e);
 				}
 			}
 		}
