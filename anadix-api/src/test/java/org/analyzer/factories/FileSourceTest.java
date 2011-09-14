@@ -47,31 +47,27 @@ public class FileSourceTest extends SourceTestTemplate {
 
 	@Test(groups = "constructor", dataProvider = "booleans", expectedExceptions = SourceException.class)
 	public void testNewFileSource2(Boolean cache) throws Exception {
-		File nonsense = File.createTempFile("nonsense", ".html");
-		if (nonsense.exists()) {
-			nonsense.delete();
+		if (!sourceFile.delete()) {
+			fail("can't delete file!");
 		}
 
 		if (cache == null) {
-			SourceFactory.newFileSource(nonsense);
+			SourceFactory.newFileSource(sourceFile);
 		} else {
-			SourceFactory.newFileSource(nonsense, cache);
+			SourceFactory.newFileSource(sourceFile, cache);
 		}
 	}
 
 	@Test(groups = "constructor", dataProvider = "booleans", expectedExceptions = SourceException.class)
 	public void testNewFileSource3(Boolean cache) throws Exception {
-		File unreadable = File.createTempFile("unreadable", ".html");
-		unreadable.deleteOnExit();
-
-		if (!unreadable.setReadable(false)) {
-			fail("cannot set file as unreadable!");
+		if (!sourceFile.setReadable(false)) {
+			fail("can't set file as unreadable!");
 		}
 
 		if (cache == null) {
-			SourceFactory.newFileSource(unreadable);
+			SourceFactory.newFileSource(sourceFile);
 		} else {
-			SourceFactory.newFileSource(unreadable, cache);
+			SourceFactory.newFileSource(sourceFile, cache);
 		}
 	}
 
@@ -94,6 +90,50 @@ public class FileSourceTest extends SourceTestTemplate {
 			SourceFactory.newFileSource(sourceFile);
 		} else {
 			SourceFactory.newFileSource(sourceFile, cache);
+		}
+	}
+
+	@Test(groups = "constructor", dataProvider = "booleans", expectedExceptions = NullPointerException.class)
+	public void testNewFileSource6(Boolean cache) throws Exception {
+		if (cache == null) {
+			SourceFactory.newFileSource((String)null);
+		} else {
+			SourceFactory.newFileSource((String)null, cache);
+		}
+	}
+
+	@Test(groups = "constructor", dataProvider = "booleans", expectedExceptions = SourceException.class)
+	public void testNewFileSource7(Boolean cache) throws Exception {
+		if (!sourceFile.delete()) {
+			fail("can't delete file!");
+		}
+
+		if (cache == null) {
+			SourceFactory.newFileSource(sourceFile.getPath());
+		} else {
+			SourceFactory.newFileSource(sourceFile.getPath(), cache);
+		}
+	}
+
+	@Test(groups = "constructor", dataProvider = "booleans", expectedExceptions = SourceException.class)
+	public void testNewFileSource8(Boolean cache) throws Exception {
+		if (!sourceFile.setReadable(false)) {
+			fail("can't set file as unreadable!");
+		}
+
+		if (cache == null) {
+			SourceFactory.newFileSource(sourceFile.getPath());
+		} else {
+			SourceFactory.newFileSource(sourceFile.getPath(), cache);
+		}
+	}
+
+	@Test(groups = "constructor", dataProvider = "booleans")
+	public void testNewFileSource9(Boolean cache) throws Exception {
+		if (cache == null) {
+			SourceFactory.newFileSource(sourceFile.getPath());
+		} else {
+			SourceFactory.newFileSource(sourceFile.getPath(), cache);
 		}
 	}
 
