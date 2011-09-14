@@ -12,6 +12,10 @@ import java.util.Set;
 import org.testng.annotations.DataProvider;
 
 public abstract class SourceTestTemplate {
+	protected static final String resourcePath = "/SourceTestFile.html";
+	protected static final String sourceText =
+			readStream(FileSourceTest.class.getResourceAsStream(resourcePath));
+
 	@DataProvider(name = "booleans")
 	public Iterator<Object[]> prepareBooleans() {
 		Set<Object[]> s = new HashSet<Object[]>();

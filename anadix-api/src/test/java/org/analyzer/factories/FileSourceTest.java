@@ -17,8 +17,6 @@ import org.testng.annotations.Test;
 @Test
 public class FileSourceTest extends SourceTestTemplate {
 	private File sourceFile;
-	private static final String sourceText =
-			readStream(FileSourceTest.class.getResourceAsStream("/SourceTestFile.html"));
 
 	@BeforeMethod(alwaysRun = true)
 	public void prepareFile() throws FileNotFoundException {
