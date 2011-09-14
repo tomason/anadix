@@ -17,11 +17,16 @@ package org.analyzer.factories;
 
 import java.io.InputStream;
 
+import org.analyzer.exceptions.SourceException;
+
 class ClassPathSource extends AbstractSource {
 	private final String resourceName;
 
-	public ClassPathSource(String resource) {
+	public ClassPathSource(String resource) throws SourceException {
 		super(resource);
+		if (getClass().getResource(resource) == null) {
+			throw new SourceException("Resource not found " + resource);
+		}
 		this.resourceName = resource;
 	}
 

@@ -120,8 +120,9 @@ public final class SourceFactory {
 	 * 
 	 * @param resource - path to the resource
 	 * @return instance of Source
+	 * @throws SourceException - if any error occurs during creation of new Source
 	 */
-	public static Source newClassPathSource(String resource) {
+	public static Source newClassPathSource(String resource) throws SourceException {
 		return newClassPathSource(resource, cacheByDefault);
 	}
 
@@ -132,8 +133,9 @@ public final class SourceFactory {
 	 * @param resource - path to the resource
 	 * @param cache - whether to cache the result in memory
 	 * @return instance of Source
+	 * @throws SourceException - if any error occurs during creation of new Source
 	 */
-	public static Source newClassPathSource(String resource, boolean cache) {
+	public static Source newClassPathSource(String resource, boolean cache) throws SourceException {
 		Source s = new ClassPathSource(resource);
 		if (cache) {
 			return newStringSource(s.getText(), s.getDescription());
