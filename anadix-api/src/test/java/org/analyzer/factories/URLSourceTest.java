@@ -21,7 +21,7 @@ public class URLSourceTest extends SourceTestTemplate {
 	@BeforeMethod(alwaysRun = true)
 	public void prepareFile() throws Exception {
 		try {
-			f = File.createTempFile("SourceFactoryTestFile", ".htlm");
+			f = File.createTempFile("SourceFactoryTestFile", ".html");
 		} catch (IOException ex) {
 			f = new File("SourceFactoryTestFile.htlm");
 		}

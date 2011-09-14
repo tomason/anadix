@@ -22,7 +22,7 @@ public class FileSourceTest extends SourceTestTemplate {
 	@BeforeMethod(alwaysRun = true)
 	public void prepareFile() throws FileNotFoundException {
 		try {
-			sourceFile = File.createTempFile("SourceFactoryTestFile", ".htlm");
+			sourceFile = File.createTempFile("SourceFactoryTestFile", ".html");
 		} catch (IOException ex) {
 			sourceFile = new File("SourceFactoryTestFile.htlm");
 		}
@@ -140,7 +140,7 @@ public class FileSourceTest extends SourceTestTemplate {
 	public void testGetDescription() throws Exception {
 		Source s = SourceFactory.newFileSource(sourceFile);
 
-		assertEquals(s.getDescription(), sourceFile.getAbsoluteFile());
+		assertEquals(s.getDescription(), sourceFile.getAbsolutePath());
 	}
 
 	@Test(dependsOnGroups = "constructor", expectedExceptions = RuntimeException.class)
