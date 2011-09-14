@@ -142,7 +142,7 @@ public class FileSourceTest extends SourceTestTemplate {
 		Source s = SourceFactory.newFileSource(sourceFile, false);
 
 		if (!sourceFile.delete()) {
-			throw new Exception("Could not delete " + sourceFile.getPath());
+			fail("can't delete file!");
 		}
 
 		System.out.println(s.getStream());
