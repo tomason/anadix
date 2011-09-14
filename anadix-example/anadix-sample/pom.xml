@@ -12,6 +12,13 @@
   <artifactId>anadix-sample</artifactId>
   <name>Sample app for the analyzer</name>
   
+  <developers>
+    <developer>
+      <id>triceo</id>
+      <name>Lukas Petrovicky</name>
+    </developer>
+  </developers>
+  
   <properties>
     <analyzer.sample.main.class>org.analyzer.sample.App</analyzer.sample.main.class>
   </properties>

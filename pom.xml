@@ -9,6 +9,14 @@
 
   <name>Anadix parent project</name>
 
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
   <modules>
   	<module>anadix-api</module>
     <module>anadix-core</module>
@@ -54,12 +62,27 @@
     </plugins>
   </build>
   
+  <developers>
+    <developer>
+      <id>tomason</id>
+      <name>Tomas Schlosser</name>
+      <email>Schlosser.T@seznam.cz</email>
+      <timezone>1</timezone>
+    </developer>
+  </developers>
+  
   <scm>
   	<url>scm:git:git@github.com:tomason/analyzer.git</url>
   	<connection>scm:git:git@github.com:tomason/analyzer.git</connection>
   	<developerConnection>scm:git:git@github.com:tomason/analyzer.git</developerConnection>
   </scm>
   
+  <issueManagement>
+    <system>GitHub</system>
+    <url>https://github.com/tomason/analyzer/issues</url>
+  </issueManagement>
+  
+  <!-- Common testing frameworks -->
   <dependencies>
     <dependency>
   		<groupId>org.mockito</groupId>
