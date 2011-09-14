@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.io.Reader;
 
 import org.analyzer.Source;
 import org.analyzer.exceptions.SourceException;
@@ -33,8 +34,6 @@ public class FileSourceTest extends SourceTestTemplate {
 		pw.flush();
 		pw.close();
 	}
-
-
 
 	@Test(groups = "constructor", dataProvider = "booleans", expectedExceptions = NullPointerException.class)
 	public void testNewFileSource1(Boolean cache) throws Exception {
@@ -137,6 +136,13 @@ public class FileSourceTest extends SourceTestTemplate {
 		}
 	}
 
+	@Test(dependsOnGroups = "constructor")
+	public void testGetDescription() throws Exception {
+		Source s = SourceFactory.newFileSource(sourceFile);
+
+		assertEquals(s.getDescription(), sourceFile.getAbsoluteFile());
+	}
+
 	@Test(dependsOnGroups = "constructor", expectedExceptions = RuntimeException.class)
 	public void testGetStream1() throws Exception {
 		Source s = SourceFactory.newFileSource(sourceFile, false);
@@ -145,7 +151,7 @@ public class FileSourceTest extends SourceTestTemplate {
 			fail("can't delete file!");
 		}
 
-		System.out.println(s.getStream());
+		s.getStream();
 	}
 
 	@Test(dependsOnGroups = "constructor")
@@ -164,7 +170,7 @@ public class FileSourceTest extends SourceTestTemplate {
 	public void testGetStream3() throws Exception {
 		Source s = SourceFactory.newFileSource(sourceFile, true);
 		if (!sourceFile.delete()) {
-			throw new Exception("Could not delete " + sourceFile.getPath());
+			fail("can't delete file!");
 		}
 
 		InputStream is = s.getStream();
@@ -175,11 +181,72 @@ public class FileSourceTest extends SourceTestTemplate {
 		assertEquals(content, sourceText);
 	}
 
-	@Test(dependsOnGroups = "constructor")
-	public void testGetText() throws Exception {
+	@Test(dependsOnGroups = "constructor", expectedExceptions = RuntimeException.class)
+	public void testGetReader1() throws Exception {
 		Source s = SourceFactory.newFileSource(sourceFile, false);
-		String content = s.getText();
 
+		if (!sourceFile.delete()) {
+			fail("can't delete file!");
+		}
+
+		s.getReader();
+	}
+
+	@Test(dependsOnGroups = "constructor")
+	public void testGetReader2() throws Exception {
+		Source s = SourceFactory.newFileSource(sourceFile, false);
+
+		Reader r = s.getReader();
+
+		assertNotNull(r);
+		String content = readReader(r);
+		assertNotNull(content);
+		assertEquals(content, sourceText);
+	}
+
+	@Test(dependsOnGroups = "constructor")
+	public void testGetReader3() throws Exception {
+		Source s = SourceFactory.newFileSource(sourceFile, true);
+		if (!sourceFile.delete()) {
+			fail("can't delete file!");
+		}
+
+		Reader r = s.getReader();
+
+		assertNotNull(r);
+		String content = readReader(r);
+		assertNotNull(content);
+		assertEquals(content, sourceText);
+	}
+
+	@Test(dependsOnGroups = "constructor", expectedExceptions = RuntimeException.class)
+	public void testGetText1() throws Exception {
+		Source s = SourceFactory.newFileSource(sourceFile, false);
+
+		if (!sourceFile.delete()) {
+			fail("can't delete file!");
+		}
+
+		s.getText();
+	}
+
+	@Test(dependsOnGroups = "constructor")
+	public void testGetText2() throws Exception {
+		Source s = SourceFactory.newFileSource(sourceFile, false);
+
+		String content = s.getText();
+		assertNotNull(content);
+		assertEquals(content, sourceText);
+	}
+
+	@Test(dependsOnGroups = "constructor")
+	public void testGetText3() throws Exception {
+		Source s = SourceFactory.newFileSource(sourceFile, true);
+		if (!sourceFile.delete()) {
+			fail("can't delete file!");
+		}
+
+		String content = s.getText();
 		assertNotNull(content);
 		assertEquals(content, sourceText);
 	}

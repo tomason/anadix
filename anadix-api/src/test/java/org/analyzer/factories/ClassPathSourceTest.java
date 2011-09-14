@@ -3,6 +3,7 @@ package org.analyzer.factories;
 import static org.testng.Assert.*;
 
 import java.io.InputStream;
+import java.io.Reader;
 
 import org.analyzer.Source;
 import org.analyzer.exceptions.SourceException;
@@ -40,6 +41,13 @@ public class ClassPathSourceTest extends SourceTestTemplate {
 	}
 
 	@Test(dependsOnGroups = "constructor")
+	public void testGetDescription() throws Exception {
+		Source s = SourceFactory.newClassPathSource(resourcePath);
+
+		assertEquals(s.getDescription(), resourcePath);
+	}
+
+	@Test(dependsOnGroups = "constructor")
 	public void testGetStream() throws Exception {
 		Source s = SourceFactory.newClassPathSource(resourcePath, false);
 
@@ -52,10 +60,22 @@ public class ClassPathSourceTest extends SourceTestTemplate {
 	}
 
 	@Test(dependsOnGroups = "constructor")
+	public void testGetReader() throws Exception {
+		Source s = SourceFactory.newClassPathSource(resourcePath, false);
+
+		Reader r = s.getReader();
+
+		assertNotNull(r);
+		String content = readReader(r);
+		assertNotNull(content);
+		assertEquals(content, sourceText);
+	}
+
+	@Test(dependsOnGroups = "constructor")
 	public void testGetText() throws Exception {
 		Source s = SourceFactory.newClassPathSource(resourcePath, false);
-		String content = s.getText();
 
+		String content = s.getText();
 		assertNotNull(content);
 		assertEquals(content, sourceText);
 	}

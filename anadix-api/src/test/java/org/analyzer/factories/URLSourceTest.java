@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.io.Reader;
 import java.net.URL;
 
 import org.analyzer.Source;
@@ -38,8 +39,6 @@ public class URLSourceTest extends SourceTestTemplate {
 			throw new Exception("Unable to instantiate URL: ", ex);
 		}
 	}
-
-
 
 	@Test(groups = "constructor", dataProvider = "booleans", expectedExceptions = NullPointerException.class)
 	public void testNewURLSource1(Boolean cache) throws Exception {
@@ -85,6 +84,13 @@ public class URLSourceTest extends SourceTestTemplate {
 		}
 	}
 
+	@Test(dependsOnGroups = "constructor")
+	public void testGetDescription() throws Exception {
+		Source s = SourceFactory.newURLSource(url);
+
+		assertEquals(s.getDescription(), url.toExternalForm());
+	}
+
 	@Test(dependsOnGroups = "constructor", expectedExceptions = RuntimeException.class)
 	public void testGetStream1() throws Exception {
 		Source s = SourceFactory.newURLSource(url, false);
@@ -93,7 +99,7 @@ public class URLSourceTest extends SourceTestTemplate {
 			fail("can't delete file!");
 		}
 
-		System.out.println(s.getStream());
+		s.getStream();
 	}
 
 	@Test(dependsOnGroups = "constructor")
@@ -112,7 +118,7 @@ public class URLSourceTest extends SourceTestTemplate {
 	public void testGetStream3() throws Exception {
 		Source s = SourceFactory.newURLSource(url, true);
 		if (!f.delete()) {
-			throw new Exception("Could not delete " + url.getPath());
+			fail("can't delete file!");
 		}
 
 		InputStream is = s.getStream();
@@ -123,11 +129,72 @@ public class URLSourceTest extends SourceTestTemplate {
 		assertEquals(content, sourceText);
 	}
 
-	@Test(dependsOnGroups = "constructor")
-	public void testGetText() throws Exception {
+	@Test(dependsOnGroups = "constructor", expectedExceptions = RuntimeException.class)
+	public void testGetReader1() throws Exception {
 		Source s = SourceFactory.newURLSource(url, false);
-		String content = s.getText();
 
+		if (!f.delete()) {
+			fail("can't delete file!");
+		}
+
+		s.getReader();
+	}
+
+	@Test(dependsOnGroups = "constructor")
+	public void testGetReader2() throws Exception {
+		Source s = SourceFactory.newURLSource(url, false);
+
+		Reader r = s.getReader();
+
+		assertNotNull(r);
+		String content = readReader(r);
+		assertNotNull(content);
+		assertEquals(content, sourceText);
+	}
+
+	@Test(dependsOnGroups = "constructor")
+	public void testGetReader3() throws Exception {
+		Source s = SourceFactory.newURLSource(url, true);
+		if (!f.delete()) {
+			fail("can't delete file!");
+		}
+
+		Reader r = s.getReader();
+
+		assertNotNull(r);
+		String content = readReader(r);
+		assertNotNull(content);
+		assertEquals(content, sourceText);
+	}
+
+	@Test(dependsOnGroups = "constructor", expectedExceptions = RuntimeException.class)
+	public void testGetText1() throws Exception {
+		Source s = SourceFactory.newURLSource(url, false);
+
+		if (!f.delete()) {
+			fail("can't delete file!");
+		}
+
+		s.getText();
+	}
+
+	@Test(dependsOnGroups = "constructor")
+	public void testGetText2() throws Exception {
+		Source s = SourceFactory.newURLSource(url, false);
+
+		String content = s.getText();
+		assertNotNull(content);
+		assertEquals(content, sourceText);
+	}
+
+	@Test(dependsOnGroups = "constructor")
+	public void testGetText3() throws Exception {
+		Source s = SourceFactory.newURLSource(url, true);
+		if (!f.delete()) {
+			fail("can't delete file!");
+		}
+
+		String content = s.getText();
 		assertNotNull(content);
 		assertEquals(content, sourceText);
 	}
