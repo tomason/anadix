@@ -31,6 +31,9 @@ class StringSource implements Source {
 	}
 
 	public StringSource(String source, String description) {
+		if (source == null) {
+			throw new NullPointerException("source can't be null");
+		}
 		this.source = source;
 		this.description = description;
 	}
