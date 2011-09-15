@@ -29,278 +29,280 @@ import org.analyzer.ReportFormatter;
  * @author tomason
  */
 public final class ObjectFactory {
-    private static final String defaultConditions = "org.analyzer.section508.Section508";
-    private static final String defaultAnalyzer = "org.analyzer.impl.AnalyzerImpl";
-    private static final String defaultFormatter = "org.analyzer.impl.SimpleReportFormatter";
+	// FIXME allow configuring default classes (or at the very least the defaultConditions)
+	private static final String defaultConditions = "org.analyzer.section508.Section508";
+	private static final String defaultAnalyzer = "org.analyzer.impl.AnalyzerImpl";
+	private static final String defaultFormatter = "org.analyzer.impl.SimpleReportFormatter";
 
-    private static final String errorMessageFormat = "Could not instantiate %s: %s";
+	private static final String errorMessageFormat = "Could not instantiate %s: %s";
 
-    private ObjectFactory() {}
+	private ObjectFactory() {}
 
-    /**
-     * Creates new instance of Parser by invoking default constructor in
-     * class defined by given class name.
-     * 
-     * @param className - name of the class to be constructed
-     * @return new instance of Parser
-     * @throws InstantiationException - when exception occurs during creating
-     * new instance
-     */
-    public static Parser newParser(String className) throws InstantiationException {
-        if (className == null || className.length() == 0) {
-            throw new NullPointerException("className");
-        }
+	/**
+	 * Creates new instance of Parser by invoking default constructor in
+	 * class defined by given class name.
+	 * 
+	 * @param className - name of the class to be constructed
+	 * @return new instance of Parser
+	 * @throws InstantiationException - when exception occurs during creating
+	 * new instance
+	 */
+	public static Parser newParser(String className) throws InstantiationException {
+		if (className == null || className.length() == 0) {
+			throw new NullPointerException("className");
+		}
 
-        try {
-            return instantiate(Parser.class, className);
-        } catch (Exception ex) {
-            throw newInstantiationException("Parser", className, ex);
-        }
-    }
+		try {
+			return instantiate(Parser.class, className);
+		} catch (Exception ex) {
+			throw newInstantiationException("Parser", className, ex);
+		}
+	}
 
-    /**
-     * Creates new instance of Parser by invoking default constructor in
-     * given class.
-     * 
-     * @param clazz - class to be constructed
-     * @return new instance of Parser
-     * @throws InstantiationException - when exception occurs during creating
-     * new instance
-     */
-    public static Parser newParser(Class<? extends Parser> clazz) throws InstantiationException {
-        try {
-            return instantiate(clazz);
-        } catch (Exception ex) {
-            throw newInstantiationException("Parser", clazz.getName(), ex);
-        }
-    }
+	/**
+	 * Creates new instance of Parser by invoking default constructor in
+	 * given class.
+	 * 
+	 * @param clazz - class to be constructed
+	 * @return new instance of Parser
+	 * @throws InstantiationException - when exception occurs during creating
+	 * new instance
+	 */
+	public static Parser newParser(Class<? extends Parser> clazz) throws InstantiationException {
+		try {
+			return instantiate(clazz);
+		} catch (Exception ex) {
+			throw newInstantiationException("Parser", clazz.getName(), ex);
+		}
+	}
 
-    /**
-     * Creates new instance of ConditionSet by invoking default constructor in
-     * class defined by given class name. If null is given as a parameter
-     * default ConditionSet is constructed.
-     * 
-     * @param className - name of the class to be constructed
-     * @return new instance of ConditionSet
-     * @throws InstantiationException - when exception occurs during creating
-     * new instance
-     */
-    public static ConditionSet newConditionSet(String className) throws InstantiationException {
-        if (className == null || className.length() == 0) {
-            className = defaultConditions;
-        }
+	/**
+	 * Creates new instance of ConditionSet by invoking default constructor in
+	 * class defined by given class name. If null is given as a parameter
+	 * default ConditionSet is constructed.
+	 * 
+	 * @param className - name of the class to be constructed
+	 * @return new instance of ConditionSet
+	 * @throws InstantiationException - when exception occurs during creating
+	 * new instance
+	 */
+	public static ConditionSet newConditionSet(String className) throws InstantiationException {
+		if (className == null || className.length() == 0) {
+			throw new NullPointerException("className");
+		}
 
-        try {
-            return instantiate(ConditionSet.class, className);
-        } catch (Exception ex) {
-            throw newInstantiationException("ConditionSet", className, ex);
-        }
-    }
+		try {
+			return instantiate(ConditionSet.class, className);
+		} catch (Exception ex) {
+			throw newInstantiationException("ConditionSet", className, ex);
+		}
+	}
 
-    /**
-     * Creates new instance of ConditionSet by invoking default constructor in
-     * given class.
-     * 
-     * @param clazz - class to be constructed
-     * @return new instance of ConditionSet
-     * @throws InstantiationException - when exception occurs during creating
-     * new instance
-     */
-    public static ConditionSet newConditionSet(Class<? extends ConditionSet> clazz) throws InstantiationException {
-        try {
-            return instantiate(clazz);
-        } catch (Exception ex) {
-            throw newInstantiationException("ConditionSet", clazz.getName(), ex);
-        }
-    }
+	/**
+	 * Creates new instance of ConditionSet by invoking default constructor in
+	 * given class.
+	 * 
+	 * @param clazz - class to be constructed
+	 * @return new instance of ConditionSet
+	 * @throws InstantiationException - when exception occurs during creating
+	 * new instance
+	 */
+	public static ConditionSet newConditionSet(Class<? extends ConditionSet> clazz) throws InstantiationException {
+		try {
+			return instantiate(clazz);
+		} catch (Exception ex) {
+			throw newInstantiationException("ConditionSet", clazz.getName(), ex);
+		}
+	}
 
-    /**
-     * Creates a new instance of analyzer using default Parser and default
-     * ConditionSet
-     * 
-     * @return new instance of Analyzer
-     * @throws InstantiationException - when exception occurs during creating
-     * new instance
-     */
-    public static Analyzer newAnalyzer() throws InstantiationException {
-        return newAnalyzer((Parser)null, null);
-    }
+	/**
+	 * Creates a new instance of analyzer using default Parser and default
+	 * ConditionSet
+	 * 
+	 * @return new instance of Analyzer
+	 * @throws InstantiationException - when exception occurs during creating
+	 * new instance
+	 */
+	public static Analyzer newAnalyzer() throws InstantiationException {
+		return newAnalyzer((Parser)null, null);
+	}
 
-    /**
-     * Creates a new instance of analyzer using given condition set and
-     * default Parser
-     * 
-     * @param conditionsClass - conditions to use
-     * @return new instance of Analyzer
-     * @throws InstantiationException - when exception occurs during creating
-     * new instance
-     */
-    public static Analyzer newAnalyzer(Class<? extends ConditionSet> conditionsClass) throws InstantiationException {
-        return newAnalyzer(null, newConditionSet(conditionsClass));
-    }
+	/**
+	 * Creates a new instance of analyzer using given condition set and
+	 * default Parser
+	 * 
+	 * @param conditionsClass - conditions to use
+	 * @return new instance of Analyzer
+	 * @throws InstantiationException - when exception occurs during creating
+	 * new instance
+	 */
+	public static Analyzer newAnalyzer(Class<? extends ConditionSet> conditionsClass) throws InstantiationException {
+		return newAnalyzer(null, newConditionSet(conditionsClass));
+	}
 
-    /**
-     * Creates a new instance of analyzer using given condition set and
-     * parser
-     * 
-     * @param parserClass - parser to use
-     * @param conditionsClass - conditions to use
-     * @return new instance of Analyzer
-     * @throws InstantiationException - when exception occurs during creating
-     * new instance
-     */
-    public static Analyzer newAnalyzer(
-            Class<? extends Parser> parserClass,
-            Class<? extends ConditionSet> conditionsClass) throws InstantiationException {
-        ConditionSet c;
-        Parser p;
+	/**
+	 * Creates a new instance of analyzer using given condition set and
+	 * parser
+	 * 
+	 * @param parserClass - parser to use
+	 * @param conditionsClass - conditions to use
+	 * @return new instance of Analyzer
+	 * @throws InstantiationException - when exception occurs during creating
+	 * new instance
+	 */
+	public static Analyzer newAnalyzer(
+			Class<? extends Parser> parserClass,
+			Class<? extends ConditionSet> conditionsClass) throws InstantiationException {
+		ConditionSet c;
+		Parser p;
 
-        try {
-            if (conditionsClass == null) {
-                c = newConditionSet("");
-            } else {
-                c = newConditionSet(conditionsClass);
-            }
-        } catch (Exception ex) {
-            throw newInstantiationException("Analyzer", conditionsClass.getName(), ex);
-        }
+		try {
+			if (conditionsClass == null) {
+				c = newConditionSet(defaultConditions);
+			} else {
+				c = newConditionSet(conditionsClass);
+			}
+		} catch (Exception ex) {
+			throw newInstantiationException("Analyzer", conditionsClass.getName(), ex);
+		}
 
-        try {
-            if (parserClass == null) {
-                p = newParser(c.getDefaultParser());
-            } else {
-                p = newParser(parserClass);
-            }
-        } catch (Exception ex) {
-            throw newInstantiationException("Analyzer", parserClass.getName(), ex);
-        }
+		try {
+			if (parserClass == null) {
+				p = newParser(c.getDefaultParser());
+			} else {
+				p = newParser(parserClass);
+			}
+		} catch (Exception ex) {
+			throw newInstantiationException("Analyzer", parserClass.getName(), ex);
+		}
 
-        return newAnalyzer(p, c);
-    }
+		return newAnalyzer(p, c);
+	}
 
-    /**
-     * Creates a new instance of analyzer using given Parser and ConditionSet
-     * 
-     * @param p - Parser to use
-     * @param c - ConditionSet to use
-     * @return new instance of Analyzer
-     * @throws InstantiationException - when exception occurs during creating
-     * new instance
-     */
-    public static Analyzer newAnalyzer(Parser p, ConditionSet c) throws InstantiationException {
-        try {
-            if (c == null) {
-                c = newConditionSet("");
-            }
-            if (p == null) {
-                p = newParser(c.getDefaultParser());
-            }
+	/**
+	 * Creates a new instance of analyzer using given Parser and ConditionSet
+	 * 
+	 * @param p - Parser to use
+	 * @param c - ConditionSet to use
+	 * @return new instance of Analyzer
+	 * @throws InstantiationException - when exception occurs during creating
+	 * new instance
+	 */
+	public static Analyzer newAnalyzer(Parser p, ConditionSet c) throws InstantiationException {
+		try {
+			if (c == null) {
+				c = newConditionSet("");
+			}
+			if (p == null) {
+				p = newParser(c.getDefaultParser());
+			}
 
-            return instantiate(Analyzer.class, defaultAnalyzer, new Object[] { p, c });
-        } catch (Exception ex) {
-            throw newInstantiationException("Analyzer", defaultAnalyzer, ex);
-        }
-    }
+			return instantiate(Analyzer.class, defaultAnalyzer, new Object[] { p, c });
+		} catch (Exception ex) {
+			throw newInstantiationException("Analyzer", defaultAnalyzer, ex);
+		}
+	}
 
-    /**
-     * Creates a new instance of ReportFormatter by invoking default constructor in
-     * class defined by given class name. If null is given as a parameter
-     * default ReportFormatter is constructed.
-     * 
-     * @param className - name of the class to be constructed
-     * @return new instance of ReportFormatter
-     * @throws InstantiationException - when exception occurs during creating
-     * new instance
-     */
-    public static ReportFormatter newFormatter(String className) throws InstantiationException {
-        if (className == null || className.length() == 0) {
-            className = defaultFormatter;
-        }
-        try {
-            return (ReportFormatter)Class.forName(className).newInstance();
-        } catch (Exception ex) {
-            throw newInstantiationException("Formatter", className, ex);
-        }
-    }
+	/**
+	 * Creates a new instance of ReportFormatter by invoking default constructor in
+	 * class defined by given class name. If null is given as a parameter
+	 * default ReportFormatter is constructed.
+	 * 
+	 * @param className - name of the class to be constructed
+	 * @return new instance of ReportFormatter
+	 * @throws InstantiationException - when exception occurs during creating
+	 * new instance
+	 */
+	public static ReportFormatter newFormatter(String className) throws InstantiationException {
+		if (className == null || className.length() == 0) {
+			className = defaultFormatter;
+		}
+		try {
+			return (ReportFormatter)Class.forName(className).newInstance();
+		} catch (Exception ex) {
+			throw newInstantiationException("Formatter", className, ex);
+		}
+	}
 
-    /**
-     * Creates a new instance of class given by name and casts it to
-     * given superclass
-     * 
-     * @param clazz
-     * @param className
-     * @param initargs
-     * @return
-     * @throws Exception
-     */
-    private static <T> T instantiate(
-            Class<T> clazz, String className, Object... initargs) throws Exception {
+	/**
+	 * Creates a new instance of class given by name and casts it to
+	 * given superclass
+	 * 
+	 * @param clazz
+	 * @param className
+	 * @param initargs
+	 * @return
+	 * @throws Exception
+	 */
+	private static <T> T instantiate(
+			Class<T> clazz, String className, Object... initargs) throws Exception {
 
-        Class<?> c = Class.forName(className);
-        if (clazz.isAssignableFrom(c)) {
-            Object o = instantiate(c, initargs);
+		Class<?> c = Class.forName(className);
+		if (clazz.isAssignableFrom(c)) {
+			Object o = instantiate(c, initargs);
 
-            return clazz.cast(o);
-        } else {
-            throw new IllegalArgumentException("Class " + className + " is not extending " + clazz.getName());
-        }
-    }
+			return clazz.cast(o);
+		} else {
+			throw new IllegalArgumentException("Class " + className + " is not extending " + clazz.getName());
+		}
+	}
 
-    /**
-     * Creates a new instance of given class using constructor accepting
-     * given parameters
-     * 
-     * @param clazz - class to create a new instance of
-     * @param initargs - arguments to constructor
-     * @return new instance of given class
-     * @throws Exception - if anything goes wrong
-     */
-    private static <T> T instantiate(Class<T> clazz, Object... initargs) throws Exception {
-        Object o = getConstructor(clazz, initargs).newInstance(initargs);
+	/**
+	 * Creates a new instance of given class using constructor accepting
+	 * given parameters
+	 * 
+	 * @param clazz - class to create a new instance of
+	 * @param initargs - arguments to constructor
+	 * @return new instance of given class
+	 * @throws Exception - if anything goes wrong
+	 */
+	private static <T> T instantiate(Class<T> clazz, Object... initargs) throws Exception {
+		Object o = getConstructor(clazz, initargs).newInstance(initargs);
 
-        return clazz.cast(o);
-    }
+		return clazz.cast(o);
+	}
 
-    private static <T> Constructor<T> getConstructor(Class<T> clazz, Object... initargs) throws Exception {
-        // try to find constructor matching exactly to given args
-        try {
-            Class<?>[] parameterTypes = new Class<?>[initargs.length];
+	@SuppressWarnings("unchecked")
+	private static <T> Constructor<T> getConstructor(Class<T> clazz, Object... initargs) throws Exception {
+		// try to find constructor matching exactly to given args
+		try {
+			Class<?>[] parameterTypes = new Class<?>[initargs.length];
 
-            int i = 0;
-            for (Object arg : initargs) {
-                parameterTypes[i++] = arg.getClass();
-            }
+			int i = 0;
+			for (Object arg : initargs) {
+				parameterTypes[i++] = arg.getClass();
+			}
 
-            return clazz.getConstructor(parameterTypes);
-        } catch (NoSuchMethodException ex) {
-            // FIXME move this to the log only!
-            ex.printStackTrace();
-        }
+			return clazz.getConstructor(parameterTypes);
+		} catch (NoSuchMethodException ex) {
+			// FIXME move this to the log only!
+			ex.printStackTrace();
+		}
 
-        // try to find constructor which has params assignable from initargs
-        constructorLoop : for (Constructor<?> c : clazz.getConstructors()) {
-            Class<?>[] paramTypes = c.getParameterTypes();
-            if (paramTypes.length != initargs.length) {
-                continue constructorLoop;
-            }
+		// try to find constructor which has params assignable from initargs
+		constructorLoop : for (Constructor<?> c : clazz.getConstructors()) {
+			Class<?>[] paramTypes = c.getParameterTypes();
+			if (paramTypes.length != initargs.length) {
+				continue constructorLoop;
+			}
 
-            for (int i = 0; i < paramTypes.length; i++) {
-                if (!paramTypes[i].isAssignableFrom(initargs[i].getClass())) {
-                    continue constructorLoop;
-                }
-            }
+			for (int i = 0; i < paramTypes.length; i++) {
+				if (!paramTypes[i].isAssignableFrom(initargs[i].getClass())) {
+					continue constructorLoop;
+				}
+			}
 
-            return (Constructor<T>)c;
-        }
+			return (Constructor<T>)c;
+		}
 
-        return null;
-    }
+		return null;
+	}
 
-    private static InstantiationException newInstantiationException(String type, String className,
-            Throwable cause) {
-        cause.printStackTrace();
+	private static InstantiationException newInstantiationException(String type, String className,
+			Throwable cause) {
+		cause.printStackTrace();
 
-        return new InstantiationException(
-                String.format(errorMessageFormat, type, className));
-    }
+		return new InstantiationException(
+				String.format(errorMessageFormat, type, className));
+	}
 }
