@@ -49,12 +49,6 @@ public class HTMLElementFactory extends AbstractElementFactory {
 	}
 
 	public HtmlElement createTag(BigInteger id, String name, HtmlElement parent, Properties attributes) {
-		if (Boolean.getBoolean("debug")) {
-			System.out.println(
-					String.format("new HtmlElement(%s, %s, %s, %s, null, 0",
-							id, name, parent, new Attributes(attributes)));
-		}
-
 		return new DefaultElement(id, name, parent, new Attributes(attributes));
 	}
 
