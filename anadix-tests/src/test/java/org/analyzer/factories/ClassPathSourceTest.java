@@ -7,6 +7,7 @@ import java.io.Reader;
 
 import org.analyzer.Source;
 import org.analyzer.exceptions.SourceException;
+import org.analyzer.test.SourceTestTemplate;
 import org.testng.annotations.Test;
 
 public class ClassPathSourceTest extends SourceTestTemplate {

@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.Reader;
 
 import org.analyzer.Source;
+import org.analyzer.test.SourceTestTemplate;
 import org.testng.annotations.Test;
 
 

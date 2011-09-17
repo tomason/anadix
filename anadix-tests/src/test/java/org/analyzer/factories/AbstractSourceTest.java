@@ -6,6 +6,7 @@ import static org.testng.Assert.*;
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.analyzer.test.SourceTestTemplate;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 

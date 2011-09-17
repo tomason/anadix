@@ -1,4 +1,4 @@
-package org.analyzer.factories;
+package org.analyzer.test;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,7 +14,7 @@ import org.testng.annotations.DataProvider;
 public abstract class SourceTestTemplate {
 	protected static final String resourcePath = "/SourceTestFile.html";
 	protected static final String sourceText =
-			readStream(FileSourceTest.class.getResourceAsStream(resourcePath));
+			readStream(SourceTestTemplate.class.getResourceAsStream(resourcePath));
 
 	@DataProvider(name = "booleans")
 	public Iterator<Object[]> prepareBooleans() {

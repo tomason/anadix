@@ -11,6 +11,7 @@ import java.net.URL;
 
 import org.analyzer.Source;
 import org.analyzer.exceptions.SourceException;
+import org.analyzer.test.SourceTestTemplate;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
