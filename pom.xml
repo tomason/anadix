@@ -29,7 +29,6 @@
     <module>anadix-example</module>
     
     <module>anadix-tests</module>
-    <module>anadix-distribution</module>
   </modules>
   
   <build>
@@ -43,19 +42,6 @@
         </configuration>
       </plugin>
       <plugin>
-        <artifactId>maven-source-plugin</artifactId>
-        <version>2.1.2</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>jar-no-fork</goal>
-            </goals>
-            <phase>package</phase>
-          </execution>
-        </executions>
-      </plugin>
-
-      <plugin>
         <artifactId>maven-release-plugin</artifactId>
         <configuration>
           <autoVersionSubmodules>true</autoVersionSubmodules>
@@ -68,47 +54,80 @@
     <profile>
       <id>cobertura</id>
       <build>
-	    <plugins>
-	      <plugin>
-	        <artifactId>maven-compiler-plugin</artifactId>
-	        <version>2.3.2</version>
-	        <configuration>
-	          <source>1.6</source>
-	          <target>1.6</target>
-	        </configuration>
-	      </plugin>
+        <plugins>
 	      <plugin>
 	        <groupId>org.codehaus.mojo</groupId>
 	        <artifactId>cobertura-maven-plugin</artifactId>
 	        <version>2.5.1</version>
 	        <executions>
 	          <execution>
-	            <phase>pre-integration-test</phase>
+	            <phase>process-classes</phase>
 	            <goals>
-	              <goal>instrument</goal>
+	              <goal>cobertura</goal>
 	            </goals>
+	            <configuration>
+	              <attach>true</attach>
+	              <aggregate>true</aggregate>
+	              <classifier>cobertura</classifier>
+	              <instrumentation>
+	                <excludes>
+	                  <exclude>**/*Test*</exclude>
+	                </excludes>
+	              </instrumentation>
+	            </configuration>
 	          </execution>
 	        </executions>
 	      </plugin>
 	      <plugin>
 	        <artifactId>maven-jar-plugin</artifactId>
-	        <version>2.3.2</version>
 	        <executions>
 	          <execution>
-	            <phase>post-integration-test</phase>
+	            <phase>process-classes</phase>
 	            <goals>
 	              <goal>jar</goal>
 	            </goals>
 	            <configuration>
-	              <classifier>cobertura</classifier>
 	              <classesDirectory>${project.build.directory}/generated-classes/cobertura</classesDirectory>
+	              <classifier>cobertura</classifier>
+	            </configuration>
+	          </execution>
+	        </executions>
+	      </plugin>
+	      <plugin>
+	        <artifactId>maven-install-plugin</artifactId>
+	        <executions>
+	          <execution>
+	            <phase>process-classes</phase>
+	            <goals>
+	              <goal>install</goal>
+	            </goals>
+	            <configuration>
+	              <classifier>cobertura</classifier>
 	            </configuration>
 	          </execution>
 	        </executions>
 	      </plugin>
 	    </plugins>
 	  </build>
+	  
+	  <dependencies>
+	    <dependency>
+	      <groupId>net.sourceforge.cobertura</groupId>
+	      <artifactId>cobertura</artifactId>
+	      <version>1.9.4</version>
+	    </dependency>
+	  </dependencies>
     </profile>
+    <profile>
+      <id>distribution</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <modules>
+        <module>anadix-distribution</module>
+      </modules>
+    </profile>
+    
   </profiles>
   
   <developers>
