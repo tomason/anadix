@@ -31,8 +31,7 @@ import org.analyzer.exceptions.SourceException;
 public final class SourceFactory {
 	// FIXME add some settings to change caching policy
 	private static final boolean cacheByDefault = true;
-	private SourceFactory() {
-	}
+	private SourceFactory() {}
 
 	/**
 	 * Creates a new source pointing at a file
