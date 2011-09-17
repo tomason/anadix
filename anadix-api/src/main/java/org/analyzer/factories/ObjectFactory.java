@@ -124,7 +124,10 @@ public final class ObjectFactory {
 	 * new instance
 	 */
 	public static Analyzer newAnalyzer() throws InstantiationException {
-		return newAnalyzer((Parser)null, null);
+		ConditionSet cs = newConditionSet(defaultConditions);
+		Parser p = newParser(cs.getDefaultParser());
+
+		return newAnalyzer(p, cs);
 	}
 
 	/**
@@ -137,7 +140,10 @@ public final class ObjectFactory {
 	 * new instance
 	 */
 	public static Analyzer newAnalyzer(Class<? extends ConditionSet> conditionsClass) throws InstantiationException {
-		return newAnalyzer(null, newConditionSet(conditionsClass));
+		ConditionSet cs = newConditionSet(conditionsClass);
+		Parser p = newParser(cs.getDefaultParser());
+
+		return newAnalyzer(p, cs);
 	}
 
 	/**
@@ -153,28 +159,8 @@ public final class ObjectFactory {
 	public static Analyzer newAnalyzer(
 			Class<? extends Parser> parserClass,
 			Class<? extends ConditionSet> conditionsClass) throws InstantiationException {
-		ConditionSet c;
-		Parser p;
-
-		try {
-			if (conditionsClass == null) {
-				c = newConditionSet(defaultConditions);
-			} else {
-				c = newConditionSet(conditionsClass);
-			}
-		} catch (Exception ex) {
-			throw newInstantiationException("Analyzer", conditionsClass.getName(), ex);
-		}
-
-		try {
-			if (parserClass == null) {
-				p = newParser(c.getDefaultParser());
-			} else {
-				p = newParser(parserClass);
-			}
-		} catch (Exception ex) {
-			throw newInstantiationException("Analyzer", parserClass.getName(), ex);
-		}
+		ConditionSet c = newConditionSet(conditionsClass);
+		Parser p = newParser(parserClass);
 
 		return newAnalyzer(p, c);
 	}
@@ -189,14 +175,14 @@ public final class ObjectFactory {
 	 * new instance
 	 */
 	public static Analyzer newAnalyzer(Parser p, ConditionSet c) throws InstantiationException {
-		try {
-			if (c == null) {
-				c = newConditionSet("");
-			}
-			if (p == null) {
-				p = newParser(c.getDefaultParser());
-			}
+		if (c == null) {
+			throw new NullPointerException("ConditionSet can't be null");
+		}
+		if (p == null) {
+			throw new NullPointerException("Parser can't be null");
+		}
 
+		try {
 			return instantiate(Analyzer.class, defaultAnalyzer, new Object[] { p, c });
 		} catch (Exception ex) {
 			throw newInstantiationException("Analyzer", defaultAnalyzer, ex);
@@ -204,9 +190,19 @@ public final class ObjectFactory {
 	}
 
 	/**
+	 * Creates a new instance of default ReportFormatter.
+	 * 
+	 * @return new instance of ReportFormatter
+	 * @throws InstantiationException - when exception occurs during creating
+	 * new instance
+	 */
+	public static ReportFormatter newFormatter() throws InstantiationException {
+		return newFormatter(defaultFormatter);
+	}
+
+	/**
 	 * Creates a new instance of ReportFormatter by invoking default constructor in
-	 * class defined by given class name. If null is given as a parameter
-	 * default ReportFormatter is constructed.
+	 * class defined by given class name.
 	 * 
 	 * @param className - name of the class to be constructed
 	 * @return new instance of ReportFormatter
@@ -215,12 +211,32 @@ public final class ObjectFactory {
 	 */
 	public static ReportFormatter newFormatter(String className) throws InstantiationException {
 		if (className == null || className.length() == 0) {
-			className = defaultFormatter;
+			throw new NullPointerException("className can't be null");
 		}
 		try {
-			return (ReportFormatter)Class.forName(className).newInstance();
+			return instantiate(ReportFormatter.class, className);
 		} catch (Exception ex) {
-			throw newInstantiationException("Formatter", className, ex);
+			throw newInstantiationException("ReportFormatter", className, ex);
+		}
+	}
+
+	/**
+	 * Creates a new instance of ReportFormatter by invoking default constructor in
+	 * class defined by given class.
+	 * 
+	 * @param clazz - class to be constructed
+	 * @return new instance of ReportFormatter
+	 * @throws InstantiationException - when exception occurs during creating
+	 * new instance
+	 */
+	public static ReportFormatter newFormatter(Class<? extends ReportFormatter> clazz) throws InstantiationException {
+		if (clazz == null) {
+			throw new NullPointerException("clazz can't be null");
+		}
+		try {
+			return instantiate(clazz);
+		} catch (Exception ex) {
+			throw newInstantiationException("ReportFormatter", clazz.getName(), ex);
 		}
 	}
 
@@ -298,8 +314,8 @@ public final class ObjectFactory {
 		return null;
 	}
 
-	private static InstantiationException newInstantiationException(String type, String className,
-			Throwable cause) {
+	private static InstantiationException newInstantiationException(String type, String className, Throwable cause) {
+		// FIXME log!
 		cause.printStackTrace();
 
 		return new InstantiationException(
