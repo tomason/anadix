@@ -72,6 +72,8 @@
 	              <instrumentation>
 	                <excludes>
 	                  <exclude>**/*Test*</exclude>
+	                  <exclude>**/mock/**</exclude>
+                      <exclude>**/test/**</exclude>
 	                </excludes>
 	              </instrumentation>
 	            </configuration>
