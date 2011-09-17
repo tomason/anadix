@@ -59,7 +59,7 @@ public interface Parser {
 	 * 
 	 * @return instance of Class<? extends ElementFactory>
 	 */
-	<T extends ElementFactory> Class<T> getElementFactoryClass();
+	Class<? extends ElementFactory> getElementFactoryClass();
 
 	/**
 	 * Inserts the instance of Element factory of a class defined by method
@@ -67,5 +67,5 @@ public interface Parser {
 	 * 
 	 * @param factory - instance of ElementFactory
 	 */
-	<T extends ElementFactory> void setElementFactory(T factory);
+	void setElementFactory(ElementFactory factory);
 }

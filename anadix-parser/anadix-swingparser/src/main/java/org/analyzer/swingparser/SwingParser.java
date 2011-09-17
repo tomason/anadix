@@ -83,12 +83,11 @@ public class SwingParser implements Parser {
 		return result;
 	}
 
-	@SuppressWarnings("unchecked")
-	public Class<HTMLElementFactory> getElementFactoryClass() {
+	public Class<? extends ElementFactory> getElementFactoryClass() {
 		return HTMLElementFactory.class;
 	}
 
-	public <T extends ElementFactory> void setElementFactory(T factory) {
+	public void setElementFactory(ElementFactory factory) {
 		if (getElementFactoryClass().isAssignableFrom(factory.getClass())) {
 			this.factory = (HTMLElementFactory)factory;
 			this.factory.setAsGlobal("elementFactory");

@@ -36,7 +36,7 @@ public class AnalyzerImplTest {
 		ef = mock(AbstractElementFactory.class);
 
 		when(p.getElementFactoryClass()).thenAnswer(new ElementFactoryAnswer(ef));
-		when(c.getElementFactoryUsed()).thenAnswer(new ElementFactoryAnswer(ef));
+		when(c.getElementFactoryClass()).thenAnswer(new ElementFactoryAnswer(ef));
 	}
 
 	@Test(expectedExceptions = { NullPointerException.class })
@@ -61,7 +61,7 @@ public class AnalyzerImplTest {
 		ElementFactory ef2 = mock(ElementFactory.class);
 
 		when(parser.getElementFactoryClass()).thenAnswer(new ElementFactoryAnswer(ef1));
-		when(conditions.getElementFactoryUsed()).thenAnswer(new ElementFactoryAnswer(ef2));
+		when(conditions.getElementFactoryClass()).thenAnswer(new ElementFactoryAnswer(ef2));
 
 		new AnalyzerImpl(parser, conditions);
 	}
@@ -78,7 +78,7 @@ public class AnalyzerImplTest {
 		ElementFactory ef = mock(ElementFactory.class);
 
 		when(parser.getElementFactoryClass()).thenAnswer(new ElementFactoryAnswer(ef));
-		when(conditions.getElementFactoryUsed()).thenAnswer(new ElementFactoryAnswer(ef));
+		when(conditions.getElementFactoryClass()).thenAnswer(new ElementFactoryAnswer(ef));
 
 		AnalyzerImpl analyzer = new AnalyzerImpl(parser, conditions);
 		analyzer.analyze(s);

@@ -45,7 +45,7 @@ public interface ConditionSet {
 	/**
 	 * @return class of used implementation of ElementFactory
 	 */
-	Class<? extends ElementFactory> getElementFactoryUsed();
+	Class<? extends ElementFactory> getElementFactoryClass();
 
 	/**
 	 * @return class used as a default parser

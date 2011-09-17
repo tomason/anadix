@@ -49,7 +49,7 @@ public class Section508 implements ConditionSet {
 		return result;
 	}
 
-	public Class<? extends ElementFactory> getElementFactoryUsed() {
+	public Class<? extends ElementFactory> getElementFactoryClass() {
 		return HTMLElementFactory.class;
 	}
 

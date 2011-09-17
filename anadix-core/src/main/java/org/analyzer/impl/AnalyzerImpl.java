@@ -40,7 +40,7 @@ public class AnalyzerImpl implements Analyzer {
 		this.parser = parser;
 		this.conditions = conditions;
 
-		if (!parser.getElementFactoryClass().isAssignableFrom(conditions.getElementFactoryUsed())) {
+		if (!parser.getElementFactoryClass().isAssignableFrom(conditions.getElementFactoryClass())) {
 			throw new IllegalStateException("Parser " + parser.getClass() + " and condition set " + conditions.getClass() + " don't match");
 		}
 
@@ -61,7 +61,7 @@ public class AnalyzerImpl implements Analyzer {
 		 */
 
 		ElementFactory ef = AbstractElementFactory.createFactory(
-				conditions.getElementFactoryUsed(),
+				conditions.getElementFactoryClass(),
 				ksession
 				);
 
