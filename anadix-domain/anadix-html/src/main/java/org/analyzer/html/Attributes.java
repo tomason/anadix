@@ -32,12 +32,16 @@ public class Attributes {
 		if (attributes == null) {
 			throw new NullPointerException("attributes can't be null");
 		}
-		this.attributes =  new Properties(attributes);
+		this.attributes = new Properties();
+
+		for (String key : attributes.stringPropertyNames()) {
+			this.attributes.setProperty(key, attributes.getProperty(key));
+		}
 
 		if (hasAttribute("style")) {
 			Properties style = parseStyle(getAttribute("style"));
 			for (String key : style.stringPropertyNames()) {
-				attributes.setProperty(key, style.getProperty(key));
+				this.attributes.setProperty(key, style.getProperty(key));
 			}
 		}
 	}
@@ -51,7 +55,7 @@ public class Attributes {
 	}
 
 	public boolean hasAttribute(String key) {
-		return attributes.contains(key);
+		return attributes.containsKey(key);
 	}
 
 	public Collection<String> getAvaliableAttributes() {
