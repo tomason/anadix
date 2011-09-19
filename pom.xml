@@ -82,6 +82,7 @@
 	      </plugin>
 	      <plugin>
 	        <artifactId>maven-jar-plugin</artifactId>
+	        <version>2.3.2</version>
 	        <executions>
 	          <execution>
 	            <phase>process-classes</phase>
@@ -97,6 +98,7 @@
 	      </plugin>
 	      <plugin>
 	        <artifactId>maven-install-plugin</artifactId>
+	        <version>2.3.1</version>
 	        <executions>
 	          <execution>
 	            <phase>process-classes</phase>
