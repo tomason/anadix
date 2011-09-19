@@ -6,6 +6,7 @@ import static org.testng.Assert.*;
 import java.math.BigInteger;
 import java.util.Properties;
 
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class HtmlElementTest {
@@ -17,10 +18,11 @@ public class HtmlElementTest {
 	private static final String source = "<html><head></head><body><img /></body></html>";
 	private static final String textContent = "some text content";
 
-	private HtmlElement ft;
+	private HtmlElement mock;
 
+	@BeforeMethod
 	public void prepareInstance() {
-		ft = new MockHtmlElement(id, name, parent, attributes);
+		mock = new MockHtmlElement(id, name, parent, attributes);
 	}
 
 	@Test(expectedExceptions = NullPointerException.class)
@@ -45,65 +47,65 @@ public class HtmlElementTest {
 	}
 
 	public void testGetAttributes() {
-		assertEquals(ft.getAttributes(), attributes);
+		assertEquals(mock.getAttributes(), attributes);
 	}
 
 	public void testGetId() {
-		assertEquals(ft.getId(), id);
+		assertEquals(mock.getId(), id);
 	}
 
 	public void testGetName() {
-		assertEquals(ft.getName(), name);
+		assertEquals(mock.getName(), name);
 	}
 
 	public void testGetParent() {
-		assertEquals(ft.getParent(), parent);
+		assertEquals(mock.getParent(), parent);
 	}
 
 	@Test(expectedExceptions = IllegalArgumentException.class)
 	public void testPosition1() {
-		ft.setPosition(-position);
+		mock.setPosition(-position);
 	}
 
 	public void testPosition2() {
-		assertEquals(ft.getPosition(), 0);
+		assertEquals(mock.getPosition(), 0);
 
-		ft.setPosition(position);
-		assertEquals(ft.getPosition(), position);
+		mock.setPosition(position);
+		assertEquals(mock.getPosition(), position);
 	}
 
 	@Test(expectedExceptions = NullPointerException.class)
 	public void testSource1() {
-		ft.setSource(null);
+		mock.setSource(null);
 	}
 
 	@Test(expectedExceptions = NullPointerException.class)
 	public void testSource2() {
-		ft.setSource("");
+		mock.setSource("");
 	}
 
 	public void testSource3() {
-		assertNull(ft.getSource());
+		assertNull(mock.getSource());
 
-		ft.setSource(source);
-		assertEquals(ft.getSource(), source);
+		mock.setSource(source);
+		assertEquals(mock.getSource(), source);
 	}
 
 	@Test(expectedExceptions = NullPointerException.class)
 	public void testTextContent1() {
-		ft.setTextContent(null);
+		mock.setTextContent(null);
 	}
 
 	@Test(expectedExceptions = NullPointerException.class)
 	public void testTextContent2() {
-		ft.setTextContent("");
+		mock.setTextContent("");
 	}
 
 	public void testTextContent3() {
-		assertNull(ft.getTextContent());
+		assertNull(mock.getTextContent());
 
-		ft.setTextContent(textContent);
-		assertEquals(ft.getTextContent(), textContent);
+		mock.setTextContent(textContent);
+		assertEquals(mock.getTextContent(), textContent);
 	}
 
 	private class MockHtmlElement extends HtmlElement {
