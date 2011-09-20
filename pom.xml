@@ -9,6 +9,12 @@
 
   <name>Anadix parent project</name>
 
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  </properties>
+
+
   <licenses>
     <license>
       <name>Apache License, Version 2.0</name>
