@@ -9,6 +9,7 @@ import java.util.Properties;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+@Test
 public class HtmlElementTest {
 	private static final BigInteger id = new BigInteger("42");
 	private static final HtmlElement parent = mock(HtmlElement.class);
@@ -35,14 +36,19 @@ public class HtmlElementTest {
 		new MockHtmlElement(id, null, parent, attributes);
 	}
 
-	@Test(enabled = false, expectedExceptions = NullPointerException.class)
+	@Test(expectedExceptions = NullPointerException.class)
 	public void testConstructor3() {
+		new MockHtmlElement(id, "", parent, attributes);
+	}
+
+	@Test(enabled = false, expectedExceptions = NullPointerException.class)
+	public void testConstructor4() {
 		// FIXME null parent is allowed (for HtmlTag class as it has no parent)
 		new MockHtmlElement(id, name, null, attributes);
 	}
 
 	@Test(expectedExceptions = NullPointerException.class)
-	public void testConstructor4() {
+	public void testConstructor5() {
 		new MockHtmlElement(id, name, parent, null);
 	}
 
@@ -106,6 +112,15 @@ public class HtmlElementTest {
 
 		mock.setTextContent(textContent);
 		assertEquals(mock.getTextContent(), textContent);
+	}
+
+	public void testToString() {
+		String toString = mock.toString();
+
+		assertTrue(toString.startsWith(name));
+		assertTrue(toString.contains(id.toString()));
+		assertTrue(toString.contains(Integer.toString(position)));
+		assertTrue(toString.contains(attributes.toString()));
 	}
 
 	private class MockHtmlElement extends HtmlElement {
