@@ -82,6 +82,9 @@ public abstract class HtmlElement implements Element {
 	}
 
 	public void setSource(String source) {
+		if (source == null || source.length() == 0) {
+			throw new NullPointerException("source can't be null");
+		}
 		this.source = source;
 	}
 
@@ -90,6 +93,9 @@ public abstract class HtmlElement implements Element {
 	}
 
 	public void setPosition(int position) {
+		if (position < 0) {
+			throw new IllegalArgumentException("position must be greater then or equal to 0");
+		}
 		this.position = position;
 	}
 
@@ -102,11 +108,11 @@ public abstract class HtmlElement implements Element {
 	}
 
 	public void setTextContent(String textContent) {
-		if (this.textContent != null && this.textContent.length() > 0) {
-			this.textContent += "\n" + textContent;
-		} else {
-			this.textContent = textContent;
+		if (textContent == null || textContent.length() == 0) {
+			throw new NullPointerException("text content can't be null");
 		}
+
+		this.textContent = textContent;
 	}
 
 	@Override
