@@ -64,6 +64,7 @@ public class SwingParser implements Parser {
 		Collection<DroolsResource> result = new ArrayList<DroolsResource>();
 
 		ExternalSpreadsheetCompiler compiler = new ExternalSpreadsheetCompiler();
+		// FIXME unclosed streams!
 		InputStream csvStream = SwingParser.class.getResourceAsStream("tags.csv");
 		InputStream templateStream = SwingParser.class.getResourceAsStream("rule-template.drt");
 
