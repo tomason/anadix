@@ -33,10 +33,35 @@ public class ImgTag extends HtmlElement {
 	}
 
 	public int getWidth() {
-		return Integer.parseInt(getAttributes().getAttribute("width"));
+		String width = getAttributes().getAttribute("width");
+
+		if (width == null) {
+			return -1;
+		} else {
+			return Integer.parseInt(getNumberPart(width));
+		}
 	}
 
 	public int getHeight() {
-		return Integer.parseInt(getAttributes().getAttribute("height"));
+		String height = getAttributes().getAttribute("height");
+
+		if (height == null) {
+			return -1;
+		} else {
+			return Integer.parseInt(getNumberPart(height));
+		}
+	}
+
+	private String getNumberPart(String number) {
+		int i = 0;
+
+		for (char c : number.toCharArray()) {
+			if (!Character.isDigit(c)) {
+				break;
+			}
+			i++;
+		}
+
+		return number.substring(0, i);
 	}
 }

@@ -29,14 +29,14 @@ public abstract class HtmlElement implements Element {
 
 	private int position;
 	private String source;
-	private String textContent = "";
+	private String textContent;
 
 	HtmlElement(
 			BigInteger id,
 			String name,
 			HtmlElement parent,
 			Attributes attributes) {
-		this(id, name, parent, attributes, null, 0);
+		this(id, name, parent, attributes, null, 0, null);
 	}
 
 	private HtmlElement(
@@ -45,7 +45,8 @@ public abstract class HtmlElement implements Element {
 			HtmlElement parent,
 			Attributes attributes,
 			String source,
-			int position) {
+			int position,
+			String textContent) {
 		if (id == null) {
 			throw new NullPointerException("id can't be null");
 		}
@@ -63,6 +64,7 @@ public abstract class HtmlElement implements Element {
 
 		this.source = source;
 		this.position = position;
+		this.textContent = textContent;
 	}
 
 	public BigInteger getId() {
