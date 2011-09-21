@@ -5,6 +5,7 @@ import java.util.Properties;
 
 import org.testng.annotations.Test;
 
+@Test
 public class StartTagEventTest {
 	private static final BigInteger id = new BigInteger("14");
 	private static final String tagName = "html";
