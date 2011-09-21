@@ -64,17 +64,37 @@ public class SwingParser implements Parser {
 		Collection<DroolsResource> result = new ArrayList<DroolsResource>();
 
 		ExternalSpreadsheetCompiler compiler = new ExternalSpreadsheetCompiler();
-		// FIXME unclosed streams!
-		InputStream csvStream = SwingParser.class.getResourceAsStream("tags.csv");
-		InputStream templateStream = SwingParser.class.getResourceAsStream("rule-template.drt");
+		InputStream csvStream = null;
+		InputStream templateStream = null;
+		try {
+			csvStream = SwingParser.class.getResourceAsStream("tags.csv");
+			templateStream = SwingParser.class.getResourceAsStream("rule-template.drt");
 
-		String generated = compiler.compile(csvStream, templateStream, InputType.CSV, 2, 1);
-		logger.debug(generated);
+			String generated = compiler.compile(csvStream, templateStream, InputType.CSV, 2, 1);
+			logger.debug(generated);
 
-		// add expanded template
-		result.add(new DroolsResource(
-				ResourceFactory.newReaderResource(new StringReader(generated)),
-				ResourceType.DRL));
+			// add expanded template
+			result.add(new DroolsResource(
+					ResourceFactory.newReaderResource(new StringReader(generated)),
+					ResourceType.DRL));
+		} finally {
+			if (csvStream != null) {
+				try {
+					csvStream.close();
+				} catch (IOException ex) {
+					logger.fatal("could not close csvStream", ex);
+					throw new RuntimeException(ex);
+				}
+			}
+			if (templateStream != null) {
+				try {
+					templateStream.close();
+				} catch (IOException ex) {
+					logger.fatal("could not close templateStream", ex);
+					throw new RuntimeException(ex);
+				}
+			}
+		}
 
 		// add common rules - to insert <html>
 		result.add(new DroolsResource(

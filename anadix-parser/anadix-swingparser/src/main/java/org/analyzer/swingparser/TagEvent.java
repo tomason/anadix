@@ -34,6 +34,18 @@ public abstract class TagEvent implements Serializable {
 	}
 
 	public TagEvent(BigInteger id, String tagName, Properties attributes, int position, String source) {
+		if (id == null) {
+			throw new NullPointerException("id can't be null");
+		}
+		if (tagName == null || tagName.length() == 0) {
+			throw new NullPointerException("tagName can't be null");
+		}
+		if (attributes == null) {
+			throw new NullPointerException("attributes can't be null");
+		}
+		if (position < 0) {
+			throw new IllegalArgumentException("position must be greater than or equal to 0");
+		}
 		this.id = id;
 		this.tagName = tagName.toLowerCase();
 		this.attributes = attributes;
