@@ -1,11 +1,13 @@
 package org.analyzer.swingparser;
 
+import static org.mockito.Mockito.*;
+
 import org.analyzer.html.HTMLElementFactory;
 import org.testng.annotations.Test;
 
 @Test
 public class StatefulParserCallbackTest {
-	private HTMLElementFactory factory;
+	private HTMLElementFactory factory = mock(HTMLElementFactory.class);
 	private String source = "<html><head></head><body><h1 style=\"\">Hello world</h1><img src=\"img/pic.png\" /></body></html>";
 
 	@Test(expectedExceptions = NullPointerException.class)
