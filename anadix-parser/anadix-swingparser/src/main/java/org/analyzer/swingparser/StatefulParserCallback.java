@@ -56,7 +56,7 @@ public class StatefulParserCallback extends ParserCallback {
 				ID, t.toString(), parseAttributes(a), pos,
 				getSource(t.toString(), pos));
 
-		if (e.getSource().replace(" ", "").length() == e.getTagName().length() + 3) {
+		if (e.getSource() != null && e.getSource().replace(" ", "").length() == e.getTagName().length() + 3) {
 			logger.warn("end simple tag: " + e.getSource());
 		} else {
 			factory.insertEvent(ENTRY_POINT, e);
@@ -71,7 +71,7 @@ public class StatefulParserCallback extends ParserCallback {
 				ID, t.toString(), parseAttributes(a), pos,
 				getSource(t.toString(), pos));
 
-		if (e.getSource().replace(" ", "").length() == e.getTagName().length() + 3) {
+		if (e.getSource() != null && e.getSource().replace(" ", "").length() == e.getTagName().length() + 3) {
 			logger.warn("end simple tag: " + e.getSource());
 		} else {
 			factory.insertEvent(ENTRY_POINT, e);
@@ -118,14 +118,6 @@ public class StatefulParserCallback extends ParserCallback {
 
 		int beginIndex = source.substring(0, position + tagName.length()).lastIndexOf("<"/* + tagName*/);
 		int endIndex = source.indexOf(">", beginIndex);
-
-		if (Boolean.getBoolean("debug")) {
-			System.err.println("document length: " + source.length());
-			System.out.println(
-					String.format(
-							"Searching for %s from %s got positions (%s,%s)",
-							tagName, position, beginIndex, endIndex));
-		}
 
 		if (beginIndex > -1 && endIndex > -1) {
 			String result = source.substring(beginIndex, endIndex + 1);
