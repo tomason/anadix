@@ -4,7 +4,7 @@
   <parent>
     <artifactId>anadix-integration</artifactId>
     <groupId>org</groupId>
-    <version>0.2.0</version>
+    <version>0.3.0-SNAPSHOT</version>
     <relativePath>..</relativePath>
   </parent>
   
