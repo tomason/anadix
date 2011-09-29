@@ -30,9 +30,11 @@ import org.anadix.ReportFormatter;
  */
 public final class ObjectFactory {
 	// FIXME allow configuring default classes (or at the very least the defaultConditions)
-	private static final String defaultConditions = "org.analyzer.section508.Section508";
-	private static final String defaultAnalyzer = "org.analyzer.impl.AnalyzerImpl";
-	private static final String defaultFormatter = "org.analyzer.impl.SimpleReportFormatter";
+	// FIXME think about making this 'org.anadix.Anadix' class as it's
+	// practically the main thing Anadix offers. When redoing this enhance capabilities
+	private static final String defaultConditions = "org.anadix.section508.Section508";
+	private static final String defaultAnalyzer = "org.anadix.impl.AnalyzerImpl";
+	private static final String defaultFormatter = "org.anadix.impl.SimpleReportFormatter";
 
 	private static final String errorMessageFormat = "Could not instantiate %s: %s";
 
