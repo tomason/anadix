@@ -28,5 +28,4 @@
   	  <version>${project.version}</version>
     </dependency>
   </dependencies>
-  <packaging>maven-plugin</packaging>
 </project>
