@@ -29,8 +29,6 @@ import org.drools.io.ResourceFactory;
 
 
 public class Section508 implements ConditionSet {
-	private static final String classpath = "org/analyzer/section508";
-
 	public String getName() {
 		return "Section 508";
 	}
@@ -39,11 +37,11 @@ public class Section508 implements ConditionSet {
 		Collection<DroolsResource> result = new ArrayList<DroolsResource>();
 
 		result.add(new DroolsResource(
-				ResourceFactory.newClassPathResource(classpath + "/paragraph-a.drl"),
+				ResourceFactory.newInputStreamResource(getClass().getResourceAsStream("paragraph-a.drl")),
 				ResourceType.DRL));
 
 		result.add(new DroolsResource(
-				ResourceFactory.newClassPathResource(classpath + "/paragraph-i.drl"),
+				ResourceFactory.newInputStreamResource(getClass().getResourceAsStream("paragraph-i.drl")),
 				ResourceType.DRL));
 
 		return result;

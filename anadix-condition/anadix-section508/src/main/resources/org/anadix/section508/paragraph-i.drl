@@ -1,8 +1,7 @@
 #created on: 9.6.2011
-package org.analyzer.section508
+package org.anadix.section508
 
-import org.analyzer.html.*
-imporg.anadix.section508.ReportFactorytory
+import org.anadix.html.*
 
 rule "frame without title"
 	when
