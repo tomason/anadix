@@ -19,8 +19,6 @@ import java.math.BigInteger;
 
 import org.anadix.Element;
 
-
-
 public abstract class HtmlElement implements Element {
 	private final BigInteger id;
 	private final String name;
@@ -81,6 +79,10 @@ public abstract class HtmlElement implements Element {
 
 	public Attributes getAttributes() {
 		return attributes;
+	}
+
+	protected String getAttribute(String name) {
+		return getAttributes().getAttribute(name);
 	}
 
 	public void setSource(String source) {
