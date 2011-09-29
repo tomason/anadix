@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.analyzer.utils;
+package org.anadix.utils;
 
 import org.drools.builder.KnowledgeBuilder;
 import org.drools.builder.ResourceConfiguration;

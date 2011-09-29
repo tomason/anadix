@@ -13,34 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.analyzer;
+package org.anadix.factories;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.io.Reader;
 
-/**
- * Represents a source for analysis
- * 
- * @author tomason
- */
-public interface Source {
-	/**
-	 * @return description of the source (eg. filename, url, classpath)
-	 */
-	String getDescription();
+class FileSource extends AbstractSource {
+	private final File source;
 
-	/**
-	 * @return source as a String
-	 */
-	String getText();
+	public FileSource(File source) throws FileNotFoundException {
+		super(source.getAbsolutePath());
+		if (!source.exists()) {
+			throw new FileNotFoundException(source.getName());
+		}
+		this.source = source;
+	}
 
-	/**
-	 * @return source as a Reader
-	 */
-	Reader getReader();
-
-	/**
-	 * @return source as a Stream
-	 */
-	InputStream getStream();
+	public InputStream getStream() {
+		try {
+			return new FileInputStream(source);
+		} catch (FileNotFoundException e) {
+			throw new RuntimeException("This should not have happened", e);
+		}
+	}
 }

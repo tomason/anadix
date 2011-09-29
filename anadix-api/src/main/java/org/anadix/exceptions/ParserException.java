@@ -13,23 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.analyzer.exceptions;
+package org.anadix.exceptions;
 
-public class SourceException extends Exception {
-	private static final long serialVersionUID = -2279894355884568950L;
+public class ParserException extends Exception {
+	private static final long serialVersionUID = -5499359537494913863L;
 
-	public SourceException() {
+	public ParserException() {
 	}
 
-	public SourceException(String message) {
+	public ParserException(String message) {
 		super(message);
 	}
 
-	public SourceException(Throwable cause) {
+	public ParserException(Throwable cause) {
 		super(cause);
 	}
 
-	public SourceException(String message, Throwable cause) {
+	public ParserException(String message, Throwable cause) {
 		super(message, cause);
 	}
 }

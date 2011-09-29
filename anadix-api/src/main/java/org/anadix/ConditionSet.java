@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.analyzer;
+package org.anadix;
 
 import java.util.Collection;
 
-import org.analyzer.utils.DroolsResource;
+import org.anadix.utils.DroolsResource;
 
 /**
  * Represents a set of conditions to feed into analyzer.

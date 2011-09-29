@@ -13,25 +13,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.analyzer;
+package org.anadix;
+
+import java.io.InputStream;
+import java.io.Reader;
 
 /**
- * Class representing the smallest units of Source.
+ * Represents a source for analysis
  * 
  * @author tomason
  */
-public interface Element {
+public interface Source {
+	/**
+	 * @return description of the source (eg. filename, url, classpath)
+	 */
+	String getDescription();
 
 	/**
-	 * Gets the name of the element
-	 * @return name of the element
+	 * @return source as a String
 	 */
-	String getName();
+	String getText();
 
 	/**
-	 * Gets the source of the element
-	 * (could be source code, location, etc.)
-	 * @return source of the element
+	 * @return source as a Reader
 	 */
-	String getSource();
+	Reader getReader();
+
+	/**
+	 * @return source as a Stream
+	 */
+	InputStream getStream();
 }

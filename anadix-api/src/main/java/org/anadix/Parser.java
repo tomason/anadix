@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.analyzer;
+package org.anadix;
 
 import java.util.Collection;
 
-import org.analyzer.exceptions.ParserException;
-import org.analyzer.utils.DroolsResource;
+import org.anadix.exceptions.ParserException;
+import org.anadix.utils.DroolsResource;
 
 /**
  * Class used to parse the source.

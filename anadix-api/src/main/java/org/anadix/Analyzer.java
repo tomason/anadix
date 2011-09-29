@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.analyzer;
+package org.anadix;
 
 /**
  * Heart of the analyzing API. Analyzer holds all the information neccessary
  * to analyze any source - it holds instances of parser and condition sets.
  * For help with creating instance of Analyzer see ObjectFactory.
  * 
- * @see org.analyzer.factories.ObjectFactory
+ * @see org.anadix.factories.ObjectFactory
  * @author tomason
  */
 public interface Analyzer {

@@ -13,15 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.analyzer.factories;
+package org.anadix.factories;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 
-import org.analyzer.Source;
-import org.analyzer.exceptions.SourceException;
+import org.anadix.Source;
+import org.anadix.exceptions.SourceException;
 
 /**
  * Creates instances of Source for different types of sources

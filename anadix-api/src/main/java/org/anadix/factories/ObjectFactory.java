@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.analyzer.factories;
+package org.anadix.factories;
 
 import java.lang.reflect.Constructor;
 
-import org.analyzer.Analyzer;
-import org.analyzer.ConditionSet;
-import org.analyzer.Parser;
-import org.analyzer.ReportFormatter;
+import org.anadix.Analyzer;
+import org.anadix.ConditionSet;
+import org.anadix.Parser;
+import org.anadix.ReportFormatter;
 
 
 /**

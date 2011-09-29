@@ -13,24 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.analyzer.factories;
+package org.anadix;
 
-import java.io.InputStream;
+/**
+ * Class representing the smallest units of Source.
+ * 
+ * @author tomason
+ */
+public interface Element {
 
-import org.analyzer.exceptions.SourceException;
+	/**
+	 * Gets the name of the element
+	 * @return name of the element
+	 */
+	String getName();
 
-class ClassPathSource extends AbstractSource {
-	private final String resourceName;
-
-	public ClassPathSource(String resource) throws SourceException {
-		super(resource);
-		if (getClass().getResource(resource) == null) {
-			throw new SourceException("Resource not found " + resource);
-		}
-		this.resourceName = resource;
-	}
-
-	public InputStream getStream() {
-		return getClass().getResourceAsStream(resourceName);
-	}
+	/**
+	 * Gets the source of the element
+	 * (could be source code, location, etc.)
+	 * @return source of the element
+	 */
+	String getSource();
 }

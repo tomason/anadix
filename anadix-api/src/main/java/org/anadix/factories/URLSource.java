@@ -1,4 +1,4 @@
-package org.analyzer.factories;
+package org.anadix.factories;
 
 import java.io.IOException;
 import java.io.InputStream;

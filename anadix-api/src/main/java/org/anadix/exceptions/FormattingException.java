@@ -1,4 +1,4 @@
-package org.analyzer.exceptions;
+package org.anadix.exceptions;
 
 public class FormattingException extends Exception {
 	private static final long serialVersionUID = 1L;

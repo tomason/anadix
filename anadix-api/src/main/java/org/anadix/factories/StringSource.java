@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.analyzer.factories;
+package org.anadix.factories;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.Reader;
 import java.io.StringReader;
 
-import org.analyzer.Source;
+import org.anadix.Source;
 
 class StringSource implements Source {
 	private final String source;

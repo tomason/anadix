@@ -13,29 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.analyzer.factories;
+package org.anadix.factories;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 
-class FileSource extends AbstractSource {
-	private final File source;
+import org.anadix.exceptions.SourceException;
 
-	public FileSource(File source) throws FileNotFoundException {
-		super(source.getAbsolutePath());
-		if (!source.exists()) {
-			throw new FileNotFoundException(source.getName());
+class ClassPathSource extends AbstractSource {
+	private final String resourceName;
+
+	public ClassPathSource(String resource) throws SourceException {
+		super(resource);
+		if (getClass().getResource(resource) == null) {
+			throw new SourceException("Resource not found " + resource);
 		}
-		this.source = source;
+		this.resourceName = resource;
 	}
 
 	public InputStream getStream() {
-		try {
-			return new FileInputStream(source);
-		} catch (FileNotFoundException e) {
-			throw new RuntimeException("This should not have happened", e);
-		}
+		return getClass().getResourceAsStream(resourceName);
 	}
 }
