@@ -13,17 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.analyzer.section508;
+package org.anadix.section508;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.analyzer.ConditionSet;
-import org.analyzer.ElementFactory;
-import org.analyzer.Parser;
-import org.analyzer.html.HTMLElementFactory;
-import org.analyzer.swingparser.SwingParser;
-import org.analyzer.utils.DroolsResource;
+import org.anadix.ConditionSet;
+import org.anadix.ElementFactory;
+import org.anadix.Parser;
+import org.anadix.html.HTMLElementFactory;
+import org.anadix.swingparser.SwingParser;
+import org.anadix.utils.DroolsResource;
 import org.drools.builder.ResourceType;
 import org.drools.io.ResourceFactory;
 

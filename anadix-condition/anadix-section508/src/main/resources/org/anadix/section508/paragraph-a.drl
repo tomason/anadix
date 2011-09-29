@@ -2,7 +2,7 @@ package org.analyzer.section508
 
 #list any import classes here.
 import org.analyzer.html.*
-import org.analyzer.section508.ReportFactory
+imporg.anadix.section508.ReportFactorytory
 
 //dialect "mvel"
 
