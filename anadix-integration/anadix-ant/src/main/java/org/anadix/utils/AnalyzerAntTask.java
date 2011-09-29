@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.analyzer.utils;
+package org.anadix.utils;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,13 +22,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.analyzer.Analyzer;
-import org.analyzer.Report;
-import org.analyzer.ReportFormatter;
-import org.analyzer.Source;
-import org.analyzer.exceptions.SourceException;
-import org.analyzer.factories.ObjectFactory;
-import org.analyzer.factories.SourceFactory;
+import org.anadix.Analyzer;
+import org.anadix.Report;
+import org.anadix.ReportFormatter;
+import org.anadix.Source;
+import org.anadix.exceptions.SourceException;
+import org.anadix.factories.ObjectFactory;
+import org.anadix.factories.SourceFactory;
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Project;
 import org.apache.tools.ant.taskdefs.MatchingTask;
