@@ -1,14 +1,14 @@
-package org.analyzer.sample;
+package org.anadix.sample;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.analyzer.Analyzer;
-import org.analyzer.Report;
-import org.analyzer.exceptions.SourceException;
-import org.analyzer.factories.ObjectFactory;
-import org.analyzer.factories.SourceFactory;
-import org.analyzer.section508.Section508;
+import org.anadix.Analyzer;
+import org.anadix.Report;
+import org.anadix.exceptions.SourceException;
+import org.anadix.factories.ObjectFactory;
+import org.anadix.factories.SourceFactory;
+import org.anadix.section508.Section508;
 
 public class App {
 	public static void main( String[] args ) {
