@@ -4,7 +4,7 @@
   
   <parent>
     <artifactId>anadix-domain</artifactId>
-    <groupId>org</groupId>
+    <groupId>org.anadix</groupId>
     <version>0.3.0-SNAPSHOT</version>
     <relativePath>..</relativePath>
   </parent>
@@ -14,12 +14,12 @@
 
   <dependencies>
   	<dependency>
-  		<groupId>org</groupId>
+  		<groupId>org.anadix</groupId>
   		<artifactId>anadix-api</artifactId>
   		<version>${project.version}</version>
   	</dependency>
   	<dependency>
-  		<groupId>org</groupId>
+  		<groupId>org.anadix</groupId>
   		<artifactId>anadix-core</artifactId>
   		<version>${project.version}</version>
   	</dependency>

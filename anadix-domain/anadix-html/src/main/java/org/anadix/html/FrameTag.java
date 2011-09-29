@@ -13,15 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.analyzer.html;
+package org.anadix.html;
 
 import java.math.BigInteger;
 
-public class TableTag extends HtmlElement {
 
-	TableTag(BigInteger id, HtmlElement parent, Attributes attributes) {
-		super(id, "table", parent, attributes);
+public class FrameTag extends HtmlElement {
+	FrameTag(
+			BigInteger id,
+			HtmlElement parent,
+			Attributes attributes) {
+		super(id, "frame", parent, attributes);
 	}
 
-
+	public String getTitle() {
+		return getAttributes().getAttribute("title");
+	}
 }

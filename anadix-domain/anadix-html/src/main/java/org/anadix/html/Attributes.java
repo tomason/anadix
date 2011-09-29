@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.analyzer.html;
+package org.anadix.html;
 
 import java.util.Collection;
 import java.util.Properties;
