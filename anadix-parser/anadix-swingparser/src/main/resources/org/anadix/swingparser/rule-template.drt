@@ -2,11 +2,11 @@ template header
 tagName
 tagClass
 
-package org.analyzer.swingparser
+package org.anadix.swingparser
 
 
 import java.math.BigInteger
-import org.analyzer.html.*
+import org.anadix.html.*
 
 
 global HTMLElementFactory elementFactory

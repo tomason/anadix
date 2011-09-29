@@ -1,10 +1,10 @@
 #created on: Jul 27, 2011
-package org.analyzer.swingparser
+package org.anadix.swingparser
 
 
 import java.math.BigInteger
-import org.analyzer.html.HTMLElementFactory
-import org.analyzer.html.HtmlElement
+import org.anadix.html.HTMLElementFactory
+import org.anadix.html.HtmlElement
 
 global HTMLElementFactory elementFactory
 global BigInteger jump
