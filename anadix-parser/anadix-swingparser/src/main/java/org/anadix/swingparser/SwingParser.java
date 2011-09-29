@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.analyzer.swingparser;
+package org.anadix.swingparser;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,12 +23,12 @@ import java.util.Collection;
 
 import javax.swing.text.html.parser.ParserDelegator;
 
-import org.analyzer.ElementFactory;
-import org.analyzer.Parser;
-import org.analyzer.Source;
-import org.analyzer.exceptions.ParserException;
-import org.analyzer.html.HTMLElementFactory;
-import org.analyzer.utils.DroolsResource;
+import org.anadix.ElementFactory;
+import org.anadix.Parser;
+import org.anadix.Source;
+import org.anadix.exceptions.ParserException;
+import org.anadix.html.HTMLElementFactory;
+import org.anadix.utils.DroolsResource;
 import org.apache.log4j.Logger;
 import org.drools.builder.ResourceType;
 import org.drools.decisiontable.ExternalSpreadsheetCompiler;

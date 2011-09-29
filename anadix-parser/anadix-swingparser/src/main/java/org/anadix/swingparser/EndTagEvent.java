@@ -13,19 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.analyzer.swingparser;
+package org.anadix.swingparser;
 
 import java.math.BigInteger;
 import java.util.Properties;
 
-public class StartTagEvent extends TagEvent {
-	private static final long serialVersionUID = -4954582531613018733L;
+public class EndTagEvent extends TagEvent {
+	private static final long serialVersionUID = -5227752432914046430L;
 
-	public StartTagEvent(BigInteger ID, String name, Properties attributes, int position) {
-		super(ID, name, attributes, position);
-	}
-
-	public StartTagEvent(BigInteger ID, String name, Properties attributes, int position, String source) {
-		super(ID, name, attributes, position, source);
+	public EndTagEvent(BigInteger ID, String tagName, int position) {
+		super(ID, tagName, new Properties(), position);
 	}
 }

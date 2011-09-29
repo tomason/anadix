@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.analyzer.swingparser;
+package org.anadix.swingparser;
 
 import java.math.BigInteger;
 import java.util.Enumeration;
@@ -23,7 +23,7 @@ import javax.swing.text.MutableAttributeSet;
 import javax.swing.text.html.HTML.Tag;
 import javax.swing.text.html.HTMLEditorKit.ParserCallback;
 
-import org.analyzer.html.HTMLElementFactory;
+import org.anadix.html.HTMLElementFactory;
 import org.apache.log4j.Logger;
 
 
