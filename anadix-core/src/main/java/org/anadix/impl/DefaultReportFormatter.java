@@ -1,12 +1,12 @@
-package org.analyzer.impl;
+package org.anadix.impl;
 
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.Writer;
 
-import org.analyzer.Report;
-import org.analyzer.ReportFormatter;
+import org.anadix.Report;
+import org.anadix.ReportFormatter;
 
 public abstract class DefaultReportFormatter implements ReportFormatter {
 

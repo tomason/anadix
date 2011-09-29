@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.analyzer.impl;
+package org.anadix.impl;
 
-import org.analyzer.ItemStatus;
-import org.analyzer.ReportItem;
+import org.anadix.ItemStatus;
+import org.anadix.ReportItem;
 
 public abstract class AbstractReportItem implements ReportItem {
 	private final ItemStatus status;

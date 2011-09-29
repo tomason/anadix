@@ -1,7 +1,7 @@
-package org.analyzer.impl;
+package org.anadix.impl;
 
-import org.analyzer.Report;
-import org.analyzer.ReportItem;
+import org.anadix.Report;
+import org.anadix.ReportItem;
 
 public class SimpleReportFormatter extends DefaultReportFormatter {
 

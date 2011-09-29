@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.analyzer.impl;
+package org.anadix.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.analyzer.Element;
-import org.analyzer.ElementFactory;
+import org.anadix.Element;
+import org.anadix.ElementFactory;
 import org.drools.runtime.ClassObjectFilter;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.drools.runtime.rule.WorkingMemoryEntryPoint;

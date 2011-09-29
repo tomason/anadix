@@ -13,18 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.analyzer.impl;
+package org.anadix.impl;
 
 import java.util.Collection;
 
-import org.analyzer.Analyzer;
-import org.analyzer.ConditionSet;
-import org.analyzer.ElementFactory;
-import org.analyzer.Parser;
-import org.analyzer.Report;
-import org.analyzer.Source;
-import org.analyzer.exceptions.ParserException;
-import org.analyzer.utils.DroolsResource;
+import org.anadix.Analyzer;
+import org.anadix.ConditionSet;
+import org.anadix.ElementFactory;
+import org.anadix.Parser;
+import org.anadix.Report;
+import org.anadix.Source;
+import org.anadix.exceptions.ParserException;
+import org.anadix.utils.DroolsResource;
 import org.drools.KnowledgeBase;
 import org.drools.KnowledgeBaseFactory;
 import org.drools.builder.KnowledgeBuilder;
