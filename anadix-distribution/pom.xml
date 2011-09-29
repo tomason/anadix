@@ -3,7 +3,7 @@
   
   <parent>
     <artifactId>anadix-parent</artifactId>
-    <groupId>org</groupId>
+    <groupId>org.anadix</groupId>
     <version>0.3.0-SNAPSHOT</version>
     <relativePath>..</relativePath>
   </parent>
@@ -36,32 +36,32 @@
   
   <dependencies>
     <dependency>
-      <groupId>org</groupId>
+      <groupId>org.anadix</groupId>
       <artifactId>anadix-api</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>org</groupId>
+      <groupId>org.anadix</groupId>
       <artifactId>anadix-core</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>org</groupId>
+      <groupId>org.anadix</groupId>
       <artifactId>anadix-html</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>org</groupId>
+      <groupId>org.anadix</groupId>
       <artifactId>anadix-swingparser</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>org</groupId>
+      <groupId>org.anadix</groupId>
       <artifactId>anadix-section508</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>org</groupId>
+      <groupId>org.anadix</groupId>
       <artifactId>anadix-ant</artifactId>
       <version>${project.version}</version>
     </dependency>
