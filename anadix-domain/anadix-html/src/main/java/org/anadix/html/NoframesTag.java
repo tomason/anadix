@@ -19,9 +19,8 @@ import java.math.BigInteger;
 
 public class NoframesTag extends CommonAttributes {
 
-	public NoframesTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	NoframesTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "noframes", parent, attributes);
 	}
 
 }

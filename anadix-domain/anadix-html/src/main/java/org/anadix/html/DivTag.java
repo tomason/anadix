@@ -17,15 +17,14 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
-
 public class DivTag extends CommonAttributes {
 
-	public DivTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	DivTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "div", parent, attributes);
 	}
 
 	public String getAlign() {
 		return getAttribute("align");
 	}
+
 }

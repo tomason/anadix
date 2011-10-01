@@ -17,12 +17,10 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
-
 public class CaptionTag extends CommonAttributes {
 
-	public CaptionTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	CaptionTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "caption", parent, attributes);
 	}
 
 	/**

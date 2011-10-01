@@ -19,9 +19,8 @@ import java.math.BigInteger;
 
 public class QTag extends CommonAttributes {
 
-	public QTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	QTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "q", parent, attributes);
 	}
 
 	public String getCite() {

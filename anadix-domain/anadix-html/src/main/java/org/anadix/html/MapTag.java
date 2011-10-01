@@ -19,12 +19,12 @@ import java.math.BigInteger;
 
 public class MapTag extends CommonAttributes {
 
-	public MapTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	MapTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "map", parent, attributes);
 	}
 
 	public String getNameAttribute() {
 		return getAttribute("name");
 	}
+
 }

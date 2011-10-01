@@ -17,7 +17,6 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
-
 /**
  * Designates sample output from programs, scripts, etc.
  * 
@@ -25,9 +24,8 @@ import java.math.BigInteger;
  */
 public class SampTag extends CommonAttributes {
 
-	public SampTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	SampTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "samp", parent, attributes);
 	}
 
 }

@@ -17,7 +17,6 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
-
 /**
  * Indicates text to be entered by the user.
  * 
@@ -25,9 +24,8 @@ import java.math.BigInteger;
  */
 public class KbdTag extends CommonAttributes {
 
-	public KbdTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	KbdTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "kbd", parent, attributes);
 	}
 
 }

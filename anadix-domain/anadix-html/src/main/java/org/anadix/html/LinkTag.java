@@ -18,9 +18,8 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 public class LinkTag extends CommonAttributes {
-	public LinkTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	LinkTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "link", parent, attributes);
 	}
 
 	public String getCharset() {

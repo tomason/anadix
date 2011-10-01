@@ -19,9 +19,8 @@ import java.math.BigInteger;
 
 public class ObjectTag extends CommonAttributes {
 
-	public ObjectTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	ObjectTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "object", parent, attributes);
 	}
 
 	public String getDeclare() {

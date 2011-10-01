@@ -17,10 +17,10 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
-public class SpanTag extends CommonAttributes {
+public class H3Tag extends HtmlElement {
 
-	SpanTag(BigInteger id, HtmlElement parent, Attributes attributes) {
-		super(id, "span", parent, attributes);
+	H3Tag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "h3", parent, attributes);
 	}
 
 }

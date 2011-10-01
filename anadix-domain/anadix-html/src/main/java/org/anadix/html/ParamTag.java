@@ -19,9 +19,8 @@ import java.math.BigInteger;
 
 public class ParamTag extends HtmlElement {
 
-	public ParamTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	ParamTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "param", parent, attributes);
 	}
 
 	public String getIdAttribute() {

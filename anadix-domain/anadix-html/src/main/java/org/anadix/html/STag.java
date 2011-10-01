@@ -19,9 +19,8 @@ import java.math.BigInteger;
 
 public class STag extends CommonAttributes {
 
-	public STag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	STag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "s", parent, attributes);
 	}
 
 }

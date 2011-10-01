@@ -19,9 +19,8 @@ import java.math.BigInteger;
 
 public class HrTag extends CommonAttributes {
 
-	public HrTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	HrTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "hr", parent, attributes);
 	}
 
 	public String getAlign() {

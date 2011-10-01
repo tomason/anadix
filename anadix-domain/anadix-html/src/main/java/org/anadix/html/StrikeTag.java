@@ -19,9 +19,8 @@ import java.math.BigInteger;
 
 public class StrikeTag extends CommonAttributes {
 
-	public StrikeTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	StrikeTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "strike", parent, attributes);
 	}
 
 }

@@ -17,12 +17,10 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
-
 public class DelTag extends CommonAttributes {
 
-	public DelTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	DelTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "del", parent, attributes);
 	}
 
 	/**

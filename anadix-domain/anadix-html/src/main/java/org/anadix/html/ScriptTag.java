@@ -19,9 +19,8 @@ import java.math.BigInteger;
 
 public class ScriptTag extends HtmlElement {
 
-	public ScriptTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	ScriptTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "script", parent, attributes);
 	}
 
 	public String getCharset() {

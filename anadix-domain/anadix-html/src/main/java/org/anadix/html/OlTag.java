@@ -19,9 +19,8 @@ import java.math.BigInteger;
 
 public class OlTag extends CommonAttributes {
 
-	public OlTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	OlTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "ol", parent, attributes);
 	}
 
 	public String getType() {

@@ -17,19 +17,10 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
-public class HTag extends HtmlElement {
-	private final int level;
+public class H1Tag extends HtmlElement {
 
-	public HTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
-
-		String lvl = name.substring(1);
-		level = Integer.parseInt(lvl);
-	}
-
-	public int getLevel() {
-		return level;
+	H1Tag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "h1", parent, attributes);
 	}
 
 }

@@ -19,9 +19,8 @@ import java.math.BigInteger;
 
 public class NoscriptTag extends CommonAttributes {
 
-	public NoscriptTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	NoscriptTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "noscript", parent, attributes);
 	}
 
 }

@@ -19,9 +19,8 @@ import java.math.BigInteger;
 
 public class MetaTag extends HtmlElement {
 
-	public MetaTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	MetaTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "meta", parent, attributes);
 	}
 
 	public String getLang() {

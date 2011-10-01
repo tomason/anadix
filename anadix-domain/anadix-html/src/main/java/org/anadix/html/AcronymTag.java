@@ -17,7 +17,6 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
-
 /**
  * Indicates an acronym (e.g., WAC, radar, etc.).
  * 
@@ -25,9 +24,8 @@ import java.math.BigInteger;
  */
 public class AcronymTag extends CommonAttributes {
 
-	public AcronymTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	AcronymTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "acronym", parent, attributes);
 	}
 
 }

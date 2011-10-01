@@ -19,9 +19,8 @@ import java.math.BigInteger;
 
 public class IframeTag extends CommonAttributes {
 
-	public IframeTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	IframeTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "iframe", parent, attributes);
 	}
 
 	public String getLongdesc() {

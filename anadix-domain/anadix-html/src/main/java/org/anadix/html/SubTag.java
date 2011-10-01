@@ -19,9 +19,8 @@ import java.math.BigInteger;
 
 public class SubTag extends CommonAttributes {
 
-	public SubTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	SubTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "sub", parent, attributes);
 	}
 
 }

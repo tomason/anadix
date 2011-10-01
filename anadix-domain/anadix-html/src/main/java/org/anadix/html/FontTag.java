@@ -19,9 +19,8 @@ import java.math.BigInteger;
 
 public class FontTag extends CoreAttributes {
 
-	public FontTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	FontTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "font", parent, attributes);
 	}
 
 	public String getLang() {

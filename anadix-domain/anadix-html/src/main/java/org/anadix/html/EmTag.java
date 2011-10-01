@@ -17,7 +17,6 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
-
 /**
  * Indicates emphasis.
  * 
@@ -25,9 +24,8 @@ import java.math.BigInteger;
  */
 public class EmTag extends CommonAttributes {
 
-	public EmTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	EmTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "em", parent, attributes);
 	}
 
 }

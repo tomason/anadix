@@ -19,9 +19,8 @@ import java.math.BigInteger;
 
 public class TheadTag extends CommonAttributes {
 
-	public TheadTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	TheadTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "thead", parent, attributes);
 	}
 
 	public String getAlign() {

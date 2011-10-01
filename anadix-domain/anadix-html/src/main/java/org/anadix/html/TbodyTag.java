@@ -19,9 +19,8 @@ import java.math.BigInteger;
 
 public class TbodyTag extends CommonAttributes {
 
-	public TbodyTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	TbodyTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "tbody", parent, attributes);
 	}
 
 	public String getAlign() {

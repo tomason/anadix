@@ -19,9 +19,8 @@ import java.math.BigInteger;
 
 public class FramesetTag extends CoreAttributes {
 
-	public FramesetTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	FramesetTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "frameset", parent, attributes);
 	}
 
 	public String getRows() {

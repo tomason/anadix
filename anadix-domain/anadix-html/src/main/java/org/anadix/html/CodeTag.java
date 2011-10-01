@@ -17,7 +17,6 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
-
 /**
  * Designates a fragment of computer code.
  * 
@@ -25,9 +24,8 @@ import java.math.BigInteger;
  */
 public class CodeTag extends CommonAttributes {
 
-	public CodeTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	CodeTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "code", parent, attributes);
 	}
 
 }

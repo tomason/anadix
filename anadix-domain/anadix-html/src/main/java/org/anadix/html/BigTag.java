@@ -17,7 +17,6 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
-
 /**
  * Renders text in a "large" font.
  * 
@@ -25,9 +24,8 @@ import java.math.BigInteger;
  */
 public class BigTag extends CommonAttributes {
 
-	public BigTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	public BigTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "big", parent, attributes);
 	}
 
 }

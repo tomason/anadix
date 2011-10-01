@@ -23,9 +23,8 @@ import java.math.BigInteger;
  */
 public class CenterTag extends CommonAttributes {
 
-	public CenterTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	CenterTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "center", parent, attributes);
 	}
 
 }

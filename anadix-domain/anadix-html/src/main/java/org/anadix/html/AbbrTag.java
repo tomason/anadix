@@ -17,7 +17,6 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
-
 /**
  * Indicates an abbreviated form (e.g., WWW, HTTP, URI, Mass., etc.).
  * 
@@ -25,9 +24,8 @@ import java.math.BigInteger;
  */
 public class AbbrTag extends CommonAttributes {
 
-	public AbbrTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	AbbrTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "abbr", parent, attributes);
 	}
 
 }

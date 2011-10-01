@@ -19,9 +19,8 @@ import java.math.BigInteger;
 
 public class SupTag extends CommonAttributes {
 
-	public SupTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	SupTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "sup", parent, attributes);
 	}
 
 }

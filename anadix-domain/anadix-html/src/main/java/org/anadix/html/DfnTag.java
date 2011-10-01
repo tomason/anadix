@@ -17,7 +17,6 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
-
 /**
  * Indicates that this is the defining instance of the enclosed term.
  * 
@@ -25,9 +24,8 @@ import java.math.BigInteger;
  */
 public class DfnTag extends CommonAttributes {
 
-	public DfnTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	DfnTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "dfn", parent, attributes);
 	}
 
 }

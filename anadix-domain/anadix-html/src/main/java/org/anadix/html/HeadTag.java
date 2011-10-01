@@ -19,9 +19,8 @@ import java.math.BigInteger;
 
 public class HeadTag extends HtmlElement {
 
-	public HeadTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	HeadTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "head", parent, attributes);
 	}
 
 	public String getLang() {

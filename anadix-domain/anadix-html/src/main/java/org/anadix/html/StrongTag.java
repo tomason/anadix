@@ -17,7 +17,6 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
-
 /**
  * Indicates stronger emphasis.
  * 
@@ -25,9 +24,8 @@ import java.math.BigInteger;
  */
 public class StrongTag extends CommonAttributes {
 
-	public StrongTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	StrongTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "strong", parent, attributes);
 	}
 
 }

@@ -19,9 +19,8 @@ import java.math.BigInteger;
 
 public class UlTag extends CommonAttributes {
 
-	public UlTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	UlTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "ul", parent, attributes);
 	}
 
 	public String getType() {
@@ -31,4 +30,5 @@ public class UlTag extends CommonAttributes {
 	public String getCompact() {
 		return getAttribute("compact");
 	}
+
 }

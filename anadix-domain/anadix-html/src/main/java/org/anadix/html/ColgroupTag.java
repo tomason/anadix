@@ -17,12 +17,10 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
-
 public class ColgroupTag extends CommonAttributes {
 
-	public ColgroupTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	ColgroupTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "colgroup", parent, attributes);
 	}
 
 	/**
@@ -63,4 +61,5 @@ public class ColgroupTag extends CommonAttributes {
 	public String getValign() {
 		return getAttribute("valign");
 	}
+
 }

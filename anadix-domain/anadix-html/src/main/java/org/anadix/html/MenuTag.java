@@ -19,9 +19,8 @@ import java.math.BigInteger;
 
 public class MenuTag extends CommonAttributes {
 
-	public MenuTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	MenuTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "menu", parent, attributes);
 	}
 
 	public String getCompact() {

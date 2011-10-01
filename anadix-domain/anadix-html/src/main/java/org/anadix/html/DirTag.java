@@ -17,15 +17,14 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
-
 public class DirTag extends CommonAttributes {
 
-	public DirTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	DirTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "dir", parent, attributes);
 	}
 
 	public String getCompact() {
 		return getAttribute("compact");
 	}
+
 }

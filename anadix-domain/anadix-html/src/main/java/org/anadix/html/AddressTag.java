@@ -17,7 +17,6 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
-
 /**
  * The ADDRESS element may be used by authors to supply contact information for
  * a document or a major part of a document such as a form. This element often
@@ -27,9 +26,8 @@ import java.math.BigInteger;
  */
 public class AddressTag extends CommonAttributes {
 
-	public AddressTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	AddressTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "address", parent, attributes);
 	}
 
 }

@@ -19,12 +19,12 @@ import java.math.BigInteger;
 
 public class PTag extends CommonAttributes {
 
-	public PTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	PTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "p", parent, attributes);
 	}
 
 	public String getAlign() {
 		return getAttribute("align");
 	}
+
 }

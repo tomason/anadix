@@ -19,9 +19,8 @@ import java.math.BigInteger;
 
 public class StyleTag extends HtmlElement {
 
-	public StyleTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	StyleTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "style", parent, attributes);
 	}
 
 	public String getLang() {

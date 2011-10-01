@@ -17,12 +17,10 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
-
 public class DdTag extends CommonAttributes {
 
-	public DdTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	DdTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "dd", parent, attributes);
 	}
 
 }

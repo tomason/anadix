@@ -19,9 +19,8 @@ import java.math.BigInteger;
 
 public class FieldsetTag extends CommonAttributes {
 
-	public FieldsetTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	FieldsetTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "fieldset", parent, attributes);
 	}
 
 }

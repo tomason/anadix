@@ -17,7 +17,6 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
-
 /**
  * Indicates an instance of a variable or program argument.
  * 
@@ -25,9 +24,8 @@ import java.math.BigInteger;
  */
 public class VarTag extends CommonAttributes {
 
-	public VarTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	VarTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "var", parent, attributes);
 	}
 
 }

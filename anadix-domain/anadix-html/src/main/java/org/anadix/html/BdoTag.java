@@ -19,9 +19,8 @@ import java.math.BigInteger;
 
 public class BdoTag extends CoreAttributes {
 
-	public BdoTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	BdoTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "bdo", parent, attributes);
 	}
 
 	public String getLang() {

@@ -24,9 +24,8 @@ import java.math.BigInteger;
  */
 public class BasefontTag extends HtmlElement {
 
-	public BasefontTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	BasefontTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "basefont", parent, attributes);
 	}
 
 	public String getIdAttribute() {

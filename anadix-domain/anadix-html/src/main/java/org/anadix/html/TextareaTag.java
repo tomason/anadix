@@ -19,9 +19,8 @@ import java.math.BigInteger;
 
 public class TextareaTag extends CommonAttributes {
 
-	public TextareaTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	TextareaTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "textarea", parent, attributes);
 	}
 
 	public String getNameAttribute() {

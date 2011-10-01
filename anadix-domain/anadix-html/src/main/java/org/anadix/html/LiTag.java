@@ -19,9 +19,8 @@ import java.math.BigInteger;
 
 public class LiTag extends CommonAttributes {
 
-	public LiTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	LiTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "li", parent, attributes);
 	}
 
 	public String getType() {

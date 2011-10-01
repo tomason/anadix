@@ -17,12 +17,10 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
-
 public class BlockquoteTag extends CommonAttributes {
 
-	public BlockquoteTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	BlockquoteTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "blockquote", parent, attributes);
 	}
 
 	/**
@@ -33,4 +31,5 @@ public class BlockquoteTag extends CommonAttributes {
 	public String getCite() {
 		return getAttribute("cite");
 	}
+
 }

@@ -17,7 +17,6 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
-
 /**
  * Contains a citation or a reference to other sources.
  * 
@@ -25,9 +24,8 @@ import java.math.BigInteger;
  */
 public class CiteTag extends CommonAttributes {
 
-	public CiteTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	CiteTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "cite", parent, attributes);
 	}
 
 }

@@ -17,7 +17,6 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
-
 /**
  * http://www.w3.org/TR/1999/REC-html401-19991224/struct/links.html#edef-A
  * 
@@ -25,9 +24,8 @@ import java.math.BigInteger;
  */
 public class ATag extends CommonAttributes {
 
-	public ATag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	ATag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "a", parent, attributes);
 	}
 
 	/**
@@ -114,10 +112,8 @@ public class ATag extends CommonAttributes {
 	/**
 	 * This attribute specifies the shape of a region. Possible values:
 	 * 
-	 * default: Specifies the entire region.
-	 * rect: Define a rectangular region.
-	 * circle: Define a circular region.
-	 * poly: Define a polygonal region.
+	 * default: Specifies the entire region. rect: Define a rectangular region.
+	 * circle: Define a circular region. poly: Define a polygonal region.
 	 */
 	public String getShape() {
 		return getAttribute("shape");
@@ -149,10 +145,11 @@ public class ATag extends CommonAttributes {
 	 * tabbing order for the current document. This value must be a number
 	 * between 0 and 32767. User agents should ignore leading zeros.
 	 */
-	public int getTabindex() {
+	public String getTabindex() {
 		String value = getAttribute("tabindex");
 
-		return value == null ? -1 : Integer.parseInt(value);
+		// return value == null ? -1 : Integer.parseInt(value);
+		return value;
 	}
 
 	/**
@@ -171,4 +168,5 @@ public class ATag extends CommonAttributes {
 	public String getOnblur() {
 		return getAttribute("onblur");
 	}
+
 }

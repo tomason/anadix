@@ -19,9 +19,8 @@ import java.math.BigInteger;
 
 public class FormTag extends CommonAttributes {
 
-	public FormTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	FormTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "form", parent, attributes);
 	}
 
 	public String getAction() {

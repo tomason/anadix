@@ -19,9 +19,8 @@ import java.math.BigInteger;
 
 public class TfootTag extends CommonAttributes {
 
-	public TfootTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	TfootTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "tfoot", parent, attributes);
 	}
 
 	public String getAlign() {

@@ -19,9 +19,8 @@ import java.math.BigInteger;
 
 public class OptionTag extends CommonAttributes {
 
-	public OptionTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	OptionTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "option", parent, attributes);
 	}
 
 	public String getSelected() {

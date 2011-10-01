@@ -24,9 +24,8 @@ import java.math.BigInteger;
  */
 public class AppletTag extends CoreAttributes {
 
-	public AppletTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	AppletTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "applet", parent, attributes);
 	}
 
 	/**

@@ -19,9 +19,8 @@ import java.math.BigInteger;
 
 public class OptgroupTag extends CommonAttributes {
 
-	public OptgroupTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	OptgroupTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "optgroup", parent, attributes);
 	}
 
 	public String getDisabled() {

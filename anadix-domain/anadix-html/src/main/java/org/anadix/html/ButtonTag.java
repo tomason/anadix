@@ -19,9 +19,8 @@ import java.math.BigInteger;
 
 public class ButtonTag extends CommonAttributes {
 
-	public ButtonTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	ButtonTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "button", parent, attributes);
 	}
 
 	public String getNameAttribute() {
@@ -55,4 +54,5 @@ public class ButtonTag extends CommonAttributes {
 	public String getOnblur() {
 		return getAttribute("onblur");
 	}
+
 }

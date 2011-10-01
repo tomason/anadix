@@ -19,12 +19,12 @@ import java.math.BigInteger;
 
 public class BrTag extends CoreAttributes {
 
-	public BrTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	BrTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "br", parent, attributes);
 	}
 
 	public String getClear() {
 		return getAttribute("clear");
 	}
+
 }

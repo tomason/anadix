@@ -18,10 +18,8 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 public class FrameTag extends CoreAttributes {
-	FrameTag(
-			BigInteger id,
-			HtmlElement parent,
-			Attributes attributes) {
+
+	FrameTag(BigInteger id, HtmlElement parent, Attributes attributes) {
 		super(id, "frame", parent, attributes);
 	}
 

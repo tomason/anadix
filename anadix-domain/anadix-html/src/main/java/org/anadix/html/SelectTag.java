@@ -19,9 +19,8 @@ import java.math.BigInteger;
 
 public class SelectTag extends CommonAttributes {
 
-	public SelectTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	SelectTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "select", parent, attributes);
 	}
 
 	public String getNameAttribute() {

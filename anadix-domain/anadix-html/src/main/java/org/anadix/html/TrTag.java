@@ -19,9 +19,8 @@ import java.math.BigInteger;
 
 public class TrTag extends CommonAttributes {
 
-	public TrTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	TrTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "tr", parent, attributes);
 	}
 
 	public String getAlign() {

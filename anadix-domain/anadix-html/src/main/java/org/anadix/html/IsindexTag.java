@@ -19,9 +19,8 @@ import java.math.BigInteger;
 
 public class IsindexTag extends CoreAttributes {
 
-	public IsindexTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	IsindexTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "isindex", parent, attributes);
 	}
 
 	public String getLang() {

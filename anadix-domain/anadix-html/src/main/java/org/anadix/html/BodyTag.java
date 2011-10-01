@@ -17,12 +17,10 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
-
 public class BodyTag extends CommonAttributes {
 
-	public BodyTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	BodyTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "body", parent, attributes);
 	}
 
 	public String getOnload() {
@@ -76,4 +74,5 @@ public class BodyTag extends CommonAttributes {
 	public String getAlink() {
 		return getAttribute("alink");
 	}
+
 }

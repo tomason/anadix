@@ -17,13 +17,10 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
-
-
 public class AreaTag extends CommonAttributes {
 
-	public AreaTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	AreaTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "area", parent, attributes);
 	}
 
 	public String getShape() {
@@ -50,10 +47,11 @@ public class AreaTag extends CommonAttributes {
 		return getAttribute("alt");
 	}
 
-	public int getTabindex() {
+	public String getTabindex() {
 		String value = getAttribute("tabindex");
 
-		return (value == null) ? -1 : Integer.parseInt(value);
+		// return (value == null) ? -1 : Integer.parseInt(value);
+		return value;
 	}
 
 	public String getAcesskey() {

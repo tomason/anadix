@@ -17,15 +17,14 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
-
 public class DlTag extends CommonAttributes {
 
-	public DlTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	DlTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "dl", parent, attributes);
 	}
 
 	public String getCompact() {
 		return getAttribute("compact");
 	}
+
 }

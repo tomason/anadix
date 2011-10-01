@@ -19,9 +19,8 @@ import java.math.BigInteger;
 
 public class BaseTag extends HtmlElement {
 
-	public BaseTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	BaseTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "base", parent, attributes);
 	}
 
 	/**

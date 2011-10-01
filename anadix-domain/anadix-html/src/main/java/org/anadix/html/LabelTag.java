@@ -19,9 +19,8 @@ import java.math.BigInteger;
 
 public class LabelTag extends CommonAttributes {
 
-	public LabelTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	LabelTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "label", parent, attributes);
 	}
 
 	public String getFor() {

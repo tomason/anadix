@@ -19,9 +19,8 @@ import java.math.BigInteger;
 
 public class SmallTag extends CommonAttributes {
 
-	public SmallTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	SmallTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "small", parent, attributes);
 	}
 
 }

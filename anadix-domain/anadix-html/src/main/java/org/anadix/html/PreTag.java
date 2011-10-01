@@ -19,9 +19,8 @@ import java.math.BigInteger;
 
 public class PreTag extends CommonAttributes {
 
-	public PreTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	PreTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "pre", parent, attributes);
 	}
 
 	public String getWidth() {

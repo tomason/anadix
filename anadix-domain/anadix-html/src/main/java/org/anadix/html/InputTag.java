@@ -19,9 +19,8 @@ import java.math.BigInteger;
 
 public class InputTag extends CommonAttributes {
 
-	public InputTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	InputTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "input", parent, attributes);
 	}
 
 	public String getType() {
@@ -103,4 +102,5 @@ public class InputTag extends CommonAttributes {
 	public String getAlign() {
 		return getAttribute("align");
 	}
+
 }

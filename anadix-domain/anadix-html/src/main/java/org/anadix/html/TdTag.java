@@ -19,9 +19,8 @@ import java.math.BigInteger;
 
 public class TdTag extends CommonAttributes {
 
-	public TdTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	TdTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "td", parent, attributes);
 	}
 
 	public String getAbbr() {

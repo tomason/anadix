@@ -19,9 +19,8 @@ import java.math.BigInteger;
 
 public class UTag extends CommonAttributes {
 
-	public UTag(BigInteger id, String name, HtmlElement parent,
-			Attributes attributes) {
-		super(id, name, parent, attributes);
+	UTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+		super(id, "u", parent, attributes);
 	}
 
 }
