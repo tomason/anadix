@@ -17,11 +17,50 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
-public class TableTag extends HtmlElement {
+public class TableTag extends CommonAttributes {
 
 	TableTag(BigInteger id, HtmlElement parent, Attributes attributes) {
 		super(id, "table", parent, attributes);
 	}
 
+	public String getSummary() {
+		return getAttribute("summary");
+	}
+
+	public String getWidth() {
+		return getAttribute("width");
+	}
+
+	public String getBorder() {
+		return getAttribute("border");
+	}
+
+	public String getFrame() {
+		return getAttribute("frame");
+	}
+
+	public String getRules() {
+		return getAttribute("rules");
+	}
+
+	public String getCellspacing() {
+		return getAttribute("cellspacing");
+	}
+
+	public String getCellpadding() {
+		return getAttribute("cellpadding");
+	}
+
+	public String getAlign() {
+		return getAttribute("align");
+	}
+
+	public String getBgcolor() {
+		return getAttribute("bgcolor");
+	}
+
+	public String getDatapagesize() {
+		return getAttribute("datapagesize");
+	}
 
 }
