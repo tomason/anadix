@@ -200,7 +200,7 @@ public class HTMLElementFactory extends AbstractElementFactory {
 		return new HrTag(id, parent, new Attributes(attributes));
 	}
 
-	public HtmlTag createHtmlTag(BigInteger id, HtmlElement parent, Properties attributes) {
+	public HtmlTag createHtmlTag(BigInteger id, Properties attributes) {
 		return new HtmlTag(id, new Attributes(attributes));
 	}
 
