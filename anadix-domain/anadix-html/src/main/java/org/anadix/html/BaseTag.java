@@ -31,4 +31,8 @@ public class BaseTag extends HtmlElement {
 	public String getHref() {
 		return getAttribute("href");
 	}
+
+	public String getTarget() {
+		return getAttribute("target");
+	}
 }

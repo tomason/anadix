@@ -17,14 +17,47 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
-public class BrTag extends CoreAttributes {
+public class FormTag extends CommonAttributes {
 
-	public BrTag(BigInteger id, String name, HtmlElement parent,
+	public FormTag(BigInteger id, String name, HtmlElement parent,
 			Attributes attributes) {
 		super(id, name, parent, attributes);
 	}
 
-	public String getClear() {
-		return getAttribute("clear");
+	public String getAction() {
+		return getAttribute("action");
 	}
+
+	public String getMethod() {
+		return getAttribute("method");
+	}
+
+	public String getEnctype() {
+		return getAttribute("enctype");
+	}
+
+	public String getAccept() {
+		return getAttribute("accept");
+	}
+
+	public String getNameAttribute() {
+		return getAttribute("name");
+	}
+
+	public String getOnsubmit() {
+		return getAttribute("onsubmit");
+	}
+
+	public String getOnreset() {
+		return getAttribute("onreset");
+	}
+
+	public String getTarget() {
+		return getAttribute("target");
+	}
+
+	public String getAcceptCharset() {
+		return getAttribute("accept-charset");
+	}
+
 }

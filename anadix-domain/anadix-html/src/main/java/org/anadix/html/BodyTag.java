@@ -17,11 +17,20 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
+
 public class BodyTag extends CommonAttributes {
 
 	public BodyTag(BigInteger id, String name, HtmlElement parent,
 			Attributes attributes) {
 		super(id, name, parent, attributes);
+	}
+
+	public String getOnload() {
+		return getAttribute("onload");
+	}
+
+	public String getOnunload() {
+		return getAttribute("onunload");
 	}
 
 	/**
@@ -30,6 +39,10 @@ public class BodyTag extends CommonAttributes {
 	 */
 	public String getBackground() {
 		return getAttribute("background");
+	}
+
+	public String getBgcolor() {
+		return getAttribute("bgcolor");
 	}
 
 	/**
@@ -62,13 +75,5 @@ public class BodyTag extends CommonAttributes {
 	 */
 	public String getAlink() {
 		return getAttribute("alink");
-	}
-
-	public String getOnload() {
-		return getAttribute("onload");
-	}
-
-	public String getOnunload() {
-		return getAttribute("onunload");
 	}
 }

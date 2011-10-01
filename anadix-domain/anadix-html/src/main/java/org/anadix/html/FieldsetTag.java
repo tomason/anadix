@@ -17,15 +17,9 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
+public class FieldsetTag extends CommonAttributes {
 
-/**
- * Indicates text to be entered by the user.
- * 
- * @author tomason
- */
-public class KbdTag extends CommonAttributes {
-
-	public KbdTag(BigInteger id, String name, HtmlElement parent,
+	public FieldsetTag(BigInteger id, String name, HtmlElement parent,
 			Attributes attributes) {
 		super(id, name, parent, attributes);
 	}

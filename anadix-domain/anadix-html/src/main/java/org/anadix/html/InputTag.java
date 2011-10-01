@@ -17,11 +17,15 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
-public class ButtonTag extends CommonAttributes {
+public class InputTag extends CommonAttributes {
 
-	public ButtonTag(BigInteger id, String name, HtmlElement parent,
+	public InputTag(BigInteger id, String name, HtmlElement parent,
 			Attributes attributes) {
 		super(id, name, parent, attributes);
+	}
+
+	public String getType() {
+		return getAttribute("type");
 	}
 
 	public String getNameAttribute() {
@@ -32,12 +36,40 @@ public class ButtonTag extends CommonAttributes {
 		return getAttribute("value");
 	}
 
-	public String getType() {
-		return getAttribute("type");
+	public String getChecked() {
+		return getAttribute("checked");
 	}
 
 	public String getDisabled() {
 		return getAttribute("disabled");
+	}
+
+	public String getReadonly() {
+		return getAttribute("readonly");
+	}
+
+	public String getSize() {
+		return getAttribute("size");
+	}
+
+	public String getMaxlength() {
+		return getAttribute("maxlength");
+	}
+
+	public String getSrc() {
+		return getAttribute("src");
+	}
+
+	public String getAlt() {
+		return getAttribute("alt");
+	}
+
+	public String getUsemap() {
+		return getAttribute("usemap");
+	}
+
+	public String getIsmap() {
+		return getAttribute("ismap");
 	}
 
 	public String getTabindex() {
@@ -54,5 +86,21 @@ public class ButtonTag extends CommonAttributes {
 
 	public String getOnblur() {
 		return getAttribute("onblur");
+	}
+
+	public String getOnselect() {
+		return getAttribute("onselect");
+	}
+
+	public String getOnchange() {
+		return getAttribute("onchange");
+	}
+
+	public String getAccept() {
+		return getAttribute("accept");
+	}
+
+	public String getAlign() {
+		return getAttribute("align");
 	}
 }

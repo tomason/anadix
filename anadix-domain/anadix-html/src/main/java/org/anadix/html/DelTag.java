@@ -18,16 +18,28 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 
-/**
- * Indicates text to be entered by the user.
- * 
- * @author tomason
- */
-public class KbdTag extends CommonAttributes {
+public class DelTag extends CommonAttributes {
 
-	public KbdTag(BigInteger id, String name, HtmlElement parent,
+	public DelTag(BigInteger id, String name, HtmlElement parent,
 			Attributes attributes) {
 		super(id, name, parent, attributes);
+	}
+
+	/**
+	 * The value of this attribute is a URI that designates a source document or
+	 * message. This attribute is intended to point to information explaining
+	 * why a document was changed.
+	 */
+	public String getCite() {
+		return getAttribute("cite");
+	}
+
+	/**
+	 * The value of this attribute specifies the date and time when the change
+	 * was made.
+	 */
+	public String getDatetime() {
+		return getAttribute("datetime");
 	}
 
 }

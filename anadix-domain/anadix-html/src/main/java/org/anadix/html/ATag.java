@@ -17,6 +17,7 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
+
 /**
  * http://www.w3.org/TR/1999/REC-html401-19991224/struct/links.html#edef-A
  * 
@@ -27,6 +28,28 @@ public class ATag extends CommonAttributes {
 	public ATag(BigInteger id, String name, HtmlElement parent,
 			Attributes attributes) {
 		super(id, name, parent, attributes);
+	}
+
+	/**
+	 * This attribute specifies the character encoding of the resource
+	 * designated by the link. Please consult the section on character encodings
+	 * for more details.
+	 */
+	public String getCharset() {
+		return getAttribute("charset");
+	}
+
+	/**
+	 * This attribute gives an advisory hint as to the content type of the
+	 * content available at the link target address. It allows user agents to
+	 * opt to use a fallback mechanism rather than fetch the content if they are
+	 * advised that they will get content in a content type they do not support.
+	 * Authors who use this attribute take responsibility to manage the risk
+	 * that it may become inconsistent with the content available at the link
+	 * target address.
+	 */
+	public String getType() {
+		return getAttribute("type");
 	}
 
 	/**
@@ -56,17 +79,8 @@ public class ATag extends CommonAttributes {
 		return getAttribute("hreflang");
 	}
 
-	/**
-	 * This attribute gives an advisory hint as to the content type of the
-	 * content available at the link target address. It allows user agents to
-	 * opt to use a fallback mechanism rather than fetch the content if they are
-	 * advised that they will get content in a content type they do not support.
-	 * Authors who use this attribute take responsibility to manage the risk
-	 * that it may become inconsistent with the content available at the link
-	 * target address.
-	 */
-	public String getType() {
-		return getAttribute("type");
+	public String getTarget() {
+		return getAttribute("target");
 	}
 
 	/**
@@ -85,15 +99,6 @@ public class ATag extends CommonAttributes {
 	 */
 	public String getRev() {
 		return getAttribute("rev");
-	}
-
-	/**
-	 * This attribute specifies the character encoding of the resource
-	 * designated by the link. Please consult the section on character encodings
-	 * for more details.
-	 */
-	public String getCharset() {
-		return getAttribute("charset");
 	}
 
 	/**

@@ -17,11 +17,15 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
-public class BdoTag extends HtmlElement {
+public class BdoTag extends CoreAttributes {
 
 	public BdoTag(BigInteger id, String name, HtmlElement parent,
 			Attributes attributes) {
 		super(id, name, parent, attributes);
+	}
+
+	public String getLang() {
+		return getAttribute("lang");
 	}
 
 	/**
@@ -33,9 +37,5 @@ public class BdoTag extends HtmlElement {
 	 */
 	public String getDir() {
 		return getAttribute("dir");
-	}
-
-	public String getLang() {
-		return getAttribute("lang");
 	}
 }

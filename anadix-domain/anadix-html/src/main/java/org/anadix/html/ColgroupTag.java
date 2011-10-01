@@ -17,6 +17,7 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
+
 public class ColgroupTag extends CommonAttributes {
 
 	public ColgroupTag(BigInteger id, String name, HtmlElement parent,

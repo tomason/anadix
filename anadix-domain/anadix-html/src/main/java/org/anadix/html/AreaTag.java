@@ -17,11 +17,8 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
-/**
- * 
- * 
- * @author tomason
- */
+
+
 public class AreaTag extends CommonAttributes {
 
 	public AreaTag(BigInteger id, String name, HtmlElement parent,
@@ -29,82 +26,46 @@ public class AreaTag extends CommonAttributes {
 		super(id, name, parent, attributes);
 	}
 
-	/**
-	 * 
-	 */
-	public String getNameAttribute() {
-		return getAttribute("name");
-	}
-
-	/**
-	 * 
-	 */
 	public String getShape() {
 		return getAttribute("shape");
 	}
 
-	/**
-	 * 
-	 */
-	public String getCoord() {
-		return getAttribute("coord");
+	public String getCoords() {
+		return getAttribute("coords");
 	}
 
-	/**
-	 * 
-	 */
-	public String getNohref() {
-		return getAttribute("nohref");
-	}
-
-	/**
-	 * 
-	 */
-	public String getUsemap() {
-		return getAttribute("usemap");
-	}
-
-	/**
-	 * 
-	 */
 	public String getHref() {
 		return getAttribute("href");
 	}
 
-	/**
-	 * 
-	 */
+	public String getTarget() {
+		return getAttribute("target");
+	}
+
+	public String getNohref() {
+		return getAttribute("nohref");
+	}
+
 	public String getAlt() {
 		return getAttribute("alt");
 	}
 
-	/**
-	 * 
-	 */
 	public int getTabindex() {
 		String value = getAttribute("tabindex");
 
 		return (value == null) ? -1 : Integer.parseInt(value);
 	}
 
-	/**
-	 * 
-	 */
 	public String getAcesskey() {
 		return getAttribute("accesskey");
 	}
 
-	/**
-	 * 
-	 */
 	public String getOnfocus() {
 		return getAttribute("onfocus");
 	}
 
-	/**
-	 * 
-	 */
 	public String getOnblur() {
 		return getAttribute("onblur");
 	}
+
 }

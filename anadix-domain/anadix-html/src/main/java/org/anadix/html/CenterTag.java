@@ -21,7 +21,7 @@ import java.math.BigInteger;
  * The CENTER element is exactly equivalent to specifying the DIV element with
  * the align attribute set to "center". The CENTER element is deprecated.
  */
-public class CenterTag extends HtmlElement {
+public class CenterTag extends CommonAttributes {
 
 	public CenterTag(BigInteger id, String name, HtmlElement parent,
 			Attributes attributes) {

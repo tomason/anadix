@@ -17,12 +17,11 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
-public class FrameTag extends CoreAttributes {
-	FrameTag(
-			BigInteger id,
-			HtmlElement parent,
+public class IframeTag extends CommonAttributes {
+
+	public IframeTag(BigInteger id, String name, HtmlElement parent,
 			Attributes attributes) {
-		super(id, "frame", parent, attributes);
+		super(id, name, parent, attributes);
 	}
 
 	public String getLongdesc() {
@@ -49,12 +48,20 @@ public class FrameTag extends CoreAttributes {
 		return getAttribute("marginheight");
 	}
 
-	public String getNoresize() {
-		return getAttribute("noresize");
-	}
-
 	public String getScrolling() {
 		return getAttribute("scrolling");
+	}
+
+	public String getAlign() {
+		return getAttribute("align");
+	}
+
+	public String getHeight() {
+		return getAttribute("height");
+	}
+
+	public String getWidth() {
+		return getAttribute("width");
 	}
 
 }

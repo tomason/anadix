@@ -17,6 +17,7 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
+
 /**
  * Contains a citation or a reference to other sources.
  * 

@@ -17,17 +17,23 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
+public class IsindexTag extends CoreAttributes {
 
-/**
- * Indicates text to be entered by the user.
- * 
- * @author tomason
- */
-public class KbdTag extends CommonAttributes {
-
-	public KbdTag(BigInteger id, String name, HtmlElement parent,
+	public IsindexTag(BigInteger id, String name, HtmlElement parent,
 			Attributes attributes) {
 		super(id, name, parent, attributes);
+	}
+
+	public String getLang() {
+		return getAttribute("lang");
+	}
+
+	public String getDir() {
+		return getAttribute("dir");
+	}
+
+	public String getPrompt() {
+		return getAttribute("prompt");
 	}
 
 }

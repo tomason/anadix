@@ -18,50 +18,58 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 
-public class ImgTag extends HtmlElement {
+public class ImgTag extends CommonAttributes {
 
 	ImgTag(BigInteger id, HtmlElement parent, Attributes attributes) {
 		super(id, "img", parent, attributes);
 	}
 
+	public String getSrc() {
+		return getAttribute("src");
+	}
+
 	public String getAlt() {
-		return getAttributes().getAttribute("alt");
+		return getAttribute("alt");
 	}
 
 	public String getLongdesc() {
-		return getAttributes().getAttribute("longdesc");
+		return getAttribute("longdesc");
 	}
 
-	public int getWidth() {
-		String width = getAttributes().getAttribute("width");
-
-		if (width == null) {
-			return -1;
-		} else {
-			return Integer.parseInt(getNumberPart(width));
-		}
+	public String getNameAttribute() {
+		return getAttribute("name");
 	}
 
-	public int getHeight() {
-		String height = getAttributes().getAttribute("height");
-
-		if (height == null) {
-			return -1;
-		} else {
-			return Integer.parseInt(getNumberPart(height));
-		}
+	public String getHeight() {
+		return getAttribute("height");
 	}
 
-	private String getNumberPart(String number) {
-		int i = 0;
-
-		for (char c : number.toCharArray()) {
-			if (!Character.isDigit(c)) {
-				break;
-			}
-			i++;
-		}
-
-		return number.substring(0, i);
+	public String getWidth() {
+		return getAttribute("width");
 	}
+
+	public String getUsemap() {
+		return getAttribute("usemap");
+	}
+
+	public String getIsmap() {
+		return getAttribute("Ismap");
+	}
+
+	public String getAlign() {
+		return getAttribute("align");
+	}
+
+	public String getBorder() {
+		return getAttribute("border");
+	}
+
+	public String getHspace() {
+		return getAttribute("hspace");
+	}
+
+	public String getVspace() {
+		return getAttribute("vspace");
+	}
+
 }

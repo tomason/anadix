@@ -29,6 +29,10 @@ public class BasefontTag extends HtmlElement {
 		super(id, name, parent, attributes);
 	}
 
+	public String getIdAttribute() {
+		return getAttribute("id");
+	}
+
 	/**
 	 * size = cdata [CN] Deprecated. This attribute sets the size of the font.
 	 * Possible values:
@@ -58,27 +62,4 @@ public class BasefontTag extends HtmlElement {
 		return getAttribute("face");
 	}
 
-	public String getIdAttribute() {
-		return getAttribute("id");
-	}
-
-	public String getClassAttribute() {
-		return getAttribute("class");
-	}
-
-	public String getLang() {
-		return getAttribute("lang");
-	}
-
-	public String getDir() {
-		return getAttribute("dir");
-	}
-
-	public String getTitle() {
-		return getAttribute("title");
-	}
-
-	public String getStyle() {
-		return getAttribute("style");
-	}
 }

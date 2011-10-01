@@ -17,17 +17,19 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
+public class HTag extends HtmlElement {
+	private final int level;
 
-/**
- * Indicates text to be entered by the user.
- * 
- * @author tomason
- */
-public class KbdTag extends CommonAttributes {
-
-	public KbdTag(BigInteger id, String name, HtmlElement parent,
+	public HTag(BigInteger id, String name, HtmlElement parent,
 			Attributes attributes) {
 		super(id, name, parent, attributes);
+
+		String lvl = name.substring(1);
+		level = Integer.parseInt(lvl);
+	}
+
+	public int getLevel() {
+		return level;
 	}
 
 }

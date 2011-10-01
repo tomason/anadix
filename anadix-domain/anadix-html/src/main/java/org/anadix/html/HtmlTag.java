@@ -28,4 +28,12 @@ public class HtmlTag extends HtmlElement {
 		return this;
 	}
 
+	public String getLang() {
+		return getAttribute("lang");
+	}
+
+	public String getDir() {
+		return getAttribute("dir");
+	}
+
 }

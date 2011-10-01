@@ -17,17 +17,27 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
+public class HrTag extends CommonAttributes {
 
-/**
- * Indicates text to be entered by the user.
- * 
- * @author tomason
- */
-public class KbdTag extends CommonAttributes {
-
-	public KbdTag(BigInteger id, String name, HtmlElement parent,
+	public HrTag(BigInteger id, String name, HtmlElement parent,
 			Attributes attributes) {
 		super(id, name, parent, attributes);
+	}
+
+	public String getAlign() {
+		return getAttribute("align");
+	}
+
+	public String getNoshade() {
+		return getAttribute("noshade");
+	}
+
+	public String getSize() {
+		return getAttribute("size");
+	}
+
+	public String getWidth() {
+		return getAttribute("width");
 	}
 
 }

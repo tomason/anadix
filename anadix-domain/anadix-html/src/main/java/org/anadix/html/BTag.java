@@ -17,6 +17,7 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
+
 public class BTag extends CommonAttributes {
 
 	public BTag(BigInteger id, String name, HtmlElement parent,
