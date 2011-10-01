@@ -34,7 +34,7 @@ import org.anadix.impl.AbstractReportItem;
  * https://github.com/jamezp/jboss-logging-example
  */
 public class ReportFactory {
-	private static final ResourceBundle i18n = ResourceBundle.getBundle("org.analyzer.section508.reports");
+	private static final ResourceBundle i18n = ResourceBundle.getBundle("org.anadix.section508.reports");
 
 	private static ReportItem newReportItem(ItemStatus status, String key, HtmlElement cause) {
 		return new AbstractReportItem(status, String.format(i18n.getString(key), cause.getSource(), cause.getPosition())) {};
