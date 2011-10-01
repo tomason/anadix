@@ -15,8 +15,8 @@ public class ImgTagTest {
 	private static final HtmlElement parent = mock(HtmlElement.class);
 	private static final String alt = "alternative text";
 	private static final String longdesc = "some longer description";
-	private static final int width = 100;
-	private static final int height = 50;
+	private static final String width = "100px";
+	private static final String height = "50%";
 
 	private Attributes attributes;
 
@@ -25,7 +25,7 @@ public class ImgTagTest {
 		Properties p = new Properties();
 		p.setProperty("alt", alt);
 		p.setProperty("longdesc", longdesc);
-		p.setProperty("style", "width: " + width + "px; height: " + height + "%;");
+		p.setProperty("style", "width: " + width + "; height: " + height + ";");
 
 		attributes = new Attributes(p);
 	}
@@ -73,7 +73,7 @@ public class ImgTagTest {
 
 	public void testGetWidth1() {
 		ImgTag it = new ImgTag(id, parent, new Attributes(new Properties()));
-		assertEquals(it.getWidth(), -1);
+		assertNull(it.getWidth());
 	}
 
 	public void testGetWidth2() {
@@ -83,8 +83,8 @@ public class ImgTagTest {
 
 	public void testGetWidth3() {
 		Properties p = new Properties();
-		int w = 100;
-		p.setProperty("width", Integer.toString(w));
+		String w = "100px";
+		p.setProperty("width", w);
 		Attributes a = new Attributes(p);
 
 		ImgTag it = new ImgTag(id, parent, a);
@@ -93,7 +93,7 @@ public class ImgTagTest {
 
 	public void testGetHeight1() {
 		ImgTag it = new ImgTag(id, parent, new Attributes(new Properties()));
-		assertEquals(it.getHeight(), -1);
+		assertNull(it.getHeight());
 	}
 
 	public void testGetHeight2() {
@@ -103,8 +103,8 @@ public class ImgTagTest {
 
 	public void testGetHeight3() {
 		Properties p = new Properties();
-		int h = 50;
-		p.setProperty("height", Integer.toString(h));
+		String h = "50px;";
+		p.setProperty("height", h);
 		Attributes a = new Attributes(p);
 
 		ImgTag it = new ImgTag(id, parent, a);
