@@ -54,5 +54,5 @@ rule "area without alt"
 	when
 		$element : AreaTag( alt == null )
 	then
-		// TODO
+		insert(ReportFactory.newAltMissingReport($element));
 end
