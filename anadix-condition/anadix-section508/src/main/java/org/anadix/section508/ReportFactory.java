@@ -19,9 +19,14 @@ import java.util.ResourceBundle;
 
 import org.anadix.ItemStatus;
 import org.anadix.ReportItem;
+import org.anadix.html.AppletTag;
+import org.anadix.html.AreaTag;
 import org.anadix.html.FrameTag;
 import org.anadix.html.HtmlElement;
+import org.anadix.html.IframeTag;
 import org.anadix.html.ImgTag;
+import org.anadix.html.InputTag;
+import org.anadix.html.ObjectTag;
 import org.anadix.impl.AbstractReportItem;
 
 /**
@@ -48,7 +53,31 @@ public class ReportFactory {
 		return newReportItem(ItemStatus.WARNING, "img.alt.empty", cause);
 	}
 
-	public static ReportItem newTitleMissing(FrameTag cause) {
+	public static ReportItem newTitleMissingReport(FrameTag cause) {
+		return newReportItem(ItemStatus.ERROR, "frame.title.missing", cause);
+	}
+
+	public static ReportItem newAltMissingReport(InputTag cause) {
+		return newReportItem(ItemStatus.ERROR, "input.alt.missing", cause);
+	}
+
+	public static ReportItem newContentMissingReport(ObjectTag cause) {
+		return newReportItem(ItemStatus.ERROR, "object.content.missing", cause);
+	}
+
+	public static ReportItem newAltMissingReport(AppletTag cause) {
+		return newReportItem(ItemStatus.ERROR, "applet.alt.missing", cause);
+	}
+
+	public static ReportItem newContentMissingReport(IframeTag cause) {
+		return newReportItem(ItemStatus.ERROR, "iframe.content.missing", cause);
+	}
+
+	public static ReportItem newAltMissingReport(AreaTag cause) {
+		return newReportItem(ItemStatus.ERROR, "area.alt.missing", cause);
+	}
+
+	public static ReportItem newTitleMissingReport(IframeTag cause) {
 		return newReportItem(ItemStatus.ERROR, "frame.title.missing", cause);
 	}
 }
