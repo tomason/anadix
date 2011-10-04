@@ -1,0 +1,2214 @@
+<html>
+<head>
+
+
+<!-- Note you can append #asset=UUID to the end of the URL to preload a given asset.
+         Also, if you append #asset=UUID&nochrome it will only show the asset without all the GUI "chrome"
+
+         To select a locale, specify &locale=en_US at the end of the URL to pick the appropriate bundle.
+         -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+<title>JBoss Guvnor</title>
+<link rel="shortcut icon" href="images/drools.gif" type="image/gif">
+<link rel="icon" href="images/drools.gif" type="image/gif">
+
+<!--CSS for loading message at application Startup-->
+<style type="text/css">
+#loading {
+	position: absolute;
+	left: 45%;
+	top: 40%;
+	padding: 2px;
+	z-index: 20001;
+	height: auto;
+	border: 1px solid #ccc;
+}
+
+#loading a {
+	color: #225588;
+}
+
+#loading .loading-indicator {
+	background: white;
+	color: #444;
+	font: bold 13px tahoma, arial, helvetica;
+	padding: 10px;
+	margin: 0;
+	height: auto;
+}
+
+#loading-msg {
+	font: normal 10px arial, tahoma, sans-serif;
+}
+</style>
+
+<link rel="stylesheet" href="css/Guvnor.css">
+<link rel="stylesheet" href="css/Guvnor_DecoratedPopupPanel.css">
+<link rel="stylesheet" href="css/ruleflow.css">
+<link
+	href="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/gwt/chrome/chrome.css"
+	rel="stylesheet">
+<link
+	href="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/Diagrams.css"
+	rel="stylesheet">
+<style>
+.GGXTA32EH {
+	height: 70px;
+	overflow: hidden;
+	background:
+		url("data:image/gif;base64,R0lGODlhAQBGAMQAADtPZTNFWjdKXys8TzVIXS4+UjhLYTZJXjJEWThMYig5TCo6TTpOZCg4SzFDVzlNYis7TjRGXCw9UCw+US5AUy0+UjpPZSk6TTFDWDlOYzBBVTBCViQzRTFCVzRGWjlMYiH5BAAAAAAALAAAAAABAEYAAAUmYKNcCzQM0lQVFKVtnYMhQeBFRH4IgmF8iUeGwbAAjsikcslEckIAOw==")
+		-0px -0px repeat-x;
+	height: 50px;
+}
+
+.GGXTA32DH {
+	float: left;
+}
+
+.GGXTA32CH {
+	float: right;
+	padding-right: 10px;
+}
+
+.GGXTA32GH {
+	color: #fff;
+	font-size: 0.9em;
+}
+
+.GGXTA32GH a {
+	color: #fff;
+}
+
+.GGXTA32FH {
+	text-align: right;
+}
+
+.GGXTA32KI {
+	height: 4px;
+	width: 4px;
+	overflow: hidden;
+	background:
+		url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAGklEQVR42mNgQAK7d+/+j8IBARQOWACZAwIAOs0kqc9RhlYAAAAASUVORK5CYII=")
+		-0px -0px no-repeat;
+	height: 4px;
+	width: 4px;
+}
+
+.GGXTA32LI {
+	height: 4px;
+	width: 4px;
+	overflow: hidden;
+	background:
+		url("data:image/gif;base64,R0lGODlhBAAEAKEBALu7u////////////yH+GkNyZWF0ZWQgd2l0aCBHSU1QIG9uIGEgTWFjACH5BAEKAAIALAAAAAAEAAQAAAIHhB4mkctQAAA7")
+		-0px -0px no-repeat;
+	height: 4px;
+	width: 4px;
+}
+
+.GGXTA32EI {
+	height: 4px;
+	width: 4px;
+	overflow: hidden;
+	background:
+		url("data:image/gif;base64,R0lGODlhBAAEAKEBALu7u////////////yH+GkNyZWF0ZWQgd2l0aCBHSU1QIG9uIGEgTWFjACH5BAEKAAIALAAAAAAEAAQAAAIHRC4WkstQAAA7")
+		-0px -0px no-repeat;
+	height: 4px;
+	width: 4px;
+}
+
+.GGXTA32FI {
+	height: 4px;
+	width: 4px;
+	overflow: hidden;
+	background:
+		url("data:image/gif;base64,R0lGODlhBAAEAKEBALu7u////////////yH+GkNyZWF0ZWQgd2l0aCBHSU1QIG9uIGEgTWFjACH5BAEKAAIALAAAAAAEAAQAAAIHjHESIMJdAAA7")
+		-0px -0px no-repeat;
+	height: 4px;
+	width: 4px;
+}
+
+.GGXTA32DI {
+	border-bottom: 1px solid #bbb;
+	height: 3px;
+	width: 100%;
+}
+
+.GGXTA32JI {
+	border-top: 1px solid #bbb;
+	height: 3px;
+	width: 100%;
+}
+
+.GGXTA32HI {
+	border-left: 1px solid #bbb;
+	height: 100%;
+	width: 3px;
+}
+
+.GGXTA32II {
+	border-right: 1px solid #bbb;
+	height: 100%;
+	width: 3px;
+}
+
+.GGXTA32BI {
+	height: 4px;
+	width: 4px;
+	overflow: hidden;
+	background:
+		url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAGklEQVR42mNgwAV27979H4ThnMePH4MxhgAAKtIbYZpXyUIAAAAASUVORK5CYII=")
+		-0px -0px no-repeat;
+	height: 4px;
+	width: 4px;
+}
+
+.GGXTA32CI {
+	height: 4px;
+	width: 4px;
+	overflow: hidden;
+	background:
+		url("data:image/gif;base64,R0lGODlhBAAEAKECALu7u+Pj4////////yH+GkNyZWF0ZWQgd2l0aCBHSU1QIG9uIGEgTWFjACH5BAEKAAIALAAAAAAEAAQAAAIHlAVgEcpaAAA7")
+		-0px -0px no-repeat;
+	height: 4px;
+	width: 4px;
+}
+
+.GGXTA32LH {
+	height: 4px;
+	width: 4px;
+	overflow: hidden;
+	background:
+		url("data:image/gif;base64,R0lGODlhBAAEAKECALu7u+Pj4////////yH+GkNyZWF0ZWQgd2l0aCBHSU1QIG9uIGEgTWFjACH5BAEKAAIALAAAAAAEAAQAAAIHFBKGYsBcAAA7")
+		-0px -0px no-repeat;
+	height: 4px;
+	width: 4px;
+}
+
+.GGXTA32MH {
+	height: 4px;
+	width: 4px;
+	overflow: hidden;
+	background:
+		url("data:image/gif;base64,R0lGODlhBAAEAKECALu7u+Pj4////////yH+GkNyZWF0ZWQgd2l0aCBHSU1QIG9uIGEgTWFjACH5BAEKAAIALAAAAAAEAAQAAAIHTCCGgOJeAAA7")
+		-0px -0px no-repeat;
+	height: 4px;
+	width: 4px;
+}
+
+.GGXTA32KH {
+	height: 4px;
+	overflow: hidden;
+	background:
+		url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAGElEQVR42mN4/Pjxf2TMQFhg9+7d/5ExALItOKGlIBrrAAAAAElFTkSuQmCC")
+		-0px -0px repeat-x;
+	height: 4px;
+	width: 100%;
+}
+
+.GGXTA32AI {
+	height: 4px;
+	overflow: hidden;
+	background:
+		url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAGElEQVR42mPYvXv3f2TM8Pjx4//ImLAAAFKNOKHo5dkAAAAAAElFTkSuQmCC")
+		-0px -0px repeat-x;
+	height: 4px;
+	width: 100%;
+}
+
+.GGXTA32OH {
+	width: 4px;
+	overflow: hidden;
+	background:
+		url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAFUlEQVR42mPYvXv3/8ePH8MxA+kCAHcdOKEoMVzUAAAAAElFTkSuQmCC")
+		-0px -0px repeat-y;
+	height: 100%;
+	width: 4px;
+}
+
+.GGXTA32PH {
+	width: 4px;
+	overflow: hidden;
+	background:
+		url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAFklEQVR42mN4/PjxfxjevXv3fwbSBQCNnTih8zBpFwAAAABJRU5ErkJggg==")
+		-0px -0px repeat-y;
+	height: 100%;
+	width: 4px;
+}
+
+.GGXTA32NH {
+	background: #e3e3e3;
+}
+
+.GGXTA32JH {
+	border: none !important;
+	width: 95%;
+}
+
+.GGXTA32HH {
+	padding: 0;
+	padding: 0;
+}
+
+.GGXTA32IH {
+	width: 25px;
+	margin-right: 1px;
+	font-size: smaller;
+}
+</style>
+</head>
+<body>
+	<iframe id="__gwt_historyFrame"
+		style="width: 0pt; height: 0pt; border: 0pt none;"></iframe>
+
+	<!--add loading indicator while the app is being loaded-->
+	<div style="opacity: 0.972532; visibility: hidden;" id="loading">
+		<div class="loading-indicator">
+			<img src="images/loading-icon.gif"
+				style="margin-right: 8px; float: left; vertical-align: top;"
+				height="32" width="32"> Please wait<br> <span
+				id="loading-msg">Loading application...</span>
+		</div>
+	</div>
+
+	<!-- The GWT js file generated at run time -->
+	<script type="text/javascript"
+		src="org.drools.guvnor.Guvnor.nocache.js"></script>
+	<script defer="defer">
+		org_drools_guvnor_Guvnor.onInjectionDone('org.drools.guvnor.Guvnor')
+	</script>
+
+	<iframe tabindex="-1"
+		style="position: absolute; width: 0pt; height: 0pt; border: medium none;"
+		id="org.drools.guvnor.Guvnor" src="javascript:''"></iframe>
+	<div
+		style="position: absolute; z-index: -32767; top: -20cm; width: 10cm; height: 10cm;">&nbsp;</div>
+	<div style="display: none;"></div>
+	<div
+		style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px;">
+		<div
+			style="position: absolute; z-index: -32767; top: -20ex; width: 10em; height: 10ex;">&nbsp;</div>
+		<div
+			style="position: absolute; overflow: hidden; left: 0px; top: 0px; right: 0px; bottom: 0px;">
+			<div
+				style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px;">
+				<div
+					style="position: absolute; z-index: -32767; top: -20ex; width: 10em; height: 10ex;">&nbsp;</div>
+				<div
+					style="position: absolute; overflow: hidden; left: 0em; top: 0em; right: 0em; height: 4em;">
+					<table
+						style="width: 100%; position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px;"
+						cellpadding="0" cellspacing="0">
+						<tbody>
+							<tr>
+								<td style="vertical-align: top;" align="left"><div
+										class="GGXTA32EH">
+										<div class="GGXTA32DH">
+											<img class="gwt-Image"
+												onload='this.__gwtLastUnhandledEvent="load";'
+												src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+												style="width: 175px; height: 50px; background: url(&quot;data:image/gif;base64,R0lGODlhrwAyANU/ALS7w9nd4bvBycfN0oOPnPn5+qqyvM3S16Sstt3g5Onr7lprfZeirePl6dHV2pOdqYqVovP09VJjdfz8/eXo68HHzZ2nsXiFlNXZ3Y6ZpW18jGZ1hnuIllVlePHz9PT192p5iezu8HB/jnWCkWFxgn6LmeDj5u7w8vb3+HOAj2Rygk9gdGx6iV1tf4eSoO/x8ldoe2h1g09dbWh3iGBuf/7+/v3+/vf4+fv8/Pr7+2RzhGx7jGt4hlhnd////////yH5BAEAAD8ALAAAAACvADIAAAb/wJ9wSCwaj8ikcslsOp/QqHRKrVqv2Kx2y+16v+CweEwum8/otHrNbpNlI8NB4avVEwNLys3vT1UCET4+OQ0Dhxh0gx4APX6PkEYGgw0WLUgqBhSEFpGefg4+JhdOJQ0+FZ+qaxg+AFKhCKuzZRU1BlQmPjy0vV8jPhhVLDYBvsdboSpWFT7LyNBUMT4DVyW30dlRFjUcVxIFB9rjTQMTWRQK5OtJISZENAIkUgc5C+z4RDXiQxA+GVIE1HiWDx81Ii7+SUHgY09BfDccIKwB8IkBDJNIPUwCoQQHDiVKqMLwgoi/ikxKhPBBIeNGJDQGyfThyBMAHzP6KWTib4Is/38aiUiwgKCo0aMWIBDsFXNmjg6fruEScpKJiBohRAgBUAOEERYzw878YGIAi14kwhaA6mnFiZJUdw654PWHDgI/bnoTIsDGvCIqBMmskcOHB7GDEjhUlXbmDbaeENQQICQhyh8t7JgIYMOHCAc3iFSwsVRI4Jl2EKN2saqxzMerAvgQ0CGDDwhFCDhIFwCgAxRETCiQYOT0IAVvC6gejPeT60GwVfWQHcDWCCYCfNAYQoHCCiM6BBvOwUADAQgPuCLOoUpF2OirMhC4qYGJhdtDXggDL97HhLNEdDCAWDW88oAFDxxYEQcYNNBAAJcI0YMFGCRAQQMJBGDAdkpoUP9BAiZcGAAGEHxHhHuOQfbDCAMk0AAFJmRogA5uTLJYEhe4IsQCBVRjxAb92RCUaGIZo8gg7zQzE1Qz2LIcBjcOkcFKyxlAnBA6vAeDEBfospxIbFQwwT1LrIACPyno+GOQQxJxilMsJDCTAyWEBVwJKCwnkw0PFJGdnpSQmeVMKGzJwSA52NCZWPWxMUABTUiAwn7+MHAEkDMJiQRDYREg22uHzXQCB4sCOoilfJkqUwiObGAncV6mhhiNbCQA1xEcVGAAAqFQ9sMkYBaB6Z5tDgGCWJ4SshxWYh3AAAMDhpWDV7aJZQADFlBJSQESPefDBz9cNRMFDLjgAra6bMD/BgweJJCEej7YgMGWPwxQA73CBrnXEcgGUEADE4ybgQY0HBDvnp1IKdYr2g7ygVZCSGDwIA4Q4AMLMIQF7qEz9VkEByaqoYGaSCwgwghk/tCBB+pc2p8P+xqhQAI5DODCARnMkUNq+xDhQA0fyGSMn/EGXYgLys2EWxEhYICAAR7cwEBTMm0cVgQZ7PAIMKxBkeMrLg8yGQXNGSHBCThfEpKcsk7w1w8knBCWLMIW7QNnByj3gXIK4DsEDKgmcMMBO9j5AzFiRSTA0m68/UR214VdhwXmIVHCCzNwsEAJJkCQAAofpOarEBbjsKgNjQrlVLwhoNBAZ/sZAQIMwvmA/8IGoQ5S6A9K+lBADiY48MJxjLeBgAVaM7HCByEkMYNgN7wgQLB+tqCBDTkIwAAHshWQGt2VxWt6DgWEPEQHPihg7yA4gCgTP0X440IGm9zAQgBBQ3dPCwBsUgAKDlCAA7QFvjUcK160WcJ9pnKE51HiAgko3hBa4AEDVABDEaCNl2SSMNIV4AaDmIANYiYE9HngFEErQAhegINBxA4hH1DAA1r4gQuEoHXKKUDKdmChFwSsYROAGBt0wAA5UUCIRoBBCG6QMiM4sA4OAAAJhWAvCgAgPQc50iA8JoQWOGA3IPQBA4fgAuQM4gXZ08UH5OSBnHwsFDJxgAZycAMPBP9Mh0YogQBMUJiZjK5GhkEikQroRPFQYAB++4ELPtUjJXlDiz7gohAwgAIKJK0B5vtBAhQQgkVBSBBkqcMYVfap1GSABDkImAdsgMcjLGCDFHsEA74lyLzcbQkOXKUHPICADACAV8OTSQQqIAh+QFKSP3iAWAYQoV+FMG9i/MEmBpODEgkBBLOswQQ+gD0dLEBZAftAB1aAAA0k8lPvg8R9sDYEEQyIAk1sYOgaELQPYKAGssrUIIYmzRbKBJmaFMsEKgAAdH4LBTnYUo72lBgAwBE1lHFV6BaxggUIQgECMIAFLBCtmRCSDwxo4QlcRLFEytMOnbFBGJcjkSEoIGDC/3Riw/TUjSFMgkD5RJIQXEWoFYCgVMsJQTz7MAMAJCAE6pNgEkCQP1UFAJlarAGqirADWKpGAW1CQFOXcwAT8VQm5ROBqTygrlXAQEVM0EDS9KQABFDPpWHpYBE6wICtzqQABmgmEWbwJ8Q0gHpflYkEFspVWm1EBCLQgGIXq1gRbAAGVzqCCFLQ2BGYNEApcKiDAiAAAqDVCC3IwAACgCEHIABARbjAYicrBBgQQAAOaNCDnOW4l9j2trjNrW5xGwQAOw==&quot;) no-repeat scroll 0px 0px transparent;"
+												border="0">
+										</div>
+										<div class="GGXTA32CH">
+											<div class="GGXTA32GH">
+												<small> Welcome: <span>guest</span> <a
+													href="logout.jsp">[Sign Out] </a> </small>
+											</div>
+											<div class="GGXTA32FH">
+												<select size="1" style="display: none;" class="gwt-ListBox"><option
+														value="Author">Author</option>
+												</select>
+											</div>
+										</div>
+										<div style="clear: both;"></div>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div
+					style="position: absolute; overflow: hidden; left: 0em; top: 4em; right: 0em; bottom: 0em;">
+					<div
+						style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px;">
+						<div class="gwt-SplitLayoutPanel"
+							style="position: relative; height: 100%; width: 100%;">
+							<div
+								style="position: absolute; z-index: -32767; top: -20ex; width: 10em; height: 10ex;">&nbsp;</div>
+							<div
+								style="position: absolute; overflow: hidden; left: 0px; top: 0px; bottom: 0px; width: 250px;">
+								<div class="gwt-StackLayoutPanel"
+									style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px;">
+									<div
+										style="position: absolute; z-index: -32767; top: -20ex; width: 10em; height: 10ex;">&nbsp;</div>
+									<div
+										style="position: absolute; overflow: hidden; left: 0px; top: 2em; right: 0px; bottom: 8em;">
+										<div class="gwt-StackLayoutPanelContent"
+											style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px;">
+											<div
+												style="position: absolute; z-index: -32767; top: -20ex; width: 10em; height: 10ex;">&nbsp;</div>
+											<div
+												style="position: absolute; overflow: hidden; left: 0em; top: 0em; right: 0em; height: 2em;">
+												<div hidefocus="true"
+													style="outline: 0px none; position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px;"
+													class="gwt-MenuBar gwt-MenuBar-vertical" role="menubar"
+													tabindex="0">
+													<input
+														style="opacity: 0; height: 1px; width: 1px; z-index: -1; overflow: hidden; position: absolute;"
+														tabindex="-1" type="text">
+													<table>
+														<tbody>
+															<tr>
+																<td colspan="1" aria-haspopup="true" role="menuitem"
+																	id="gwt-uid-16" class="gwt-MenuItem">Create New</td>
+																<td class="subMenuIcon" valign="middle"><img
+																	onload='this.__gwtLastUnhandledEvent="load";'
+																	src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																	style="width: 5px; height: 9px; background: url(&quot;data:image/gif;base64,R0lGODlhBQAJAIAAAAAAAAAAACH5BAEAAAEALAAAAAAFAAkAAAIMRB5gp9v2YlJsJRQKADs=&quot;) no-repeat scroll 0px 0px transparent;"
+																	border="0">
+																</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+											<div
+												style="position: absolute; overflow: hidden; left: 0em; top: 2em; right: 0em; bottom: 0em;">
+												<div
+													style="overflow: auto; position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px;">
+													<div style="position: relative;">
+														<div role="tree" class="guvnor-Tree"
+															style="position: relative;">
+															<div role="treeitem" hidefocus="true"
+																style="font-size: 0pt; position: absolute; outline: 0px none; z-index: -1;"
+																tabindex="0">
+																<input
+																	style="opacity: 0; height: 1px; width: 1px; z-index: -1; overflow: hidden; position: absolute;"
+																	tabindex="-1" type="text">
+															</div>
+															<div style="padding: 0px; margin-left: 0px;">
+																<table style="white-space: nowrap;">
+																	<tbody>
+																		<tr>
+																			<td style="vertical-align: middle;"><img
+																				onload='this.__gwtLastUnhandledEvent="load";'
+																				src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																				style="width: 16px; height: 16px; background: url(&quot;data:image/gif;base64,R0lGODlhEAAQAIQaAFhorldnrquz1mFxsvz9/vr6/M3Q2ZGbw5mixvb3+Gp5t2Nys77F4GRzs9ze4mt6uGV1s8/R2VZnrl5usFdortPV2/P09+3u8eXm6lZnrf///wAAzP///////////////yH5BAEAAB8ALAAAAAAQABAAAAVE4CeOZGmeaKquo5K974MuTKHdhDCcgOVvvoTkRLkYN8bL0ETBbJ5PTIaIqW6q0lPAYcVOTRNEpEI2HCYoCOzVYLnf7hAAOw==&quot;) no-repeat scroll 0px 0px transparent;"
+																				border="0">
+																			</td>
+																			<td style="vertical-align: middle;"><div
+																					id="gwt-uid-2" role="treeitem" class="gwt-TreeItem"
+																					style="display: inline;">
+																					<img onload='this.__gwtLastUnhandledEvent="load";'
+																						src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																						style="width: 16px; height: 16px; background: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABKUlEQVR42p3TwSsEURwH8Pl7XKVc5D5lNa2LPSClJG7WtrG7CVs70hBZbUqtRFhFWSd7cXFx4kV5O4xpZ+y25V3U3r5+r8hx35tvfY+f73v1eobRJVcnScgaUSKhEHcIWjVcHKWgjTvfhJs1cL+qN/CHxZfE1+BeRX3gH98ibFYJn8POWerYzgxSBxB+ypNPYS/24YXvIZ0vdR/ZWouBuTdg9UuC/b94F9zdgPe2ojZydpgG48colyw8v+4QXie8jMBPoe3PqY2UD7KEt8HrBcI5hB9JwrMQwaTagEyxmIfnZhG8z6PdmCE8gYf7YSys7qs/Z2HTITwN0RgnHIM5uqSBHQfmSC/BOHVIE9PJndYUdQxmvEcPy0jAnhJgjxbkTSJ9JDkSGevkBzqb+oYTpvlGAAAAAElFTkSuQmCC&quot;) no-repeat scroll 0px 0px transparent;"
+																						border="0"> Assets
+																				</div>
+																			</td>
+																		</tr>
+																	</tbody>
+																</table>
+																<div style="white-space: nowrap; display: none;">
+																	<div
+																		style="padding: 3px 3px 3px 23px; margin-left: 16px;">
+																		<div id="gwt-uid-3" role="treeitem"
+																			class="gwt-TreeItem" style="display: inline;">
+																			<img onload='this.__gwtLastUnhandledEvent="load";'
+																				src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																				style="width: 16px; height: 16px; background: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABZElEQVR42q3T709BURzHcX9a/0H/RzUbpdUzPIq0VRNGiVJa06T8KLEoadUmXamRn/cK0SguVnfzCT2qXTQ523tnO9t5PTnfw+EMcxEBO8zbU7CbhJ0sRgFuLoz402WXQw6fdw/ZbBaVSgU0TXdKxoPYWef1Rq4vLfD7HMjn82g2mz9iGAblUhEG7Ux3RLcmRCQSxccnw1q90YD1QA2SfGJHtgwrIKkM6HqDtWqthnA4ALfLxA7o9ErEk2mU3qvsvVVwRwTgdO6zA3LlIoj7B7y8lrtUgu3ICiJ0yw443U6cnHoQTaRA5Yq/KuA5X4BYMtf7JSRLKpz5rxB6jLYgErF0BrEUhURrX1broVWr+s+DTLGJBYUBh8de2F0+bOzaIJKpoVFp0KCr0EpF/ZE0lYPHH4TZcY5wJIX2ap+vSsSYHR2BjD+GgUddyp/oIFL++OCIhPeNzE/z/4EIJiHmcjGUH/wFDl94IzhZAoYAAAAASUVORK5CYII=&quot;) no-repeat scroll 0px 0px transparent;"
+																				border="0"> Find
+																		</div>
+																	</div>
+																	<div style="padding: 0px; margin-left: 16px;">
+																		<table style="white-space: nowrap;">
+																			<tbody>
+																				<tr>
+																					<td style="vertical-align: middle;"><img
+																						onload='this.__gwtLastUnhandledEvent="load";'
+																						src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																						style="width: 16px; height: 16px; background: url(&quot;data:image/gif;base64,R0lGODlhEAAQAIQaAFhorldnrquz1mFxsvz9/vr6/M3Q2ZGbw5mixvb3+Gp5t2Nys77F4GRzs9ze4mt6uGV1s8/R2VZnrl5usFdortPV2/P09+3u8eXm6lZnrf///wAAzP///////////////yH5BAEAAB8ALAAAAAAQABAAAAVD4CeOZGmeaKquo5K974MuTKHdhDCcgOVfvoTkRLkYj5ehiYLZOJ2YDBFDvVCjp4CjepWaJohIZWw4TFAQ2KvBarvbIQA7&quot;) no-repeat scroll 0px 0px transparent;"
+																						border="0">
+																					</td>
+																					<td style="vertical-align: middle;"><div
+																							id="gwt-uid-4" role="treeitem"
+																							class="gwt-TreeItem" style="display: inline;">
+																							<img
+																								onload='this.__gwtLastUnhandledEvent="load";'
+																								src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																								style="width: 16px; height: 16px; background: url(&quot;data:image/gif;base64,R0lGODlhEAAQANUAAPHz+vj5/PX3/Ozw+YeUrYyWquft+fD0/PP2/PX3+/r7/fj5+152o22ErV9zlmBzlnGCoN/o+OLq+ICUtIGUtJutzIKRqpenwJinwI6bsK+6zO7z+666zPX3+pKbpvv8/fr7/D+m/6vB1ACK+ABVlgBGe5mfoaGknKmpltDQxLCtkbeyjbaxjbu0itCseNSwe+HLqsWaYc6pdseicsqldNOuetvEpMGbbMSeb76Ya62BUryWarWQZ+TWxtTBr////yH5BAEAAD8ALAAAAAAQABAAAAaTwJ9wSCwahxmRKHMkWjgcDcdy7MViEMzlgoHoYj3i6/WgUCZmimMsbi3e8HfrRay5F5/QB96qEV0seCEkHwwMCysuRDIqCoMhIB0dCSoyQiE/NCmPARWGACg0P48wjwIDqKgnM5clIyUhCAYNhgwGJjhDryMHEr6/Eh43RCMbEcfIxwU5RDYEz9DRO0Q+PNbX2D5BADs=&quot;) no-repeat scroll 0px 0px transparent;"
+																								border="0"> Inbox
+																						</div>
+																					</td>
+																				</tr>
+																			</tbody>
+																		</table>
+																		<div style="white-space: nowrap;">
+																			<div
+																				style="padding: 3px 3px 3px 23px; margin-left: 16px;">
+																				<div id="gwt-uid-5" role="treeitem"
+																					class="gwt-TreeItem" style="display: inline;">
+																					<img onload='this.__gwtLastUnhandledEvent="load";'
+																						src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																						style="width: 16px; height: 16px; background: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA6klEQVR42s2RQQuCMBTH/SQJHaIPWiBlQUFS1LUwtILSIIg6d+grJHrKgjo6m/WaOhTRmUGHBj/e/m9vv8PGcb9c+7UARcgVuA8vl1zBVmt8FGz1BltwPCzAcTHBC0DIoxnTjMGfyby8G1XhGzIFr+e9EJmCjVQB76YRdIoWZZzo6eDPpgTLVhmw1Ywxm8lsidF+RWZTAqVWApUS7nlQ6jzEfT4698l8SHk2B+uKCC6z+jPMb+wMJ2BdHAICk1QzqIjmkO5ozBaI/SkYZyfgdEZg2KTaYTZsFPTaA5ktECQVhB5BYkDPuL9ab32Qy2KfeXhVAAAAAElFTkSuQmCC&quot;) no-repeat scroll 0px 0px transparent;"
+																						border="0"> Incoming changes
+																				</div>
+																			</div>
+																			<div
+																				style="padding: 3px 3px 3px 23px; margin-left: 16px;">
+																				<div id="gwt-uid-6" role="treeitem"
+																					class="gwt-TreeItem" style="display: inline;">
+																					<img onload='this.__gwtLastUnhandledEvent="load";'
+																						src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																						style="width: 16px; height: 16px; background: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA6klEQVR42s2RQQuCMBTH/SQJHaIPWiBlQUFS1LUwtILSIIg6d+grJHrKgjo6m/WaOhTRmUGHBj/e/m9vv8PGcb9c+7UARcgVuA8vl1zBVmt8FGz1BltwPCzAcTHBC0DIoxnTjMGfyby8G1XhGzIFr+e9EJmCjVQB76YRdIoWZZzo6eDPpgTLVhmw1Ywxm8lsidF+RWZTAqVWApUS7nlQ6jzEfT4698l8SHk2B+uKCC6z+jPMb+wMJ2BdHAICk1QzqIjmkO5ozBaI/SkYZyfgdEZg2KTaYTZsFPTaA5ktECQVhB5BYkDPuL9ab32Qy2KfeXhVAAAAAElFTkSuQmCC&quot;) no-repeat scroll 0px 0px transparent;"
+																						border="0"> Recently Opened
+																				</div>
+																			</div>
+																			<div
+																				style="padding: 3px 3px 3px 23px; margin-left: 16px;">
+																				<div id="gwt-uid-7" role="treeitem"
+																					class="gwt-TreeItem" style="display: inline;">
+																					<img onload='this.__gwtLastUnhandledEvent="load";'
+																						src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																						style="width: 16px; height: 16px; background: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA6klEQVR42s2RQQuCMBTH/SQJHaIPWiBlQUFS1LUwtILSIIg6d+grJHrKgjo6m/WaOhTRmUGHBj/e/m9vv8PGcb9c+7UARcgVuA8vl1zBVmt8FGz1BltwPCzAcTHBC0DIoxnTjMGfyby8G1XhGzIFr+e9EJmCjVQB76YRdIoWZZzo6eDPpgTLVhmw1Ywxm8lsidF+RWZTAqVWApUS7nlQ6jzEfT4698l8SHk2B+uKCC6z+jPMb+wMJ2BdHAICk1QzqIjmkO5ozBaI/SkYZyfgdEZg2KTaYTZsFPTaA5ktECQVhB5BYkDPuL9ab32Qy2KfeXhVAAAAAElFTkSuQmCC&quot;) no-repeat scroll 0px 0px transparent;"
+																						border="0"> Recently Edited
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																	<div style="padding: 0px; margin-left: 16px;">
+																		<table style="white-space: nowrap;">
+																			<tbody>
+																				<tr>
+																					<td style="vertical-align: middle;"><img
+																						onload='this.__gwtLastUnhandledEvent="load";'
+																						src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																						style="width: 16px; height: 16px; background: url(&quot;data:image/gif;base64,R0lGODlhEAAQAIQaAFhorldnrquz1mFxsvz9/vr6/M3Q2ZGbw5mixvb3+Gp5t2Nys77F4GRzs9ze4mt6uGV1s8/R2VZnrl5usFdortPV2/P09+3u8eXm6lZnrf///wAAzP///////////////yH5BAEAAB8ALAAAAAAQABAAAAVE4CeOZGmeaKquo5K974MuTKHdhDCcgOVvvoTkRLkYN8bL0ETBbJ5PTIaIqW6q0lPAYcVOTRNEpEI2HCYoCOzVYLnf7hAAOw==&quot;) no-repeat scroll 0px 0px transparent;"
+																						border="0">
+																					</td>
+																					<td style="vertical-align: middle;"><div
+																							id="gwt-uid-8" role="treeitem"
+																							class="gwt-TreeItem" style="display: inline;">
+																							<img
+																								onload='this.__gwtLastUnhandledEvent="load";'
+																								src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																								style="width: 16px; height: 16px; background: url(&quot;data:image/gif;base64,R0lGODlhEAAQAMQAAG92hChilkV2oFuFp3GUr6O3v7nGxyaASDmHUkyTY0OSW1WbalWba1aYalueb1OXZ16gcVGVWlSWW2KkY3GucHSwcWupZ2ypaHqoa6HGhv///wAAAAAAAAAAAAAAAAAAACH5BAEAABoALAAAAAAQABAAAAVaoOYokGaepxEMTJVRC4qqw2FN1yGnayJhkcTORNM8EI0hcWUCnEYl3qBpar1iBQIhQGgCADacriDgnpwaH1A4RBuRSo07fn6S4mgrTPkF33J8JmpBgSZHSTshADs=&quot;) no-repeat scroll 0px 0px transparent;"
+																								border="0"> By Status
+																						</div>
+																					</td>
+																				</tr>
+																			</tbody>
+																		</table>
+																		<div style="white-space: nowrap; display: none;">
+																			<div
+																				style="padding: 3px 3px 3px 23px; margin-left: 16px;">
+																				<div id="gwt-uid-63" role="treeitem"
+																					class="gwt-TreeItem" style="display: inline;">
+																					<img onload='this.__gwtLastUnhandledEvent="load";'
+																						src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																						style="width: 16px; height: 16px; background: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA6klEQVR42s2RQQuCMBTH/SQJHaIPWiBlQUFS1LUwtILSIIg6d+grJHrKgjo6m/WaOhTRmUGHBj/e/m9vv8PGcb9c+7UARcgVuA8vl1zBVmt8FGz1BltwPCzAcTHBC0DIoxnTjMGfyby8G1XhGzIFr+e9EJmCjVQB76YRdIoWZZzo6eDPpgTLVhmw1Ywxm8lsidF+RWZTAqVWApUS7nlQ6jzEfT4698l8SHk2B+uKCC6z+jPMb+wMJ2BdHAICk1QzqIjmkO5ozBaI/SkYZyfgdEZg2KTaYTZsFPTaA5ktECQVhB5BYkDPuL9ab32Qy2KfeXhVAAAAAElFTkSuQmCC&quot;) no-repeat scroll 0px 0px transparent;"
+																						border="0"> Draft
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																	<div
+																		style="padding: 3px 3px 3px 23px; margin-left: 16px;">
+																		<div id="gwt-uid-9" role="treeitem"
+																			class="gwt-TreeItem" style="display: inline;">
+																			<img onload='this.__gwtLastUnhandledEvent="load";'
+																				src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																				style="width: 16px; height: 16px; background: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABZElEQVR42sWQvUsCcRzG708xlQskyElaRAikhl4UEyXzJbxBogNpcUmlc0jQbOgFDJeswOJST67jLu2yF6IomwKtrbaEwqH9CYVuaVEofMYPz+/z8PsSxH9lq/qFxGkL0VITwdwbehYkpBbunlq4rH3Cl2n0LggX31G9/4B41YR17bF3Ab3/Cm+6DkuyhtHINYi+RBAEcBzX3bosy6hUKpAkCTzPg2VZZLNZpNNppFIpMAyDUCgEmqZBUdRvqSiKXf/T7Xb/4U2CF37Q5z4snHkQKLsUs/dkBk5uEpajMYzvmRSuXx+CLj4IMqYBuaIGsSh7wb2wKDwfwi86lKKjOIHthxSStzGYMiMK162SmC3Y4MxboY0OgAiU55Bv5MDWD9Be/SlO5cyI30SxXF2CYVOvcJJRw3FsgZ2dhiasAkGJTswLdnh4G1wli1I07xph3DHAsKHHcFKn8PaqNqLqPO4I+p5v6HnMHZVqoyAAAAAASUVORK5CYII=&quot;) no-repeat scroll 0px 0px transparent;"
+																				border="0"> By Category
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div
+										style="position: absolute; overflow: hidden; left: 0px; top: 0em; right: 0px; height: 2em;">
+										<div
+											style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px;"
+											class="gwt-HTML gwt-StackLayoutPanelHeader">
+											<table cellpadding="0" cellspacing="0">
+												<tbody>
+													<tr>
+														<td style="vertical-align: top;" align="left"><img
+															onload='this.__gwtLastUnhandledEvent="load";'
+															src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+															style="width: 16px; height: 16px; background: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABKUlEQVR42p3TwSsEURwH8Pl7XKVc5D5lNa2LPSClJG7WtrG7CVs70hBZbUqtRFhFWSd7cXFx4kV5O4xpZ+y25V3U3r5+r8hx35tvfY+f73v1eobRJVcnScgaUSKhEHcIWjVcHKWgjTvfhJs1cL+qN/CHxZfE1+BeRX3gH98ibFYJn8POWerYzgxSBxB+ypNPYS/24YXvIZ0vdR/ZWouBuTdg9UuC/b94F9zdgPe2ojZydpgG48colyw8v+4QXie8jMBPoe3PqY2UD7KEt8HrBcI5hB9JwrMQwaTagEyxmIfnZhG8z6PdmCE8gYf7YSys7qs/Z2HTITwN0RgnHIM5uqSBHQfmSC/BOHVIE9PJndYUdQxmvEcPy0jAnhJgjxbkTSJ9JDkSGevkBzqb+oYTpvlGAAAAAElFTkSuQmCC&quot;) no-repeat scroll 0px 0px transparent;"
+															border="0">
+														</td>
+														<td style="vertical-align: top;" align="left"><div
+																class="gwt-Label">Browse</div>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+									<div
+										style="position: absolute; overflow: hidden; left: 0px; right: 0px; bottom: 6em; height: 0em;">
+										<div class="gwt-StackLayoutPanelContent"
+											style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px;">
+											<div
+												style="position: absolute; z-index: -32767; top: -20ex; width: 10em; height: 10ex;">&nbsp;</div>
+											<div
+												style="position: absolute; overflow: hidden; left: 0em; top: 0em; right: 0em; height: 2em;">
+												<div hidefocus="true"
+													style="outline: 0px none; position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px;"
+													class="gwt-MenuBar gwt-MenuBar-vertical" role="menubar"
+													tabindex="0">
+													<input
+														style="opacity: 0; height: 1px; width: 1px; z-index: -1; overflow: hidden; position: absolute;"
+														tabindex="-1" type="text">
+													<table>
+														<tbody>
+															<tr>
+																<td colspan="1" aria-haspopup="true" role="menuitem"
+																	id="gwt-uid-34" class="gwt-MenuItem">Create New</td>
+																<td class="subMenuIcon" valign="middle"><img
+																	onload='this.__gwtLastUnhandledEvent="load";'
+																	src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																	style="width: 5px; height: 9px; background: url(&quot;data:image/gif;base64,R0lGODlhBQAJAIAAAAAAAAAAACH5BAEAAAEALAAAAAAFAAkAAAIMRB5gp9v2YlJsJRQKADs=&quot;) no-repeat scroll 0px 0px transparent;"
+																	border="0">
+																</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+											<div
+												style="position: absolute; overflow: hidden; left: 0em; top: 2em; right: 0em; bottom: 0em;">
+												<div
+													style="overflow: auto; position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px;">
+													<div style="position: relative;">
+														<div role="tree" class="guvnor-Tree"
+															style="position: relative;">
+															<div role="treeitem" hidefocus="true"
+																style="font-size: 0pt; position: absolute; outline: 0px none; z-index: -1;"
+																tabindex="0">
+																<input
+																	style="opacity: 0; height: 1px; width: 1px; z-index: -1; overflow: hidden; position: absolute;"
+																	tabindex="-1" type="text">
+															</div>
+															<div style="padding: 0px; margin-left: 0px;">
+																<table style="white-space: nowrap;">
+																	<tbody>
+																		<tr>
+																			<td style="vertical-align: middle;"><img
+																				onload='this.__gwtLastUnhandledEvent="load";'
+																				src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																				style="width: 16px; height: 16px; background: url(&quot;data:image/gif;base64,R0lGODlhEAAQAIQaAFhorldnrquz1mFxsvz9/vr6/M3Q2ZGbw5mixvb3+Gp5t2Nys77F4GRzs9ze4mt6uGV1s8/R2VZnrl5usFdortPV2/P09+3u8eXm6lZnrf///wAAzP///////////////yH5BAEAAB8ALAAAAAAQABAAAAVE4CeOZGmeaKquo5K974MuTKHdhDCcgOVvvoTkRLkYN8bL0ETBbJ5PTIaIqW6q0lPAYcVOTRNEpEI2HCYoCOzVYLnf7hAAOw==&quot;) no-repeat scroll 0px 0px transparent;"
+																				border="0">
+																			</td>
+																			<td style="vertical-align: middle;"><div
+																					id="gwt-uid-62" role="treeitem"
+																					class="gwt-TreeItem" style="display: inline;">
+																					<img onload='this.__gwtLastUnhandledEvent="load";'
+																						src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																						style="width: 16px; height: 16px; background: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABZElEQVR42sWQvUsCcRzG708xlQskyElaRAikhl4UEyXzJbxBogNpcUmlc0jQbOgFDJeswOJST67jLu2yF6IomwKtrbaEwqH9CYVuaVEofMYPz+/z8PsSxH9lq/qFxGkL0VITwdwbehYkpBbunlq4rH3Cl2n0LggX31G9/4B41YR17bF3Ab3/Cm+6DkuyhtHINYi+RBAEcBzX3bosy6hUKpAkCTzPg2VZZLNZpNNppFIpMAyDUCgEmqZBUdRvqSiKXf/T7Xb/4U2CF37Q5z4snHkQKLsUs/dkBk5uEpajMYzvmRSuXx+CLj4IMqYBuaIGsSh7wb2wKDwfwi86lKKjOIHthxSStzGYMiMK162SmC3Y4MxboY0OgAiU55Bv5MDWD9Be/SlO5cyI30SxXF2CYVOvcJJRw3FsgZ2dhiasAkGJTswLdnh4G1wli1I07xph3DHAsKHHcFKn8PaqNqLqPO4I+p5v6HnMHZVqoyAAAAAASUVORK5CYII=&quot;) no-repeat scroll 0px 0px transparent;"
+																						border="0"> Packages
+																				</div>
+																			</td>
+																		</tr>
+																	</tbody>
+																</table>
+																<div style="white-space: nowrap; display: none;">
+																	<div style="padding: 0px; margin-left: 16px;">
+																		<table style="white-space: nowrap;">
+																			<tbody>
+																				<tr>
+																					<td style="vertical-align: middle;"><img
+																						onload='this.__gwtLastUnhandledEvent="load";'
+																						src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																						style="width: 16px; height: 16px; background: url(&quot;data:image/gif;base64,R0lGODlhEAAQAIQaAFhorldnrquz1mFxsvz9/vr6/M3Q2ZGbw5mixvb3+Gp5t2Nys77F4GRzs9ze4mt6uGV1s8/R2VZnrl5usFdortPV2/P09+3u8eXm6lZnrf///wAAzP///////////////yH5BAEAAB8ALAAAAAAQABAAAAVE4CeOZGmeaKquo5K974MuTKHdhDCcgOVvvoTkRLkYN8bL0ETBbJ5PTIaIqW6q0lPAYcVOTRNEpEI2HCYoCOzVYLnf7hAAOw==&quot;) no-repeat scroll 0px 0px transparent;"
+																						border="0">
+																					</td>
+																					<td style="vertical-align: middle;"><div
+																							id="gwt-uid-66" role="treeitem"
+																							class="gwt-TreeItem" style="display: inline;">
+																							<img
+																								onload='this.__gwtLastUnhandledEvent="load";'
+																								src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																								style="width: 16px; height: 16px; background: url(&quot;data:image/gif;base64,R0lGODlhEAAQAMQAAPnxu+3RpuXJob+CMcWDMtu/nsF6Lde5mL91KsF3K9e4l7dtKLtxKs6ri6lgI5NVH65jJaVcIqBZIaJZIseggnE8F55wWHlPQP///wAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAABgALAAAAAAQABAAAAVgICaOZGmeKFml2GC8xgMbQ5kUgtBYuJ6UCAEgoLAIiYgSQxAIHIzNA6O0aCgOlIsVu1A9LOCLGGx5rEaQXuOihpQcx2LcUYownVBnpDTZUix+EyUEEoUSD4YSBCxnLI4hADs=&quot;) no-repeat scroll 0px 0px transparent;"
+																								border="0"> defaultPackage
+																						</div>
+																					</td>
+																				</tr>
+																			</tbody>
+																		</table>
+																		<div style="white-space: nowrap; display: none;">
+																			<div
+																				style="padding: 3px 3px 3px 23px; margin-left: 16px;">
+																				<div id="gwt-uid-67" role="treeitem"
+																					class="gwt-TreeItem" style="display: inline;">
+																					<img onload='this.__gwtLastUnhandledEvent="load";'
+																						src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																						style="width: 16px; height: 16px; background: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABKUlEQVR42p3TwSsEURwH8Pl7XKVc5D5lNa2LPSClJG7WtrG7CVs70hBZbUqtRFhFWSd7cXFx4kV5O4xpZ+y25V3U3r5+r8hx35tvfY+f73v1eobRJVcnScgaUSKhEHcIWjVcHKWgjTvfhJs1cL+qN/CHxZfE1+BeRX3gH98ibFYJn8POWerYzgxSBxB+ypNPYS/24YXvIZ0vdR/ZWouBuTdg9UuC/b94F9zdgPe2ojZydpgG48colyw8v+4QXie8jMBPoe3PqY2UD7KEt8HrBcI5hB9JwrMQwaTagEyxmIfnZhG8z6PdmCE8gYf7YSys7qs/Z2HTITwN0RgnHIM5uqSBHQfmSC/BOHVIE9PJndYUdQxmvEcPy0jAnhJgjxbkTSJ9JDkSGevkBzqb+oYTpvlGAAAAAElFTkSuQmCC&quot;) no-repeat scroll 0px 0px transparent;"
+																						border="0"> Business rule assets
+																				</div>
+																			</div>
+																			<div
+																				style="padding: 3px 3px 3px 23px; margin-left: 16px;">
+																				<div id="gwt-uid-68" role="treeitem"
+																					class="gwt-TreeItem" style="display: inline;">
+																					<img onload='this.__gwtLastUnhandledEvent="load";'
+																						src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																						style="width: 16px; height: 16px; background: url(&quot;data:image/gif;base64,R0lGODlhEAAQALMAAOPr+E9QT/////f397Ozs6+vr3l5eWdnZ0lJSf///wAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAAkALAAAAAAQABAAAARMMMlJq60mmEvRCUBwIFxyAEIKHFwmFEghaBcoIAMihFO2uTAZzQMSEU6pHcuEUh2OxVECGJv9aBIbTsezUIWbC9JZIoakpSk2zZ5EAAA7&quot;) no-repeat scroll 0px 0px transparent;"
+																						border="0"> Technical rule assets
+																				</div>
+																			</div>
+																			<div
+																				style="padding: 3px 3px 3px 23px; margin-left: 16px;">
+																				<div id="gwt-uid-69" role="treeitem"
+																					class="gwt-TreeItem" style="display: inline;">
+																					<img onload='this.__gwtLastUnhandledEvent="load";'
+																						src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																						style="width: 16px; height: 16px; background: url(&quot;data:image/gif;base64,R0lGODlhEAAQAKIAADNMb4uYqp2msmV8mf///wAAAAAAAAAAACH5BAEAAAQALAAAAAAQABAAAAMxSLrc/jCyABoIjuJ526gdRQCDVVJC941ASyqasjIvqoLuGoIlty2xhoj2kxiPyOQjAQA7&quot;) no-repeat scroll 0px 0px transparent;"
+																						border="0"> Functions
+																				</div>
+																			</div>
+																			<div
+																				style="padding: 3px 3px 3px 23px; margin-left: 16px;">
+																				<div id="gwt-uid-70" role="treeitem"
+																					class="gwt-TreeItem" style="display: inline;">
+																					<img onload='this.__gwtLastUnhandledEvent="load";'
+																						src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																						style="width: 16px; height: 16px; background: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAq0lEQVR42mNgoBXo6Gr9D8Mka4Kx3717g8LHaxhMw4ED+8AKFy1e8P/y9fNgGsQHiSMbiNUAkCKQJlwYZjheV4AU7ti1Baiw5f/0mZPB9N79O8HieG1HdjZIU2FxPlhxembq/87udhTvYBgE8z/MqSCbkeVBfJgc1nBAd0Fvf9f//ok9YEXllaVgF+F1AbpLQGEAMgQWBsdPHcYfBlSJBYrTAcUpkSp5YUAAADJjWMJY31djAAAAAElFTkSuQmCC&quot;) no-repeat scroll 0px 0px transparent;"
+																						border="0"> DSL configurations
+																				</div>
+																			</div>
+																			<div
+																				style="padding: 3px 3px 3px 23px; margin-left: 16px;">
+																				<div id="gwt-uid-71" role="treeitem"
+																					class="gwt-TreeItem" style="display: inline;">
+																					<img onload='this.__gwtLastUnhandledEvent="load";'
+																						src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																						style="width: 16px; height: 16px; background: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABkUlEQVR42q1TTUsCURR106aVi6hFKyGCNv2F2iW4admiRQW1LGhV4KLIRViLQKTCFn1C7ZQopk8wJArFzEClsPxMw6aYTJ3x6zT3EYKN6cYHhzv3nnvPnPfmjUrV7OXmpnC62v0viK8rQE3l0ifKUgSl9B2K/AmKiR0UwisoBBeYSEMHNqMGVhksLmkqOT03dPAc4zFr5vCcSEPISMjn83IUWc7qMv/vsMPzguU9ByKpLFJCDumsiJwkyVFiOdWJp76aAluHTuyf+xB7z+LjS5T370PoSI+cKLGc6sRTX00Bw8YZLt3RXwciQptqhtcrE8vDcp146queHOcwsXaFYcstBre96N97BNUCi2pEd1uZSJzPIZjMwPXEY9JorRboGNCjFi5cASZCAu9OE/zxb9yHBIzOHSi30GsewV/0rI/BM6NG0tLOhLxhAdf+N6UDWi1zWvxFp0FXcUGgs6BccQb26T7UA7kggRs5cna78iscD3XhwairCeLorTRMIBeKe2DVtqEe5tdsFQG6F039e38AzAW8kIQGAhAAAAAASUVORK5CYII=&quot;) no-repeat scroll 0px 0px transparent;"
+																						border="0"> Model
+																				</div>
+																			</div>
+																			<div
+																				style="padding: 3px 3px 3px 23px; margin-left: 16px;">
+																				<div id="gwt-uid-72" role="treeitem"
+																					class="gwt-TreeItem" style="display: inline;">
+																					<img onload='this.__gwtLastUnhandledEvent="load";'
+																						src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																						style="width: 16px; height: 16px; background: url(&quot;data:image/gif;base64,R0lGODlhEAAQAKIAADdcpTeCxVylxaXFxf///wAAAAAAAAAAACH5BAEAAAQALAAAAAAQABAAAAM+SLocwbAB8KKc1KoAxPTVVmUTwS1ctkzDNYVYa3afigEtCcxKja8/IMGz67GEQwHwqDESZZoSsUkoJalYRQIAOw==&quot;) no-repeat scroll 0px 0px transparent;"
+																						border="0"> Processes
+																				</div>
+																			</div>
+																			<div
+																				style="padding: 3px 3px 3px 23px; margin-left: 16px;">
+																				<div id="gwt-uid-73" role="treeitem"
+																					class="gwt-TreeItem" style="display: inline;">
+																					<img onload='this.__gwtLastUnhandledEvent="load";'
+																						src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																						style="width: 16px; height: 16px; background: url(&quot;data:image/gif;base64,R0lGODlhEAAQALMAAACAAD+fPz9fP5/fn5+/n3+/P39/X5+ff7+/n9/fv////4CAgF9fX////wAAAAAAACH5BAEAAA0ALAAAAAAQABAAAARPsMlJ6zw4ay2P+mD4GZ1oKmTjnWGKsC0BAIMyzHWyLAkKFAGB4hdULD4MXwAgBCyFR0XSQBAIagNrjsHouWCg1AosBo9KZrFhzW6zLfBJBAA7&quot;) no-repeat scroll 0px 0px transparent;"
+																						border="0"> Enumerations
+																				</div>
+																			</div>
+																			<div
+																				style="padding: 3px 3px 3px 23px; margin-left: 16px;">
+																				<div id="gwt-uid-74" role="treeitem"
+																					class="gwt-TreeItem" style="display: inline;">
+																					<img onload='this.__gwtLastUnhandledEvent="load";'
+																						src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																						style="width: 16px; height: 16px; background: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA8ElEQVR42mNgQALiRrH/iaGxgk1dBv+3X3ry/9+//2D6z38I/fMvhP72B0KD1GE1YH2n4X+7ouX//wINANG/oPSPvxD6yx8IDVKH1YA17UZgzYTw3XNrsRuwstX4/x+gAkL4+vXr/2t2V/03rI9CNWhJs8n/n0AFhDBMM4hGMWBBoyn5mkFgTj3EgPsvfsAVEa0ZBKbVmMMNQFaMrhkUBlgNmFRlCbcN2ZDglRlwzSBxnLHQW26J4mSQYphmEA3ig8RB6rAaUFdoixFoMENgmkEYpI5oA2CGIPNJNgAd4zQABGqBkiBcVwDFhZiYgdoAAORqC915IDZbAAAAAElFTkSuQmCC&quot;) no-repeat scroll 0px 0px transparent;"
+																						border="0"> Test Scenarios
+																				</div>
+																			</div>
+																			<div
+																				style="padding: 3px 3px 3px 23px; margin-left: 16px;">
+																				<div id="gwt-uid-75" role="treeitem"
+																					class="gwt-TreeItem" style="display: inline;">
+																					<img onload='this.__gwtLastUnhandledEvent="load";'
+																						src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																						style="width: 16px; height: 16px; background: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACaElEQVR42q3SXUhTYRgH8IFX7SK6CRQS6iaICrrKQawGEfSB60PLrOlsm7aZm4qO7QRqiUQk1kUxFl0EYwORfVqwWuRpu3FtU6durnncZrnNMcckbGiI/vOcC9uafVz0h+fihfP83vd9zsti/RIej7eHw+HwdirWv4T+UKfTwel0wuFwwGazwWAwQKvV4pZYQtIb/BVwu93I5XLIZrNIJBIIh8NwuVwYdX+EUNgw8UeEBrxeL9KZJcxQIfiDk/BPb5Xfj9XVVQbp6FD+HqEBn8+H7NdlRL7E8CkSRnhuFsFAAPF4HBRFwWq1QSQSW3YEqmSVl0zkIEZCdozPeRCdjyKZWgQVmYPH58EHl5OZj0QiIYua1TbpvQejLdDMy6FdUOAppcB9exsMr/WYCgUQCAcxNjWOaDQKuVxOFjX3jTeib6YWws6rUA8ooLCeR+90LbrsMthGLJiNUQjOhpBOp9He3v4TUFuk+1VvBbjz7gTqTYeh0WhAh//wIITmI2hxcNH/qhuZTAZra2tYWVmBUqnMA4alDY0mLq40nUFzl2BrSFYGuK2sQ13bRVT2H0CruQq+yTF8Ti4wiEqlIguOX/Py0PbO+aF/6Sn1Xoj0JzERmEQivYj19XUQBFFwBV7Ni6M4frMUFYLSbaiiupxZc3vYIMxi5nFtbm5iY2OjEKDTZrwROz2wC5XPS/JmsBsXtCXgP9sHo0eP5FIKyUyKQYoA+hSywbOoH2LjMlGGaz1laDKyIRoqx+P33ch9/1ZwtSKAzl1L8zHVsNBCOM6h110B4k31svjRdbK1U07SDfnF5/OfsP5HfgDfdd6yffhrPAAAAABJRU5ErkJggg==&quot;) no-repeat scroll 0px 0px transparent;"
+																						border="0"> XML, Properties
+																				</div>
+																			</div>
+																			<div
+																				style="padding: 3px 3px 3px 23px; margin-left: 16px;">
+																				<div id="gwt-uid-76" role="treeitem"
+																					class="gwt-TreeItem" style="display: inline;">
+																					<img onload='this.__gwtLastUnhandledEvent="load";'
+																						src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																						style="width: 16px; height: 16px; background: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACaElEQVR42q3SXUhTYRgH8IFX7SK6CRQS6iaICrrKQawGEfSB60PLrOlsm7aZm4qO7QRqiUQk1kUxFl0EYwORfVqwWuRpu3FtU6durnncZrnNMcckbGiI/vOcC9uafVz0h+fihfP83vd9zsti/RIej7eHw+HwdirWv4T+UKfTwel0wuFwwGazwWAwQKvV4pZYQtIb/BVwu93I5XLIZrNIJBIIh8NwuVwYdX+EUNgw8UeEBrxeL9KZJcxQIfiDk/BPb5Xfj9XVVQbp6FD+HqEBn8+H7NdlRL7E8CkSRnhuFsFAAPF4HBRFwWq1QSQSW3YEqmSVl0zkIEZCdozPeRCdjyKZWgQVmYPH58EHl5OZj0QiIYua1TbpvQejLdDMy6FdUOAppcB9exsMr/WYCgUQCAcxNjWOaDQKuVxOFjX3jTeib6YWws6rUA8ooLCeR+90LbrsMthGLJiNUQjOhpBOp9He3v4TUFuk+1VvBbjz7gTqTYeh0WhAh//wIITmI2hxcNH/qhuZTAZra2tYWVmBUqnMA4alDY0mLq40nUFzl2BrSFYGuK2sQ13bRVT2H0CruQq+yTF8Ti4wiEqlIguOX/Py0PbO+aF/6Sn1Xoj0JzERmEQivYj19XUQBFFwBV7Ni6M4frMUFYLSbaiiupxZc3vYIMxi5nFtbm5iY2OjEKDTZrwROz2wC5XPS/JmsBsXtCXgP9sHo0eP5FIKyUyKQYoA+hSywbOoH2LjMlGGaz1laDKyIRoqx+P33ch9/1ZwtSKAzl1L8zHVsNBCOM6h110B4k31svjRdbK1U07SDfnF5/OfsP5HfgDfdd6yffhrPAAAAABJRU5ErkJggg==&quot;) no-repeat scroll 0px 0px transparent;"
+																						border="0"> Other assets, documentation
+																				</div>
+																			</div>
+																			<div
+																				style="padding: 3px 3px 3px 23px; margin-left: 16px;">
+																				<div id="gwt-uid-77" role="treeitem"
+																					class="gwt-TreeItem" style="display: inline;">
+																					<img onload='this.__gwtLastUnhandledEvent="load";'
+																						src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																						style="width: 16px; height: 16px; background: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA40lEQVR42mNgwAOOd5v/h2EGUsHmArX/yADEJ1rz4Vaz/79ezvv/9cH0/++u9P5/erzp/73dFf9B4iBM2PYS3f//v57BikFyBA1YkaX+//+rzUC86f//15sQbCAGyRE0YG6C4v//d/pR8W0IDZIjKhzWl+r/x4ZJjg3v7Pn/j155QbpGGHCKbyfeAJBiRyB2guE4JDYWMazOJdYLGGpBAl5Zc/+7p8/+75oy8z9MDMRHF0NXBzfg58+vYIysmBgxuAEHts0DY9eUGf9JEYMb4Jk1779Hxuz/Lki2gfjoYujqKAIAbJo3/7jtyu8AAAAASUVORK5CYII=&quot;) no-repeat scroll 0px 0px transparent;"
+																						border="0"> WorkingSets
+																				</div>
+																			</div>
+																			<div
+																				style="padding: 3px 3px 3px 23px; margin-left: 16px;">
+																				<div id="gwt-uid-78" role="treeitem"
+																					class="gwt-TreeItem" style="display: inline;">
+																					<img onload='this.__gwtLastUnhandledEvent="load";'
+																						src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																						style="width: 16px; height: 16px; background: url(&quot;data:image/gif;base64,R0lGODlhEAAQALMAAACAAD+fPz9fP5/fn5+/n3+/P39/X5+ff7+/n9/fv////4CAgF9fX////wAAAAAAACH5BAEAAA0ALAAAAAAQABAAAARPsMlJ6zw4ay2P+mD4GZ1oKmTjnWGKsC0BAIMyzHWyLAkKFAGB4hdULD4MXwAgBCyFR0XSQBAIagNrjsHouWCg1AosBo9KZrFhzW6zLfBJBAA7&quot;) no-repeat scroll 0px 0px transparent;"
+																						border="0"> SpringContext
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div style="padding: 0px; margin-left: 0px;">
+																<table style="white-space: nowrap;">
+																	<tbody>
+																		<tr>
+																			<td style="vertical-align: middle;"><img
+																				onload='this.__gwtLastUnhandledEvent="load";'
+																				src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																				style="width: 16px; height: 16px; background: url(&quot;data:image/gif;base64,R0lGODlhEAAQAIQaAFhorldnrquz1mFxsvz9/vr6/M3Q2ZGbw5mixvb3+Gp5t2Nys77F4GRzs9ze4mt6uGV1s8/R2VZnrl5usFdortPV2/P09+3u8eXm6lZnrf///wAAzP///////////////yH5BAEAAB8ALAAAAAAQABAAAAVE4CeOZGmeaKquo5K974MuTKHdhDCcgOVvvoTkRLkYN8bL0ETBbJ5PTIaIqW6q0lPAYcVOTRNEpEI2HCYoCOzVYLnf7hAAOw==&quot;) no-repeat scroll 0px 0px transparent;"
+																				border="0">
+																			</td>
+																			<td style="vertical-align: middle;"><div
+																					id="gwt-uid-79" role="treeitem"
+																					class="gwt-TreeItem" style="display: inline;">
+																					<img onload='this.__gwtLastUnhandledEvent="load";'
+																						src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																						style="width: 16px; height: 16px; background: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABZElEQVR42sWQvUsCcRzG708xlQskyElaRAikhl4UEyXzJbxBogNpcUmlc0jQbOgFDJeswOJST67jLu2yF6IomwKtrbaEwqH9CYVuaVEofMYPz+/z8PsSxH9lq/qFxGkL0VITwdwbehYkpBbunlq4rH3Cl2n0LggX31G9/4B41YR17bF3Ab3/Cm+6DkuyhtHINYi+RBAEcBzX3bosy6hUKpAkCTzPg2VZZLNZpNNppFIpMAyDUCgEmqZBUdRvqSiKXf/T7Xb/4U2CF37Q5z4snHkQKLsUs/dkBk5uEpajMYzvmRSuXx+CLj4IMqYBuaIGsSh7wb2wKDwfwi86lKKjOIHthxSStzGYMiMK162SmC3Y4MxboY0OgAiU55Bv5MDWD9Be/SlO5cyI30SxXF2CYVOvcJJRw3FsgZ2dhiasAkGJTswLdnh4G1wli1I07xph3DHAsKHHcFKn8PaqNqLqPO4I+p5v6HnMHZVqoyAAAAAASUVORK5CYII=&quot;) no-repeat scroll 0px 0px transparent;"
+																						border="0"> Global Area
+																				</div>
+																			</td>
+																		</tr>
+																	</tbody>
+																</table>
+																<div style="white-space: nowrap; display: none;">
+																	<div
+																		style="padding: 3px 3px 3px 23px; margin-left: 16px;">
+																		<div id="gwt-uid-80" role="treeitem"
+																			class="gwt-TreeItem" style="display: inline;">
+																			<img onload='this.__gwtLastUnhandledEvent="load";'
+																				src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																				style="width: 16px; height: 16px; background: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABKUlEQVR42p3TwSsEURwH8Pl7XKVc5D5lNa2LPSClJG7WtrG7CVs70hBZbUqtRFhFWSd7cXFx4kV5O4xpZ+y25V3U3r5+r8hx35tvfY+f73v1eobRJVcnScgaUSKhEHcIWjVcHKWgjTvfhJs1cL+qN/CHxZfE1+BeRX3gH98ibFYJn8POWerYzgxSBxB+ypNPYS/24YXvIZ0vdR/ZWouBuTdg9UuC/b94F9zdgPe2ojZydpgG48colyw8v+4QXie8jMBPoe3PqY2UD7KEt8HrBcI5hB9JwrMQwaTagEyxmIfnZhG8z6PdmCE8gYf7YSys7qs/Z2HTITwN0RgnHIM5uqSBHQfmSC/BOHVIE9PJndYUdQxmvEcPy0jAnhJgjxbkTSJ9JDkSGevkBzqb+oYTpvlGAAAAAElFTkSuQmCC&quot;) no-repeat scroll 0px 0px transparent;"
+																				border="0"> Business rule assets
+																		</div>
+																	</div>
+																	<div
+																		style="padding: 3px 3px 3px 23px; margin-left: 16px;">
+																		<div id="gwt-uid-81" role="treeitem"
+																			class="gwt-TreeItem" style="display: inline;">
+																			<img onload='this.__gwtLastUnhandledEvent="load";'
+																				src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																				style="width: 16px; height: 16px; background: url(&quot;data:image/gif;base64,R0lGODlhEAAQALMAAOPr+E9QT/////f397Ozs6+vr3l5eWdnZ0lJSf///wAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAAkALAAAAAAQABAAAARMMMlJq60mmEvRCUBwIFxyAEIKHFwmFEghaBcoIAMihFO2uTAZzQMSEU6pHcuEUh2OxVECGJv9aBIbTsezUIWbC9JZIoakpSk2zZ5EAAA7&quot;) no-repeat scroll 0px 0px transparent;"
+																				border="0"> Technical rule assets
+																		</div>
+																	</div>
+																	<div
+																		style="padding: 3px 3px 3px 23px; margin-left: 16px;">
+																		<div id="gwt-uid-82" role="treeitem"
+																			class="gwt-TreeItem" style="display: inline;">
+																			<img onload='this.__gwtLastUnhandledEvent="load";'
+																				src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																				style="width: 16px; height: 16px; background: url(&quot;data:image/gif;base64,R0lGODlhEAAQAKIAADNMb4uYqp2msmV8mf///wAAAAAAAAAAACH5BAEAAAQALAAAAAAQABAAAAMxSLrc/jCyABoIjuJ526gdRQCDVVJC941ASyqasjIvqoLuGoIlty2xhoj2kxiPyOQjAQA7&quot;) no-repeat scroll 0px 0px transparent;"
+																				border="0"> Functions
+																		</div>
+																	</div>
+																	<div
+																		style="padding: 3px 3px 3px 23px; margin-left: 16px;">
+																		<div id="gwt-uid-83" role="treeitem"
+																			class="gwt-TreeItem" style="display: inline;">
+																			<img onload='this.__gwtLastUnhandledEvent="load";'
+																				src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																				style="width: 16px; height: 16px; background: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAq0lEQVR42mNgoBXo6Gr9D8Mka4Kx3717g8LHaxhMw4ED+8AKFy1e8P/y9fNgGsQHiSMbiNUAkCKQJlwYZjheV4AU7ti1Baiw5f/0mZPB9N79O8HieG1HdjZIU2FxPlhxembq/87udhTvYBgE8z/MqSCbkeVBfJgc1nBAd0Fvf9f//ok9YEXllaVgF+F1AbpLQGEAMgQWBsdPHcYfBlSJBYrTAcUpkSp5YUAAADJjWMJY31djAAAAAElFTkSuQmCC&quot;) no-repeat scroll 0px 0px transparent;"
+																				border="0"> DSL configurations
+																		</div>
+																	</div>
+																	<div
+																		style="padding: 3px 3px 3px 23px; margin-left: 16px;">
+																		<div id="gwt-uid-84" role="treeitem"
+																			class="gwt-TreeItem" style="display: inline;">
+																			<img onload='this.__gwtLastUnhandledEvent="load";'
+																				src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																				style="width: 16px; height: 16px; background: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABkUlEQVR42q1TTUsCURR106aVi6hFKyGCNv2F2iW4admiRQW1LGhV4KLIRViLQKTCFn1C7ZQopk8wJArFzEClsPxMw6aYTJ3x6zT3EYKN6cYHhzv3nnvPnPfmjUrV7OXmpnC62v0viK8rQE3l0ifKUgSl9B2K/AmKiR0UwisoBBeYSEMHNqMGVhksLmkqOT03dPAc4zFr5vCcSEPISMjn83IUWc7qMv/vsMPzguU9ByKpLFJCDumsiJwkyVFiOdWJp76aAluHTuyf+xB7z+LjS5T370PoSI+cKLGc6sRTX00Bw8YZLt3RXwciQptqhtcrE8vDcp146queHOcwsXaFYcstBre96N97BNUCi2pEd1uZSJzPIZjMwPXEY9JorRboGNCjFi5cASZCAu9OE/zxb9yHBIzOHSi30GsewV/0rI/BM6NG0tLOhLxhAdf+N6UDWi1zWvxFp0FXcUGgs6BccQb26T7UA7kggRs5cna78iscD3XhwairCeLorTRMIBeKe2DVtqEe5tdsFQG6F039e38AzAW8kIQGAhAAAAAASUVORK5CYII=&quot;) no-repeat scroll 0px 0px transparent;"
+																				border="0"> Model
+																		</div>
+																	</div>
+																	<div
+																		style="padding: 3px 3px 3px 23px; margin-left: 16px;">
+																		<div id="gwt-uid-85" role="treeitem"
+																			class="gwt-TreeItem" style="display: inline;">
+																			<img onload='this.__gwtLastUnhandledEvent="load";'
+																				src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																				style="width: 16px; height: 16px; background: url(&quot;data:image/gif;base64,R0lGODlhEAAQAKIAADdcpTeCxVylxaXFxf///wAAAAAAAAAAACH5BAEAAAQALAAAAAAQABAAAAM+SLocwbAB8KKc1KoAxPTVVmUTwS1ctkzDNYVYa3afigEtCcxKja8/IMGz67GEQwHwqDESZZoSsUkoJalYRQIAOw==&quot;) no-repeat scroll 0px 0px transparent;"
+																				border="0"> Processes
+																		</div>
+																	</div>
+																	<div
+																		style="padding: 3px 3px 3px 23px; margin-left: 16px;">
+																		<div id="gwt-uid-86" role="treeitem"
+																			class="gwt-TreeItem" style="display: inline;">
+																			<img onload='this.__gwtLastUnhandledEvent="load";'
+																				src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																				style="width: 16px; height: 16px; background: url(&quot;data:image/gif;base64,R0lGODlhEAAQALMAAACAAD+fPz9fP5/fn5+/n3+/P39/X5+ff7+/n9/fv////4CAgF9fX////wAAAAAAACH5BAEAAA0ALAAAAAAQABAAAARPsMlJ6zw4ay2P+mD4GZ1oKmTjnWGKsC0BAIMyzHWyLAkKFAGB4hdULD4MXwAgBCyFR0XSQBAIagNrjsHouWCg1AosBo9KZrFhzW6zLfBJBAA7&quot;) no-repeat scroll 0px 0px transparent;"
+																				border="0"> Enumerations
+																		</div>
+																	</div>
+																	<div
+																		style="padding: 3px 3px 3px 23px; margin-left: 16px;">
+																		<div id="gwt-uid-87" role="treeitem"
+																			class="gwt-TreeItem" style="display: inline;">
+																			<img onload='this.__gwtLastUnhandledEvent="load";'
+																				src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																				style="width: 16px; height: 16px; background: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA8ElEQVR42mNgQALiRrH/iaGxgk1dBv+3X3ry/9+//2D6z38I/fMvhP72B0KD1GE1YH2n4X+7ouX//wINANG/oPSPvxD6yx8IDVKH1YA17UZgzYTw3XNrsRuwstX4/x+gAkL4+vXr/2t2V/03rI9CNWhJs8n/n0AFhDBMM4hGMWBBoyn5mkFgTj3EgPsvfsAVEa0ZBKbVmMMNQFaMrhkUBlgNmFRlCbcN2ZDglRlwzSBxnLHQW26J4mSQYphmEA3ig8RB6rAaUFdoixFoMENgmkEYpI5oA2CGIPNJNgAd4zQABGqBkiBcVwDFhZiYgdoAAORqC915IDZbAAAAAElFTkSuQmCC&quot;) no-repeat scroll 0px 0px transparent;"
+																				border="0"> Test Scenarios
+																		</div>
+																	</div>
+																	<div
+																		style="padding: 3px 3px 3px 23px; margin-left: 16px;">
+																		<div id="gwt-uid-88" role="treeitem"
+																			class="gwt-TreeItem" style="display: inline;">
+																			<img onload='this.__gwtLastUnhandledEvent="load";'
+																				src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																				style="width: 16px; height: 16px; background: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACaElEQVR42q3SXUhTYRgH8IFX7SK6CRQS6iaICrrKQawGEfSB60PLrOlsm7aZm4qO7QRqiUQk1kUxFl0EYwORfVqwWuRpu3FtU6durnncZrnNMcckbGiI/vOcC9uafVz0h+fihfP83vd9zsti/RIej7eHw+HwdirWv4T+UKfTwel0wuFwwGazwWAwQKvV4pZYQtIb/BVwu93I5XLIZrNIJBIIh8NwuVwYdX+EUNgw8UeEBrxeL9KZJcxQIfiDk/BPb5Xfj9XVVQbp6FD+HqEBn8+H7NdlRL7E8CkSRnhuFsFAAPF4HBRFwWq1QSQSW3YEqmSVl0zkIEZCdozPeRCdjyKZWgQVmYPH58EHl5OZj0QiIYua1TbpvQejLdDMy6FdUOAppcB9exsMr/WYCgUQCAcxNjWOaDQKuVxOFjX3jTeib6YWws6rUA8ooLCeR+90LbrsMthGLJiNUQjOhpBOp9He3v4TUFuk+1VvBbjz7gTqTYeh0WhAh//wIITmI2hxcNH/qhuZTAZra2tYWVmBUqnMA4alDY0mLq40nUFzl2BrSFYGuK2sQ13bRVT2H0CruQq+yTF8Ti4wiEqlIguOX/Py0PbO+aF/6Sn1Xoj0JzERmEQivYj19XUQBFFwBV7Ni6M4frMUFYLSbaiiupxZc3vYIMxi5nFtbm5iY2OjEKDTZrwROz2wC5XPS/JmsBsXtCXgP9sHo0eP5FIKyUyKQYoA+hSywbOoH2LjMlGGaz1laDKyIRoqx+P33ch9/1ZwtSKAzl1L8zHVsNBCOM6h110B4k31svjRdbK1U07SDfnF5/OfsP5HfgDfdd6yffhrPAAAAABJRU5ErkJggg==&quot;) no-repeat scroll 0px 0px transparent;"
+																				border="0"> XML, Properties
+																		</div>
+																	</div>
+																	<div
+																		style="padding: 3px 3px 3px 23px; margin-left: 16px;">
+																		<div id="gwt-uid-89" role="treeitem"
+																			class="gwt-TreeItem" style="display: inline;">
+																			<img onload='this.__gwtLastUnhandledEvent="load";'
+																				src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																				style="width: 16px; height: 16px; background: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACaElEQVR42q3SXUhTYRgH8IFX7SK6CRQS6iaICrrKQawGEfSB60PLrOlsm7aZm4qO7QRqiUQk1kUxFl0EYwORfVqwWuRpu3FtU6durnncZrnNMcckbGiI/vOcC9uafVz0h+fihfP83vd9zsti/RIej7eHw+HwdirWv4T+UKfTwel0wuFwwGazwWAwQKvV4pZYQtIb/BVwu93I5XLIZrNIJBIIh8NwuVwYdX+EUNgw8UeEBrxeL9KZJcxQIfiDk/BPb5Xfj9XVVQbp6FD+HqEBn8+H7NdlRL7E8CkSRnhuFsFAAPF4HBRFwWq1QSQSW3YEqmSVl0zkIEZCdozPeRCdjyKZWgQVmYPH58EHl5OZj0QiIYua1TbpvQejLdDMy6FdUOAppcB9exsMr/WYCgUQCAcxNjWOaDQKuVxOFjX3jTeib6YWws6rUA8ooLCeR+90LbrsMthGLJiNUQjOhpBOp9He3v4TUFuk+1VvBbjz7gTqTYeh0WhAh//wIITmI2hxcNH/qhuZTAZra2tYWVmBUqnMA4alDY0mLq40nUFzl2BrSFYGuK2sQ13bRVT2H0CruQq+yTF8Ti4wiEqlIguOX/Py0PbO+aF/6Sn1Xoj0JzERmEQivYj19XUQBFFwBV7Ni6M4frMUFYLSbaiiupxZc3vYIMxi5nFtbm5iY2OjEKDTZrwROz2wC5XPS/JmsBsXtCXgP9sHo0eP5FIKyUyKQYoA+hSywbOoH2LjMlGGaz1laDKyIRoqx+P33ch9/1ZwtSKAzl1L8zHVsNBCOM6h110B4k31svjRdbK1U07SDfnF5/OfsP5HfgDfdd6yffhrPAAAAABJRU5ErkJggg==&quot;) no-repeat scroll 0px 0px transparent;"
+																				border="0"> Other assets, documentation
+																		</div>
+																	</div>
+																	<div
+																		style="padding: 3px 3px 3px 23px; margin-left: 16px;">
+																		<div id="gwt-uid-90" role="treeitem"
+																			class="gwt-TreeItem" style="display: inline;">
+																			<img onload='this.__gwtLastUnhandledEvent="load";'
+																				src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																				style="width: 16px; height: 16px; background: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA40lEQVR42mNgwAOOd5v/h2EGUsHmArX/yADEJ1rz4Vaz/79ezvv/9cH0/++u9P5/erzp/73dFf9B4iBM2PYS3f//v57BikFyBA1YkaX+//+rzUC86f//15sQbCAGyRE0YG6C4v//d/pR8W0IDZIjKhzWl+r/x4ZJjg3v7Pn/j155QbpGGHCKbyfeAJBiRyB2guE4JDYWMazOJdYLGGpBAl5Zc/+7p8/+75oy8z9MDMRHF0NXBzfg58+vYIysmBgxuAEHts0DY9eUGf9JEYMb4Jk1779Hxuz/Lki2gfjoYujqKAIAbJo3/7jtyu8AAAAASUVORK5CYII=&quot;) no-repeat scroll 0px 0px transparent;"
+																				border="0"> WorkingSets
+																		</div>
+																	</div>
+																	<div
+																		style="padding: 3px 3px 3px 23px; margin-left: 16px;">
+																		<div id="gwt-uid-91" role="treeitem"
+																			class="gwt-TreeItem" style="display: inline;">
+																			<img onload='this.__gwtLastUnhandledEvent="load";'
+																				src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																				style="width: 16px; height: 16px; background: url(&quot;data:image/gif;base64,R0lGODlhEAAQALMAAACAAD+fPz9fP5/fn5+/n3+/P39/X5+ff7+/n9/fv////4CAgF9fX////wAAAAAAACH5BAEAAA0ALAAAAAAQABAAAARPsMlJ6zw4ay2P+mD4GZ1oKmTjnWGKsC0BAIMyzHWyLAkKFAGB4hdULD4MXwAgBCyFR0XSQBAIagNrjsHouWCg1AosBo9KZrFhzW6zLfBJBAA7&quot;) no-repeat scroll 0px 0px transparent;"
+																				border="0"> SpringContext
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div
+										style="position: absolute; overflow: hidden; left: 0px; right: 0px; bottom: 6em; height: 2em;">
+										<div
+											style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px;"
+											class="gwt-HTML gwt-StackLayoutPanelHeader">
+											<table cellpadding="0" cellspacing="0">
+												<tbody>
+													<tr>
+														<td style="vertical-align: top;" align="left"><img
+															onload='this.__gwtLastUnhandledEvent="load";'
+															src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+															style="width: 16px; height: 16px; background: url(&quot;data:image/gif;base64,R0lGODlhEAAQAMQAAPnxu+3RpuXJob+CMcWDMtu/nsF6Lde5mL91KsF3K9e4l7dtKLtxKs6ri6lgI5NVH65jJaVcIqBZIaJZIseggnE8F55wWHlPQP///wAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAABgALAAAAAAQABAAAAVgICaOZGmeKFml2GC8xgMbQ5kUgtBYuJ6UCAEgoLAIiYgSQxAIHIzNA6O0aCgOlIsVu1A9LOCLGGx5rEaQXuOihpQcx2LcUYownVBnpDTZUix+EyUEEoUSD4YSBCxnLI4hADs=&quot;) no-repeat scroll 0px 0px transparent;"
+															border="0">
+														</td>
+														<td style="vertical-align: top;" align="left"><div
+																class="gwt-Label">Knowledge Bases</div>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+									<div
+										style="position: absolute; overflow: hidden; left: 0px; right: 0px; bottom: 4em; height: 0em;">
+										<div class="gwt-StackLayoutPanelContent"
+											style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px;">
+											<div
+												style="position: absolute; z-index: -32767; top: -20ex; width: 10em; height: 10ex;">&nbsp;</div>
+											<div
+												style="position: absolute; overflow: hidden; left: 0em; top: 0em; right: 0em; bottom: 0em;">
+												<div
+													style="overflow: auto; position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px;">
+													<div style="position: relative;">
+														<div role="tree" class="guvnor-Tree"
+															style="position: relative;">
+															<div role="treeitem" hidefocus="true"
+																style="font-size: 0pt; position: absolute; outline: 0px none; z-index: -1;"
+																tabindex="0">
+																<input
+																	style="opacity: 0; height: 1px; width: 1px; z-index: -1; overflow: hidden; position: absolute;"
+																	tabindex="-1" type="text">
+															</div>
+															<div style="padding: 0px; margin-left: 0px;">
+																<table style="white-space: nowrap;">
+																	<tbody>
+																		<tr>
+																			<td style="vertical-align: middle;"><img
+																				onload='this.__gwtLastUnhandledEvent="load";'
+																				src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																				style="width: 16px; height: 16px; background: url(&quot;data:image/gif;base64,R0lGODlhEAAQAIQaAFhorldnrquz1mFxsvz9/vr6/M3Q2ZGbw5mixvb3+Gp5t2Nys77F4GRzs9ze4mt6uGV1s8/R2VZnrl5usFdortPV2/P09+3u8eXm6lZnrf///wAAzP///////////////yH5BAEAAB8ALAAAAAAQABAAAAVE4CeOZGmeaKquo5K974MuTKHdhDCcgOVvvoTkRLkYN8bL0ETBbJ5PTIaIqW6q0lPAYcVOTRNEpEI2HCYoCOzVYLnf7hAAOw==&quot;) no-repeat scroll 0px 0px transparent;"
+																				border="0">
+																			</td>
+																			<td style="vertical-align: middle;"><div
+																					id="gwt-uid-36" role="treeitem"
+																					class="gwt-TreeItem" style="display: inline;">
+																					<img onload='this.__gwtLastUnhandledEvent="load";'
+																						src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																						style="width: 16px; height: 16px; background: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA8ElEQVR42mNgQALiRrH/iaGxgk1dBv+3X3ry/9+//2D6z38I/fMvhP72B0KD1GE1YH2n4X+7ouX//wINANG/oPSPvxD6yx8IDVKH1YA17UZgzYTw3XNrsRuwstX4/x+gAkL4+vXr/2t2V/03rI9CNWhJs8n/n0AFhDBMM4hGMWBBoyn5mkFgTj3EgPsvfsAVEa0ZBKbVmMMNQFaMrhkUBlgNmFRlCbcN2ZDglRlwzSBxnLHQW26J4mSQYphmEA3ig8RB6rAaUFdoixFoMENgmkEYpI5oA2CGIPNJNgAd4zQABGqBkiBcVwDFhZiYgdoAAORqC915IDZbAAAAAElFTkSuQmCC&quot;) no-repeat scroll 0px 0px transparent;"
+																						border="0"> Test Scenarios in packages
+																				</div>
+																			</td>
+																		</tr>
+																	</tbody>
+																</table>
+																<div style="white-space: nowrap; display: none;">
+																	<div
+																		style="padding: 3px 3px 3px 23px; margin-left: 16px;">
+																		<div id="gwt-uid-37" role="treeitem"
+																			class="gwt-TreeItem" style="display: inline;">Please
+																			wait...</div>
+																	</div>
+																</div>
+															</div>
+															<div style="padding: 0px; margin-left: 0px;">
+																<table style="white-space: nowrap;">
+																	<tbody>
+																		<tr>
+																			<td style="vertical-align: middle;"><img
+																				onload='this.__gwtLastUnhandledEvent="load";'
+																				src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																				style="width: 16px; height: 16px; background: url(&quot;data:image/gif;base64,R0lGODlhEAAQAIQaAFhorldnrquz1mFxsvz9/vr6/M3Q2ZGbw5mixvb3+Gp5t2Nys77F4GRzs9ze4mt6uGV1s8/R2VZnrl5usFdortPV2/P09+3u8eXm6lZnrf///wAAzP///////////////yH5BAEAAB8ALAAAAAAQABAAAAVE4CeOZGmeaKquo5K974MuTKHdhDCcgOVvvoTkRLkYN8bL0ETBbJ5PTIaIqW6q0lPAYcVOTRNEpEI2HCYoCOzVYLnf7hAAOw==&quot;) no-repeat scroll 0px 0px transparent;"
+																				border="0">
+																			</td>
+																			<td style="vertical-align: middle;"><div
+																					id="gwt-uid-38" role="treeitem"
+																					class="gwt-TreeItem" style="display: inline;">
+																					<img onload='this.__gwtLastUnhandledEvent="load";'
+																						src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																						style="width: 16px; height: 16px; background: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABhklEQVR42q2Sy0sCURjF/a9atSsIi/a2K4jQwFxEhVBE0YMYITIwEMnogbaoEQQlqMbEfKQQhZWaZo2CCtomyFp48rs2YjiaQQfOYubO73zn3jsKxbcMu2GMLrqYFX/VijUIdzCGDf4GepMHw3MnsiGvx13gFlTg17TMucB87bslcwj3j0/gLxOYMfmgVG9DDi44hlAuu5kFQWAhbHF2y4dwMgtnMIV+tQWqqSO0grsndvCZ3WOuB5CmqyEDGisGtfaO4PcHjm2HfTRpvECmWMB1sgj/bb7awswW0gHhR+1GmN5TuEK37oFYKiCTy+M0/AyL+w7GwxCUmn2IES+r2RImjXPnyJaKiKbjcATiWLZdYZOPonfsAGlRZIdFVWVhknr1DOHUCxLxNHh/DJwtUr1KL3pGrCzA5RRgt9lZSBPcKKormUDJBEsBLWHptCtvBlQ+gmzfNFmaTtbr+jqDgQpINFGC2wY0wzXTsxTSdjr9z3IwhVJAW5gF5Kz12o0wXdmv8H/oCzP78oxN4DauAAAAAElFTkSuQmCC&quot;) no-repeat scroll 0px 0px transparent;"
+																						border="0"> Analysis
+																				</div>
+																			</td>
+																		</tr>
+																	</tbody>
+																</table>
+																<div style="white-space: nowrap; display: none;">
+																	<div
+																		style="padding: 3px 3px 3px 23px; margin-left: 16px;">
+																		<div id="gwt-uid-39" role="treeitem"
+																			class="gwt-TreeItem" style="display: inline;">Please
+																			wait...</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div
+										style="position: absolute; overflow: hidden; left: 0px; right: 0px; bottom: 4em; height: 2em;">
+										<div
+											style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px;"
+											class="gwt-HTML gwt-StackLayoutPanelHeader">
+											<table cellpadding="0" cellspacing="0">
+												<tbody>
+													<tr>
+														<td style="vertical-align: top;" align="left"><img
+															onload='this.__gwtLastUnhandledEvent="load";'
+															src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+															style="width: 16px; height: 16px; background: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABhklEQVR42q2Sy0sCURjF/a9atSsIi/a2K4jQwFxEhVBE0YMYITIwEMnogbaoEQQlqMbEfKQQhZWaZo2CCtomyFp48rs2YjiaQQfOYubO73zn3jsKxbcMu2GMLrqYFX/VijUIdzCGDf4GepMHw3MnsiGvx13gFlTg17TMucB87bslcwj3j0/gLxOYMfmgVG9DDi44hlAuu5kFQWAhbHF2y4dwMgtnMIV+tQWqqSO0grsndvCZ3WOuB5CmqyEDGisGtfaO4PcHjm2HfTRpvECmWMB1sgj/bb7awswW0gHhR+1GmN5TuEK37oFYKiCTy+M0/AyL+w7GwxCUmn2IES+r2RImjXPnyJaKiKbjcATiWLZdYZOPonfsAGlRZIdFVWVhknr1DOHUCxLxNHh/DJwtUr1KL3pGrCzA5RRgt9lZSBPcKKormUDJBEsBLWHptCtvBlQ+gmzfNFmaTtbr+jqDgQpINFGC2wY0wzXTsxTSdjr9z3IwhVJAW5gF5Kz12o0wXdmv8H/oCzP78oxN4DauAAAAAElFTkSuQmCC&quot;) no-repeat scroll 0px 0px transparent;"
+															border="0">
+														</td>
+														<td style="vertical-align: top;" align="left"><div
+																class="gwt-Label">QA</div>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+									<div
+										style="position: absolute; overflow: hidden; left: 0px; right: 0px; bottom: 2em; height: 0em;">
+										<div class="gwt-StackLayoutPanelContent"
+											style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px;">
+											<div
+												style="position: absolute; z-index: -32767; top: -20ex; width: 10em; height: 10ex;">&nbsp;</div>
+											<div
+												style="position: absolute; overflow: hidden; left: 0em; top: 0em; right: 0em; height: 2em;">
+												<div hidefocus="true"
+													style="outline: 0px none; position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px;"
+													class="gwt-MenuBar gwt-MenuBar-vertical" role="menubar"
+													tabindex="0">
+													<input
+														style="opacity: 0; height: 1px; width: 1px; z-index: -1; overflow: hidden; position: absolute;"
+														tabindex="-1" type="text">
+													<table>
+														<tbody>
+															<tr>
+																<td colspan="1" aria-haspopup="true" role="menuitem"
+																	id="gwt-uid-44" class="gwt-MenuItem">Create New</td>
+																<td class="subMenuIcon" valign="middle"><img
+																	onload='this.__gwtLastUnhandledEvent="load";'
+																	src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																	style="width: 5px; height: 9px; background: url(&quot;data:image/gif;base64,R0lGODlhBQAJAIAAAAAAAAAAACH5BAEAAAEALAAAAAAFAAkAAAIMRB5gp9v2YlJsJRQKADs=&quot;) no-repeat scroll 0px 0px transparent;"
+																	border="0">
+																</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+											<div
+												style="position: absolute; overflow: hidden; left: 0em; top: 2em; right: 0em; bottom: 0em;">
+												<div
+													style="overflow: auto; position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px;">
+													<div style="position: relative;">
+														<div role="tree" class="guvnor-Tree"
+															style="position: relative;">
+															<div role="treeitem" hidefocus="true"
+																style="font-size: 0pt; position: absolute; outline: 0px none; z-index: -1;"
+																tabindex="0">
+																<input
+																	style="opacity: 0; height: 1px; width: 1px; z-index: -1; overflow: hidden; position: absolute;"
+																	tabindex="-1" type="text">
+															</div>
+															<div style="padding: 0px; margin-left: 0px;">
+																<table style="white-space: nowrap;">
+																	<tbody>
+																		<tr>
+																			<td style="vertical-align: middle;"><img
+																				onload='this.__gwtLastUnhandledEvent="load";'
+																				src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																				style="width: 16px; height: 16px; background: url(&quot;data:image/gif;base64,R0lGODlhEAAQAIQaAFhorldnrquz1mFxsvz9/vr6/M3Q2ZGbw5mixvb3+Gp5t2Nys77F4GRzs9ze4mt6uGV1s8/R2VZnrl5usFdortPV2/P09+3u8eXm6lZnrf///wAAzP///////////////yH5BAEAAB8ALAAAAAAQABAAAAVE4CeOZGmeaKquo5K974MuTKHdhDCcgOVvvoTkRLkYN8bL0ETBbJ5PTIaIqW6q0lPAYcVOTRNEpEI2HCYoCOzVYLnf7hAAOw==&quot;) no-repeat scroll 0px 0px transparent;"
+																				border="0">
+																			</td>
+																			<td style="vertical-align: middle;"><div
+																					id="gwt-uid-41" role="treeitem"
+																					class="gwt-TreeItem" style="display: inline;">
+																					<img onload='this.__gwtLastUnhandledEvent="load";'
+																						src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																						style="width: 16px; height: 16px; background: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABZElEQVR42sWQvUsCcRzG708xlQskyElaRAikhl4UEyXzJbxBogNpcUmlc0jQbOgFDJeswOJST67jLu2yF6IomwKtrbaEwqH9CYVuaVEofMYPz+/z8PsSxH9lq/qFxGkL0VITwdwbehYkpBbunlq4rH3Cl2n0LggX31G9/4B41YR17bF3Ab3/Cm+6DkuyhtHINYi+RBAEcBzX3bosy6hUKpAkCTzPg2VZZLNZpNNppFIpMAyDUCgEmqZBUdRvqSiKXf/T7Xb/4U2CF37Q5z4snHkQKLsUs/dkBk5uEpajMYzvmRSuXx+CLj4IMqYBuaIGsSh7wb2wKDwfwi86lKKjOIHthxSStzGYMiMK162SmC3Y4MxboY0OgAiU55Bv5MDWD9Be/SlO5cyI30SxXF2CYVOvcJJRw3FsgZ2dhiasAkGJTswLdnh4G1wli1I07xph3DHAsKHHcFKn8PaqNqLqPO4I+p5v6HnMHZVqoyAAAAAASUVORK5CYII=&quot;) no-repeat scroll 0px 0px transparent;"
+																						border="0"> Package snapshots
+																				</div>
+																			</td>
+																		</tr>
+																	</tbody>
+																</table>
+																<div style="white-space: nowrap; display: none;">
+																	<div style="padding: 0px; margin-left: 16px;">
+																		<table style="white-space: nowrap;">
+																			<tbody>
+																				<tr>
+																					<td style="vertical-align: middle;"><img
+																						onload='this.__gwtLastUnhandledEvent="load";'
+																						src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																						style="width: 16px; height: 16px; background: url(&quot;data:image/gif;base64,R0lGODlhEAAQAIQaAFhorldnrquz1mFxsvz9/vr6/M3Q2ZGbw5mixvb3+Gp5t2Nys77F4GRzs9ze4mt6uGV1s8/R2VZnrl5usFdortPV2/P09+3u8eXm6lZnrf///wAAzP///////////////yH5BAEAAB8ALAAAAAAQABAAAAVE4CeOZGmeaKquo5K974MuTKHdhDCcgOVvvoTkRLkYN8bL0ETBbJ5PTIaIqW6q0lPAYcVOTRNEpEI2HCYoCOzVYLnf7hAAOw==&quot;) no-repeat scroll 0px 0px transparent;"
+																						border="0">
+																					</td>
+																					<td style="vertical-align: middle;"><div
+																							id="gwt-uid-64" role="treeitem"
+																							class="gwt-TreeItem" style="display: inline;">
+																							<img
+																								onload='this.__gwtLastUnhandledEvent="load";'
+																								src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																								style="width: 16px; height: 16px; background: url(&quot;data:image/gif;base64,R0lGODlhEAAQANUAAH9/lIiTpcLI0muFquDm7s/U24ivzM/f67nMzZ+/v9nl5dzg38zfzdjZ1eHmyr+/n9/fv/797+vn0v30z/3zz7WRI7WSI7qXJvzno555FqaBGqaCGqWCGq6KH/vdg5l0E/Do1fPo1v///////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAACMALAAAAAAQABAAAAZ9wJFwSCwaj5cjMpJUDiuWiMUyBAhGCEPg0JlMKJRJRygIBB6NQEPB4WA2GmIgFBBACIxCxpMhIh4BIHUieAofRQYNZRIBA4QNB0VmEGUOjQRmiA0LIgONAgQNBkUICQwEnQIiDAkIRlqnBHgBo0ZZCWkNCQauSlm0vU7CI0EAOw==&quot;) no-repeat scroll 0px 0px transparent;"
+																								border="0"> defaultPackage
+																						</div>
+																					</td>
+																				</tr>
+																			</tbody>
+																		</table>
+																		<div style="white-space: nowrap; display: none;">
+																			<div
+																				style="padding: 3px 3px 3px 23px; margin-left: 16px;">
+																				<div id="gwt-uid-65" role="treeitem"
+																					class="gwt-TreeItem" style="display: inline;">Please
+																					wait...</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div
+										style="position: absolute; overflow: hidden; left: 0px; right: 0px; bottom: 2em; height: 2em;">
+										<div
+											style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px;"
+											class="gwt-HTML gwt-StackLayoutPanelHeader">
+											<table cellpadding="0" cellspacing="0">
+												<tbody>
+													<tr>
+														<td style="vertical-align: top;" align="left"><img
+															onload='this.__gwtLastUnhandledEvent="load";'
+															src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+															style="width: 16px; height: 16px; background: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA80lEQVR42mNgoAfY2yL2H4TJ1vzv73vyDNjVKArWDMK7gWwIJtKg7XWi/3++mPL/94ctKPjjreb/O+pECBuyuUr4/8+7Vf9/v5yHgT9eLv6/fYoKYUM2lAr9/3k2/v/ve63/N5QJ/V+PxF9fKvwfJaBwGbKmEKJpNZCG8AXB/DVQPtZoQuevzBP4vyJPEM4HsVcAxXBGFTFRhxIGsOj68mzd/13AaAJhZD7BwNpWK/L/5+NujCiDRRtInqAhmyqwRxtIDCRHVOJZUyz0f02x4P81RULgqPp5Oe3/2iIh0pMwKNRBmlcihTxJYFm2wH8QJkYtACpCCzIX5RycAAAAAElFTkSuQmCC&quot;) no-repeat scroll 0px 0px transparent;"
+															border="0">
+														</td>
+														<td style="vertical-align: top;" align="left"><div
+																class="gwt-Label">Package snapshots</div>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+									<div
+										style="position: absolute; overflow: hidden; left: 0px; right: 0px; bottom: 0em; height: 0em;">
+										<div class="gwt-StackLayoutPanelContent"
+											style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px;">
+											<div
+												style="position: absolute; z-index: -32767; top: -20ex; width: 10em; height: 10ex;">&nbsp;</div>
+											<div
+												style="position: absolute; overflow: hidden; left: 0em; top: 0em; right: 0em; bottom: 0em;">
+												<div
+													style="overflow: auto; position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px;">
+													<div style="position: relative;">
+														<div role="tree" class="guvnor-Tree"
+															style="position: relative;">
+															<div role="treeitem" hidefocus="true"
+																style="font-size: 0pt; position: absolute; outline: 0px none; z-index: -1;"
+																tabindex="0">
+																<input
+																	style="opacity: 0; height: 1px; width: 1px; z-index: -1; overflow: hidden; position: absolute;"
+																	tabindex="-1" type="text">
+															</div>
+															<div style="padding: 3px 3px 3px 23px; margin-left: 0px;">
+																<div id="gwt-uid-46" role="treeitem"
+																	class="gwt-TreeItem" style="display: inline;">
+																	<img onload='this.__gwtLastUnhandledEvent="load";'
+																		src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																		style="width: 16px; height: 16px; background: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA6klEQVR42s2RQQuCMBTH/SQJHaIPWiBlQUFS1LUwtILSIIg6d+grJHrKgjo6m/WaOhTRmUGHBj/e/m9vv8PGcb9c+7UARcgVuA8vl1zBVmt8FGz1BltwPCzAcTHBC0DIoxnTjMGfyby8G1XhGzIFr+e9EJmCjVQB76YRdIoWZZzo6eDPpgTLVhmw1Ywxm8lsidF+RWZTAqVWApUS7nlQ6jzEfT4698l8SHk2B+uKCC6z+jPMb+wMJ2BdHAICk1QzqIjmkO5ozBaI/SkYZyfgdEZg2KTaYTZsFPTaA5ktECQVhB5BYkDPuL9ab32Qy2KfeXhVAAAAAElFTkSuQmCC&quot;) no-repeat scroll 0px 0px transparent;"
+																		border="0"> Category
+																</div>
+															</div>
+															<div style="padding: 3px 3px 3px 23px; margin-left: 0px;">
+																<div id="gwt-uid-47" role="treeitem"
+																	class="gwt-TreeItem" style="display: inline;">
+																	<img onload='this.__gwtLastUnhandledEvent="load";'
+																		src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																		style="width: 16px; height: 16px; background: url(&quot;data:image/gif;base64,R0lGODlhEAAQAMQAAG92hChilkV2oFuFp3GUr6O3v7nGxyaASDmHUkyTY0OSW1WbalWba1aYalueb1OXZ16gcVGVWlSWW2KkY3GucHSwcWupZ2ypaHqoa6HGhv///wAAAAAAAAAAAAAAAAAAACH5BAEAABoALAAAAAAQABAAAAVaoOYokGaepxEMTJVRC4qqw2FN1yGnayJhkcTORNM8EI0hcWUCnEYl3qBpar1iBQIhQGgCADacriDgnpwaH1A4RBuRSo07fn6S4mgrTPkF33J8JmpBgSZHSTshADs=&quot;) no-repeat scroll 0px 0px transparent;"
+																		border="0"> Status
+																</div>
+															</div>
+															<div style="padding: 3px 3px 3px 23px; margin-left: 0px;">
+																<div id="gwt-uid-48" role="treeitem"
+																	class="gwt-TreeItem" style="display: inline;">
+																	<img onload='this.__gwtLastUnhandledEvent="load";'
+																		src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																		style="width: 16px; height: 16px; background: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABjklEQVR42mNgoCZYtvXq/7Sm9RgYJE6U5tTGdf9fv/8Mxu9urv///kz7/4+Hs8HiBA1Jrl/7/9nrj2CFCbVrwDgRiINy5/+3iez7r+PRhN+AJKDiB8/e/4+vWQ1XuHNzz39kjNeAhNrV/289fPs/rmoligE/f/0B41t7a/AbEl+96v/lO6/+x1QshyvasG4SWHNc2eL/D070gw3ZuHYSdkNigRpPX3v+P6psKVzBsuUz/n/48uv/xy+//3/4+htMLweKYTUgqnzZ/yMXn/yPLFkCVzBn4YL/T9/+ALsAhJ+++fl/zoL52A2ILF3yf++ph//DixbDFUyctez/neffUfDE2cuwGxBevOj/1qP3/4cVLIQr6Jy25j8cT0WwsRoQWrjw/9r9d8DpIDhvARDPB9OuiVP+G/u1/ldzqPxPMCUG5y/4v3Tnzf/LQHjXTTg7OH8+Skp0KF/+H6chQbnz/gcDcRAcY2o2LliC2zUBuXP/BwIxNjmYZt6YWdgNAGn0SZ8OxuiGQDQvBmtGNgAAXTlmzjndzVwAAAAASUVORK5CYII=&quot;) no-repeat scroll 0px 0px transparent;"
+																		border="0"> Archive
+																</div>
+															</div>
+															<div style="padding: 3px 3px 3px 23px; margin-left: 0px;">
+																<div id="gwt-uid-49" role="treeitem"
+																	class="gwt-TreeItem" style="display: inline;">
+																	<img onload='this.__gwtLastUnhandledEvent="load";'
+																		src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																		style="width: 16px; height: 16px; background: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACpklEQVR42pVSC0iTURi92/9PTMEkLAwkTLBUqMj3ZA/N1JJkK4eZ26jpNKW00PkgqaQHCGGSJWb5oqXQCMKU7OEcFRaVmu/UnGua05CWWNjDx+mf4aIwsQP3cvnuOYfv3u8QsgzWe5O9XBXrmU8CO983hWxmSizyPxCcYV+I0dGIeUiDf4p6autMXFcsXr2BuIUXsZpkLzmQNNAQnmZXOriQNSs2cPIgQpGGNh3stEFkOQWuihy11LdFkk3CROLHHOllDbhZ7OOi2zTkLRyEXqSmvWWEH5XkFrc708m8I4MCcVimG0dX4hiSz66IfczB/iYO/DNJT0yqT+uturJv2uYGiM87g5dA4hkqe0kDexeyNaKE7j3UY4PQSoIjhbtgNBhx90UFjEYjksv9wVdSVQyVIgEyKjo8a12zPCdAp8jm6xSZAq0kx7MtQk1mpK/YCC0ieNSmgQUf9R2Y7htEfk0SdmbZmhkDDgmS0xnZDyQY0ZtgNpthMplQXH8CvBIC8T0C+XV3vO59jkU80ZWie0CP+MshCJJy/IhlK7h6AOND7xcIc7Mz6G9vws2SVCTkbkFueRzMUxNWg5a8kxju6EOaeg8CpfRZy5M50ec2mnt7G62kqVEDBmor0X+/GqP6dsxiznrX9aYRrV3NUFzZjiAZVWsxoMKS7aq0HYX48fUXafhtK+pKVZgY6sbfMBgMSL8kBk/JGfSXE1+LAUugpPal1IRj3PRhgTRpHsPIu84/hDPf51Cv1UCscmPE7DJGt+r33JhQxBZ6oaHtDj5/+oLJyUnMz89bxaaxUeQVJ0KgsDPylCR4qfnbCZNtNJICL6Rei8IxtRhpN0TMR4mQrpYgOscDTJfV9muJ83LppQVK4smV0qGBMjp4cQXI6DDBYeL+r9T9BPMZkP6HleRGAAAAAElFTkSuQmCC&quot;) no-repeat scroll 0px 0px transparent;"
+																		border="0"> Event Log
+																</div>
+															</div>
+															<div style="padding: 3px 3px 3px 23px; margin-left: 0px;">
+																<div id="gwt-uid-50" role="treeitem"
+																	class="gwt-TreeItem" style="display: inline;">
+																	<img onload='this.__gwtLastUnhandledEvent="load";'
+																		src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																		style="width: 16px; height: 16px; background: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAADCUlEQVR42oXTWUhUYRQHcHvoJUjv1ZdeghIhKyzDoE0sUtFEraZRck8jBXfNxqXUyWVi1HLcckYdTcbUcSsXQqfMQtNQx9ExTdyXMY3EZbSRUOffvfdhqIw6cPhevvP7zrfp6f0R4eYEkWhNnhA4EFbpjsQlni1xMdKSOOluZkDq/S/8LUiDaEsj7zQ7w+4sJ3Ir04kAz47YirpIyn3PGPpeo/B/AvctSafH9mSv8AaJpy4ksqkx3ZlEBdcdC1Mjm8qJGVAxReWtvwI59vrcopsHIQkwQ5HfcWSwD0Ka5IUx1SI8k/MQklmCte8aBQUQVF7aBTy2JeKrYlk7I40CjL1IRnUiG6qxQbC5ubCJ5NGrr6rVKiNqLKFyhYZ+A0RexhHdkgdr6k9NWOoQYlaWCfnoNCxDUxhAOU5vQdvfrhhC/bsu/NEF9sSxz3k3pgVMzLcJoVZUQjMghXpdrQMcOXyw49LhmfAEHf1DNGCuKyaulRCHL/ODOUGR4z2lHKheC6BRDaCxq38X8KS8ni5W6NYmbaoMDjg0uJ71fd/Fl86gQdaCzoZCjMwuwCIwiQESimtQLutAm3wQmh/bnbr9WziJ9h1xLnA+79PWnvJ8HnWT26iYA4ap4rNhjxggpawB3za0EDYt487D3n4T+xwXkyvZ+gzADbhtdTcotpWf14wa+Qaqx4FF9SbMg1Nx3D8RbqkiKOc2EVitBadSg2ieDGH+Me2RPh7WDNB33zRhQsTSzva+gnJ6HvzaN7CNz4GxXzxYSflYWN1ERJ0WV/O18MsYRX1xIcbyXXY+3jNNYICBJIvQ6Wc+y1PzX3A0+BED+GWVMR2MLqwgphlwrQA8xevwiHunFfNSdkbzbyz3xJ8OZwBlWbDZ3JtccWlbD+y4Qvp00fV5Em58MaR9G1pW0ded60WLWxei5Bs2rqLh4giXVkWatWCoNOSU7hZ6Rf57JxeXVn7tQPDyLQqqRuTG1lLZYStJ0yHb8uJjrFpnMZ+zn56/6xnTH4Q+gzhJIwpbPjD3vOup/iV+AjsfAMx8DCG5AAAAAElFTkSuQmCC&quot;) no-repeat scroll 0px 0px transparent;"
+																		border="0"> User permission
+																</div>
+															</div>
+															<div style="padding: 3px 3px 3px 23px; margin-left: 0px;">
+																<div id="gwt-uid-51" role="treeitem"
+																	class="gwt-TreeItem" style="display: inline;">
+																	<img onload='this.__gwtLastUnhandledEvent="load";'
+																		src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																		style="width: 16px; height: 16px; background: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABv0lEQVR42q2R6ytDcRjH/ZmiRK0oXpC0Zm5t0SIiuay5z3VKmbSQ7cVBRDu1ReysxGYXO1hndhMev+f5nXOckXdOffpdvp/nezqdqqr/eMTwNQy65nTa7AOwfRj4Bd4bPZyjAodzDnL5AuETTuDz4+1PMNdch3OeF/RPzUNWyUM2l6fmYrlcQcGwx1xzB6bVAvvkAsjZV5BfXkmQc2UDJcgwtDPl6DJsEwu8oHd8ERJyDpKyQsLdU7GCe1oLBOboIThHBdbRJbhPZeGOgYKUVkBKKbRG1T2tafUFqtvF5qjAPOwGKf5MoBAXZ/8E82jsBaTYM5hH3LygfWgZLm+fGDJ4hUjFr/qJV5DIQx/nqKDVsQKi9AhiJMOh/SMEI4Y7lSDlGcpwjgpa+lfh7CrFSOurqW/9F5idEtxrZnNU0GRbg6NQEoRQgpEkuVR6rwC/H+8F8jiN9jVeYOpdB3/wgQiIDyROeW90Bl0zBN5j7hcT5OKZChq6N2D/PM65iFOwG1R0Vna2CLzXvAPm1fds8II6qwd8ZzEdFI2/rrpjTP8Eo4dzVLB3HIbazk2otXjYyrBsqnigRtt3apnn+8z2X1//2UOo1GK6AAAAAElFTkSuQmCC&quot;) no-repeat scroll 0px 0px transparent;"
+																		border="0"> Import Export
+																</div>
+															</div>
+															<div style="padding: 3px 3px 3px 23px; margin-left: 0px;">
+																<div id="gwt-uid-52" role="treeitem"
+																	class="gwt-TreeItem" style="display: inline;">
+																	<img onload='this.__gwtLastUnhandledEvent="load";'
+																		src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																		style="width: 16px; height: 16px; background: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABTklEQVR42p3TvUvDQBgG8Pw7OtrFweKoBBoJtYMKWgRBtOpg/Si1LYIWmiUVxUgRxIpY8QMsVF3sIoiLkwYF02oIjVoCZhG6Pd7dIDhoPl54OW74vfdw3HGcQ5VLc6DN+SkKbfsaZrOK0/0FeMatL4I/qtCM818DDss3cIXtT4or0PSTnwEUh6JJuMBX2Ny9JPgYUkZkgO57hhbxZwKKpVQ36SDe3ivoisSxnC/hSdtiazAyi3/jr60KUOsXUGtnkJKdLEGHMI1YSkFAmGF7x8s72ktA1Q5QLIh4fN5gJ7f1TrLVMqaQyBachxR30gSvQ6vloL9kWALLiME2R90NoKUoWej1NMzXOKzGBMFR3N32YX5l2/17yOVlgsdhN0YIFsAPLHnAsgy+P0BgmHTIIyYnt5pjpIfBh9u9YVoUqA+DUO9F0CS+PhId4ht7qW9cuQlMxQfYgQAAAABJRU5ErkJggg==&quot;) no-repeat scroll 0px 0px transparent;"
+																		border="0"> Rules Verification
+																</div>
+															</div>
+															<div style="padding: 3px 3px 3px 23px; margin-left: 0px;">
+																<div id="gwt-uid-53" role="treeitem"
+																	class="gwt-TreeItem" style="display: inline;">
+																	<img onload='this.__gwtLastUnhandledEvent="load";'
+																		src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																		style="width: 16px; height: 16px; background: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAwklEQVR42mNgoBXo6Gr9D8NEaQgJD/GBaYCx3717g8LHaxhMw4ED+8AKFy1e8P/y9fNgGsQHicMMxGkASBFIEy4MMxyvF0AKd+zaAlTY8nH6zMlgeu/+nWBxmHdwBhjM2SBNBSX5C8PCgn3TMlI7O7vbXyF7B8MVMP/DnAqyGaQZJAeiQXyYHNZwQHdBb3/Xt/6JPYdBmssryraAXITXBchhALIBFAYgQ2BhcPzUYfxhQJVYoDgdIIcFWSmR4rwwYAAAbkNny74peVgAAAAASUVORK5CYII=&quot;) no-repeat scroll 0px 0px transparent;"
+																		border="0"> Repository Configuration
+																</div>
+															</div>
+															<div style="padding: 3px 3px 3px 23px; margin-left: 0px;">
+																<div id="gwt-uid-54" role="treeitem"
+																	class="gwt-TreeItem" style="display: inline;">
+																	<img onload='this.__gwtLastUnhandledEvent="load";'
+																		src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																		style="width: 16px; height: 16px; background: url(&quot;data:image/gif;base64,R0lGODlhEAAQAMQaAPb9/wJGjA5ipFWQv7bQ5MfU0PT7/5a2xff8//j9//r9//f9//z+//X8//3+//n9/+zy9fb8/whUmPv+/wxcn/Lz9e3y9f7+/wtdn/Hy9f///wAAAAAAAAAAAAAAAAAAACH5BAEAABoALAAAAAAQABAAAAWIoCaOZFkWgxAEwlCY2hEMRJURQ3CUh0A4AIEAcCEIdqJC4AcIDgEOQuClGQwYTQC2yWBYRT5FU/icTIyiAOTxEAubCoUlkIYk7gAKBvC4Q+gaPggICwASEgsLhGhVA4MIACsNABEIXxpKBA0NKysRDVJUMT4GpaZGSCMyNKU4OjAoKiwuMLUlIQA7&quot;) no-repeat scroll 0px 0px transparent;"
+																		border="0"> About
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div
+										style="position: absolute; overflow: hidden; left: 0px; right: 0px; bottom: 0em; height: 2em;">
+										<div
+											style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px;"
+											class="gwt-HTML gwt-StackLayoutPanelHeader">
+											<table cellpadding="0" cellspacing="0">
+												<tbody>
+													<tr>
+														<td style="vertical-align: top;" align="left"><img
+															onload='this.__gwtLastUnhandledEvent="load";'
+															src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+															style="width: 16px; height: 16px; background: url(&quot;data:image/gif;base64,R0lGODlhEAAQANUAAPf4/Pf4+/X3/HCFr4OSsYuWrPn6/G+Fr3yRuImdwYaUruDp+ebt+u3y+/D0+4idwYidwJGlx9/p+eDp+OXt+u3y+vT3/I+ZqN3o+N/p+OLr+eLr+OXt+enw+vH1++Hr+e3z+/T3+9/q+OXu+enw+e3z+pWdpezz+vf5+5ugoKGknaeomK6slLKvkLu0iriyjb+2iLy0irixjeDIj9SyaNSyadq9fNWyaf///wAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAADgALAAAAAAQABAAAAaEQJxwSCwSYcgk0iiEGZ7QGozpgkJtt5hRBhigIpHAzEZ7FVshQchiWa9bRZZn4AFDEAMHq7hqlCoVICUnIA0rRSodAyRgD3gdKkUpHBQjFByYDCMpRSYfAxp2CAcbJkUXGakiEgsTIiIXRQUYAxhgCaMYBUUKGL6/vwpFBMTFxgRMyUNBADs=&quot;) no-repeat scroll 0px 0px transparent;"
+															border="0">
+														</td>
+														<td style="vertical-align: top;" align="left"><div
+																class="gwt-Label">Administration</div>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div
+								style="position: absolute; overflow: hidden; left: 250px; top: 0px; bottom: 0px; width: 8px;">
+								<div class="gwt-SplitLayoutPanel-HDragger"
+									style="width: 8px; position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px;"></div>
+							</div>
+							<div
+								style="position: absolute; overflow: hidden; left: 258px; top: 0px; right: 0px; bottom: 0px;">
+								<div class="gwt-TabLayoutPanel"
+									style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px;">
+									<div
+										style="position: absolute; z-index: -32767; top: -20ex; width: 10em; height: 10ex;">&nbsp;</div>
+									<div
+										style="position: absolute; overflow: hidden; left: 0px; top: 0px; right: 0px; height: 2em;">
+										<div class="gwt-TabLayoutPanelTabs"
+											style="position: absolute; left: 0px; right: 0px; bottom: 0px; width: 16384px;">
+											<div style="float: left;"
+												class="gwt-TabLayoutPanelTab gwt-TabLayoutPanelTab-selected">
+												<div class="gwt-TabLayoutPanelTabInner">
+													<div tabindex="0">
+														<input
+															style="opacity: 0; height: 1px; width: 1px; z-index: -1; overflow: hidden; position: absolute;"
+															tabindex="-1" type="text">
+														<table cellpadding="0" cellspacing="0">
+															<tbody>
+																<tr>
+																	<td style="vertical-align: top;" align="left"><div
+																			class="gwt-Label">Find</div>
+																	</td>
+																	<td style="vertical-align: top;" align="left"><div
+																			style="width: 10px;">
+																			<img class="gwt-Image"
+																				onload='this.__gwtLastUnhandledEvent="load";'
+																				src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																				style="width: 16px; height: 16px; background: url(&quot;data:image/gif;base64,R0lGODlhEAAQALMAAKioqKCgoJiYmJCQkIiIiICAgHh4eHBwcGhoaGBgYP///wAAAAAAAAAAAAAAAAAAACH5BAEAAAoALAAAAAAQABAAAARQUMlJq73YiCqMNYU2dSEFGEEAAmFqAJRwCAJxEPRsFcjg+4gCBmEgGA0IjCJRPCYwhURhOpXupIVD4lAVTgBYKSsMm2ytkqjWgp5ElfB4JQIAOw==&quot;) no-repeat scroll 0px 0px transparent; display: none;"
+																				border="0">
+																		</div>
+																	</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div
+										style="position: absolute; overflow: hidden; left: 0px; top: 2em; right: 0px; bottom: 0px;">
+										<div class="gwt-TabLayoutPanelContent"
+											style="overflow: auto; position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px;">
+											<div style="position: relative;">
+												<table style="width: 100%;" cellpadding="0" cellspacing="0">
+													<tbody>
+														<tr>
+															<td style="vertical-align: top;" align="left"><table
+																	style="width: 100%;"
+																	class="gwt-DisclosurePanel gwt-DisclosurePanel-open"
+																	cellpadding="0" cellspacing="0">
+																	<tbody>
+																		<tr>
+																			<td style="vertical-align: top;" align="left"><a
+																				class="header" style="display: block;"
+																				href="javascript:void(0);"><div>
+																						<div>
+																							<table
+																								style="width: 100%; border-collapse: collapse;">
+																								<tbody>
+																									<tr>
+																										<td style="width: 4px;"><div
+																												class="GGXTA32BI"></div>
+																										</td>
+																										<td><div class="GGXTA32AI"></div>
+																										</td>
+																										<td style="width: 4px;"><div
+																												class="GGXTA32CI"></div>
+																										</td>
+																									</tr>
+																									<tr>
+																										<td class="GGXTA32OH"></td>
+																										<td class="GGXTA32NH">
+																											<table cellpadding="0" cellspacing="0">
+																												<tbody>
+																													<tr>
+																														<td style="vertical-align: top;"
+																															align="left"><img
+																															onload='this.__gwtLastUnhandledEvent="load";'
+																															src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																															style="width: 15px; height: 15px; background: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAUklEQVR42mNgGPqgZ8qa/8RirJqvfvhPEOPV/OY7foxX87sf+DFezR9/4Md4NbO41uDEBDV/+0VBgP38hR/j1fzrD36MV/OfP/gxTs1kpzBSAQA74Zp5MjcAwwAAAABJRU5ErkJggg==&quot;) no-repeat scroll 0px 0px transparent;"
+																															border="0">
+																														</td>
+																														<td style="vertical-align: top;"
+																															align="left"><div
+																																class="guvnor-cursor">Name search
+																																...</div>
+																														</td>
+																													</tr>
+																												</tbody>
+																											</table></td>
+																										<td class="GGXTA32PH"></td>
+																									</tr>
+																									<tr>
+																										<td style="width: 4px;"><div
+																												class="GGXTA32LH"></div>
+																										</td>
+																										<td><div class="GGXTA32KH"></div>
+																										</td>
+																										<td style="width: 4px;"><div
+																												class="GGXTA32MH"></div>
+																										</td>
+																									</tr>
+																								</tbody>
+																							</table>
+																						</div>
+																					</div>
+																			</a>
+																			</td>
+																		</tr>
+																		<tr>
+																			<td style="vertical-align: top;" align="left"><div
+																					style="padding: 0px; overflow: hidden; height: auto; width: auto;">
+																					<table class="content" cellpadding="0"
+																						cellspacing="0">
+																						<tbody>
+																							<tr>
+																								<td style="vertical-align: top;" align="left"><table
+																										cellpadding="0" cellspacing="0">
+																										<tbody>
+																											<tr>
+																												<td style="vertical-align: top;"
+																													align="left"><table
+																														style="width: 100%;" cellpadding="0"
+																														cellspacing="0">
+																														<tbody>
+																															<tr>
+																																<td style="vertical-align: top;"
+																																	align="left"><form
+																																		class="guvnor-FormPanel"
+																																		style="width: 100%;"
+																																		target="FormPanel_org.drools.guvnor.Guvnor_1">
+																																		<table>
+																																			<colgroup>
+																																				<col>
+																																			</colgroup>
+																																			<tbody>
+																																				<tr>
+																																					<td colspan="2"><table>
+																																							<colgroup>
+																																								<col>
+																																							</colgroup>
+																																							<tbody>
+																																								<tr>
+																																									<td><table cellpadding="0"
+																																											cellspacing="0">
+																																											<tbody>
+																																												<tr>
+																																													<td
+																																														style="vertical-align: top;"
+																																														align="left"><img
+																																														class="gwt-Image"
+																																														onload='this.__gwtLastUnhandledEvent="load";'
+																																														src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																																														style="width: 16px; height: 16px; background: url(&quot;data:image/gif;base64,R0lGODlhEAAQAMQaAPb9/wJGjA5ipFWQv7bQ5MfU0PT7/5a2xff8//j9//r9//f9//z+//X8//3+//n9/+zy9fb8/whUmPv+/wxcn/Lz9e3y9f7+/wtdn/Hy9f///wAAAAAAAAAAAAAAAAAAACH5BAEAABoALAAAAAAQABAAAAWIoCaOZFkWgxAEwlCY2hEMRJURQ3CUh0A4AIEAcCEIdqJC4AcIDgEOQuClGQwYTQC2yWBYRT5FU/icTIyiAOTxEAubCoUlkIYk7gAKBvC4Q+gaPggICwASEgsLhGhVA4MIACsNABEIXxpKBA0NKysRDVJUMT4GpaZGSCMyNKU4OjAoKiwuMLUlIQA7&quot;) no-repeat scroll 0px 0px transparent;"
+																																														border="0">
+																																													</td>
+																																													<td
+																																														style="vertical-align: top;"
+																																														align="left"><div
+																																															class="gwt-Label">Enter
+																																															the name or part of a
+																																															name. Alternatively, use
+																																															the categories to browse.</div>
+																																													</td>
+																																												</tr>
+																																											</tbody>
+																																										</table>
+																																									</td>
+																																								</tr>
+																																							</tbody>
+																																						</table>
+																																					</td>
+																																				</tr>
+																																			</tbody>
+																																		</table>
+																																	</form>
+																																</td>
+																															</tr>
+																														</tbody>
+																													</table>
+																												</td>
+																											</tr>
+																											<tr>
+																												<td style="vertical-align: top;"
+																													align="left"><table>
+																														<colgroup>
+																															<col>
+																														</colgroup>
+																														<tbody>
+																															<tr>
+																																<td style="vertical-align: middle;"
+																																	align="left"><img
+																																	class="gwt-Image"
+																																	onload='this.__gwtLastUnhandledEvent="load";'
+																																	src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																																	style="width: 32px; height: 32px; background: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAHz0lEQVR42r1Xe1CU1xUXTUywoTGNpEmaJlOrf3XGNpMYUzpNSBUksdGODqOx1JAHkchrgWCLIaKZIiCIKAEN7C4oCMgbNoioCIo8hH3vyj5gXyy7y7LvJw/R23O+WWY2GaftaiY785tv9/vud8/v/M7v3Ht32bIAP9nZ2csRy36qT35+fsjx48dj8/LyWuD7fGFhIUHA90W43wHXT+DZ0z964KKiomCY+F/l5eVEIBAQu91O7t69S+7fv08WFxeJ1+slGo2GXL58mcBYJPQlKPPUjxIcMnyloKBAJ5VKqWAYXKfTEbVaTRQKBVGpVGRqaorYbDbqOV7b29uRhAdU+e2jSv5SSUkJFdTtdlPBLt/kOD8+1s7/44E63atx1XOvxl2YC0uo032ayxL0DAq8OHZhYYEMDQ0RIE5yc3PXPVTw06dPPwETaK1WK0FIpHLyYU6H6LW4C85tWZ3Cj072X00qH21D4He8B89cn+SxpDr9NJmfnyc3btxAJSxHjhxZ9TDZ07DeTqeTyGRyEpHeIHuL1qxIZbBZDQOaAY7CIpfpHJMCtU3RI5zmn+qUX0n8dqQdx7x3sEllMpmJw+EgFy9eRBKZAZuutLSUzM7OEqVSSQ4UXhKHp7fIv24UszCgzuqdMdi85imzZ0ZpdOslOodGqLZPNA9ph1Mruc04NqW4ewJVmJiYoDolIFOCeaIHBweJyWQi/SPCuY3xdTPpTE47V2GTT5o809P2WYvFNW8HEiaNyaOTG5wqkcY+PjpukRS0S7pS6OzWN+LrTGL55D00JaoAc+4LRP4azBxbK6GApXz/qy5+9U11v1znmlQZ3Qa9zYskpvVW7xQQUCoMLumdSbuIrbDysmoFdalMbiO+80VJ9wyat7+/H8vQHAiBMWwtJPHnpDoTmqxPbBRAENUEZKuZ8Si1Fq9Ca/bK1Ea3eFzv4sKzketCY3cqg1OayuQxPz450B2ectGGPhCLxUhAEQgBD/Y61g+cPZdQMdo2JDOPCdR2iUTrvDNhcImU0y6+esbNhuuQXO+8KdbYr4MRi2kMbh4oUJJQPlLz+mc1C1hGXC9gzrlACJhRAXwRCMwjgV6xkcuesHKEGvuIZMo5KIOg4wZnz7je2SWZcrBaR6ZO0iq5aUDgqzQmLz+xfJSOBPR6PZHL5UjAGwgBEdYf8XZyvRVL0DSkvX5LaroFJHqFKmu3WOtgSaecTRKto+a7Uf2hNCYnhsbgfJbK4KaDAkc/LLxZ85fUBicqie0Mc8oCIUDn8/nEaDSS9NNdVjRUTqO4rmVY29Z7x9h2W25uGJCYyrv4+qz8FslOWBsiaXT239IY3H2gQBIQyHo387verPKeWSRw7do1kpOTU/F/E4CN531sHZfLRW7zJOTNz+ustAp2FQQ4gRJjEAyWwuBuT6Fz36LRR/8EBLaBAn8HJCRWjGaHHai3ShQ6avlmMBjk0KFD2wLZ51fCMmycnJykSGSWXXW9k94ipVUKoM687DQGhwaBYmmVnJ0pTM7WlEpexJICKRXc5PDUZv6/q25RBhweHsbgyoDPDbi3V1dXUwTsdgeJzmp1h9NapIllIwU0Jucg1DqeRuf+I62SF43A7BPODCW/TWsU7svpXHC7PZT5YAEiycnJ/NjY2CcDItDQ0LACSPThHo8knC4POfjN1fk39l/wRv2TdS0mv+9EwrejtAOltxM/yLt+NCKjrePN+NrZo8yBew6nmzIwdhLuirijRkdHD0ZGRj4XEIljx46FQgbyzs5OMjMzQx1CRBMGks3oW4z6omlu4/4Lixv319x7N6NpIef8wH3ZpIVYLBYqcyxfX18fOXXqFEElz5w5Q7Zu3aoE/C7QA8kaINF7/vx5gp1hMBioHRI3Ktz38YoKYcfgyokZo+w8Ho+0traS+vp6UlxcTM6dO0eqqqrI9u3b7REREZEBHz6hHB/BxGrMpqenh3C5XDI2NkaBw+GQ7u5uUlFRQTIzM4VJSUkjKPuVK1dIY2MjaW5upsrAZDJJTU0N2b17911QIj7gMwIQeQxIRAHOAiE2QA8wADhw8ikCt78Dw4Kg3isBjYcPH6bOiS0tLRTKysoInU4ntbW1JC4ujkRFRRXBuBUPc2AKAmBbrfDhsQcBTJebmJhILl26RNra2ggYm1Lp7NmzFImMjAwk0REeHv5fO2S5b8KVgCcAwYCfAfCAEQL4uQ9P/wB4L2Tz5s37Y2JiFjo6OgiLxaI8gX7A33iwhZIhidwHZbgU9ElfwBDfxM+AD34PhtwJE6SB+fKhQ0rAnCdg1csEP8TA8zAY9zzgl4DQsLCwbTt27LChAthRSAR3WuwUXKjAD9oHBV/K9qmlwIA1W7ZseRnW9r/CTplpNpvPeTyeATh6jcOVDUQa4fj+Ncj8XmhoKJ6GXwa8BHhhw4YNmyCQHLMXCoVU9rhTonnhvsqn9PckRwKr/Aj8Agn4snohODj415s2bVq/a9euDXv37n0NWusP69atwx5fD8D/A78BvOIj8CK+t3bt2vUw7gaeEUUiEbVO7Nmzh0BSX/oSf2AJgv1KsNqPyHNLZHwBfuWHF333n/eNW+N7b3VISMiz4IvDkLUETCoCpP6vfWJJkcd9fljlR8jffKv98D0j+lRc5VP1cV/nBD3Kn6Ygv1Zc/oOW9L8X9KiBftLPfwBgNrWam2tsXQAAAABJRU5ErkJggg==&quot;) no-repeat scroll 0px 0px transparent;"
+																																	border="0">
+																																</td>
+																																<td><div
+																																		class="resource-name-Label">
+																																		<div class="form-field">
+																																			<b></b>
+																																		</div>
+																																	</div>
+																																</td>
+																															</tr>
+																															<tr>
+																																<td style="vertical-align: middle;"
+																																	align="right"><div
+																																		class="gwt-HTML">
+																																		<div class="form-field">Find
+																																			items with a name matching:</div>
+																																	</div>
+																																</td>
+																																<td style="vertical-align: middle;"
+																																	align="left"><table
+																																		cellpadding="0" cellspacing="0">
+																																		<tbody>
+																																			<tr>
+																																				<td style="vertical-align: top;"
+																																					align="left"><input
+																																					class="gwt-SuggestBox" type="text">
+																																				</td>
+																																			</tr>
+																																		</tbody>
+																																	</table>
+																																</td>
+																															</tr>
+																															<tr>
+																																<td style="vertical-align: middle;"
+																																	align="right"><div
+																																		class="gwt-HTML">
+																																		<div class="form-field">Include
+																																			archived assets in results:</div>
+																																	</div>
+																																</td>
+																																<td style="vertical-align: middle;"
+																																	align="left"><span
+																																	class="gwt-CheckBox"><input
+																																		tabindex="0" id="gwt-uid-56"
+																																		type="checkbox"><label
+																																		for="gwt-uid-56"></label>
+																																</span>
+																																</td>
+																															</tr>
+																															<tr>
+																																<td style="vertical-align: middle;"
+																																	align="right"><div
+																																		class="gwt-HTML">
+																																		<div class="form-field"></div>
+																																	</div>
+																																</td>
+																																<td style="vertical-align: middle;"
+																																	align="left"><button
+																																		class="gwt-Button" type="button">Search</button>
+																																</td>
+																															</tr>
+																														</tbody>
+																													</table>
+																												</td>
+																											</tr>
+																										</tbody>
+																									</table>
+																								</td>
+																							</tr>
+																							<tr>
+																								<td style="vertical-align: top;" align="left"><div></div>
+																								</td>
+																							</tr>
+																						</tbody>
+																					</table>
+																				</div>
+																			</td>
+																		</tr>
+																	</tbody>
+																</table>
+															</td>
+														</tr>
+														<tr>
+															<td style="vertical-align: top;" align="left"><table
+																	style="width: 100%;"
+																	class="gwt-DisclosurePanel gwt-DisclosurePanel-open"
+																	cellpadding="0" cellspacing="0">
+																	<tbody>
+																		<tr>
+																			<td style="vertical-align: top;" align="left"><a
+																				class="header" style="display: block;"
+																				href="javascript:void(0);"><div>
+																						<div>
+																							<table
+																								style="width: 100%; border-collapse: collapse;">
+																								<tbody>
+																									<tr>
+																										<td style="width: 4px;"><div
+																												class="GGXTA32BI"></div>
+																										</td>
+																										<td><div class="GGXTA32AI"></div>
+																										</td>
+																										<td style="width: 4px;"><div
+																												class="GGXTA32CI"></div>
+																										</td>
+																									</tr>
+																									<tr>
+																										<td class="GGXTA32OH"></td>
+																										<td class="GGXTA32NH">
+																											<table cellpadding="0" cellspacing="0">
+																												<tbody>
+																													<tr>
+																														<td style="vertical-align: top;"
+																															align="left"><img
+																															onload='this.__gwtLastUnhandledEvent="load";'
+																															src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																															style="width: 15px; height: 15px; background: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAUklEQVR42mNgGPqgZ8qa/8RirJqvfvhPEOPV/OY7foxX87sf+DFezR9/4Md4NbO41uDEBDV/+0VBgP38hR/j1fzrD36MV/OfP/gxTs1kpzBSAQA74Zp5MjcAwwAAAABJRU5ErkJggg==&quot;) no-repeat scroll 0px 0px transparent;"
+																															border="0">
+																														</td>
+																														<td style="vertical-align: top;"
+																															align="left"><div
+																																class="guvnor-cursor">Text search
+																																...</div>
+																														</td>
+																													</tr>
+																												</tbody>
+																											</table></td>
+																										<td class="GGXTA32PH"></td>
+																									</tr>
+																									<tr>
+																										<td style="width: 4px;"><div
+																												class="GGXTA32LH"></div>
+																										</td>
+																										<td><div class="GGXTA32KH"></div>
+																										</td>
+																										<td style="width: 4px;"><div
+																												class="GGXTA32MH"></div>
+																										</td>
+																									</tr>
+																								</tbody>
+																							</table>
+																						</div>
+																					</div>
+																			</a>
+																			</td>
+																		</tr>
+																		<tr>
+																			<td style="vertical-align: top;" align="left"><div
+																					style="padding: 0px; overflow: hidden;">
+																					<table class="content" cellpadding="0"
+																						cellspacing="0">
+																						<tbody>
+																							<tr>
+																								<td style="vertical-align: top;" align="left"><table
+																										cellpadding="0" cellspacing="0">
+																										<tbody>
+																											<tr>
+																												<td style="vertical-align: top;"
+																													align="left"><table
+																														style="width: 100%;">
+																														<colgroup>
+																															<col>
+																														</colgroup>
+																														<tbody>
+																															<tr>
+																																<td style="vertical-align: middle;"
+																																	align="right"><div
+																																		class="gwt-HTML">
+																																		<div class="form-field">Search
+																																			for:</div>
+																																	</div>
+																																</td>
+																																<td style="vertical-align: middle;"
+																																	align="left"><input
+																																	class="gwt-TextBox" type="text">
+																																</td>
+																															</tr>
+																															<tr>
+																																<td style="vertical-align: middle;"
+																																	align="right"><div
+																																		class="gwt-HTML">
+																																		<div class="form-field"></div>
+																																	</div>
+																																</td>
+																																<td style="vertical-align: middle;"
+																																	align="left"><button
+																																		class="gwt-Button" type="button">Search</button>
+																																</td>
+																															</tr>
+																														</tbody>
+																													</table>
+																												</td>
+																											</tr>
+																										</tbody>
+																									</table>
+																								</td>
+																							</tr>
+																							<tr>
+																								<td style="vertical-align: top;" align="left"><div></div>
+																								</td>
+																							</tr>
+																						</tbody>
+																					</table>
+																				</div>
+																			</td>
+																		</tr>
+																	</tbody>
+																</table>
+															</td>
+														</tr>
+														<tr>
+															<td style="vertical-align: top;" align="left"><table
+																	style="width: 100%;"
+																	class="gwt-DisclosurePanel gwt-DisclosurePanel-open"
+																	cellpadding="0" cellspacing="0">
+																	<tbody>
+																		<tr>
+																			<td style="vertical-align: top;" align="left"><a
+																				class="header" style="display: block;"
+																				href="javascript:void(0);"><div>
+																						<div>
+																							<table
+																								style="width: 100%; border-collapse: collapse;">
+																								<tbody>
+																									<tr>
+																										<td style="width: 4px;"><div
+																												class="GGXTA32BI"></div>
+																										</td>
+																										<td><div class="GGXTA32AI"></div>
+																										</td>
+																										<td style="width: 4px;"><div
+																												class="GGXTA32CI"></div>
+																										</td>
+																									</tr>
+																									<tr>
+																										<td class="GGXTA32OH"></td>
+																										<td class="GGXTA32NH">
+																											<table cellpadding="0" cellspacing="0">
+																												<tbody>
+																													<tr>
+																														<td style="vertical-align: top;"
+																															align="left"><img
+																															onload='this.__gwtLastUnhandledEvent="load";'
+																															src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																															style="width: 15px; height: 15px; background: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAUklEQVR42mNgGPqgZ8qa/8RirJqvfvhPEOPV/OY7foxX87sf+DFezR9/4Md4NbO41uDEBDV/+0VBgP38hR/j1fzrD36MV/OfP/gxTs1kpzBSAQA74Zp5MjcAwwAAAABJRU5ErkJggg==&quot;) no-repeat scroll 0px 0px transparent;"
+																															border="0">
+																														</td>
+																														<td style="vertical-align: top;"
+																															align="left"><div
+																																class="guvnor-cursor">Attribute
+																																search ...</div>
+																														</td>
+																													</tr>
+																												</tbody>
+																											</table></td>
+																										<td class="GGXTA32PH"></td>
+																									</tr>
+																									<tr>
+																										<td style="width: 4px;"><div
+																												class="GGXTA32LH"></div>
+																										</td>
+																										<td><div class="GGXTA32KH"></div>
+																										</td>
+																										<td style="width: 4px;"><div
+																												class="GGXTA32MH"></div>
+																										</td>
+																									</tr>
+																								</tbody>
+																							</table>
+																						</div>
+																					</div>
+																			</a>
+																			</td>
+																		</tr>
+																		<tr>
+																			<td style="vertical-align: top;" align="left"><div
+																					style="padding: 0px; overflow: hidden;">
+																					<table class="content" cellpadding="0"
+																						cellspacing="0">
+																						<tbody>
+																							<tr>
+																								<td style="vertical-align: top;" align="left"><table
+																										cellpadding="0" cellspacing="0">
+																										<tbody>
+																											<tr>
+																												<td style="vertical-align: top;"
+																													align="left"><table>
+																														<colgroup>
+																															<col>
+																														</colgroup>
+																														<tbody>
+																															<tr>
+																																<td style="vertical-align: middle;"
+																																	align="right"><div
+																																		class="gwt-HTML">
+																																		<div class="form-field">Created
+																																			by:</div>
+																																	</div>
+																																</td>
+																																<td style="vertical-align: middle;"
+																																	align="left"><input
+																																	title="Use * for wildcards, separate different options with a comma."
+																																	class="gwt-TextBox" type="text">
+																																</td>
+																															</tr>
+																															<tr>
+																																<td style="vertical-align: middle;"
+																																	align="right"><div
+																																		class="gwt-HTML">
+																																		<div class="form-field">Format:</div>
+																																	</div>
+																																</td>
+																																<td style="vertical-align: middle;"
+																																	align="left"><input
+																																	title="Use * for wildcards, separate different options with a comma."
+																																	class="gwt-TextBox" type="text">
+																																</td>
+																															</tr>
+																															<tr>
+																																<td style="vertical-align: middle;"
+																																	align="right"><div
+																																		class="gwt-HTML">
+																																		<div class="form-field">Subject:</div>
+																																	</div>
+																																</td>
+																																<td style="vertical-align: middle;"
+																																	align="left"><input
+																																	title="Use * for wildcards, separate different options with a comma."
+																																	class="gwt-TextBox" type="text">
+																																</td>
+																															</tr>
+																															<tr>
+																																<td style="vertical-align: middle;"
+																																	align="right"><div
+																																		class="gwt-HTML">
+																																		<div class="form-field">Type:</div>
+																																	</div>
+																																</td>
+																																<td style="vertical-align: middle;"
+																																	align="left"><input
+																																	title="Use * for wildcards, separate different options with a comma."
+																																	class="gwt-TextBox" type="text">
+																																</td>
+																															</tr>
+																															<tr>
+																																<td style="vertical-align: middle;"
+																																	align="right"><div
+																																		class="gwt-HTML">
+																																		<div class="form-field">External
+																																			link:</div>
+																																	</div>
+																																</td>
+																																<td style="vertical-align: middle;"
+																																	align="left"><input
+																																	title="Use * for wildcards, separate different options with a comma."
+																																	class="gwt-TextBox" type="text">
+																																</td>
+																															</tr>
+																															<tr>
+																																<td style="vertical-align: middle;"
+																																	align="right"><div
+																																		class="gwt-HTML">
+																																		<div class="form-field">Source:</div>
+																																	</div>
+																																</td>
+																																<td style="vertical-align: middle;"
+																																	align="left"><input
+																																	title="Use * for wildcards, separate different options with a comma."
+																																	class="gwt-TextBox" type="text">
+																																</td>
+																															</tr>
+																															<tr>
+																																<td style="vertical-align: middle;"
+																																	align="right"><div
+																																		class="gwt-HTML">
+																																		<div class="form-field">Description:</div>
+																																	</div>
+																																</td>
+																																<td style="vertical-align: middle;"
+																																	align="left"><input
+																																	title="Use * for wildcards, separate different options with a comma."
+																																	class="gwt-TextBox" type="text">
+																																</td>
+																															</tr>
+																															<tr>
+																																<td style="vertical-align: middle;"
+																																	align="right"><div
+																																		class="gwt-HTML">
+																																		<div class="form-field">Last
+																																			modified by:</div>
+																																	</div>
+																																</td>
+																																<td style="vertical-align: middle;"
+																																	align="left"><input
+																																	title="Use * for wildcards, separate different options with a comma."
+																																	class="gwt-TextBox" type="text">
+																																</td>
+																															</tr>
+																															<tr>
+																																<td style="vertical-align: middle;"
+																																	align="right"><div
+																																		class="gwt-HTML">
+																																		<div class="form-field">Checkin
+																																			comment:</div>
+																																	</div>
+																																</td>
+																																<td style="vertical-align: middle;"
+																																	align="left"><input
+																																	title="Use * for wildcards, separate different options with a comma."
+																																	class="gwt-TextBox" type="text">
+																																</td>
+																															</tr>
+																															<tr>
+																																<td style="vertical-align: middle;"
+																																	align="right"><div
+																																		class="gwt-HTML">
+																																		<div class="form-field">Date
+																																			created</div>
+																																	</div>
+																																</td>
+																																<td style="vertical-align: middle;"
+																																	align="left"><table
+																																		cellpadding="0" cellspacing="0">
+																																		<tbody>
+																																			<tr>
+																																				<td style="vertical-align: top;"
+																																					align="left"><div
+																																						class="gwt-HTML">
+																																						<div class="form-field">After:</div>
+																																					</div>
+																																				</td>
+																																				<td style="vertical-align: top;"
+																																					align="left"><table
+																																						cellpadding="0" cellspacing="0">
+																																						<tbody>
+																																							<tr>
+																																								<td style="vertical-align: top;"
+																																									align="left"><input
+																																									class="gwt-TextBox" type="text">
+																																								</td>
+																																								<td style="vertical-align: top;"
+																																									align="left"><img
+																																									class="image-Button"
+																																									onload='this.__gwtLastUnhandledEvent="load";'
+																																									src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																																									style="width: 7px; height: 8px; background: url(&quot;data:image/gif;base64,R0lGODlhBwAIALMAAN/fv79/P9+fX39fP7+ff9+/n////7+/v5+fnwAAAP///wAAAAAAAAAAAAAAAAAAACH5BAEAAAoALAAAAAAHAAgAAAQdUClzghjS2ICpHce0DYZ3HWVQEOSEFANgTAlSShEAOw==&quot;) no-repeat scroll 0px 0px transparent;"
+																																									border="0">
+																																								</td>
+																																							</tr>
+																																						</tbody>
+																																					</table>
+																																				</td>
+																																				<td style="vertical-align: top;"
+																																					align="left"><div
+																																						class="gwt-HTML">
+																																						<div class="form-field">&nbsp;</div>
+																																					</div>
+																																				</td>
+																																				<td style="vertical-align: top;"
+																																					align="left"><div
+																																						class="gwt-HTML">
+																																						<div class="form-field">Before:</div>
+																																					</div>
+																																				</td>
+																																				<td style="vertical-align: top;"
+																																					align="left"><table
+																																						cellpadding="0" cellspacing="0">
+																																						<tbody>
+																																							<tr>
+																																								<td style="vertical-align: top;"
+																																									align="left"><input
+																																									class="gwt-TextBox" type="text">
+																																								</td>
+																																								<td style="vertical-align: top;"
+																																									align="left"><img
+																																									class="image-Button"
+																																									onload='this.__gwtLastUnhandledEvent="load";'
+																																									src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																																									style="width: 7px; height: 8px; background: url(&quot;data:image/gif;base64,R0lGODlhBwAIALMAAN/fv79/P9+fX39fP7+ff9+/n////7+/v5+fnwAAAP///wAAAAAAAAAAAAAAAAAAACH5BAEAAAoALAAAAAAHAAgAAAQdUClzghjS2ICpHce0DYZ3HWVQEOSEFANgTAlSShEAOw==&quot;) no-repeat scroll 0px 0px transparent;"
+																																									border="0">
+																																								</td>
+																																							</tr>
+																																						</tbody>
+																																					</table>
+																																				</td>
+																																			</tr>
+																																		</tbody>
+																																	</table>
+																																</td>
+																															</tr>
+																															<tr>
+																																<td style="vertical-align: middle;"
+																																	align="right"><div
+																																		class="gwt-HTML">
+																																		<div class="form-field">Last
+																																			modified</div>
+																																	</div>
+																																</td>
+																																<td style="vertical-align: middle;"
+																																	align="left"><table
+																																		cellpadding="0" cellspacing="0">
+																																		<tbody>
+																																			<tr>
+																																				<td style="vertical-align: top;"
+																																					align="left"><div
+																																						class="gwt-HTML">
+																																						<div class="form-field">After:</div>
+																																					</div>
+																																				</td>
+																																				<td style="vertical-align: top;"
+																																					align="left"><table
+																																						cellpadding="0" cellspacing="0">
+																																						<tbody>
+																																							<tr>
+																																								<td style="vertical-align: top;"
+																																									align="left"><input
+																																									class="gwt-TextBox" type="text">
+																																								</td>
+																																								<td style="vertical-align: top;"
+																																									align="left"><img
+																																									class="image-Button"
+																																									onload='this.__gwtLastUnhandledEvent="load";'
+																																									src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																																									style="width: 7px; height: 8px; background: url(&quot;data:image/gif;base64,R0lGODlhBwAIALMAAN/fv79/P9+fX39fP7+ff9+/n////7+/v5+fnwAAAP///wAAAAAAAAAAAAAAAAAAACH5BAEAAAoALAAAAAAHAAgAAAQdUClzghjS2ICpHce0DYZ3HWVQEOSEFANgTAlSShEAOw==&quot;) no-repeat scroll 0px 0px transparent;"
+																																									border="0">
+																																								</td>
+																																							</tr>
+																																						</tbody>
+																																					</table>
+																																				</td>
+																																				<td style="vertical-align: top;"
+																																					align="left"><div
+																																						class="gwt-HTML">
+																																						<div class="form-field">&nbsp;</div>
+																																					</div>
+																																				</td>
+																																				<td style="vertical-align: top;"
+																																					align="left"><div
+																																						class="gwt-HTML">
+																																						<div class="form-field">Before:</div>
+																																					</div>
+																																				</td>
+																																				<td style="vertical-align: top;"
+																																					align="left"><table
+																																						cellpadding="0" cellspacing="0">
+																																						<tbody>
+																																							<tr>
+																																								<td style="vertical-align: top;"
+																																									align="left"><input
+																																									class="gwt-TextBox" type="text">
+																																								</td>
+																																								<td style="vertical-align: top;"
+																																									align="left"><img
+																																									class="image-Button"
+																																									onload='this.__gwtLastUnhandledEvent="load";'
+																																									src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+																																									style="width: 7px; height: 8px; background: url(&quot;data:image/gif;base64,R0lGODlhBwAIALMAAN/fv79/P9+fX39fP7+ff9+/n////7+/v5+fnwAAAP///wAAAAAAAAAAAAAAAAAAACH5BAEAAAoALAAAAAAHAAgAAAQdUClzghjS2ICpHce0DYZ3HWVQEOSEFANgTAlSShEAOw==&quot;) no-repeat scroll 0px 0px transparent;"
+																																									border="0">
+																																								</td>
+																																							</tr>
+																																						</tbody>
+																																					</table>
+																																				</td>
+																																			</tr>
+																																		</tbody>
+																																	</table>
+																																</td>
+																															</tr>
+																															<tr>
+																																<td style="vertical-align: middle;"
+																																	align="right"><div
+																																		class="gwt-HTML">
+																																		<div class="form-field"></div>
+																																	</div>
+																																</td>
+																																<td style="vertical-align: middle;"
+																																	align="left"><button
+																																		class="gwt-Button" type="button">Search</button>
+																																</td>
+																															</tr>
+																														</tbody>
+																													</table>
+																												</td>
+																											</tr>
+																										</tbody>
+																									</table>
+																								</td>
+																							</tr>
+																							<tr>
+																								<td style="vertical-align: top;" align="left"><div></div>
+																								</td>
+																							</tr>
+																						</tbody>
+																					</table>
+																				</div>
+																			</td>
+																		</tr>
+																	</tbody>
+																</table>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<iframe src="javascript:''" name="FormPanel_org.drools.guvnor.Guvnor_1"
+		style="position: absolute; width: 0pt; height: 0pt; border: 0pt none;"></iframe>
+	<div
+		style="position: absolute; left: 0px; top: 0px; display: block; width: 1184px; height: 80px;"
+		class="gwt-PopupPanelGlass"></div>
+	<div class="gwt-PopupPanel"
+		style="left: 436px; top: 0px; position: absolute; overflow: visible;">
+		<div title="Welcome to Guvnor" class="popupContent">
+			<table style="width: 300px;" cellpadding="0" cellspacing="0">
+				<tbody>
+					<tr>
+						<td style="vertical-align: top;" align="right"><div>
+								<div class="guvnor-PopupTitleBar-bar" id="titleBar">
+									<div class="guvnor-PopupTitleBar-title" style="float: left;">
+										<div class="gwt-Label">Welcome to Guvnor</div>
+									</div>
+									<div class="guvnor-PopupTitleBar-close-button"
+										style="float: right;">
+										<img class="image-Button"
+											onload='this.__gwtLastUnhandledEvent="load";'
+											src="http://localhost:8080/guvnor-webapp/org.drools.guvnor.Guvnor/clear.cache.gif"
+											style="width: 16px; height: 16px; background: url(&quot;data:image/gif;base64,R0lGODlhEAAQALMAAKioqKCgoJiYmJCQkIiIiICAgHh4eHBwcGhoaGBgYP///wAAAAAAAAAAAAAAAAAAACH5BAEAAAoALAAAAAAQABAAAARQUMlJq73YiCqMNYU2dSEFGEEAAmFqAJRwCAJxEPRsFcjg+4gCBmEgGA0IjCJRPCYwhURhOpXupIVD4lAVTgBYKSsMm2ytkqjWgp5ElfB4JQIAOw==&quot;) no-repeat scroll 0px 0px transparent;"
+											border="0">
+									</div>
+									<div style="clear: both;"></div>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td style="vertical-align: top;" align="right"><table
+								style="width: 100%;">
+								<colgroup>
+									<col>
+								</colgroup>
+								<tbody>
+									<tr>
+										<td style="vertical-align: middle;" align="right"><div
+												class="gwt-HTML">
+												<div class="form-field"></div>
+											</div>
+										</td>
+										<td style="vertical-align: middle;" align="left"><div
+												class="gwt-HTML">
+												<div class="highlight">
+													<b>This looks like a brand new repository.<br>Would
+														you like to install a sample repository?</b>
+												</div>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td style="vertical-align: middle;" align="right"><div
+												class="gwt-HTML">
+												<div class="form-field"></div>
+											</div>
+										</td>
+										<td style="vertical-align: middle;" align="left"><table
+												cellpadding="0" cellspacing="0">
+												<tbody>
+													<tr>
+														<td style="vertical-align: top;" align="center"><button
+																class="gwt-Button" type="button">Yes, please
+																install samples</button>
+														</td>
+														<td style="vertical-align: top;" align="center"><button
+																class="gwt-Button" type="button">No thanks</button>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

@@ -16,7 +16,8 @@ public class App {
 				"google.com.html",
 				"idnes.cz.html",
 				"seznam.cz.html",
-				"redhat.com.html"
+				"redhat.com.html",
+				"Drools-5.2.0.html"
 		};
 		try {
 			Analyzer a = ObjectFactory.newAnalyzer(Section508.class);
