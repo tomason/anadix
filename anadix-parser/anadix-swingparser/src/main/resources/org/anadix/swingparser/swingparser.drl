@@ -21,6 +21,10 @@ declare EndTagEvent
 	@role (event)
 end
 
+declare TextContentEvent
+	@role (event)
+end
+
 rule "InsertHtml"
 	salience 10
 	when
@@ -45,4 +49,13 @@ rule "InsertElement"
 		element.setPosition(e.getPosition());
 		
 		elementFactory.insertElement(element);
+end
+
+rule "SetTextContent"
+	salience -10
+	when
+		e : TextContentEvent( $id : id, $text : textContent != null ) from entry-point "parser"
+		parent : HtmlElement( id == $id )
+	then
+		parent.setTextContent($text);
 end
