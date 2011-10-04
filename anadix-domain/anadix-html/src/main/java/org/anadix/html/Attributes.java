@@ -17,6 +17,8 @@ package org.anadix.html;
 
 import java.util.Collection;
 import java.util.Properties;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Class representing set of element's attributes. Contains both the attributes
@@ -65,11 +67,17 @@ public class Attributes {
 	public static Properties parseStyle(String style) {
 		Properties result = new Properties();
 
-		String[] props = style.split(";");
+		style = style.replace("\r", "").replace("\n", "").replace("\t", "");
+		Pattern p = Pattern.compile("[^:;]+:([^;\"]|\"[^\"]+\")*;?");
+		Matcher m = p.matcher(style);
 
-		for (String prop : props) {
+		while (m.find()) {
+			String prop = m.group().trim();
+			if (prop.endsWith(";")) {
+				prop = prop.substring(0, prop.length() - 1);
+			}
+
 			String[] split = prop.split(":");
-
 			result.setProperty(split[0].trim(), split[1].trim());
 		}
 
