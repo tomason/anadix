@@ -14,6 +14,14 @@ public class SimpleReportFormatter extends DefaultReportFormatter {
 		sb.append("Analyzing: ").append(report.getSource().getDescription()).append("\n");
 		sb.append("\n");
 		sb.append("\n");
+
+		sb.append("MANUAL:").append("\n");
+		sb.append("-------").append("\n");
+		for (ReportItem i : report.getManuals()) {
+			sb.append(" > ").append(i.getItemText()).append("\n");
+		}
+		sb.append("\n");
+
 		sb.append("ERROR:").append("\n");
 		sb.append("-------").append("\n");
 		for (ReportItem i : report.getErrors()) {
@@ -27,6 +35,13 @@ public class SimpleReportFormatter extends DefaultReportFormatter {
 			sb.append(" > ").append(i.getItemText()).append("\n");
 		}
 
+		sb.append("\n");
+
+		sb.append("INFO:").append("\n");
+		sb.append("-------").append("\n");
+		for (ReportItem i : report.getInfos()) {
+			sb.append(" > ").append(i.getItemText()).append("\n");
+		}
 		sb.append("\n");
 
 		sb.append("OK:").append("\n");
