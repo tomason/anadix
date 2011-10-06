@@ -1,0 +1,14 @@
+# Equivalent alternatives for any multimedia presentation shall be
+#synchronized with the presentation.
+package org.anadix.section508
+
+import org.anadix.html.*
+
+/*
+rule "elements with color defined"
+	when
+		$element : HtmlElement( getAttribute("color") != null )
+	then
+		System.out.println("Beware, COLOR! " + $element);
+end
+*/

@@ -1,0 +1,8 @@
+# Client-side image maps shall be provided instead of server-side image
+#maps except where the regions cannot be defined with an available
+#geometric shape. 
+package org.anadix.section508
+
+import org.anadix.html.*
+
+

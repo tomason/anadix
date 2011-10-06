@@ -1,0 +1,8 @@
+# When a web page requires that an applet, plug-in or other application be
+#present on the client system to interpret page content, the page must
+#provide a link to a plug-in or applet that complies with §1194.21(a) through (l). 
+package org.anadix.section508
+
+import org.anadix.html.*
+
+

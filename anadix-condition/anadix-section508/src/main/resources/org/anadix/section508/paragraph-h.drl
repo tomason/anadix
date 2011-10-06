@@ -1,0 +1,8 @@
+# Markup shall be used to associate data cells and header cells
+#for data tables that have two or more logical levels of row or
+#column headers. 
+package org.anadix.section508
+
+import org.anadix.html.*
+
+

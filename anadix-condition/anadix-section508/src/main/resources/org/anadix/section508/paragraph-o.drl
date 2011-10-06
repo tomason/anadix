@@ -1,0 +1,6 @@
+# A method shall be provided that permits users to skip repetitive navigation links.
+package org.anadix.section508
+
+import org.anadix.html.*
+
+

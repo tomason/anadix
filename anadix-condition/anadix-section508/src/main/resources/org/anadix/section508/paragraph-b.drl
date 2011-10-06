@@ -1,0 +1,8 @@
+# Equivalent alternatives for any multimedia presentation shall be
+#synchronized with the presentation.
+package org.anadix.section508
+
+import org.anadix.html.*
+
+// TODO it might be impossible to write any rules and general warning
+// will be added

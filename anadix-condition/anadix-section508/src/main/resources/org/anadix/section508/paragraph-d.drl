@@ -1,0 +1,12 @@
+# Documents shall be organized so they are readable without
+#requiring an associated style sheet.
+package org.anadix.section508
+
+import org.anadix.html.*
+
+rule "stylesheet"
+	when
+		LinkTag( type == "stylesheet" )
+	then
+		
+end

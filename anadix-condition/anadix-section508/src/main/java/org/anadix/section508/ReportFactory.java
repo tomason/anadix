@@ -19,6 +19,7 @@ import java.util.ResourceBundle;
 
 import org.anadix.ItemStatus;
 import org.anadix.ReportItem;
+import org.anadix.html.ATag;
 import org.anadix.html.AppletTag;
 import org.anadix.html.AreaTag;
 import org.anadix.html.FrameTag;
@@ -43,7 +44,12 @@ public class ReportFactory {
 	private static final ResourceBundle i18n = ResourceBundle.getBundle("org.anadix.section508.reports");
 
 	private static ReportItem newReportItem(ItemStatus status, String key, HtmlElement cause) {
-		return new AbstractReportItem(status, String.format(i18n.getString(key), cause.getSource(), cause.getPosition())) {};
+		String text = i18n.getString(key);
+		if (cause != null) {
+			text = String.format(text, cause.getSource(), cause.getPosition());
+		}
+
+		return new AbstractReportItem(status, text) {};
 	}
 
 	public static ReportItem newAltMissingReport(ImgTag cause) {
@@ -84,5 +90,13 @@ public class ReportFactory {
 
 	public static ReportItem newTitleMissingReport(FramesetTag cause) {
 		return newReportItem(ItemStatus.ERROR, "frame.title.missing", cause);
+	}
+
+	public static ReportItem newNoscriptMissingReport() {
+		return newReportItem(ItemStatus.ERROR, "noscript.missing", null);
+	}
+
+	public static ReportItem newHrefJavascriptReport(ATag cause) {
+		return newReportItem(ItemStatus.WARNING, "a.href.javascript", cause);
 	}
 }

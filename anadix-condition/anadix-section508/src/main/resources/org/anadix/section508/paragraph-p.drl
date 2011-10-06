@@ -1,0 +1,7 @@
+# When a timed response is required, the user shall be alerted and given sufficient
+#time to indicate more time is required. 
+package org.anadix.section508
+
+import org.anadix.html.*
+
+

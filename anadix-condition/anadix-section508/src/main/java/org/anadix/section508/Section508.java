@@ -36,13 +36,31 @@ public class Section508 implements ConditionSet {
 	public Collection<DroolsResource> getDroolsResources() {
 		Collection<DroolsResource> result = new ArrayList<DroolsResource>();
 
-		result.add(new DroolsResource(
-				ResourceFactory.newInputStreamResource(getClass().getResourceAsStream("paragraph-a.drl")),
-				ResourceType.DRL));
+		String[] resources = new String[] {
+				"paragraph-a.drl",
+				"paragraph-b.drl",
+				"paragraph-c.drl",
+				"paragraph-d.drl",
+				"paragraph-e.drl",
+				"paragraph-f.drl",
+				"paragraph-g.drl",
+				"paragraph-h.drl",
+				"paragraph-i.drl",
+				"paragraph-j.drl",
+				"paragraph-k.drl",
+				"paragraph-l.drl",
+				"paragraph-m.drl",
+				"paragraph-n.drl",
+				"paragraph-o.drl",
+				"paragraph-p.drl"
+		};
 
-		result.add(new DroolsResource(
-				ResourceFactory.newInputStreamResource(getClass().getResourceAsStream("paragraph-i.drl")),
-				ResourceType.DRL));
+		for (String resource : resources) {
+			result.add(new DroolsResource(
+					ResourceFactory.newClassPathResource(resource, getClass()),
+					ResourceType.DRL));
+		}
+
 
 		return result;
 	}

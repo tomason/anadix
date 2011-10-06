@@ -1,0 +1,29 @@
+# When pages utilize scripting languages to display content, or to create
+#interface elements, the information provided by the script shall be
+#identified with functional text that can be read by assistive technology. 
+package org.anadix.section508
+
+import org.anadix.html.*
+
+/*
+ - pokud jsou nějaké script elementy, musí stránka obsahovat noscript (ERROR)
+ - doporučit nepoužívat skripty pro <a href> (WARNING)
+ - doporučit nepoužívat skripty pro <area href> (WARNING)
+*/
+
+rule "missing noscript tag"
+	when
+		ScriptTag( )
+		not (
+			NoscriptTag( textContent != null )
+		)
+	then
+		insert(ReportFactory.newNoscriptMissingReport());
+end
+
+rule "anchor uses javascript"
+	when
+		$element : ATag( href matches "javascript:\\S*" )
+	then
+		insert(ReportFactory.newHrefJavascriptReport($element));
+end

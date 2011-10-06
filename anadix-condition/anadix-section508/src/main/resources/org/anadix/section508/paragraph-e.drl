@@ -1,0 +1,7 @@
+# Redundant text links shall be provided for each active region of
+#a server-side image map. 
+package org.anadix.section508
+
+import org.anadix.html.*
+
+

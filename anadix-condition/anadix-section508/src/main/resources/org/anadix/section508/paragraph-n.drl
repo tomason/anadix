@@ -1,0 +1,9 @@
+# When electronic forms are designed to be completed on-line, the form shall
+#allow people using assistive technology to access the information, field
+#elements, and functionality required for completion and submission of the
+#form, including all directions and cues. 
+package org.anadix.section508
+
+import org.anadix.html.*
+
+

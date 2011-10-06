@@ -1,0 +1,6 @@
+# Row and column headers shall be identified for data tables. 
+package org.anadix.section508
+
+import org.anadix.html.*
+
+
