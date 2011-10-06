@@ -2,7 +2,6 @@
 #(e.g., via "alt", "longdesc", or in element content). 
 package org.anadix.section508
 
-#list any import classes here.
 import org.anadix.html.*
 
 rule "img without alt and longdesc"
