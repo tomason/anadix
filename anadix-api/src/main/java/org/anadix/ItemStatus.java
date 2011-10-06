@@ -32,5 +32,13 @@ public enum ItemStatus {
 	/**
 	 * Report item that is fine
 	 */
-	OK;
+	OK,
+	/**
+	 * Report item that requires a manual check
+	 */
+	MANUAL,
+	/**
+	 * Report item that indicates an info
+	 */
+	INFO
 }

@@ -18,7 +18,7 @@ package org.anadix;
 import java.util.List;
 
 /**
- * Class agregating ReportItem instances from analysis in collections
+ * Class aggregating ReportItem instances from analysis in collections
  * grouped by their status. Also enables to get simple textual report.
  * Please note that it should be used for debug purposes only!
  * 
@@ -29,7 +29,7 @@ public interface Report {
 	 * Lists all elements that are all right.
 	 * Note that not all ConditionSets insert ReportItems without mistakes!
 	 * 
-	 * @return list of ReportItem tahat have OK status
+	 * @return list of ReportItem that have OK status
 	 */
 	List<ReportItem> getOks();
 
@@ -37,16 +37,30 @@ public interface Report {
 	 * Lists all elements that have non-critical errors.
 	 * Note that not all ConditionSets insert ReportItems with minor mistakes!
 	 * 
-	 * @return list of ReportItem tahat have WARNING status
+	 * @return list of ReportItem that have WARNING status
 	 */
 	List<ReportItem> getWarnings();
 
 	/**
 	 * Lists all elements with critical errors.
 	 * 
-	 * @return list of ReportItem tahat have ERROR status
+	 * @return list of ReportItem that have ERROR status
 	 */
 	List<ReportItem> getErrors();
+
+	/**
+	 * Lists all elements that require manual check
+	 * 
+	 * @return list of ReportItems that have MANUAL status
+	 */
+	List<ReportItem> getManuals();
+
+	/**
+	 * Lists all information items
+	 * 
+	 * @return list of ReportItems that have INFO status
+	 */
+	List<ReportItem> getInfos();
 
 	/**
 	 * Creates a simple format String that lists all ReportItems
