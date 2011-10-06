@@ -1,11 +1,25 @@
-#created on: 9.6.2011
+# Frames shall be titled with text that facilitates frame identification and navigation.
 package org.anadix.section508
 
 import org.anadix.html.*
+
+rule "frameset without title"
+	when
+		frame : FramesetTag( title == null )
+	then
+		insert(ReportFactory.newTitleMissingReport(frame));
+end
 
 rule "frame without title"
 	when
 		frame : FrameTag( title == null || == "" )
 	then 
-		insert(ReportFactory.newTitleMissing(frame));
+		insert(ReportFactory.newTitleMissingReport(frame));
+end
+
+rule "iframe without title"
+	when
+		frame : IframeTag( title == null )
+	then 
+		insert(ReportFactory.newTitleMissingReport(frame));
 end
