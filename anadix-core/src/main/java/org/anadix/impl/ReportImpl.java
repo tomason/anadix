@@ -29,6 +29,8 @@ public class ReportImpl implements Report {
 	private final List<ReportItem> errors = new ArrayList<ReportItem>();
 	private final List<ReportItem> warnings = new ArrayList<ReportItem>();
 	private final List<ReportItem> oks = new ArrayList<ReportItem>();
+	private final List<ReportItem> manuals = new ArrayList<ReportItem>();
+	private final List<ReportItem> infos = new ArrayList<ReportItem>();
 
 	private final Source source;
 
@@ -53,6 +55,12 @@ public class ReportImpl implements Report {
 			case ERROR:
 				errors.add(item);
 				break;
+			case MANUAL:
+				manuals.add(item);
+				break;
+			case INFO:
+				infos.add(item);
+				break;
 			default:
 				throw new RuntimeException("Unexpected enum value " + item.getStatus());
 			}
@@ -73,6 +81,14 @@ public class ReportImpl implements Report {
 
 	public List<ReportItem> getErrors() {
 		return Collections.unmodifiableList(errors);
+	}
+
+	public List<ReportItem> getManuals() {
+		return manuals;
+	}
+
+	public List<ReportItem> getInfos() {
+		return infos;
 	}
 
 	public String report() {
