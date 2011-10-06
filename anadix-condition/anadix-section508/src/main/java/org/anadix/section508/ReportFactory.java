@@ -22,6 +22,7 @@ import org.anadix.ReportItem;
 import org.anadix.html.AppletTag;
 import org.anadix.html.AreaTag;
 import org.anadix.html.FrameTag;
+import org.anadix.html.FramesetTag;
 import org.anadix.html.HtmlElement;
 import org.anadix.html.IframeTag;
 import org.anadix.html.ImgTag;
@@ -78,6 +79,10 @@ public class ReportFactory {
 	}
 
 	public static ReportItem newTitleMissingReport(IframeTag cause) {
+		return newReportItem(ItemStatus.ERROR, "frame.title.missing", cause);
+	}
+
+	public static ReportItem newTitleMissingReport(FramesetTag cause) {
 		return newReportItem(ItemStatus.ERROR, "frame.title.missing", cause);
 	}
 }
