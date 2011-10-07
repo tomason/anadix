@@ -2,24 +2,25 @@
 package org.anadix.section508
 
 import org.anadix.html.*
+import org.anadix.section508.report.*
 
 rule "frameset without title"
 	when
 		frame : FramesetTag( title == null )
 	then
-		insert(ReportFactory.newTitleMissingReport(frame));
+		insert(new FrameMissingTitle(frame));
 end
 
 rule "frame without title"
 	when
 		frame : FrameTag( title == null || == "" )
 	then 
-		insert(ReportFactory.newTitleMissingReport(frame));
+		insert(new FrameMissingTitle(frame));
 end
 
 rule "iframe without title"
 	when
 		frame : IframeTag( title == null )
 	then 
-		insert(ReportFactory.newTitleMissingReport(frame));
+		insert(new FrameMissingTitle(frame));
 end
