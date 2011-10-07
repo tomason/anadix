@@ -99,4 +99,8 @@ public class ReportFactory {
 	public static ReportItem newHrefJavascriptReport(ATag cause) {
 		return newReportItem(ItemStatus.WARNING, "a.href.javascript", cause);
 	}
+
+	public static ReportItem newHrefJavascriptReport(AreaTag cause) {
+		return newReportItem(ItemStatus.WARNING, "a.href.javascript", cause);
+	}
 }
