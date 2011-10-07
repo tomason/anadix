@@ -19,7 +19,6 @@ import java.util.ResourceBundle;
 
 import org.anadix.ItemStatus;
 import org.anadix.ReportItem;
-import org.anadix.html.ATag;
 import org.anadix.html.AppletTag;
 import org.anadix.html.AreaTag;
 import org.anadix.html.FrameTag;
@@ -41,6 +40,8 @@ import org.anadix.impl.AbstractReportItem;
  * https://github.com/jamezp/jboss-logging-example
  */
 public class ReportFactory {
+	// FIXME this class should not be used and will be removed soon
+	// use classes from package org.anadix.section508.reports instead
 	private static final ResourceBundle i18n = ResourceBundle.getBundle("org.anadix.section508.reports");
 
 	private static ReportItem newReportItem(ItemStatus status, String key, HtmlElement cause) {
@@ -92,15 +93,4 @@ public class ReportFactory {
 		return newReportItem(ItemStatus.ERROR, "frame.title.missing", cause);
 	}
 
-	public static ReportItem newNoscriptMissingReport() {
-		return newReportItem(ItemStatus.ERROR, "noscript.missing", null);
-	}
-
-	public static ReportItem newHrefJavascriptReport(ATag cause) {
-		return newReportItem(ItemStatus.WARNING, "a.href.javascript", cause);
-	}
-
-	public static ReportItem newHrefJavascriptReport(AreaTag cause) {
-		return newReportItem(ItemStatus.WARNING, "a.href.javascript", cause);
-	}
 }

@@ -4,6 +4,7 @@
 package org.anadix.section508
 
 import org.anadix.html.*
+import org.anadix.section508.report.*
 
 rule "missing noscript tag"
 	salience -10
@@ -15,19 +16,19 @@ rule "missing noscript tag"
 			NoscriptTag( textContent != null )
 		)
 	then
-		insertLogical(ReportFactory.newNoscriptMissingReport());
+		insertLogical(new DocumentMissingNoscript());
 end
 
 rule "anchor uses javascript"
 	when
 		$element : ATag( href matches "javascript:.*" )
 	then
-		insert(ReportFactory.newHrefJavascriptReport($element));
+		insert(new HrefContainsJavascript($element));
 end
 
 rule "area uses javascript"
 	when
 		$element : AreaTag( href matches "javascript:.*" )
 	then
-		insert(ReportFactory.newHrefJavascriptReport($element));
+		insert(new HrefContainsJavascript($element));
 end
