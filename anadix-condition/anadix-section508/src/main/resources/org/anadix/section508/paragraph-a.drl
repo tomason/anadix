@@ -3,19 +3,13 @@
 package org.anadix.section508
 
 import org.anadix.html.*
+import org.anadix.section508.report.*
 
 rule "img without alt and longdesc"
     when
         $element : ImgTag( alt == null && longdesc == null )
     then
     	insert(ReportFactory.newAltMissingReport($element));
-end
-
-rule "decorative img"
-	when
-		$element : ImgTag( alt == "" )
-	then
-		insert(ReportFactory.newAltEmptyReport($element));
 end
 
 rule "input without alt or label"
@@ -25,33 +19,40 @@ rule "input without alt or label"
 			LabelTag( getFor() == $name )
 		)
 	then
-		insert(ReportFactory.newAltMissingReport($element));
+		insert(new MissingAlt($element));
 end
 
 rule "object without text content"
 	when
 		$element : ObjectTag( textContent == null )
 	then
-		insert(ReportFactory.newContentMissingReport($element));
+		insert(new MissingAlt($element));
 end
 
 rule "applet without alt and text content"
 	when
 		$element : AppletTag( alt == null, textContent == null )
 	then
-		insert(ReportFactory.newAltMissingReport($element));
+		insert(new MissingAlt($element));
 end
 
 rule "iframe without text content"
 	when
 		$element : IframeTag( textContent == null )
 	then
-		insert(ReportFactory.newContentMissingReport($element));
+		insert(new MissingAlt($element));
 end
 
 rule "area without alt"
 	when
 		$element : AreaTag( alt == null )
 	then
-		insert(ReportFactory.newAltMissingReport($element));
+		insert(new MissingAlt($element));
+end
+
+rule "decorative img"
+	when
+		$element : ImgTag( alt == "" )
+	then
+		insert(new ImgEmptyAlt($element));
 end
