@@ -9,7 +9,7 @@ rule "img without alt and longdesc"
     when
         $element : ImgTag( alt == null && longdesc == null )
     then
-    	insert(ReportFactory.newAltMissingReport($element));
+    	insert(new MissingAlt($element));
 end
 
 rule "input without alt or label"

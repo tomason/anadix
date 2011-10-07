@@ -2,6 +2,7 @@ package org.anadix.section508.report;
 
 import org.anadix.ItemStatus;
 import org.anadix.html.AppletTag;
+import org.anadix.html.AreaTag;
 import org.anadix.html.HtmlElement;
 import org.anadix.html.IframeTag;
 import org.anadix.html.ImgTag;
@@ -12,6 +13,10 @@ public class MissingAlt extends Section508ReportItem {
 
 	public MissingAlt(AppletTag cause) {
 		this(cause, "applet.missing.alt");
+	}
+
+	public MissingAlt(AreaTag cause) {
+		this(cause, "area.missing.alt");
 	}
 
 	public MissingAlt(IframeTag cause) {
