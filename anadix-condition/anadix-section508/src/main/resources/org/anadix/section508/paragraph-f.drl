@@ -4,5 +4,11 @@
 package org.anadix.section508
 
 import org.anadix.html.*
+import org.anadix.section508.report.*
 
-
+rule "server side map warning"
+	when
+		$element : ImgTag( ismap  != null )
+	then
+		insert(new ImgIsMap($element, true));
+end

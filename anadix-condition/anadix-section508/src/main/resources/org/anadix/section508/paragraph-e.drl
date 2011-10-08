@@ -5,9 +5,9 @@ package org.anadix.section508
 import org.anadix.html.*
 import org.anadix.section508.report.*
 
-rule "server side map present"
+rule "server side map manual check"
 	when
 		$element : ImgTag( ismap != null )
 	then
-		insert(new ImgIsMap($element));
+		insert(new ImgIsMap($element, false));
 end
