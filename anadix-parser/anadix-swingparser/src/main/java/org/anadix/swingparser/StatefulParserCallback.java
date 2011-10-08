@@ -92,6 +92,8 @@ public class StatefulParserCallback extends ParserCallback {
 	@Override
 	public void handleText(char[] data, int pos) {
 		TextContentEvent e = new TextContentEvent(ID.divide(JUMP), new String(data), pos);
+
+		factory.insertEvent(ENTRY_POINT, e);
 	}
 
 	@Override
