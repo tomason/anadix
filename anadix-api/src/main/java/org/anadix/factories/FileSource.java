@@ -20,15 +20,16 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
+import org.anadix.exceptions.SourceException;
 import org.jboss.logging.Logger;
 
 class FileSource extends AbstractSource {
 	private final File source;
 
-	public FileSource(File source) throws FileNotFoundException {
+	public FileSource(File source) throws SourceException {
 		super(source.getAbsolutePath());
 		if (!source.exists()) {
-			throw new FileNotFoundException(source.getName());
+			throw new SourceException("Unable to locate file");
 		}
 		this.source = source;
 	}
