@@ -53,7 +53,7 @@ public class ImgTag extends CommonAttributes {
 	}
 
 	public String getIsmap() {
-		return getAttribute("Ismap");
+		return getAttribute("ismap");
 	}
 
 	public String getAlign() {
