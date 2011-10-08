@@ -4,6 +4,16 @@
 #text-only page shall be updated whenever the primary page changes. 
 package org.anadix.section508
 
+import org.anadix.ReportItem
+import org.anadix.ItemStatus
 import org.anadix.html.*
+import org.anadix.section508.report.*
 
-
+rule "last resort"
+	when
+		exists (
+			ReportItem( status == ItemStatus.ERROR )
+		)
+	then
+		insert(new DocumentHasErrors());
+end
