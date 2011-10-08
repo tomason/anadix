@@ -20,7 +20,7 @@
   </developers>
   
   <properties>
-    <analyzer.sample.main.class>org.analyzer.sample.App</analyzer.sample.main.class>
+    <analyzer.sample.main.class>org.anadix.sample.App</analyzer.sample.main.class>
   </properties>
   
   <dependencies>
