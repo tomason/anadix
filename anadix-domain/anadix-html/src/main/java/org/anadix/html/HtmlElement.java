@@ -81,7 +81,7 @@ public abstract class HtmlElement implements Element {
 		return attributes;
 	}
 
-	protected String getAttribute(String name) {
+	public String getAttribute(String name) {
 		return getAttributes().getAttribute(name);
 	}
 
