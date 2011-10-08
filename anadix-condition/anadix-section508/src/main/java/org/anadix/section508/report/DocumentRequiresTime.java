@@ -7,6 +7,9 @@ public class DocumentRequiresTime extends Section508ReportItem {
 
 	public DocumentRequiresTime() {
 		super(ItemStatus.MANUAL, KEY);
+
+		setDescription(formatDescriptionString(KEY));
+		setAdvice(formatAdviceString(KEY));
 	}
 
 }
