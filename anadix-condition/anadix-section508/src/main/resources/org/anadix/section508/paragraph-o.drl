@@ -2,5 +2,10 @@
 package org.anadix.section508
 
 import org.anadix.html.*
+import org.anadix.section508.report.*
 
-
+rule "skip repetitive links"
+	when
+	then
+		insert(new DocumentSkipNavigation());
+end
