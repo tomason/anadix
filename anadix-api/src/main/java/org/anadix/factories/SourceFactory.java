@@ -16,7 +16,6 @@
 package org.anadix.factories;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.net.URL;
 
 import org.anadix.Source;
@@ -54,21 +53,15 @@ public final class SourceFactory {
 	 * @throws SourceException - if any error occurs during creation of new Source
 	 */
 	public static Source newFileSource(File file, boolean cache) throws SourceException {
-		try {
-			if (!file.canRead()) {
-				throw new SourceException("Can't read file " + file.getPath());
-			}
-			Source s = new FileSource(file);
-			if (cache) {
-				logger.debugf("Caching file source from '%s'", file.getAbsoluteFile());
-				return newStringSource(s.getText(), s.getDescription());
-			} else {
-				return s;
-			}
-		} catch (FileNotFoundException ex) {
-			logger.fatal("Unable to lacate file", ex);
-			// this is excluded by if(!file.canRead()) and should never occur
-			throw new SourceException("Unable to lacate file", ex);
+		if (!file.canRead()) {
+			throw new SourceException("Can't read file " + file.getPath());
+		}
+		Source s = new FileSource(file);
+		if (cache) {
+			logger.debugf("Caching file source from '%s'", file.getAbsoluteFile());
+			return newStringSource(s.getText(), s.getDescription());
+		} else {
+			return s;
 		}
 	}
 
