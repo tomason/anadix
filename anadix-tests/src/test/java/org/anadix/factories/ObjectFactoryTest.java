@@ -28,7 +28,7 @@ public class ObjectFactoryTest {
 		ObjectFactory.newParser("non.existent.Class");
 	}
 
-	@Test(groups = "parser", expectedExceptions = InstantiationException.class)
+	@Test(groups = "parser", expectedExceptions = IllegalArgumentException.class)
 	public void testNewParser4() throws Exception {
 		ObjectFactory.newParser("java.lang.Object");
 	}
@@ -71,7 +71,7 @@ public class ObjectFactoryTest {
 		ObjectFactory.newConditionSet("non.existent.Class");
 	}
 
-	@Test(groups = "conditions", expectedExceptions = InstantiationException.class)
+	@Test(groups = "conditions", expectedExceptions = IllegalArgumentException.class)
 	public void testNewConditionSet4() throws Exception {
 		ObjectFactory.newConditionSet("java.lang.Object");
 	}
@@ -180,7 +180,7 @@ public class ObjectFactoryTest {
 		ObjectFactory.newFormatter("non.existing.ClassReportFormatter");
 	}
 
-	@Test(dependsOnGroups = { "parser", "conditions" }, expectedExceptions = InstantiationException.class)
+	@Test(dependsOnGroups = { "parser", "conditions" }, expectedExceptions = IllegalArgumentException.class)
 	public void testNewFormatter5() throws Exception {
 		ObjectFactory.newFormatter("java.lang.Object");
 	}
