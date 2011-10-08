@@ -20,6 +20,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
+import org.jboss.logging.Logger;
+
 class FileSource extends AbstractSource {
 	private final File source;
 
@@ -35,7 +37,8 @@ class FileSource extends AbstractSource {
 		try {
 			return new FileInputStream(source);
 		} catch (FileNotFoundException e) {
-			throw new RuntimeException("This should not have happened", e);
+			Logger.getLogger(getClass()).fatal("Unable to find file", e);
+			throw new RuntimeException("Unable to find file", e);
 		}
 	}
 }

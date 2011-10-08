@@ -22,6 +22,7 @@ import org.anadix.Analyzer;
 import org.anadix.ConditionSet;
 import org.anadix.Parser;
 import org.anadix.ReportFormatter;
+import org.jboss.logging.Logger;
 
 
 /**
@@ -30,6 +31,7 @@ import org.anadix.ReportFormatter;
  * @author tomason
  */
 public final class ObjectFactory {
+	private static final Logger logger = Logger.getLogger(ObjectFactory.class);
 	// FIXME allow configuring default classes (or at the very least the defaultConditions)
 	// FIXME think about making this 'org.anadix.Anadix' class as it's
 	// practically the main thing Anadix offers. When redoing this enhance capabilities
@@ -274,8 +276,7 @@ public final class ObjectFactory {
 
 			return clazz.getConstructor(parameterTypes);
 		} catch (NoSuchMethodException ex) {
-			// FIXME move this to the log only!
-			ex.printStackTrace();
+			logger.info("Didn't find appropriate constructor", ex);
 		}
 
 		// try to find constructor which has params assignable from initargs
@@ -294,12 +295,13 @@ public final class ObjectFactory {
 			return (Constructor<T>)c;
 		}
 
-		return null;
+		throw newInstantiationException(clazz.getName(), null);
 	}
 
 	private static InstantiationException newInstantiationException(String className, Throwable cause) {
-		// FIXME log!
-		cause.printStackTrace();
+		if (cause != null) {
+			logger.error("Exception during instantiation", cause);
+		}
 
 		return new InstantiationException(
 				String.format(errorMessageFormat, className));
