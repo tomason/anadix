@@ -3,5 +3,10 @@
 package org.anadix.section508
 
 import org.anadix.html.*
+import org.anadix.section508.report.*
 
-
+rule "timely response required"
+	when
+	then
+		insert(new DocumentRequiresTime());
+end
