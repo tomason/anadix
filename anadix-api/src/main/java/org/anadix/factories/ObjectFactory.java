@@ -16,6 +16,7 @@
 package org.anadix.factories;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 
 import org.anadix.Analyzer;
 import org.anadix.ConditionSet;
@@ -36,7 +37,7 @@ public final class ObjectFactory {
 	private static final String defaultAnalyzer = "org.anadix.impl.AnalyzerImpl";
 	private static final String defaultFormatter = "org.anadix.impl.SimpleReportFormatter";
 
-	private static final String errorMessageFormat = "Could not instantiate %s: %s";
+	private static final String errorMessageFormat = "Could not instantiate %s";
 
 	private ObjectFactory() {}
 
@@ -54,11 +55,7 @@ public final class ObjectFactory {
 			throw new NullPointerException("className");
 		}
 
-		try {
-			return instantiate(Parser.class, className);
-		} catch (Exception ex) {
-			throw newInstantiationException("Parser", className, ex);
-		}
+		return instantiate(Parser.class, className);
 	}
 
 	/**
@@ -71,11 +68,7 @@ public final class ObjectFactory {
 	 * new instance
 	 */
 	public static Parser newParser(Class<? extends Parser> clazz) throws InstantiationException {
-		try {
-			return instantiate(clazz);
-		} catch (Exception ex) {
-			throw newInstantiationException("Parser", clazz.getName(), ex);
-		}
+		return instantiate(clazz);
 	}
 
 	/**
@@ -93,11 +86,7 @@ public final class ObjectFactory {
 			throw new NullPointerException("className");
 		}
 
-		try {
-			return instantiate(ConditionSet.class, className);
-		} catch (Exception ex) {
-			throw newInstantiationException("ConditionSet", className, ex);
-		}
+		return instantiate(ConditionSet.class, className);
 	}
 
 	/**
@@ -110,11 +99,7 @@ public final class ObjectFactory {
 	 * new instance
 	 */
 	public static ConditionSet newConditionSet(Class<? extends ConditionSet> clazz) throws InstantiationException {
-		try {
-			return instantiate(clazz);
-		} catch (Exception ex) {
-			throw newInstantiationException("ConditionSet", clazz.getName(), ex);
-		}
+		return instantiate(clazz);
 	}
 
 	/**
@@ -184,11 +169,7 @@ public final class ObjectFactory {
 			throw new NullPointerException("Parser can't be null");
 		}
 
-		try {
-			return instantiate(Analyzer.class, defaultAnalyzer, new Object[] { p, c });
-		} catch (Exception ex) {
-			throw newInstantiationException("Analyzer", defaultAnalyzer, ex);
-		}
+		return instantiate(Analyzer.class, defaultAnalyzer, new Object[] { p, c });
 	}
 
 	/**
@@ -215,11 +196,8 @@ public final class ObjectFactory {
 		if (className == null || className.length() == 0) {
 			throw new NullPointerException("className can't be null");
 		}
-		try {
-			return instantiate(ReportFormatter.class, className);
-		} catch (Exception ex) {
-			throw newInstantiationException("ReportFormatter", className, ex);
-		}
+
+		return instantiate(ReportFormatter.class, className);
 	}
 
 	/**
@@ -235,33 +213,28 @@ public final class ObjectFactory {
 		if (clazz == null) {
 			throw new NullPointerException("clazz can't be null");
 		}
-		try {
-			return instantiate(clazz);
-		} catch (Exception ex) {
-			throw newInstantiationException("ReportFormatter", clazz.getName(), ex);
-		}
+
+		return instantiate(clazz);
 	}
 
 	/**
 	 * Creates a new instance of class given by name and casts it to
 	 * given superclass
-	 * 
-	 * @param clazz
-	 * @param className
-	 * @param initargs
-	 * @return
-	 * @throws Exception
 	 */
 	private static <T> T instantiate(
-			Class<T> clazz, String className, Object... initargs) throws Exception {
+			Class<T> clazz, String className, Object... initargs) throws InstantiationException {
 
-		Class<?> c = Class.forName(className);
-		if (clazz.isAssignableFrom(c)) {
-			Object o = instantiate(c, initargs);
+		try {
+			Class<?> c = Class.forName(className);
+			if (clazz.isAssignableFrom(c)) {
+				Object o = instantiate(c, initargs);
 
-			return clazz.cast(o);
-		} else {
-			throw new IllegalArgumentException("Class " + className + " is not extending " + clazz.getName());
+				return clazz.cast(o);
+			} else {
+				throw new IllegalArgumentException("Class " + className + " is not extending " + clazz.getName());
+			}
+		} catch (ClassNotFoundException ex) {
+			throw newInstantiationException(clazz.getName(), ex);
 		}
 	}
 
@@ -274,14 +247,22 @@ public final class ObjectFactory {
 	 * @return new instance of given class
 	 * @throws Exception - if anything goes wrong
 	 */
-	private static <T> T instantiate(Class<T> clazz, Object... initargs) throws Exception {
-		Object o = getConstructor(clazz, initargs).newInstance(initargs);
+	private static <T> T instantiate(Class<T> clazz, Object... initargs) throws InstantiationException {
+		try {
+			Object o = getConstructor(clazz, initargs).newInstance(initargs);
 
-		return clazz.cast(o);
+			return clazz.cast(o);
+		} catch (IllegalAccessException ex) {
+			throw newInstantiationException(clazz.getName(), ex);
+		} catch (IllegalArgumentException ex) {
+			throw newInstantiationException(clazz.getName(), ex);
+		} catch (InvocationTargetException ex) {
+			throw newInstantiationException(clazz.getName(), ex);
+		}
 	}
 
 	@SuppressWarnings("unchecked")
-	private static <T> Constructor<T> getConstructor(Class<T> clazz, Object... initargs) throws Exception {
+	private static <T> Constructor<T> getConstructor(Class<T> clazz, Object... initargs) throws InstantiationException {
 		// try to find constructor matching exactly to given args
 		try {
 			Class<?>[] parameterTypes = new Class<?>[initargs.length];
@@ -316,11 +297,11 @@ public final class ObjectFactory {
 		return null;
 	}
 
-	private static InstantiationException newInstantiationException(String type, String className, Throwable cause) {
+	private static InstantiationException newInstantiationException(String className, Throwable cause) {
 		// FIXME log!
 		cause.printStackTrace();
 
 		return new InstantiationException(
-				String.format(errorMessageFormat, type, className));
+				String.format(errorMessageFormat, className));
 	}
 }
