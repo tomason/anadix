@@ -15,7 +15,7 @@
         </layout>
     </appender>
     
-    <logger name="org.analyzer.swingparser" additivity="false">
+    <logger name="org.anadix.swingparser" additivity="false">
     	<level value="all" />
     	<appender-ref ref="FA" />
     </logger>
