@@ -3,10 +3,25 @@
 package org.anadix.section508
 
 import org.anadix.html.*
+import org.anadix.section508.report.*
 
-rule "stylesheet"
+rule "stylesheets present"
 	when
-		LinkTag( type == "stylesheet" )
+		( or 
+			exists(
+				LinkTag( type == "stylesheet" )
+			)
+			exists (
+				CoreAttributes( style != null )
+			)
+		)
 	then
-		
+		insert(new DocumentContainsStyle());
+end
+
+rule "styles in tags"
+	when
+		$element : CoreAttributes( style != null )
+	then
+		insert(new ElementContainsStyle($element));
 end
