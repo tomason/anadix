@@ -17,11 +17,11 @@ package org.anadix.factories;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.net.URL;
 
 import org.anadix.Source;
 import org.anadix.exceptions.SourceException;
+import org.jboss.logging.Logger;
 
 /**
  * Creates instances of Source for different types of sources
@@ -29,6 +29,7 @@ import org.anadix.exceptions.SourceException;
  * @author tomason
  */
 public final class SourceFactory {
+	private static final Logger logger = Logger.getLogger(SourceFactory.class);
 	// FIXME add some settings to change caching policy
 	private static final boolean cacheByDefault = true;
 	private SourceFactory() {}
@@ -59,13 +60,15 @@ public final class SourceFactory {
 			}
 			Source s = new FileSource(file);
 			if (cache) {
+				logger.debugf("Caching file source from '%s'", file.getAbsoluteFile());
 				return newStringSource(s.getText(), s.getDescription());
 			} else {
 				return s;
 			}
 		} catch (FileNotFoundException ex) {
+			logger.fatal("Unable to lacate file", ex);
 			// this is excluded by if(!file.canRead()) and should never occur
-			throw new SourceException("This should not happen", ex);
+			throw new SourceException("Unable to lacate file", ex);
 		}
 	}
 
@@ -137,6 +140,7 @@ public final class SourceFactory {
 	public static Source newClassPathSource(String resource, boolean cache) throws SourceException {
 		Source s = new ClassPathSource(resource);
 		if (cache) {
+			logger.debugf("Caching classpath source from '%s'", resource);
 			return newStringSource(s.getText(), s.getDescription());
 		} else {
 			return s;
@@ -165,15 +169,12 @@ public final class SourceFactory {
 	 * @throws SourceException - if any error occurs during creation of new Source
 	 */
 	public static Source newURLSource(URL url, boolean cache) throws SourceException {
-		try {
-			Source s = new URLSource(url);
-			if (cache) {
-				return newStringSource(s.getText(), s.getDescription());
-			} else {
-				return s;
-			}
-		} catch (IOException ex) {
-			throw new SourceException("Unable to create source", ex);
+		Source s = new URLSource(url);
+		if (cache) {
+			logger.debugf("Caching URL source from '%s'", url.toExternalForm());
+			return newStringSource(s.getText(), s.getDescription());
+		} else {
+			return s;
 		}
 	}
 }

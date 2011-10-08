@@ -21,8 +21,10 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 
 import org.anadix.Source;
+import org.jboss.logging.Logger;
 
 abstract class AbstractSource implements Source {
+	private static final Logger logger = Logger.getLogger(AbstractSource.class);
 	private final String description;
 
 	public AbstractSource(String description) {
@@ -45,15 +47,14 @@ abstract class AbstractSource implements Source {
 				result.append(line).append("\n");
 			}
 		} catch (IOException ex) {
-			// FIXME logging, logging, logging!!!
-			System.err.println(ex);
-			ex.printStackTrace();
+			logger.error("Unable to read text", ex);
 		} finally {
 			if (br != null) {
 				try {
 					br.close();
 				} catch (IOException e) {
-					throw new RuntimeException("This should not happen", e);
+					logger.fatal("Unable to close BufferedReader", e);
+					throw new RuntimeException("Unable to close BufferedReader", e);
 				}
 			}
 		}
