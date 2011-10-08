@@ -165,4 +165,11 @@
     <url>https://github.com/tomason/anadix/issues</url>
   </issueManagement>
   
+  <dependencies>
+  	<dependency>
+  		<groupId>org.jboss.logging</groupId>
+  		<artifactId>jboss-logging</artifactId>
+  		<version>3.0.1.GA</version>
+  	</dependency>
+  </dependencies>
 </project>
