@@ -31,7 +31,7 @@ end
 
 rule "applet without alt and text content"
 	when
-		$element : AppletTag( alt == null, textContent == null )
+		$element : AppletTag( alt == null || textContent == null )
 	then
 		insert(new MissingAlt($element));
 end
