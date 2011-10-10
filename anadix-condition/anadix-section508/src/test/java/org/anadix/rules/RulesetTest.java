@@ -1,8 +1,9 @@
 package org.anadix.rules;
 
+import static org.testng.Assert.*;
+
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Properties;
@@ -25,8 +26,10 @@ import org.drools.runtime.ExecutionResults;
 import org.drools.runtime.StatelessKnowledgeSession;
 import org.drools.runtime.rule.QueryResults;
 import org.drools.runtime.rule.QueryResultsRow;
+import org.testng.annotations.Test;
 
-abstract class RulesetTest {
+@Test
+public abstract class RulesetTest {
 	private final KnowledgeBase kbase;
 	protected final HTMLElementFactory factory;
 	protected final HtmlTag html;
@@ -49,11 +52,7 @@ abstract class RulesetTest {
 		body = factory.createBodyTag(new BigInteger("101"), html, new Properties());
 	}
 
-	public Collection<ReportItem> evaluate(Element element) {
-		return evaluate(Arrays.asList(element));
-	}
-
-	public Collection<ReportItem> evaluate(Collection<Element> elements) {
+	protected Collection<ReportItem> evaluate(Element... elements) {
 		StatelessKnowledgeSession ksession = kbase.newStatelessKnowledgeSession();
 		Collection<ReportItem> reportItems = new ArrayList<ReportItem>();
 
@@ -74,5 +73,24 @@ abstract class RulesetTest {
 
 		return reportItems;
 
+	}
+
+	protected static ReportItem assertReportContains(Collection<ReportItem> report, Class<? extends ReportItem> clazz, String text) {
+		assertTrue(report.size() > 0);
+		for (ReportItem item : report) {
+			if (item.getClass() == clazz && item.getItemText().contains(text)) {
+				return item;
+			}
+		}
+		fail("Appropriate report not found");
+		return null;
+	}
+
+	protected static void assertReportNotContains(Collection<ReportItem> report, Class<? extends ReportItem> clazz, String text) {
+		for (ReportItem item : report) {
+			if (item.getClass().isInstance(clazz) && item.getItemText().contains(text)) {
+				fail("Found an error report " + item);
+			}
+		}
 	}
 }
