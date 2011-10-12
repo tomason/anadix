@@ -1,0 +1,30 @@
+package org.anadix.section508
+
+import org.anadix.html.*
+
+declare DataTableTag
+	table : TableTag
+end
+
+query containedIn( HtmlElement $child, HtmlElement $parent )
+	( or
+		HtmlElement( this == $child, parent == $parent )
+		( and
+			containedIn ($child, inside;)
+			containedIn (indside, $parent;)
+		)
+	)
+end
+
+query isDataTable(TableTag table)
+	$child : TdTag( textContent != null && != "" )
+	containedIn( $child, table; )
+end
+
+rule "recognize data table"
+	when
+		$table : TableTag( )
+		isDataTable( $table; )
+	then
+		insert(new DataTableTag($table));
+end
