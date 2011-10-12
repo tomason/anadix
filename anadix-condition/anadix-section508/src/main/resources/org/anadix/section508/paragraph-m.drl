@@ -4,5 +4,25 @@
 package org.anadix.section508
 
 import org.anadix.html.*
+import org.anadix.section508.report.*
 
+rule "object needs plugin"
+	when
+		$element : ObjectTag( )
+	then
+		insert(new ObjectCompliesConditions($element));
+end
 
+rule "applet needs plugin"
+	when
+		$element : AppletTag( )
+	then
+		insert(new ObjectCompliesConditions($element));
+end
+
+rule "embed needs plugin"
+	when
+		$element : HtmlElement( name == "embed" )
+	then
+		insert(new ObjectCompliesConditions($element));
+end
