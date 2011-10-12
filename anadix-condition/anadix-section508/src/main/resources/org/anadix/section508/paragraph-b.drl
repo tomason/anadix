@@ -3,6 +3,32 @@
 package org.anadix.section508
 
 import org.anadix.html.*
+import org.anadix.section508.report.*
 
-// TODO it might be impossible to write any rules and general warning
-// will be added
+rule "multimedia applet"
+	when
+		$element : AppletTag( )
+	then
+		insert(new MultimediaNeedAlternative($element));
+end
+
+rule "multimedia object"
+	when
+		$element : ObjectTag( )
+	then
+		insert(new MultimediaNeedAlternative($element));
+end
+
+rule "multimedia param"
+	when
+		$element : ParamTag( )
+	then
+		insert(new MultimediaNeedAlternative($element));
+end
+
+rule "multimedia embed"
+	when
+		$element : HtmlElement( name == "embed" )
+	then
+		insert(new MultimediaNeedAlternative($element));
+end
