@@ -26,7 +26,7 @@ declare TextContentEvent
 end
 
 rule "InsertHtml"
-	salience 10
+	salience 1000
 	when
 		html : StartTagEvent( tagName == "html" ) from entry-point "parser"
 	then 
@@ -37,7 +37,7 @@ rule "InsertHtml"
 end
 
 rule "InsertElement"
-	salience -5
+	salience 100
 	when
 		e : StartTagEvent( $id : id, tagName != "html" ) from entry-point "parser"
 		parent : HtmlElement( id == ($id.divide(jump)) )
@@ -52,10 +52,13 @@ rule "InsertElement"
 end
 
 rule "SetTextContent"
-	salience -10
+	no-loop
+	salience 1000
 	when
 		e : TextContentEvent( $id : id, $text : textContent != null ) from entry-point "parser"
 		parent : HtmlElement( id == $id )
 	then
-		parent.setTextContent($text);
+		modify(parent) {
+			setTextContent($text);
+		}
 end
