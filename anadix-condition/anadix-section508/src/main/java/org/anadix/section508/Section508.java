@@ -37,6 +37,7 @@ public class Section508 implements ConditionSet {
 		Collection<DroolsResource> result = new ArrayList<DroolsResource>();
 
 		String[] resources = new String[] {
+				"commons.drl",
 				"paragraph-a.drl",
 				"paragraph-b.drl",
 				"paragraph-c.drl",
