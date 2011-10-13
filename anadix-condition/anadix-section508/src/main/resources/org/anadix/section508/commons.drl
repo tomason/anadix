@@ -8,23 +8,22 @@ end
 
 query containedIn( HtmlElement $child, HtmlElement $parent )
 	( or
-		HtmlElement( this == $child, parent == $parent )
+		HtmlElement( $child := this, $parent := parent )
 		( and
-			containedIn ($child, inside;)
-			containedIn (indside, $parent;)
+			HtmlElement( $child := this, $middle := parent != $child )
+			containedIn( $middle, $parent; )
 		)
 	)
 end
 
-query isDataTable(TableTag table)
-	$child : TdTag( textContent != null && != "" )
-	containedIn( $child, table; )
-end
-
 rule "recognize data table"
+	salience 100
 	when
 		$table : TableTag( )
-		isDataTable( $table; )
+		exists (
+			$child : TdTag( textContent != null && != "" ) and
+			?containedIn( $child, $table; )
+		)
 	then
-		insert(new DataTableTag($table));
+		insertLogical(new DataTableTag($table));
 end
