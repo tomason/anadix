@@ -2,5 +2,44 @@
 package org.anadix.section508
 
 import org.anadix.html.*
+import org.anadix.section508.report.*
 
+declare RowWithoutHeader
+	row : TrTag
+end
 
+rule "row without header cell"
+	salience 100
+	when
+		$row : TrTag( )
+		not (
+				ThTag( parent == $row )
+		)
+	then
+		insertLogical(new RowWithoutHeader($row));
+end
+
+rule "row without header in data table"
+	when
+		DataTableTag( $table : table )
+		RowWithoutHeader( $row : row )
+		containedIn( $row, $table; )
+	then
+		insert(new RowMissingHeader($row));
+end
+
+/*
+rule "count objects"
+	when
+		accumulate (
+			$row : RowWithoutHeader( ),
+			$rows : count($row)
+		)
+		accumulate (
+			$table : DataTableTag( ),
+			$tables : count($table)
+		)
+	then
+		System.out.println("Rows: " + $rows + " Tables: " + $tables);
+end
+*/
