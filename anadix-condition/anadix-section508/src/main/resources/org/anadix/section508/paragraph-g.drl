@@ -8,12 +8,18 @@ declare RowWithoutHeader
 	row : TrTag
 end
 
+declare ColumnCount
+	table : TableTag
+	count : int
+end
+
+// rows without headers
 rule "row without header cell"
 	salience 100
 	when
 		$row : TrTag( )
 		not (
-				ThTag( parent == $row )
+			ThTag( parent == $row )
 		)
 	then
 		insertLogical(new RowWithoutHeader($row));
@@ -28,18 +34,61 @@ rule "row without header in data table"
 		insert(new RowMissingHeader($row));
 end
 
-/*
-rule "count objects"
+
+// columns without headers
+rule "insert column count"
 	when
-		accumulate (
-			$row : RowWithoutHeader( ),
-			$rows : count($row)
-		)
-		accumulate (
-			$table : DataTableTag( ),
-			$tables : count($table)
+		DataTableTag( $table : table )
+		not (
+			ColumnCount( table == $table )
 		)
 	then
-		System.out.println("Rows: " + $rows + " Tables: " + $tables);
+		insert(new ColumnCount($table, 0));
 end
-*/
+
+rule "count columns"
+	when
+		$count : ColumnCount( $table : table )
+		$row : TrTag( parent == $table )
+		containedIn( $row, $table; )
+		accumulate (
+			( and
+				$tag : TdTag( )
+				containedIn($tag, $row;)
+			),
+			$tds : count( $tag )
+		)
+		accumulate (
+			( and
+				$tag : ThTag( )
+				containedIn($tag, $row;)
+			),
+			$ths : count( $tag )
+		)
+		eval ($count.getCount() < ($tds.intValue() + $ths.intValue()))
+	then
+		modify ($count) {
+			setCount($tds.intValue() + $ths.intValue());
+		}
+end
+
+rule "count headers and compare"
+	when
+		ColumnCount( $table : table, $count : count )
+		$row : TrTag( )
+		containedIn( $row, $table; )
+		not (
+			$data : TdTag( ) and
+			containedIn( $data, $row; )
+		)
+		accumulate (
+			( and
+				$tag : ThTag( )
+				containedIn( $tag, $table; )
+			),
+			$headers : count( $tag )
+		)
+		eval($count > $headers.intValue())
+	then
+		insert(new ColumnMissingHeader($table));
+end
