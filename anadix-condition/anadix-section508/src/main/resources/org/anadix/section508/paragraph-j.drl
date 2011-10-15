@@ -3,5 +3,25 @@
 package org.anadix.section508
 
 import org.anadix.html.*
+import org.anadix.section508.report.*
 
+rule "flickering object"
+	when
+		$cause : ObjectTag( )
+	then
+		insert(new ElementCauseFlickering($cause));
+end
 
+rule "flickering applet"
+	when
+		$cause : AppletTag( )
+	then
+		insert(new ElementCauseFlickering($cause));
+end
+
+rule "flickering image"
+	when
+		$cause : ImgTag( src str[endsWith] "gif" )
+	then
+		insert(new ElementCauseFlickering($cause));
+end
