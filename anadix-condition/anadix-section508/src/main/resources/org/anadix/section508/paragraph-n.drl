@@ -5,5 +5,27 @@
 package org.anadix.section508
 
 import org.anadix.html.*
+import org.anadix.section508.report.*
 
+declare InputWithoutDescription
+	input : InputTag
+end
 
+rule "input without alt or label"
+	when
+		$element : InputTag( $id : idAttribute )
+		not (
+			LabelTag( getFor() == $id )
+		)
+	then
+		insert(new InputWithoutDescription($element));
+end
+
+rule "wrong input in form"
+	when
+		$form : FormTag( )
+		InputWithoutDescription( $input; )
+		containedIn( $input, $form; )
+	then
+		insert(new MissingAlt($input));
+end
