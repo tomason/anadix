@@ -7,10 +7,17 @@ import org.anadix.section508.report.*
 declare RowWithoutHeader
 	row : TrTag
 end
-
+/*
 declare ColumnCount
 	table : TableTag
 	count : int
+end
+*/
+declare ColumnCount
+	table : TableTag
+	row : TrTag
+	th : int
+	td : int
 end
 
 // rows without headers
@@ -36,59 +43,84 @@ end
 
 
 // columns without headers
-rule "insert column count"
+rule "insert column count for tables"
 	when
 		DataTableTag( $table : table )
 		not (
 			ColumnCount( table == $table )
 		)
 	then
-		insert(new ColumnCount($table, 0));
+		insert(new ColumnCount($table, null, 0, 0));
 end
 
-rule "count columns"
+rule "insert column count for rows"
 	when
-		$count : ColumnCount( $table : table )
-		$row : TrTag( parent == $table )
-		containedIn( $row, $table; )
-		accumulate (
-			( and
-				$tag : TdTag( )
-				containedIn($tag, $row;)
-			),
-			$tds : count( $tag )
+		$row : TrTag( )
+		not (
+			ColumnCount( row == $row )
 		)
-		accumulate (
-			( and
-				$tag : ThTag( )
-				containedIn($tag, $row;)
-			),
-			$ths : count( $tag )
+	then
+		insert(new ColumnCount(null, $row, 0, 0));
+end
+
+
+rule "count data columns in row"
+	when
+		$count : ColumnCount( $row : row != null, $old : td )
+		Number( $new : intValue > $old ) from accumulate (
+			$tag : TdTag( parent == $row ),
+			count($tag)
 		)
-		eval ($count.getCount() < ($tds.intValue() + $ths.intValue()))
 	then
 		modify ($count) {
-			setCount($tds.intValue() + $ths.intValue());
+			setTd($new);
 		}
 end
 
-rule "count headers and compare"
+rule "count header columns in row"
 	when
-		ColumnCount( $table : table, $count : count )
-		$row : TrTag( )
+		$count : ColumnCount( $row : row != null, $old : th )
+		Number( $new : intValue > $old ) from accumulate (
+			$tag : ThTag( parent == $row ),
+			count($tag)
+		)
+	then
+		modify ($count) {
+			setTh($new);
+		}
+end
+
+rule "max header columns in table"
+	when
+		$count : ColumnCount( $table : table != null, $old : th )
+		ColumnCount( $row : row != null, td == 0, $value : th > $old)
 		containedIn( $row, $table; )
-		not (
-			$data : TdTag( ) and
-			containedIn( $data, $row; )
-		)
-		accumulate (
+	then
+		modify ($count) {
+			setTh($value);
+		}
+end
+
+rule "max data columns in table"
+	when
+		$count : ColumnCount( $table : table != null, $old : td )
+		Number( $new : intValue > $old) from accumulate (
 			( and
-				$tag : ThTag( )
-				containedIn( $tag, $table; )
+				ColumnCount( $row : row != null, $td : td != 0, $th : th)
+				containedIn( $row, $table; )
 			),
-			$headers : count( $tag )
+			max($td + $th)
 		)
-		eval($count > $headers.intValue())
+	then
+		modify ($count) {
+			setTd($new);
+		}
+end
+
+rule "compare data and headers count"
+	when
+		ColumnCount( $table : table != null, $td : td, $th : th )
+		eval($td > $th)
 	then
 		insert(new ColumnMissingHeader($table));
 end

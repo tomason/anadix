@@ -8,5 +8,8 @@ public class ColumnMissingHeader extends Section508ReportItem {
 
 	public ColumnMissingHeader(TableTag cause) {
 		super(ItemStatus.ERROR, KEY, cause.getSource(), cause.getPosition());
+
+		setDescription(formatDescriptionString(KEY));
+		setAdvice(formatAdviceString(KEY));
 	}
 }
