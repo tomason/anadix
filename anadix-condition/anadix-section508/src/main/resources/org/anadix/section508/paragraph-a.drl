@@ -14,7 +14,7 @@ end
 
 rule "input without alt"
 	when
-		$element : InputTag( alt == null )
+		$element : InputTag( type != "hidden", alt == null )
 	then
 		insert(new MissingAlt($element));
 end

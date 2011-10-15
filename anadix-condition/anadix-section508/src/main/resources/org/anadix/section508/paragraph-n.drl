@@ -13,7 +13,9 @@ end
 
 rule "input without alt or label"
 	when
-		$element : InputTag( $id : idAttribute )
+		$element : InputTag( $id : idAttribute,
+			type != "submit" || != "reset" || != "hidden" || != "image"
+		)
 		not (
 			LabelTag( getFor() == $id )
 		)
