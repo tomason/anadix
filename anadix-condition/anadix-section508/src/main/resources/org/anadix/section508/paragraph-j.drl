@@ -2,6 +2,7 @@
 #with a frequency greater than 2 Hz and lower than 55 Hz.
 package org.anadix.section508
 
+import org.anadix.ItemStatus
 import org.anadix.html.*
 import org.anadix.section508.report.*
 
@@ -25,3 +26,19 @@ rule "flickering image"
 	then
 		insert(new ElementCauseFlickering($cause));
 end
+
+rule "warn about blink and marquee"
+	when
+		$cause : HtmlElement( name == "blink" || == "marquee" )
+	then
+		insert(new ElementCauseFlickering(ItemStatus.WARNING, "element.cause.flickering", $cause));
+end
+
+rule "recomend manual check"
+	when
+	then
+		insert(new ElementCauseFlickering());
+end
+
+// there are also css ways to do marquee: overflow-style and marquee-speed, but I suppose
+//these comply with Section 508 requirements
