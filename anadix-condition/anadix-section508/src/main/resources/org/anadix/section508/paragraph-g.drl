@@ -34,8 +34,8 @@ end
 
 rule "row without header in data table"
 	when
-		DataTableTag( $table : table )
-		RowWithoutHeader( $row : row )
+		DataTableTag( $table; )
+		RowWithoutHeader( $row; )
 		containedIn( $row, $table; )
 	then
 		insert(new RowMissingHeader($row));
@@ -45,7 +45,7 @@ end
 // columns without headers
 rule "insert column count for tables"
 	when
-		DataTableTag( $table : table )
+		DataTableTag( $table; )
 		not (
 			ColumnCount( table == $table )
 		)
