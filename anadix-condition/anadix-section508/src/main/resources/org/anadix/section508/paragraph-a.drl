@@ -12,12 +12,9 @@ rule "img without alt and longdesc"
     	insert(new MissingAlt($element));
 end
 
-rule "input without alt or label"
+rule "input without alt"
 	when
-		$element : InputTag( alt == null, $name : nameAttribute )
-		not (
-			LabelTag( getFor() == $name )
-		)
+		$element : InputTag( alt == null )
 	then
 		insert(new MissingAlt($element));
 end
