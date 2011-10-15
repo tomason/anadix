@@ -17,7 +17,7 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
-public class H5Tag extends HtmlElement {
+public class H5Tag extends HTag {
 
 	H5Tag(BigInteger id, HtmlElement parent, Attributes attributes) {
 		super(id, "h5", parent, attributes);

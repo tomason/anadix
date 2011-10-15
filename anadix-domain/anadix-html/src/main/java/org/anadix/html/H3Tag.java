@@ -17,7 +17,7 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
-public class H3Tag extends HtmlElement {
+public class H3Tag extends HTag {
 
 	H3Tag(BigInteger id, HtmlElement parent, Attributes attributes) {
 		super(id, "h3", parent, attributes);

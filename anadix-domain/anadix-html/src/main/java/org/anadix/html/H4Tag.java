@@ -17,7 +17,7 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
-public class H4Tag extends HtmlElement {
+public class H4Tag extends HTag {
 
 	H4Tag(BigInteger id, HtmlElement parent, Attributes attributes) {
 		super(id, "h4", parent, attributes);
