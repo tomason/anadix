@@ -2,7 +2,6 @@ package org.anadix.rules;
 
 import static org.testng.Assert.*;
 
-import java.math.BigInteger;
 import java.util.Collection;
 import java.util.Properties;
 
@@ -13,7 +12,6 @@ import org.anadix.html.AreaTag;
 import org.anadix.html.IframeTag;
 import org.anadix.html.ImgTag;
 import org.anadix.html.InputTag;
-import org.anadix.html.LabelTag;
 import org.anadix.html.ObjectTag;
 import org.anadix.section508.report.ImgEmptyAlt;
 import org.anadix.section508.report.MissingAlt;
@@ -28,8 +26,8 @@ public class ParagraphATest extends RulesetTest {
 	 * rule "img without alt and longdesc"
 	 */
 	public void testRule1_1() {
-		ImgTag tag = factory.createImgTag(new BigInteger("10101"), body, new Properties());
-		tag.setSource("dummy source");
+		ImgTag tag = factory.createImgTag(dummyId, body, dummyPropeties);
+		tag.setSource(dummySource);
 		Collection<ReportItem> items = evaluate(tag);
 
 		assertReportContains(items, MissingAlt.class, tag.getSource());
@@ -38,8 +36,8 @@ public class ParagraphATest extends RulesetTest {
 	public void testRule1_2() {
 		Properties attributes = new Properties();
 		attributes.setProperty("alt", "Some alternative text");
-		ImgTag tag = factory.createImgTag(new BigInteger("10101"), body, attributes);
-		tag.setSource("dummy source");
+		ImgTag tag = factory.createImgTag(dummyId, body, attributes);
+		tag.setSource(dummySource);
 		Collection<ReportItem> items = evaluate(tag);
 
 		assertReportNotContains(items, MissingAlt.class, tag.getSource());
@@ -48,8 +46,8 @@ public class ParagraphATest extends RulesetTest {
 	public void testRule1_3() {
 		Properties attributes = new Properties();
 		attributes.setProperty("longdesc", "londesc.html");
-		ImgTag tag = factory.createImgTag(new BigInteger("10101"), body, attributes);
-		tag.setSource("dummy source");
+		ImgTag tag = factory.createImgTag(dummyId, body, attributes);
+		tag.setSource(dummySource);
 		Collection<ReportItem> items = evaluate(tag);
 
 		assertReportNotContains(items, MissingAlt.class, tag.getSource());
@@ -59,8 +57,8 @@ public class ParagraphATest extends RulesetTest {
 		Properties attributes = new Properties();
 		attributes.setProperty("longdesc", "londesc.html");
 		attributes.setProperty("alt", "Some alternative text");
-		ImgTag tag = factory.createImgTag(new BigInteger("10101"), body, attributes);
-		tag.setSource("dummy source");
+		ImgTag tag = factory.createImgTag(dummyId, body, attributes);
+		tag.setSource(dummySource);
 		Collection<ReportItem> items = evaluate(tag);
 
 		assertReportNotContains(items, MissingAlt.class, tag.getSource());
@@ -70,8 +68,8 @@ public class ParagraphATest extends RulesetTest {
 	 * rule "input without alt or label"
 	 */
 	public void testRule2_1() {
-		InputTag tag = factory.createInputTag(new BigInteger("10102"), body, new Properties());
-		tag.setSource("dummy source");
+		InputTag tag = factory.createInputTag(dummyId, body, dummyPropeties);
+		tag.setSource(dummySource);
 		Collection<ReportItem> items = evaluate(tag);
 
 		assertReportContains(items, MissingAlt.class, tag.getSource());
@@ -80,44 +78,29 @@ public class ParagraphATest extends RulesetTest {
 	public void testRule2_2() {
 		Properties attributes = new Properties();
 		attributes.setProperty("alt", "Some alternative text");
-		InputTag tag = factory.createInputTag(new BigInteger("10102"), body, attributes);
-		tag.setSource("dummy source");
+		InputTag tag = factory.createInputTag(dummyId, body, attributes);
+		tag.setSource(dummySource);
 		Collection<ReportItem> items = evaluate(tag);
 
 		assertReportNotContains(items, MissingAlt.class, tag.getSource());
 	}
 
 	public void testRule2_3() {
-		String name = "testInputTag";
-
-		Properties inputAttributes = new Properties();
-		inputAttributes.setProperty("name", name);
-		InputTag tag = factory.createInputTag(new BigInteger("10102"), body, inputAttributes);
-		tag.setSource("dummy source");
-
-		Properties labelAttributes = new Properties();
-		labelAttributes.setProperty("for", name);
-		LabelTag label = factory.createLabelTag(new BigInteger("10101"), body, labelAttributes);
-		label.setSource("dummy2 source");
-		Collection<ReportItem> items = evaluate(label, tag);
+		Properties attributes = new Properties();
+		attributes.setProperty("type", "hidden");
+		InputTag tag = factory.createInputTag(dummyId, body, attributes);
+		tag.setSource(dummySource);
+		Collection<ReportItem> items = evaluate(tag);
 
 		assertReportNotContains(items, MissingAlt.class, tag.getSource());
 	}
 
 	public void testRule2_4() {
-		String name = "testInputTag";
-
 		Properties inputAttributes = new Properties();
-		inputAttributes.setProperty("name", name);
 		inputAttributes.setProperty("alt", "Some alternative text");
-		InputTag tag = factory.createInputTag(new BigInteger("10102"), body, inputAttributes);
-		tag.setSource("dummy source");
-
-		Properties labelAttributes = new Properties();
-		labelAttributes.setProperty("for", name);
-		LabelTag label = factory.createLabelTag(new BigInteger("10101"), body, labelAttributes);
-		label.setSource("dummy2 source");
-		Collection<ReportItem> items = evaluate(label, tag);
+		InputTag tag = factory.createInputTag(dummyId, body, inputAttributes);
+		tag.setSource(dummySource);
+		Collection<ReportItem> items = evaluate(tag);
 
 		assertReportNotContains(items, MissingAlt.class, tag.getSource());
 	}
@@ -126,17 +109,17 @@ public class ParagraphATest extends RulesetTest {
 	 * rule "object without text content"
 	 */
 	public void testRule3_1() {
-		ObjectTag tag = factory.createObjectTag(new BigInteger("10101"), body, new Properties());
-		tag.setSource("dummy source");
+		ObjectTag tag = factory.createObjectTag(dummyId, body, dummyPropeties);
+		tag.setSource(dummySource);
 		Collection<ReportItem> items = evaluate(tag);
 
 		assertReportContains(items, MissingAlt.class, tag.getSource());
 	}
 
 	public void testRule3_2() {
-		ObjectTag tag = factory.createObjectTag(new BigInteger("10101"), body, new Properties());
+		ObjectTag tag = factory.createObjectTag(dummyId, body, dummyPropeties);
 		tag.setTextContent("text content explaining puropse of the object");
-		tag.setSource("dummy source");
+		tag.setSource(dummySource);
 		Collection<ReportItem> items = evaluate(tag);
 
 		assertReportNotContains(items, MissingAlt.class, tag.getSource());
@@ -146,8 +129,8 @@ public class ParagraphATest extends RulesetTest {
 	 * rule "applet without alt and text content"
 	 */
 	public void testRule4_1() {
-		AppletTag tag = factory.createAppletTag(new BigInteger("10101"), body, new Properties());
-		tag.setSource("dummy source");
+		AppletTag tag = factory.createAppletTag(dummyId, body, dummyPropeties);
+		tag.setSource(dummySource);
 		Collection<ReportItem> items = evaluate(tag);
 
 		assertReportContains(items, MissingAlt.class, tag.getSource());
@@ -156,17 +139,17 @@ public class ParagraphATest extends RulesetTest {
 	public void testRule4_2() {
 		Properties attributes = new Properties();
 		attributes.setProperty("alt", "alternative text with some meaning");
-		AppletTag tag = factory.createAppletTag(new BigInteger("10101"), body, attributes);
-		tag.setSource("dummy source");
+		AppletTag tag = factory.createAppletTag(dummyId, body, attributes);
+		tag.setSource(dummySource);
 		Collection<ReportItem> items = evaluate(tag);
 
 		assertReportContains(items, MissingAlt.class, tag.getSource());
 	}
 
 	public void testRule4_3() {
-		AppletTag tag = factory.createAppletTag(new BigInteger("10101"), body, new Properties());
+		AppletTag tag = factory.createAppletTag(dummyId, body, dummyPropeties);
 		tag.setTextContent("text content explaining puropse of the applet");
-		tag.setSource("dummy source");
+		tag.setSource(dummySource);
 		Collection<ReportItem> items = evaluate(tag);
 
 		assertReportContains(items, MissingAlt.class, tag.getSource());
@@ -175,9 +158,9 @@ public class ParagraphATest extends RulesetTest {
 	public void testRule4_4() {
 		Properties attributes = new Properties();
 		attributes.setProperty("alt", "alternative text with some meaning");
-		AppletTag tag = factory.createAppletTag(new BigInteger("10101"), body, attributes);
+		AppletTag tag = factory.createAppletTag(dummyId, body, attributes);
 		tag.setTextContent("text content explaining puropse of the applet");
-		tag.setSource("dummy source");
+		tag.setSource(dummySource);
 		Collection<ReportItem> items = evaluate(tag);
 
 		assertReportNotContains(items, MissingAlt.class, tag.getSource());
@@ -187,17 +170,17 @@ public class ParagraphATest extends RulesetTest {
 	 * rule "iframe without text content"
 	 */
 	public void testRule5_1() {
-		IframeTag tag = factory.createIframeTag(new BigInteger("10101"), body, new Properties());
-		tag.setSource("dummy source");
+		IframeTag tag = factory.createIframeTag(dummyId, body, dummyPropeties);
+		tag.setSource(dummySource);
 		Collection<ReportItem> items = evaluate(tag);
 
 		assertReportContains(items, MissingAlt.class, tag.getSource());
 	}
 
 	public void testRule5_2() {
-		IframeTag tag = factory.createIframeTag(new BigInteger("10101"), body, new Properties());
+		IframeTag tag = factory.createIframeTag(dummyId, body, dummyPropeties);
 		tag.setTextContent("text content explaining puropse of the applet");
-		tag.setSource("dummy source");
+		tag.setSource(dummySource);
 		Collection<ReportItem> items = evaluate(tag);
 
 		assertReportNotContains(items, MissingAlt.class, tag.getSource());
@@ -207,8 +190,8 @@ public class ParagraphATest extends RulesetTest {
 	 * rule "area without alt"
 	 */
 	public void testRule6_1() {
-		AreaTag tag = factory.createAreaTag(new BigInteger("10101"), body, new Properties());
-		tag.setSource("dummy source");
+		AreaTag tag = factory.createAreaTag(dummyId, body, dummyPropeties);
+		tag.setSource(dummySource);
 		Collection<ReportItem> items = evaluate(tag);
 
 		assertReportContains(items, MissingAlt.class, tag.getSource());
@@ -217,8 +200,8 @@ public class ParagraphATest extends RulesetTest {
 	public void testRule6_2() {
 		Properties attributes = new Properties();
 		attributes.setProperty("alt", "alternative text with some meaning");
-		AreaTag tag = factory.createAreaTag(new BigInteger("10101"), body, attributes);
-		tag.setSource("dummy source");
+		AreaTag tag = factory.createAreaTag(dummyId, body, attributes);
+		tag.setSource(dummySource);
 		Collection<ReportItem> items = evaluate(tag);
 
 		assertReportNotContains(items, MissingAlt.class, tag.getSource());
@@ -228,8 +211,8 @@ public class ParagraphATest extends RulesetTest {
 	 * rule "decorative img"
 	 */
 	public void testRule7_1() {
-		ImgTag tag = factory.createImgTag(new BigInteger("10101"), body, new Properties());
-		tag.setSource("dummy source");
+		ImgTag tag = factory.createImgTag(dummyId, body, dummyPropeties);
+		tag.setSource(dummySource);
 		Collection<ReportItem> items = evaluate(tag);
 
 		assertReportNotContains(items, ImgEmptyAlt.class, tag.getSource());
@@ -238,8 +221,8 @@ public class ParagraphATest extends RulesetTest {
 	public void testRule7_2() {
 		Properties attributes = new Properties();
 		attributes.setProperty("alt", "");
-		ImgTag tag = factory.createImgTag(new BigInteger("10101"), body, attributes);
-		tag.setSource("dummy source");
+		ImgTag tag = factory.createImgTag(dummyId, body, attributes);
+		tag.setSource(dummySource);
 		Collection<ReportItem> items = evaluate(tag);
 
 		ReportItem i = assertReportContains(items, ImgEmptyAlt.class, tag.getSource());
@@ -249,8 +232,8 @@ public class ParagraphATest extends RulesetTest {
 	public void testRule7_3() {
 		Properties attributes = new Properties();
 		attributes.setProperty("alt", "some value");
-		ImgTag tag = factory.createImgTag(new BigInteger("10101"), body, attributes);
-		tag.setSource("dummy source");
+		ImgTag tag = factory.createImgTag(dummyId, body, attributes);
+		tag.setSource(dummySource);
 		Collection<ReportItem> items = evaluate(tag);
 
 		assertReportNotContains(items, ImgEmptyAlt.class, tag.getSource());
