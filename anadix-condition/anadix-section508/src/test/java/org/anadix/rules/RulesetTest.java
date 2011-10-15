@@ -35,8 +35,13 @@ public abstract class RulesetTest {
 	protected final HtmlTag html;
 	protected final BodyTag body;
 
+	protected static final BigInteger dummyId = BigInteger.valueOf(42);
+	protected static final String dummySource = "dummy source";
+	protected static final Properties dummyPropeties = new Properties();
+
 	public RulesetTest(String source) throws IllegalStateException {
 		KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
+		kbuilder.add(ResourceFactory.newClassPathResource("commons.drl", Section508.class), ResourceType.DRL);
 		kbuilder.add(ResourceFactory.newClassPathResource(source, Section508.class), ResourceType.DRL);
 		kbuilder.add(ResourceFactory.newClassPathResource("query.drl", getClass()), ResourceType.DRL);
 
@@ -75,6 +80,17 @@ public abstract class RulesetTest {
 
 	}
 
+	protected static ReportItem assertReportContains(Collection<ReportItem> report, Class<? extends ReportItem> clazz) {
+		assertTrue(report.size() > 0);
+		for (ReportItem item : report) {
+			if (item.getClass() == clazz) {
+				return item;
+			}
+		}
+		fail("Appropriate report not found");
+		return null;
+	}
+
 	protected static ReportItem assertReportContains(Collection<ReportItem> report, Class<? extends ReportItem> clazz, String text) {
 		assertTrue(report.size() > 0);
 		for (ReportItem item : report) {
@@ -84,6 +100,14 @@ public abstract class RulesetTest {
 		}
 		fail("Appropriate report not found");
 		return null;
+	}
+
+	protected static void assertReportNotContains(Collection<ReportItem> report, Class<? extends ReportItem> clazz) {
+		for (ReportItem item : report) {
+			if (item.getClass().isInstance(clazz)) {
+				fail("Found an error report " + item);
+			}
+		}
 	}
 
 	protected static void assertReportNotContains(Collection<ReportItem> report, Class<? extends ReportItem> clazz, String text) {
