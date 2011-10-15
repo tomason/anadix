@@ -9,7 +9,7 @@ rule "stylesheets present"
 	when
 		( or 
 			exists(
-				LinkTag( type == "stylesheet" )
+				LinkTag( rel == "stylesheet" )
 			)
 			exists (
 				CoreAttributes( style != null )
