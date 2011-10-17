@@ -8,14 +8,13 @@ import org.anadix.ReportItem;
 import org.anadix.html.ImgTag;
 import org.anadix.section508.report.ImgIsMap;
 
-public class ParagraphETest extends RulesetTest {
-
-	public ParagraphETest() {
-		super("paragraph-e.drl");
+public class ParagraphFTest extends RulesetTest {
+	public ParagraphFTest() {
+		super("paragraph-f.drl");
 	}
 
 	/*
-	 * rule "server side map manual check"
+	 * rule "server side map warning"
 	 */
 	public void testRule1_1() {
 		Properties attributes = new Properties();
@@ -24,7 +23,7 @@ public class ParagraphETest extends RulesetTest {
 		tag.setSource(dummySource);
 		Collection<ReportItem> items = evaluate(tag);
 
-		assertReportContains(items, ImgIsMap.class, ItemStatus.MANUAL, tag.getSource());
+		assertReportContains(items, ImgIsMap.class, ItemStatus.WARNING, tag.getSource());
 	}
 
 	public void testRule1_2() {
@@ -32,6 +31,6 @@ public class ParagraphETest extends RulesetTest {
 		tag.setSource(dummySource);
 		Collection<ReportItem> items = evaluate(tag);
 
-		assertReportNotContains(items, ImgIsMap.class, ItemStatus.MANUAL, tag.getSource());
+		assertReportNotContains(items, ImgIsMap.class, ItemStatus.WARNING, tag.getSource());
 	}
 }
