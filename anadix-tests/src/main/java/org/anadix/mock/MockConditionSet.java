@@ -32,4 +32,8 @@ public class MockConditionSet extends Mock implements ConditionSet {
 
 		return MockParser.class;
 	}
+
+	public String getRulesPackage() {
+		return "";
+	}
 }

@@ -31,4 +31,8 @@ public class MockParser extends Mock implements Parser {
 	public void setElementFactory(ElementFactory factory) {
 		methodInvoked(new Invocation("setElementFactory", factory));
 	}
+
+	public String getRulesPackage() {
+		return "";
+	}
 }
