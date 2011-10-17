@@ -24,14 +24,21 @@ import org.anadix.Parser;
 import org.anadix.Report;
 import org.anadix.Source;
 import org.anadix.exceptions.ParserException;
+import org.anadix.utils.DebugAgendaEventListener;
+import org.anadix.utils.DebugWorkingMemoryEventListener;
 import org.anadix.utils.DroolsResource;
 import org.drools.KnowledgeBase;
 import org.drools.KnowledgeBaseFactory;
 import org.drools.builder.KnowledgeBuilder;
 import org.drools.builder.KnowledgeBuilderFactory;
+import org.drools.definition.KnowledgePackage;
+import org.drools.definition.rule.Rule;
 import org.drools.runtime.StatefulKnowledgeSession;
+import org.jboss.logging.Logger;
 
 public class AnalyzerImpl implements Analyzer {
+	private static final Logger logger = Logger.getLogger(Analyzer.class);
+
 	private final Parser parser;
 	private final ConditionSet conditions;
 	private final KnowledgeBase kbase;
@@ -53,12 +60,9 @@ public class AnalyzerImpl implements Analyzer {
 		}
 		StatefulKnowledgeSession ksession = kbase.newStatefulKnowledgeSession();
 
-		/* TODO debug into log by default
-		if (Boolean.getBoolean("debug")) {
-			ksession.addEventListener(new DefaultAgendaEventListener());
-			ksession.addEventListener(new DefaultWorkingMemoryEventListener());
-		}
-		 */
+		ksession.addEventListener(new DebugAgendaEventListener(Logger.getLogger(getClass())));
+		ksession.addEventListener(new DebugWorkingMemoryEventListener(Logger.getLogger(getClass())));
+
 
 		ElementFactory ef = AbstractElementFactory.createFactory(
 				conditions.getElementFactoryClass(),
@@ -70,9 +74,7 @@ public class AnalyzerImpl implements Analyzer {
 		try {
 			parser.parse(source);
 		} catch (ParserException ex) {
-			// FIXME log the exception instead
-			System.err.println(ex);
-			ex.printStackTrace();
+			logger.error(ex);
 		}
 
 		ksession.fireAllRules();
@@ -96,7 +98,7 @@ public class AnalyzerImpl implements Analyzer {
 				throw new RuntimeException("Parser resources: " + kbuilder.getErrors().toString());
 			}
 		} else {
-			//TODO log warning
+			logger.warnf("Parser %s returned null resources!", parser.getClass().getName());
 		}
 
 		if ((c = conditions.getDroolsResources()) != null) {
@@ -107,22 +109,18 @@ public class AnalyzerImpl implements Analyzer {
 				throw new RuntimeException("ConditionSet resources: " + kbuilder.getErrors().toString());
 			}
 		} else {
-			//TODO log warning
+			logger.warnf("Condition set %s returned null resources!", conditions.getClass().getName());
 		}
 
 		KnowledgeBase kbase = KnowledgeBaseFactory.newKnowledgeBase();
 		kbase.addKnowledgePackages(kbuilder.getKnowledgePackages());
 
-		/* TODO debug info to log instead of console
-		if (Boolean.getBoolean("debug")) {
-			for (KnowledgePackage pkg : kbase.getKnowledgePackages()) {
-				System.out.println(" > " + pkg.getName());
-				for (Rule r : pkg.getRules()) {
-					System.out.println("  |- " + r.getName());
-				}
+		for (KnowledgePackage pkg : kbase.getKnowledgePackages()) {
+			logger.tracef(" > %s", pkg.getName());
+			for (Rule r : pkg.getRules()) {
+				logger.tracef("  |- %s", r.getName());
 			}
 		}
-		 */
 
 		return kbase;
 	}
