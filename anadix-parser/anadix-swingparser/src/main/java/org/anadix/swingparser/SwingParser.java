@@ -118,4 +118,8 @@ public class SwingParser implements Parser {
 			throw new RuntimeException("Can't assign " + factory.getClass() + " to " + getClass());
 		}
 	}
+
+	public String getRulesPackage() {
+		return "org.anadix.swingparser";
+	}
 }

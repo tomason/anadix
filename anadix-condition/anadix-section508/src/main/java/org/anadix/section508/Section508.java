@@ -73,4 +73,8 @@ public class Section508 implements ConditionSet {
 	public Class<? extends Parser> getDefaultParser() {
 		return SwingParser.class;
 	}
+
+	public String getRulesPackage() {
+		return "org.anadix.section508";
+	}
 }

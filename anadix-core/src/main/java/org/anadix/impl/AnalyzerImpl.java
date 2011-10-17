@@ -52,7 +52,11 @@ public class AnalyzerImpl implements Analyzer {
 			throw new IllegalStateException("Parser " + parser.getClass() + " and condition set " + conditions.getClass() + " don't match");
 		}
 
+		float time = System.nanoTime();
+		logger.trace("building KnowledgeBase starting");
 		kbase = createKnowledgeBase();
+		time = System.nanoTime() - time;
+		logger.tracef("building finished (%.3f ms)", time / 1000000);
 	}
 
 	public Report analyze(Source source) {
@@ -72,14 +76,22 @@ public class AnalyzerImpl implements Analyzer {
 
 		parser.setElementFactory(ef);
 
+		float time = System.nanoTime();
+		logger.trace("parsing source starting");
 		try {
 			parser.parse(source);
 			ksession.fireAllRules(new PackageAgendaFilter(parser.getRulesPackage()));
 		} catch (ParserException ex) {
 			logger.error(ex);
 		}
+		time = System.nanoTime() - time;
+		logger.tracef("parsing finished (%.3f ms)", time / 1000000);
 
+		time = System.nanoTime();
+		logger.trace("evaluating conditions starting");
 		ksession.fireAllRules(new PackageAgendaFilter(conditions.getRulesPackage()));
+		time = System.nanoTime() - time;
+		logger.tracef("evaluating finished (%.3f ms)", time / 1000000);
 
 		Report report = new ReportImpl(ksession, source);
 
