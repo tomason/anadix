@@ -5,10 +5,12 @@ import static org.testng.Assert.*;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
 import org.anadix.Element;
+import org.anadix.ItemStatus;
 import org.anadix.ReportItem;
 import org.anadix.html.BodyTag;
 import org.anadix.html.HTMLElementFactory;
@@ -81,40 +83,46 @@ public abstract class RulesetTest {
 	}
 
 	protected static ReportItem assertReportContains(Collection<ReportItem> report, Class<? extends ReportItem> clazz) {
-		assertTrue(report.size() > 0);
-		for (ReportItem item : report) {
-			if (item.getClass() == clazz) {
-				return item;
-			}
-		}
-		fail("Appropriate report not found");
-		return null;
+		return assertReportContains(report, clazz, "");
 	}
 
 	protected static ReportItem assertReportContains(Collection<ReportItem> report, Class<? extends ReportItem> clazz, String text) {
-		assertTrue(report.size() > 0);
-		for (ReportItem item : report) {
-			if (item.getClass() == clazz && item.getItemText().contains(text)) {
-				return item;
-			}
-		}
-		fail("Appropriate report not found");
-		return null;
+		return assertReportContains(report, clazz, null, text);
+	}
+
+	protected static ReportItem assertReportContains(Collection<ReportItem> report, Class<? extends ReportItem> clazz, ItemStatus status, String text) {
+		ReportItem i = loopItems(report.iterator(), clazz, status, text);
+		assertNotNull(i, "Found an error report " + i);
+
+		return i;
 	}
 
 	protected static void assertReportNotContains(Collection<ReportItem> report, Class<? extends ReportItem> clazz) {
-		for (ReportItem item : report) {
-			if (item.getClass().isInstance(clazz)) {
-				fail("Found an error report " + item);
-			}
-		}
+		assertReportNotContains(report, clazz, null, "");
 	}
 
 	protected static void assertReportNotContains(Collection<ReportItem> report, Class<? extends ReportItem> clazz, String text) {
-		for (ReportItem item : report) {
-			if (item.getClass().isInstance(clazz) && item.getItemText().contains(text)) {
-				fail("Found an error report " + item);
-			}
+		assertReportNotContains(report, clazz, null, text);
+	}
+
+	protected static void assertReportNotContains(Collection<ReportItem> report, Class<? extends ReportItem> clazz, ItemStatus status, String text) {
+		ReportItem i = loopItems(report.iterator(), clazz, status, text);
+		assertNull(i, "Found an error report " + i);
+	}
+
+	private static ReportItem loopItems(Iterator<ReportItem> iterator, Class<? extends ReportItem> clazz, ItemStatus status, String text) {
+		if (!iterator.hasNext()) {
+			return null;
 		}
+
+		ReportItem item = iterator.next();
+		if (
+				item.getClass() == clazz &&
+				item.getItemText().contains(text) &&
+				(status == null || item.getStatus() == status)) {
+			return item;
+		}
+
+		return loopItems(iterator, clazz, status, text);
 	}
 }
