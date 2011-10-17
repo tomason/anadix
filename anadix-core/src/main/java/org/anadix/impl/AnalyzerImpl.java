@@ -38,7 +38,7 @@ import org.drools.runtime.StatefulKnowledgeSession;
 import org.jboss.logging.Logger;
 
 public class AnalyzerImpl implements Analyzer {
-	private static final Logger logger = Logger.getLogger(Analyzer.class);
+	private static final Logger logger = Logger.getLogger(AnalyzerImpl.class);
 
 	private final Parser parser;
 	private final ConditionSet conditions;
