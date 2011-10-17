@@ -51,4 +51,9 @@ public interface ConditionSet {
 	 * @return class used as a default parser
 	 */
 	Class<? extends Parser> getDefaultParser();
+
+	/**
+	 * @return root package in which all the rules are located
+	 */
+	String getRulesPackage();
 }

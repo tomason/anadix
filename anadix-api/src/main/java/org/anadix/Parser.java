@@ -68,4 +68,9 @@ public interface Parser {
 	 * @param factory - instance of ElementFactory
 	 */
 	void setElementFactory(ElementFactory factory);
+
+	/**
+	 * @return root package in which all the rules are located
+	 */
+	String getRulesPackage();
 }

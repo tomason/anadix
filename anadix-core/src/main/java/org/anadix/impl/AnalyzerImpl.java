@@ -27,6 +27,7 @@ import org.anadix.exceptions.ParserException;
 import org.anadix.utils.DebugAgendaEventListener;
 import org.anadix.utils.DebugWorkingMemoryEventListener;
 import org.anadix.utils.DroolsResource;
+import org.anadix.utils.PackageAgendaFilter;
 import org.drools.KnowledgeBase;
 import org.drools.KnowledgeBaseFactory;
 import org.drools.builder.KnowledgeBuilder;
@@ -60,8 +61,8 @@ public class AnalyzerImpl implements Analyzer {
 		}
 		StatefulKnowledgeSession ksession = kbase.newStatefulKnowledgeSession();
 
-		ksession.addEventListener(new DebugAgendaEventListener(Logger.getLogger(getClass())));
-		ksession.addEventListener(new DebugWorkingMemoryEventListener(Logger.getLogger(getClass())));
+		ksession.addEventListener(new DebugAgendaEventListener(logger));
+		ksession.addEventListener(new DebugWorkingMemoryEventListener(logger));
 
 
 		ElementFactory ef = AbstractElementFactory.createFactory(
@@ -73,11 +74,12 @@ public class AnalyzerImpl implements Analyzer {
 
 		try {
 			parser.parse(source);
+			ksession.fireAllRules(new PackageAgendaFilter(parser.getRulesPackage()));
 		} catch (ParserException ex) {
 			logger.error(ex);
 		}
 
-		ksession.fireAllRules();
+		ksession.fireAllRules(new PackageAgendaFilter(conditions.getRulesPackage()));
 
 		Report report = new ReportImpl(ksession, source);
 
