@@ -33,29 +33,29 @@
             <param name="ConversionPattern" value="[%t] %-5p %c %x - %m%n" />
         </layout>
     </appender>
-    
-    <logger name="org.anadix.factories">
+
+	<logger name="org.anadix.factories" additivity="false">
     	<level value="all" />
     	<appender-ref ref="api" />
     </logger>
     
-    <logger name="org.anadix.impl">
+    <logger name="org.anadix.impl" additivity="false">
     	<level value="all" />
     	<appender-ref ref="core" />
     </logger>
     
-    <logger name="org.anadix.utils">
+    <logger name="org.anadix.utils" additivity="false">
     	<level value="all" />
     	<appender-ref ref="core" />
     </logger>
     
-    <logger name="org.anadix.swingparser">
+    <logger name="org.anadix.swingparser" additivity="false">
     	<level value="all" />
     	<appender-ref ref="swingparser" />
     </logger>
-    
-    <root>
-        <level value="fatal" />
+
+	<root>
+		<priority value="fatal" />
         <appender-ref ref="CA" />
     </root>
 </log4j:configuration>
