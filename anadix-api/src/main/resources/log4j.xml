@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd" >
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+    <appender name="CA" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%t] %-5p %c %x - %m%n" />
+        </layout>
+    </appender>
+    
+    <appender name="api" class="org.apache.log4j.FileAppender">
+        <param name="File" value="logs/api.log"/>
+        <param name="Append" value="false"/>
+        
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%t] %-5p %c %x - %m%n" />
+        </layout>
+    </appender>
+    
+    <appender name="core" class="org.apache.log4j.FileAppender">
+        <param name="File" value="logs/core.log"/>
+        <param name="Append" value="false"/>
+        
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%t] %-5p %c %x - %m%n" />
+        </layout>
+    </appender>
+    
+    <appender name="swingparser" class="org.apache.log4j.FileAppender">
+        <param name="File" value="logs/swingparser.log"/>
+        <param name="Append" value="false"/>
+        
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%t] %-5p %c %x - %m%n" />
+        </layout>
+    </appender>
+    
+    <logger name="org.anadix.factories">
+    	<level value="all" />
+    	<appender-ref ref="api" />
+    </logger>
+    
+    <logger name="org.anadix.impl">
+    	<level value="all" />
+    	<appender-ref ref="core" />
+    </logger>
+    
+    <logger name="org.anadix.utils">
+    	<level value="all" />
+    	<appender-ref ref="core" />
+    </logger>
+    
+    <logger name="org.anadix.swingparser">
+    	<level value="all" />
+    	<appender-ref ref="swingparser" />
+    </logger>
+    
+    <root>
+        <level value="fatal" />
+        <appender-ref ref="CA" />
+    </root>
+</log4j:configuration>
