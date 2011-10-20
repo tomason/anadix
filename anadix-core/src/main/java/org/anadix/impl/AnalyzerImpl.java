@@ -27,7 +27,6 @@ import org.anadix.exceptions.ParserException;
 import org.anadix.utils.DebugAgendaEventListener;
 import org.anadix.utils.DebugWorkingMemoryEventListener;
 import org.anadix.utils.DroolsResource;
-import org.anadix.utils.PackageAgendaFilter;
 import org.drools.KnowledgeBase;
 import org.drools.KnowledgeBaseFactory;
 import org.drools.builder.KnowledgeBuilder;
@@ -80,16 +79,29 @@ public class AnalyzerImpl implements Analyzer {
 		logger.trace("parsing source starting");
 		try {
 			parser.parse(source);
-			ksession.fireAllRules(new PackageAgendaFilter(parser.getRulesPackage()));
 		} catch (ParserException ex) {
 			logger.error(ex);
 		}
 		time = System.nanoTime() - time;
 		logger.tracef("parsing finished (%.3f ms)", time / 1000000);
 
+		/*
+		time = System.nanoTime();
+		logger.trace("evaluating parsed resources starting");
+		ksession.fireAllRules(new PackageAgendaFilter(parser.getRulesPackage()));
+		time = System.nanoTime() - time;
+		logger.tracef("evaluating finished (%.3f ms)", time / 1000000);
+
+
 		time = System.nanoTime();
 		logger.trace("evaluating conditions starting");
 		ksession.fireAllRules(new PackageAgendaFilter(conditions.getRulesPackage()));
+		time = System.nanoTime() - time;
+		logger.tracef("evaluating finished (%.3f ms)", time / 1000000);
+		 */
+		time = System.nanoTime();
+		logger.trace("evaluating parsed resources and conditions starting");
+		ksession.fireAllRules();
 		time = System.nanoTime() - time;
 		logger.tracef("evaluating finished (%.3f ms)", time / 1000000);
 
