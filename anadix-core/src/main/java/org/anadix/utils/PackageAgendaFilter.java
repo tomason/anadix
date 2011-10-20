@@ -14,10 +14,9 @@ public class PackageAgendaFilter implements AgendaFilter {
 	}
 
 	public boolean accept(Activation activation) {
-		//activation.getRule().getClass().getPackage().toString().toLowerCase();
 		String activationPackage = activation.getRule().getPackageName().toLowerCase();
 
-		return (activationPackage.startsWith(acceptedPackage));
+		return activationPackage.startsWith(acceptedPackage);
 	}
 
 }
