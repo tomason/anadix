@@ -3,12 +3,131 @@
 package org.anadix.section508
 
 import org.anadix.html.*
+import org.anadix.section508.report.*
 
-/*
+
 rule "elements with color defined"
 	when
 		$element : HtmlElement( getAttribute("color") != null )
 	then
 		System.out.println("Beware, COLOR! " + $element);
 end
-*/
+
+rule "elements with background color defined"
+	when
+		$element : HtmlElement( getAttribute("background-color") != null )
+	then
+		System.out.println("Beware, background-color! " + $element);
+end
+
+rule "black in text"
+	when
+		$element : HtmlElement( textContent matches ".*[Bb][Ll][Aa][Cc][Kk].*" )
+	then
+		insert(new TextContainsColor($element, "black"));
+end
+
+rule "silver in text"
+	when
+		$element : HtmlElement( textContent matches ".*[Ss][Ii][Ll][Vv][Ee][Rr].*" )
+	then
+		insert(new TextContainsColor($element, "silver"));
+end
+
+rule "gray in text"
+	when
+		$element : HtmlElement( textContent matches ".*[Gg][Rr][Aa][Yy].*" )
+	then
+		insert(new TextContainsColor($element, "gray"));
+end
+
+rule "white in text"
+	when
+		$element : HtmlElement( textContent matches ".*[Ww][Hh][Ii][Tt][Ee].*" )
+	then
+		insert(new TextContainsColor($element, "white"));
+end
+
+rule "maroon in text"
+	when
+		$element : HtmlElement( textContent matches ".*[Mm][Aa][Rr][Oo][Oo][Nn].*" )
+	then
+		insert(new TextContainsColor($element, "maroon"));
+end
+
+rule "red in text"
+	when
+		$element : HtmlElement( textContent matches ".*[Rr][Ee][Dd].*" )
+	then
+		insert(new TextContainsColor($element, "red"));
+end
+
+rule "purple in text"
+	when
+		$element : HtmlElement( textContent matches ".*[Pp][Uu][Rr][Pp][Ll][Ee].*" )
+	then
+		insert(new TextContainsColor($element, "purple"));
+end
+
+rule "fuchsia in text"
+	when
+		$element : HtmlElement( textContent matches ".*[Ff][Uu][Cc][Hh][Ss][Ii][Aa].*" )
+	then
+		insert(new TextContainsColor($element, "fuchsia"));
+end
+
+rule "green in text"
+	when
+		$element : HtmlElement( textContent matches ".*[Gg][Rr][Ee][Ee][Nn].*" )
+	then
+		insert(new TextContainsColor($element, "green"));
+end
+
+rule "lime in text"
+	when
+		$element : HtmlElement( textContent matches ".*[Ll][Ii][Mm][Ee].*" )
+	then
+		insert(new TextContainsColor($element, "lime"));
+end
+
+rule "olive in text"
+	when
+		$element : HtmlElement( textContent matches ".*[Oo][Ll][Ii][Vv][Ee].*" )
+	then
+		insert(new TextContainsColor($element, "olive"));
+end
+
+rule "yellow in text"
+	when
+		$element : HtmlElement( textContent matches ".*[Yy][Ee][Ll][Ll][Oo][Ww].*" )
+	then
+		insert(new TextContainsColor($element, "yellow"));
+end
+
+rule "navy in text"
+	when
+		$element : HtmlElement( textContent matches ".*[Nn][Aa][Vv][Yy].*" )
+	then
+		insert(new TextContainsColor($element, "navy"));
+end
+
+rule "blue in text"
+	when
+		$element : HtmlElement( textContent matches ".*[Bb][Ll][Uu][Ee].*" )
+	then
+		insert(new TextContainsColor($element, "blue"));
+end
+
+rule "teal in text"
+	when
+		$element : HtmlElement( textContent matches ".*[Tt][Ee][Aa][Ll].*" )
+	then
+		insert(new TextContainsColor($element, "teal"));
+end
+
+rule "aqua in text"
+	when
+		$element : HtmlElement( textContent matches ".*[Aa][Qq][Uu][Aa].*" )
+	then
+		insert(new TextContainsColor($element, "aqua"));
+end
