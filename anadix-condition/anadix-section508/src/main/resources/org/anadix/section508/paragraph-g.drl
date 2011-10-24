@@ -7,14 +7,9 @@ import org.anadix.section508.report.*
 declare RowWithoutHeader
 	row : TrTag
 end
-/*
+
 declare ColumnCount
-	table : TableTag
-	count : int
-end
-*/
-declare ColumnCount
-	table : TableTag
+	table : org.anadix.html.TableTag
 	row : TrTag
 	th : int
 	td : int
@@ -29,7 +24,10 @@ rule "row without header cell"
 			ThTag( parent == $row )
 		)
 	then
-		insertLogical(new RowWithoutHeader($row));
+		//insertLogical(new RowWithoutHeader($row));
+		RowWithoutHeader rwh = new RowWithoutHeader();
+		rwh.setRow($row);
+		insertLogical(rwh);
 end
 
 rule "row without header in data table"
@@ -50,7 +48,13 @@ rule "insert column count for tables"
 			ColumnCount( table == $table )
 		)
 	then
-		insert(new ColumnCount($table, null, 0, 0));
+		//insert(new ColumnCount($table, (TrTag)null, 0, 0));
+		ColumnCount cc = new ColumnCount();
+		cc.setTable($table);
+		cc.setTd(0);
+		cc.setTh(0);
+		
+		insert(cc);
 end
 
 rule "insert column count for rows"
@@ -60,7 +64,13 @@ rule "insert column count for rows"
 			ColumnCount( row == $row )
 		)
 	then
-		insert(new ColumnCount(null, $row, 0, 0));
+		//insert(new ColumnCount((TableTag)null, $row, 0, 0));
+		ColumnCount cc = new ColumnCount();
+		cc.setRow($row);
+		cc.setTd(0);
+		cc.setTh(0);
+		
+		insert(cc);
 end
 
 
