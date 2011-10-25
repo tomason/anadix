@@ -5,19 +5,46 @@ package org.anadix.section508
 import org.anadix.html.*
 import org.anadix.section508.report.*
 
-
-rule "elements with color defined"
-	when
-		$element : HtmlElement( getAttribute("color") != null )
-	then
-		System.out.println("Beware, COLOR! " + $element);
+declare ColoredElement
+	element : HtmlElement @key
+	foreground : double
+	background : double
 end
 
-rule "elements with background color defined"
+rule "elements with any color defined"
 	when
-		$element : HtmlElement( getAttribute("background-color") != null )
+		$element : HtmlElement(
+			foreground : getAttribute("color") != null ||
+			background : getAttribute("background-color") != null
+		)
+		not (
+			ColoredElement( element == $element )
+		)
 	then
-		System.out.println("Beware, background-color! " + $element);
+		ColoredElement e = new ColoredElement($element);
+		e.setForeground(ContrastUtility.countRelativeLuminance(foreground));
+		e.setBackground(ContrastUtility.countRelativeLuminance(background));
+		
+		insert(e);
+end
+
+rule "check colored elements"
+	when
+		ColoredElement( $element : element )
+	then
+		insert(new ElementContainsColor($element));
+end
+
+rule "check contrast difference"
+	when
+		ColoredElement(
+			$element : element,
+			$foreground : foreground > -1,
+			$background : background > -1
+		)
+		eval(ContrastUtility.getContrastRatio($foreground, $background) < 5)
+	then
+		insert(new ElementWrongContrast($element));
 end
 
 rule "black in text"
