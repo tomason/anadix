@@ -6,9 +6,9 @@ import org.anadix.ItemStatus;
 import org.anadix.impl.AbstractReportItem;
 
 public abstract class Section508ReportItem extends AbstractReportItem {
-	private static final ResourceBundle itemStatuses = ResourceBundle.getBundle("org.anadix.section508.reports.ItemText");
-	private static final ResourceBundle descriptions = ResourceBundle.getBundle("org.anadix.section508.reports.Description");
-	private static final ResourceBundle advices = ResourceBundle.getBundle("org.anadix.section508.reports.Advice");
+	private static final ResourceBundle itemStatuses = ResourceBundle.getBundle("org.anadix.section508.report.ItemText");
+	private static final ResourceBundle descriptions = ResourceBundle.getBundle("org.anadix.section508.report.Description");
+	private static final ResourceBundle advices = ResourceBundle.getBundle("org.anadix.section508.report.Advice");
 
 	public Section508ReportItem(ItemStatus status, String key, Object... args) {
 		super(status, formatFromBundle(itemStatuses, key, args));
