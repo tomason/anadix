@@ -1,0 +1,8 @@
+package org.anadix.section508.rules
+
+import java.util.List
+import org.anadix.ReportItem
+
+query "getReports"
+	item : ReportItem( )
+end 
