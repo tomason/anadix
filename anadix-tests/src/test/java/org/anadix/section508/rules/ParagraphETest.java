@@ -28,7 +28,7 @@ public class ParagraphETest extends RulesetTest {
 	}
 
 	public void testRule1_2() {
-		ImgTag tag = factory.createImgTag(dummyId, body, dummyPropeties);
+		ImgTag tag = factory.createImgTag(dummyId, body, dummyAttributes);
 		tag.setSource(dummySource);
 		Collection<ReportItem> items = evaluate(tag);
 

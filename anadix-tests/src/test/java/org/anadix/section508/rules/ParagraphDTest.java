@@ -28,7 +28,7 @@ public class ParagraphDTest extends RulesetTest {
 	}
 
 	public void testRule1_2() {
-		LinkTag tag = factory.createLinkTag(dummyId, html, dummyPropeties);
+		LinkTag tag = factory.createLinkTag(dummyId, html, dummyAttributes);
 		tag.setSource(dummySource);
 		Collection<ReportItem> items = evaluate(tag);
 
@@ -46,7 +46,7 @@ public class ParagraphDTest extends RulesetTest {
 	}
 
 	public void testRule1_4() {
-		HtmlElement tag = factory.createH1Tag(dummyId, body, dummyPropeties);
+		HtmlElement tag = factory.createH1Tag(dummyId, body, dummyAttributes);
 		tag.setSource(dummySource);
 		Collection<ReportItem> items = evaluate(tag);
 
@@ -67,7 +67,7 @@ public class ParagraphDTest extends RulesetTest {
 	}
 
 	public void testRule2_2() {
-		HtmlElement tag = factory.createH1Tag(dummyId, body, dummyPropeties);
+		HtmlElement tag = factory.createH1Tag(dummyId, body, dummyAttributes);
 		tag.setSource(dummySource);
 		Collection<ReportItem> items = evaluate(tag);
 

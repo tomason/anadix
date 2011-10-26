@@ -39,7 +39,7 @@ public abstract class RulesetTest {
 
 	protected static final BigInteger dummyId = BigInteger.valueOf(42);
 	protected static final String dummySource = "dummy source";
-	protected static final Properties dummyPropeties = new Properties();
+	protected static final Properties dummyAttributes = new Properties();
 
 	public RulesetTest(String source) throws IllegalStateException {
 		KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();

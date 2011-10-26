@@ -26,7 +26,7 @@ public class ParagraphATest extends RulesetTest {
 	 * rule "img without alt and longdesc"
 	 */
 	public void testRule1_1() {
-		ImgTag tag = factory.createImgTag(dummyId, body, dummyPropeties);
+		ImgTag tag = factory.createImgTag(dummyId, body, dummyAttributes);
 		tag.setSource(dummySource);
 		Collection<ReportItem> items = evaluate(tag);
 
@@ -68,7 +68,7 @@ public class ParagraphATest extends RulesetTest {
 	 * rule "input without alt or label"
 	 */
 	public void testRule2_1() {
-		InputTag tag = factory.createInputTag(dummyId, body, dummyPropeties);
+		InputTag tag = factory.createInputTag(dummyId, body, dummyAttributes);
 		tag.setSource(dummySource);
 		Collection<ReportItem> items = evaluate(tag);
 
@@ -109,7 +109,7 @@ public class ParagraphATest extends RulesetTest {
 	 * rule "object without text content"
 	 */
 	public void testRule3_1() {
-		ObjectTag tag = factory.createObjectTag(dummyId, body, dummyPropeties);
+		ObjectTag tag = factory.createObjectTag(dummyId, body, dummyAttributes);
 		tag.setSource(dummySource);
 		Collection<ReportItem> items = evaluate(tag);
 
@@ -117,7 +117,7 @@ public class ParagraphATest extends RulesetTest {
 	}
 
 	public void testRule3_2() {
-		ObjectTag tag = factory.createObjectTag(dummyId, body, dummyPropeties);
+		ObjectTag tag = factory.createObjectTag(dummyId, body, dummyAttributes);
 		tag.setTextContent("text content explaining puropse of the object");
 		tag.setSource(dummySource);
 		Collection<ReportItem> items = evaluate(tag);
@@ -129,7 +129,7 @@ public class ParagraphATest extends RulesetTest {
 	 * rule "applet without alt and text content"
 	 */
 	public void testRule4_1() {
-		AppletTag tag = factory.createAppletTag(dummyId, body, dummyPropeties);
+		AppletTag tag = factory.createAppletTag(dummyId, body, dummyAttributes);
 		tag.setSource(dummySource);
 		Collection<ReportItem> items = evaluate(tag);
 
@@ -147,7 +147,7 @@ public class ParagraphATest extends RulesetTest {
 	}
 
 	public void testRule4_3() {
-		AppletTag tag = factory.createAppletTag(dummyId, body, dummyPropeties);
+		AppletTag tag = factory.createAppletTag(dummyId, body, dummyAttributes);
 		tag.setTextContent("text content explaining puropse of the applet");
 		tag.setSource(dummySource);
 		Collection<ReportItem> items = evaluate(tag);
@@ -170,7 +170,7 @@ public class ParagraphATest extends RulesetTest {
 	 * rule "iframe without text content"
 	 */
 	public void testRule5_1() {
-		IframeTag tag = factory.createIframeTag(dummyId, body, dummyPropeties);
+		IframeTag tag = factory.createIframeTag(dummyId, body, dummyAttributes);
 		tag.setSource(dummySource);
 		Collection<ReportItem> items = evaluate(tag);
 
@@ -178,7 +178,7 @@ public class ParagraphATest extends RulesetTest {
 	}
 
 	public void testRule5_2() {
-		IframeTag tag = factory.createIframeTag(dummyId, body, dummyPropeties);
+		IframeTag tag = factory.createIframeTag(dummyId, body, dummyAttributes);
 		tag.setTextContent("text content explaining puropse of the applet");
 		tag.setSource(dummySource);
 		Collection<ReportItem> items = evaluate(tag);
@@ -190,7 +190,7 @@ public class ParagraphATest extends RulesetTest {
 	 * rule "area without alt"
 	 */
 	public void testRule6_1() {
-		AreaTag tag = factory.createAreaTag(dummyId, body, dummyPropeties);
+		AreaTag tag = factory.createAreaTag(dummyId, body, dummyAttributes);
 		tag.setSource(dummySource);
 		Collection<ReportItem> items = evaluate(tag);
 
@@ -211,7 +211,7 @@ public class ParagraphATest extends RulesetTest {
 	 * rule "decorative img"
 	 */
 	public void testRule7_1() {
-		ImgTag tag = factory.createImgTag(dummyId, body, dummyPropeties);
+		ImgTag tag = factory.createImgTag(dummyId, body, dummyAttributes);
 		tag.setSource(dummySource);
 		Collection<ReportItem> items = evaluate(tag);
 
