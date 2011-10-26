@@ -1,4 +1,4 @@
-package org.anadix.rules;
+package org.anadix.section508.rules;
 
 import static org.testng.Assert.*;
 
