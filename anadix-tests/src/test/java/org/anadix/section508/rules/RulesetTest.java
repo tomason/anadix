@@ -92,7 +92,7 @@ public abstract class RulesetTest {
 
 	protected static ReportItem assertReportContains(Collection<ReportItem> report, Class<? extends ReportItem> clazz, ItemStatus status, String text) {
 		ReportItem i = loopItems(report.iterator(), clazz, status, text);
-		assertNotNull(i, "Found an error report " + i);
+		assertNotNull(i, "Didn't find report of class " + clazz.getSimpleName());
 
 		return i;
 	}
