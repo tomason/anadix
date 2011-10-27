@@ -17,14 +17,14 @@ rule "multilevel data table"
 		DataTableTag( child : table)
 		containedIn( child, parent; )
 	then
-		insertLogical(new MultilevelTableTag(parent, child));
+		insert(new MultilevelTableTag(parent, child));
 end
 
 rule "asociate data cells"
 	when
 		tag : TdTag( headers == null, axis == null )
-		MultilevelTableTag( table : child )
+		MultilevelTableTag( table : parent )
 		containedIn( tag, table; )
 	then
-		insertLogical(new CellMissingAssociation(tag));
+		insert(new CellMissingAssociation(tag));
 end
