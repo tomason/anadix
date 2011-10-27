@@ -9,7 +9,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
-import org.anadix.Element;
 import org.anadix.ItemStatus;
 import org.anadix.ReportItem;
 import org.anadix.html.BodyTag;
@@ -66,13 +65,13 @@ public abstract class RulesetTest {
 		return id;
 	}
 
-	protected Collection<ReportItem> evaluate(Element... elements) {
+	protected Collection<ReportItem> evaluate(Object... elements) {
 		StatelessKnowledgeSession ksession = kbase.newStatelessKnowledgeSession();
 		Collection<ReportItem> reportItems = new ArrayList<ReportItem>();
 
 		List<Command<?>> commands = new ArrayList<Command<?>>();
-		for (Element e : elements) {
-			commands.add(CommandFactory.newInsert(e));
+		for (Object o : elements) {
+			commands.add(CommandFactory.newInsert(o));
 		}
 		commands.add(CommandFactory.newFireAllRules());
 		commands.add(CommandFactory.newQuery("reports", "getReports"));
