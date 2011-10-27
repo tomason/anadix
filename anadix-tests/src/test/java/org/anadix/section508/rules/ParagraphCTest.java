@@ -23,7 +23,7 @@ public class ParagraphCTest extends RulesetTest {
 	public void testRule2_1() {
 		Properties attributes = new Properties();
 		attributes.setProperty("style", "color: #0F0F0F;");
-		HtmlElement e = factory.createDivTag(dummyId, body, attributes);
+		HtmlElement e = factory.createDivTag(getUniqueId(), body, attributes);
 		e.setSource(dummySource);
 		Collection<ReportItem> report = evaluate(e);
 
@@ -33,7 +33,7 @@ public class ParagraphCTest extends RulesetTest {
 	public void testRule2_2() {
 		Properties attributes = new Properties();
 		attributes.setProperty("style", "background-color: #0F0F0F;");
-		HtmlElement e = factory.createDivTag(dummyId, body, attributes);
+		HtmlElement e = factory.createDivTag(getUniqueId(), body, attributes);
 		e.setSource(dummySource);
 		Collection<ReportItem> report = evaluate(e);
 
@@ -41,7 +41,7 @@ public class ParagraphCTest extends RulesetTest {
 	}
 
 	public void testRule2_3() {
-		HtmlElement e = factory.createDivTag(dummyId, body, dummyAttributes);
+		HtmlElement e = factory.createDivTag(getUniqueId(), body, dummyAttributes);
 		e.setSource(dummySource);
 		Collection<ReportItem> report = evaluate(e);
 
@@ -51,7 +51,7 @@ public class ParagraphCTest extends RulesetTest {
 	public void testRule3_1() {
 		Properties attributes = new Properties();
 		attributes.setProperty("style", "color: #0F0F0F; background-color: #0E0E0E;");
-		HtmlElement e = factory.createDivTag(dummyId, body, attributes);
+		HtmlElement e = factory.createDivTag(getUniqueId(), body, attributes);
 		e.setSource(dummySource);
 		Collection<ReportItem> report = evaluate(e);
 
@@ -61,7 +61,7 @@ public class ParagraphCTest extends RulesetTest {
 	public void testRule3_2() {
 		Properties attributes = new Properties();
 		attributes.setProperty("style", "color: #0E0E0E; background-color: #0F0F0F;");
-		HtmlElement e = factory.createDivTag(dummyId, body, attributes);
+		HtmlElement e = factory.createDivTag(getUniqueId(), body, attributes);
 		e.setSource(dummySource);
 		Collection<ReportItem> report = evaluate(e);
 
@@ -71,7 +71,7 @@ public class ParagraphCTest extends RulesetTest {
 	public void testRule3_3() {
 		Properties attributes = new Properties();
 		attributes.setProperty("style", "color: #000000; background-color: #FFFFFF;");
-		HtmlElement e = factory.createDivTag(dummyId, body, attributes);
+		HtmlElement e = factory.createDivTag(getUniqueId(), body, attributes);
 		e.setSource(dummySource);
 		Collection<ReportItem> report = evaluate(e);
 
@@ -79,7 +79,7 @@ public class ParagraphCTest extends RulesetTest {
 	}
 
 	public void testRule3_4() {
-		HtmlElement e = factory.createDivTag(dummyId, body, dummyAttributes);
+		HtmlElement e = factory.createDivTag(getUniqueId(), body, dummyAttributes);
 		e.setSource(dummySource);
 		Collection<ReportItem> report = evaluate(e);
 
@@ -113,7 +113,7 @@ public class ParagraphCTest extends RulesetTest {
 	@Test(dataProvider = "colors")
 	public void testColorRules1(String color) {
 		final String textContent = "some talking about " + color + " and so on...";
-		HtmlElement e = factory.createPTag(dummyId, body, dummyAttributes);
+		HtmlElement e = factory.createPTag(getUniqueId(), body, dummyAttributes);
 		e.setSource(dummySource);
 		e.setTextContent(textContent);
 
@@ -126,7 +126,7 @@ public class ParagraphCTest extends RulesetTest {
 	@Test(dataProvider = "colors")
 	public void testColorRules2(String color) {
 		final String textContent = "some talking about fraking-" + color + "ish and so on...";
-		HtmlElement e = factory.createPTag(dummyId, body, dummyAttributes);
+		HtmlElement e = factory.createPTag(getUniqueId(), body, dummyAttributes);
 		e.setSource(dummySource);
 		e.setTextContent(textContent);
 
@@ -138,7 +138,7 @@ public class ParagraphCTest extends RulesetTest {
 
 	@Test(dataProvider = "colors")
 	public void testColorRules3(String color) {
-		HtmlElement e = factory.createPTag(dummyId, body, dummyAttributes);
+		HtmlElement e = factory.createPTag(getUniqueId(), body, dummyAttributes);
 		e.setSource(dummySource);
 		e.setTextContent(color);
 
@@ -151,7 +151,7 @@ public class ParagraphCTest extends RulesetTest {
 	@Test(dataProvider = "colors")
 	public void testColorRules4(String color) {
 		final String textContent = "some talking about " + color.toUpperCase() + " and so on...";
-		HtmlElement e = factory.createPTag(dummyId, body, dummyAttributes);
+		HtmlElement e = factory.createPTag(getUniqueId(), body, dummyAttributes);
 		e.setSource(dummySource);
 		e.setTextContent(textContent);
 
@@ -171,7 +171,7 @@ public class ParagraphCTest extends RulesetTest {
 		color = new String(chars);
 
 		final String textContent = "some talking about " + color + " and so on...";
-		HtmlElement e = factory.createPTag(dummyId, body, dummyAttributes);
+		HtmlElement e = factory.createPTag(getUniqueId(), body, dummyAttributes);
 		e.setSource(dummySource);
 		e.setTextContent(textContent);
 
@@ -191,7 +191,7 @@ public class ParagraphCTest extends RulesetTest {
 		color = new String(chars);
 
 		final String textContent = "some talking about fraking-" + color + "ish and so on...";
-		HtmlElement e = factory.createPTag(dummyId, body, dummyAttributes);
+		HtmlElement e = factory.createPTag(getUniqueId(), body, dummyAttributes);
 		e.setSource(dummySource);
 		e.setTextContent(textContent);
 

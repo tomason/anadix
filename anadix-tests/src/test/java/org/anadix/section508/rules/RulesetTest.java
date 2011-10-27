@@ -37,7 +37,6 @@ public abstract class RulesetTest {
 	protected final HtmlTag html;
 	protected final BodyTag body;
 
-	protected static final BigInteger dummyId = BigInteger.valueOf(42);
 	protected static final String dummySource = "dummy source";
 	protected static final Properties dummyAttributes = new Properties();
 
@@ -57,6 +56,14 @@ public abstract class RulesetTest {
 		factory = new HTMLElementFactory(KnowledgeBaseFactory.newKnowledgeBase().newStatefulKnowledgeSession());
 		html = factory.createHtmlTag(new BigInteger("1"), new Properties());
 		body = factory.createBodyTag(new BigInteger("101"), html, new Properties());
+		id = BigInteger.ONE;
+	}
+
+	private static BigInteger id;
+	protected static synchronized BigInteger getUniqueId() {
+		id = id.add(BigInteger.ONE);
+
+		return id;
 	}
 
 	protected Collection<ReportItem> evaluate(Element... elements) {
@@ -71,7 +78,7 @@ public abstract class RulesetTest {
 		commands.add(CommandFactory.newQuery("reports", "getReports"));
 
 		ExecutionResults results = ksession.execute(CommandFactory.newBatchExecution(commands));
-		System.out.println(results.getIdentifiers());
+		//System.out.println(results.getIdentifiers());
 
 		QueryResults queryResults = (QueryResults) results.getValue("reports");
 		for (QueryResultsRow result : queryResults) {

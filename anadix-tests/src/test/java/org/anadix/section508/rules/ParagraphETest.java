@@ -20,7 +20,7 @@ public class ParagraphETest extends RulesetTest {
 	public void testRule1_1() {
 		Properties attributes = new Properties();
 		attributes.setProperty("ismap", "ismap");
-		ImgTag tag = factory.createImgTag(dummyId, body, attributes);
+		ImgTag tag = factory.createImgTag(getUniqueId(), body, attributes);
 		tag.setSource(dummySource);
 		Collection<ReportItem> items = evaluate(tag);
 
@@ -28,7 +28,7 @@ public class ParagraphETest extends RulesetTest {
 	}
 
 	public void testRule1_2() {
-		ImgTag tag = factory.createImgTag(dummyId, body, dummyAttributes);
+		ImgTag tag = factory.createImgTag(getUniqueId(), body, dummyAttributes);
 		tag.setSource(dummySource);
 		Collection<ReportItem> items = evaluate(tag);
 

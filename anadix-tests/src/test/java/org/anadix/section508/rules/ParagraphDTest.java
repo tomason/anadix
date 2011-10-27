@@ -20,7 +20,7 @@ public class ParagraphDTest extends RulesetTest {
 	public void testRule1_1() {
 		Properties attributes = new Properties();
 		attributes.setProperty("rel", "stylesheet");
-		LinkTag tag = factory.createLinkTag(dummyId, html, attributes);
+		LinkTag tag = factory.createLinkTag(getUniqueId(), html, attributes);
 		tag.setSource(dummySource);
 		Collection<ReportItem> items = evaluate(tag);
 
@@ -28,7 +28,7 @@ public class ParagraphDTest extends RulesetTest {
 	}
 
 	public void testRule1_2() {
-		LinkTag tag = factory.createLinkTag(dummyId, html, dummyAttributes);
+		LinkTag tag = factory.createLinkTag(getUniqueId(), html, dummyAttributes);
 		tag.setSource(dummySource);
 		Collection<ReportItem> items = evaluate(tag);
 
@@ -38,7 +38,7 @@ public class ParagraphDTest extends RulesetTest {
 	public void testRule1_3() {
 		Properties attributes = new Properties();
 		attributes.setProperty("style", "color: #FFFFFF");
-		HtmlElement tag = factory.createH1Tag(dummyId, body, attributes);
+		HtmlElement tag = factory.createH1Tag(getUniqueId(), body, attributes);
 		tag.setSource(dummySource);
 		Collection<ReportItem> items = evaluate(tag);
 
@@ -46,7 +46,7 @@ public class ParagraphDTest extends RulesetTest {
 	}
 
 	public void testRule1_4() {
-		HtmlElement tag = factory.createH1Tag(dummyId, body, dummyAttributes);
+		HtmlElement tag = factory.createH1Tag(getUniqueId(), body, dummyAttributes);
 		tag.setSource(dummySource);
 		Collection<ReportItem> items = evaluate(tag);
 
@@ -59,7 +59,7 @@ public class ParagraphDTest extends RulesetTest {
 	public void testRule2_1() {
 		Properties attributes = new Properties();
 		attributes.setProperty("style", "color: #FFFFFF");
-		HtmlElement tag = factory.createH1Tag(dummyId, body, attributes);
+		HtmlElement tag = factory.createH1Tag(getUniqueId(), body, attributes);
 		tag.setSource(dummySource);
 		Collection<ReportItem> items = evaluate(tag);
 
@@ -67,7 +67,7 @@ public class ParagraphDTest extends RulesetTest {
 	}
 
 	public void testRule2_2() {
-		HtmlElement tag = factory.createH1Tag(dummyId, body, dummyAttributes);
+		HtmlElement tag = factory.createH1Tag(getUniqueId(), body, dummyAttributes);
 		tag.setSource(dummySource);
 		Collection<ReportItem> items = evaluate(tag);
 
