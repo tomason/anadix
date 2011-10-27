@@ -24,10 +24,7 @@ rule "row without header cell"
 			ThTag( parent == $row )
 		)
 	then
-		//insertLogical(new RowWithoutHeader($row));
-		RowWithoutHeader rwh = new RowWithoutHeader();
-		rwh.setRow($row);
-		insertLogical(rwh);
+		insertLogical(new RowWithoutHeader($row));
 end
 
 rule "row without header in data table"
@@ -42,39 +39,30 @@ end
 
 // columns without headers
 rule "insert column count for tables"
+	salience 1000
 	when
 		DataTableTag( $table; )
 		not (
 			ColumnCount( table == $table )
 		)
 	then
-		//insert(new ColumnCount($table, (TrTag)null, 0, 0));
-		ColumnCount cc = new ColumnCount();
-		cc.setTable($table);
-		cc.setTd(0);
-		cc.setTh(0);
-		
-		insert(cc);
+		insert(new ColumnCount($table, null, 0, 0));
 end
 
 rule "insert column count for rows"
+	salience 1000
 	when
 		$row : TrTag( )
 		not (
 			ColumnCount( row == $row )
 		)
 	then
-		//insert(new ColumnCount((TableTag)null, $row, 0, 0));
-		ColumnCount cc = new ColumnCount();
-		cc.setRow($row);
-		cc.setTd(0);
-		cc.setTh(0);
-		
-		insert(cc);
+		insert(new ColumnCount(null, $row, 0, 0));
 end
 
 
 rule "count data columns in row"
+	salience 100
 	when
 		$count : ColumnCount( $row : row != null, $old : td )
 		Number( $new : intValue > $old ) from accumulate (
@@ -88,6 +76,7 @@ rule "count data columns in row"
 end
 
 rule "count header columns in row"
+	salience 100
 	when
 		$count : ColumnCount( $row : row != null, $old : th )
 		Number( $new : intValue > $old ) from accumulate (
@@ -101,26 +90,23 @@ rule "count header columns in row"
 end
 
 rule "max header columns in table"
+	salience 10
 	when
 		$count : ColumnCount( $table : table != null, $old : th )
-		ColumnCount( $row : row != null, td == 0, $value : th > $old)
+		ColumnCount( $row : row != null, td == 0, $new : th > $old)
 		containedIn( $row, $table; )
 	then
 		modify ($count) {
-			setTh($value);
+			setTh($new);
 		}
 end
 
 rule "max data columns in table"
+	salience 10
 	when
 		$count : ColumnCount( $table : table != null, $old : td )
-		Number( $new : intValue > $old) from accumulate (
-			( and
-				ColumnCount( $row : row != null, $td : td != 0, $th : th)
-				containedIn( $row, $table; )
-			),
-			max($td + $th)
-		)
+		ColumnCount( $row : row != null, $new : (td + th) > $old)
+		containedIn( $row, $table; )
 	then
 		modify ($count) {
 			setTd($new);
