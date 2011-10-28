@@ -22,7 +22,7 @@ end
 
 rule "flickering image"
 	when
-		$cause : ImgTag( src str[endsWith] "gif" )
+		$cause : ImgTag( src != null && str[endsWith] "gif" )
 	then
 		insert(new ElementCauseFlickering($cause));
 end
