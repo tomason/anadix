@@ -14,13 +14,13 @@ end
 rule "input without alt or label"
 	when
 		$element : InputTag( $id : idAttribute,
-			type != "submit" || != "reset" || != "hidden" || != "image"
+			type not in ( "button", "submit", "reset", "hidden", "image" )
 		)
 		not (
 			LabelTag( getFor() == $id )
 		)
 	then
-		insert(new InputWithoutDescription($element));
+		insertLogical(new InputWithoutDescription($element));
 end
 
 rule "wrong input in form"
@@ -29,5 +29,5 @@ rule "wrong input in form"
 		InputWithoutDescription( $input; )
 		containedIn( $input, $form; )
 	then
-		insert(new MissingAlt($input));
+		insert(new InputMissingLabel($input));
 end
