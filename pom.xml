@@ -150,14 +150,14 @@
   </developers>
   
   <scm>
-  	<url>scm:git:git@github.com:tomason/analyzer.git</url>
-  	<connection>scm:git:git@github.com:tomason/analyzer.git</connection>
-  	<developerConnection>scm:git:git@github.com:tomason/analyzer.git</developerConnection>
+  	<url>scm:git:git@github.com:tomason/anadix.git</url>
+  	<connection>scm:git:git@github.com:tomason/anadix.git</connection>
+  	<developerConnection>scm:git:git@github.com:tomason/anadix.git</developerConnection>
   </scm>
   
   <issueManagement>
     <system>GitHub</system>
-    <url>https://github.com/tomason/analyzer/issues</url>
+    <url>https://github.com/tomason/anadix/issues</url>
   </issueManagement>
   
 </project>
