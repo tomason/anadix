@@ -10,7 +10,7 @@
   <dependencySets>
     <dependencySet>
       <includes>
-        <include>org:anadix*</include>
+        <include>org.anadix:anadix*:jar</include>
       </includes>
       <outputDirectory>.</outputDirectory>
       <useStrictFiltering>true</useStrictFiltering>
@@ -18,7 +18,7 @@
   
     <dependencySet>
       <excludes>
-        <exclude>org:anadix*</exclude>
+        <exclude>org.anadix:anadix*</exclude>
       </excludes>
       <outputDirectory>lib</outputDirectory>
       <useStrictFiltering>true</useStrictFiltering>
