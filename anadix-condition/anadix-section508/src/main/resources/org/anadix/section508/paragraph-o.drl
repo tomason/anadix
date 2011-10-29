@@ -6,6 +6,9 @@ import org.anadix.section508.report.*
 
 rule "skip repetitive links"
 	when
+		exists (
+			ATag( )
+		)
 	then
 		insert(new DocumentSkipNavigation());
 end
