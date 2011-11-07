@@ -28,8 +28,11 @@ import org.jboss.logging.Logger;
 /**
  * Creates instances of various objects used by analyzer
  * 
+ * @deprecated Use org.anadix.Anadix instead.
+ * 
  * @author tomason
  */
+@Deprecated
 public final class ObjectFactory {
 	private static final Logger logger = Logger.getLogger(ObjectFactory.class);
 	// FIXME allow configuring default classes (or at the very least the defaultConditions)
