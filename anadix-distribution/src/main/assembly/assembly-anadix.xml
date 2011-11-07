@@ -21,13 +21,15 @@ limitations under the License.
   <formats>
     <format>zip</format>
   </formats>
+  
+  <includeBaseDirectory>false</includeBaseDirectory>
 
   <dependencySets>
     <dependencySet>
       <includes>
-        <include>org.anadix:anadix*:jar</include>
+        <include>org.anadix:anadix*:jar:*</include>
       </includes>
-      <outputDirectory>.</outputDirectory>
+      <outputDirectory>/</outputDirectory>
       <useStrictFiltering>true</useStrictFiltering>
     </dependencySet>
   
@@ -35,10 +37,29 @@ limitations under the License.
       <excludes>
         <exclude>org.anadix:anadix*</exclude>
       </excludes>
-      <outputDirectory>lib</outputDirectory>
+      <outputDirectory>/lib</outputDirectory>
       <useStrictFiltering>true</useStrictFiltering>
     </dependencySet>
+    
+    <dependencySet>
+      <includes>
+        <include>org.anadix:anadix-docs*</include>
+      </includes>
+      <outputDirectory>/doc</outputDirectory>
+      <unpack>true</unpack>
+    </dependencySet>
   </dependencySets>
+  
+  <fileSets>
+    <fileSet>
+      <directory>${project.build.directory}/site/apidocs</directory>
+      <outputDirectory>/doc/javadocs</outputDirectory>
+      <includes>
+        <include>**/*</include>
+      </includes>
+    </fileSet>
+  </fileSets>
+  
 </assembly>          
 
   
