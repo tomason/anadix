@@ -9,6 +9,7 @@
   </parent>
   <artifactId>anadix-docs</artifactId>
   <name>Anadix documentation</name>
+  <packaging>pom</packaging>
   
   <build>
   	<plugins>
@@ -17,16 +18,33 @@
   			<artifactId>latex-maven-plugin</artifactId>
   			<version>1.1</version>
   			
-  			<executions>
-  			  <execution>
-  			    <phase>compile</phase>
-  			    <goals>
-  			      <goal>latex</goal>
-  			    </goals>
-  			  </execution>
+  			<executions>  			
+  				<execution>
+  					<phase>compile</phase>
+  					<goals>
+  						<goal>latex</goal>
+  					</goals>
+  				</execution>
   			</executions>
   		</plugin>
+  		<plugin>
+  			<artifactId>maven-assembly-plugin</artifactId>
+  			<version>2.2.1</version>
+  			
+  			<configuration>
+  				<descriptor>src/main/assembly/zip.xml</descriptor>
+  				<appendAssemblyId>false</appendAssemblyId>
+  			</configuration>
+  			
+  			<executions>
+  				<execution>
+  					<phase>package</phase>
+  					<goals>
+  						<goal>single</goal>
+  					</goals>
+  				</execution>
+  			</executions>
+  		</plugin>  		
   	</plugins>
   </build>
-  <packaging>pom</packaging>
 </project>
