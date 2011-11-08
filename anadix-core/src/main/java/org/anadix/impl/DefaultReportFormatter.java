@@ -45,4 +45,8 @@ public abstract class DefaultReportFormatter implements ReportFormatter {
 
 		pw.flush();
 	}
+
+	public String getReportFileExtension() {
+		return null;
+	}
 }

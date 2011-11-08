@@ -75,4 +75,8 @@ public class SimpleReportFormatter extends DefaultReportFormatter {
 		return sb.toString();
 	}
 
+	@Override
+	public String getReportFileExtension() {
+		return "txt";
+	}
 }

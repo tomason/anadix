@@ -50,4 +50,10 @@ public interface ReportFormatter {
 	 * @param w - writer to store the formatted report to
 	 */
 	void formatAndStore(Report report, Writer writer);
+
+	/**
+	 * @return extension of newly created report files or null if no extension
+	 * is necessary
+	 */
+	String getReportFileExtension();
 }
