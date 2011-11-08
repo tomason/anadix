@@ -23,8 +23,15 @@ import java.io.Writer;
 import org.anadix.Report;
 import org.anadix.ReportFormatter;
 
+/**
+ * Abstract class for ReportFormatter
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public abstract class DefaultReportFormatter implements ReportFormatter {
 
+	/** {@inheritDoc} */
 	public void formatAndStore(Report report, OutputStream os) {
 		if (os == null) {
 			throw new NullPointerException("os cannot be null");
@@ -32,6 +39,7 @@ public abstract class DefaultReportFormatter implements ReportFormatter {
 		formatAndStore(report, new OutputStreamWriter(os));
 	}
 
+	/** {@inheritDoc} */
 	public void formatAndStore(Report report, Writer w) {
 		if (report == null) {
 			throw new NullPointerException("report cannot be null");
@@ -46,6 +54,7 @@ public abstract class DefaultReportFormatter implements ReportFormatter {
 		pw.flush();
 	}
 
+	/** {@inheritDoc} */
 	public String getReportFileExtension() {
 		return null;
 	}

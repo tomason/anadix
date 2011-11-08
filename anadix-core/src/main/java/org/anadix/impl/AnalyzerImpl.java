@@ -36,6 +36,12 @@ import org.drools.definition.rule.Rule;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.jboss.logging.Logger;
 
+/**
+ * Implementation of Analyzer class
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public class AnalyzerImpl implements Analyzer {
 	private static final Logger logger = Logger.getLogger(Analyzer.class);
 
@@ -43,6 +49,12 @@ public class AnalyzerImpl implements Analyzer {
 	private final ConditionSet conditions;
 	private final KnowledgeBase kbase;
 
+	/**
+	 * Constructor
+	 *
+	 * @param parser - parser used to parse sources
+	 * @param conditions - set of conditions to evaluate for every source
+	 */
 	public AnalyzerImpl(Parser parser, ConditionSet conditions) {
 		this.parser = parser;
 		this.conditions = conditions;
@@ -54,6 +66,7 @@ public class AnalyzerImpl implements Analyzer {
 		kbase = createKnowledgeBase();
 	}
 
+	/** {@inheritDoc} */
 	public Report analyze(Source source) {
 		if (source == null) {
 			throw new NullPointerException("source must not be null");

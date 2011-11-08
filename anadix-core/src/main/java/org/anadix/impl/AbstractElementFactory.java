@@ -25,9 +25,23 @@ import org.drools.runtime.StatefulKnowledgeSession;
 import org.drools.runtime.rule.WorkingMemoryEntryPoint;
 
 
+/**
+ * Abstract class for all ElementFactory implementations
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public abstract class AbstractElementFactory implements ElementFactory {
 	private final StatefulKnowledgeSession ksession;
 
+	/**
+	 * <p>createFactory.</p>
+	 *
+	 * @param clazz a {@link java.lang.Class} object.
+	 * @param session a {@link org.drools.runtime.StatefulKnowledgeSession} object.
+	 * @param <T> a T object.
+	 * @return a T object.
+	 */
 	public static <T extends ElementFactory> T createFactory(Class<T> clazz, StatefulKnowledgeSession session) {
 		if (clazz == null) {
 			throw new NullPointerException("clazz cannot be null");
@@ -42,6 +56,11 @@ public abstract class AbstractElementFactory implements ElementFactory {
 		}
 	}
 
+	/**
+	 * Constructor
+	 *
+	 * @param ksession - StatefulKnowledgeSession to be used to insert elements to
+	 */
 	protected AbstractElementFactory(StatefulKnowledgeSession ksession) {
 		if (ksession == null) {
 			throw new NullPointerException("ksession can't be null");
@@ -50,14 +69,25 @@ public abstract class AbstractElementFactory implements ElementFactory {
 		this.ksession = ksession;
 	}
 
+	/**
+	 * Gets the session
+	 *
+	 * @return session used throughout this factory
+	 */
 	protected StatefulKnowledgeSession getSession() {
 		return ksession;
 	}
 
+	/** {@inheritDoc} */
 	public void insertElement(Element element) {
 		getSession().insert(element);
 	}
 
+	/**
+	 * Gets all Element instances in the underlying session 
+	 *
+	 * @return collection of Elements in session
+	 */
 	public Collection<Element> getElements() {
 		Collection<Element> result = new ArrayList<Element>();
 
@@ -68,6 +98,7 @@ public abstract class AbstractElementFactory implements ElementFactory {
 		return result;
 	}
 
+	/** {@inheritDoc} */
 	public void setGlobal(String name, Object instance) {
 		if (name == null) {
 			throw new NullPointerException("name cannot be null");
@@ -78,10 +109,12 @@ public abstract class AbstractElementFactory implements ElementFactory {
 		getSession().setGlobal(name, instance);
 	}
 
+	/** {@inheritDoc} */
 	public void setAsGlobal(String name) {
 		setGlobal(name, this);
 	}
 
+	/** {@inheritDoc} */
 	public void insertEvent(String entrypoint, Object event) {
 		if (entrypoint == null) {
 			throw new NullPointerException("entrypoint cannot be null");

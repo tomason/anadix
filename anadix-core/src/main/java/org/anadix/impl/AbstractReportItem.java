@@ -18,12 +18,24 @@ package org.anadix.impl;
 import org.anadix.ItemStatus;
 import org.anadix.ReportItem;
 
+/**
+ * Abstract implementation of ReportItem
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public abstract class AbstractReportItem implements ReportItem {
 	private final ItemStatus status;
 	private final String itemText;
 	private String description;
 	private String advice;
 
+	/**
+	 * Constructor
+	 *
+	 * @param status - item status
+	 * @param itemText - basic description of report item
+	 */
 	public AbstractReportItem(ItemStatus status, String itemText) {
 		if (status == null) {
 			throw new NullPointerException("status must not be null");
@@ -35,30 +47,37 @@ public abstract class AbstractReportItem implements ReportItem {
 		this.itemText = itemText;
 	}
 
+	/** {@inheritDoc} */
 	public ItemStatus getStatus() {
 		return status;
 	}
 
+	/** {@inheritDoc} */
 	public String getItemText() {
 		return itemText;
 	}
 
+	/** {@inheritDoc} */
 	public void setAdvice(String advice) {
 		this.advice = advice;
 	}
 
+	/** {@inheritDoc} */
 	public String getAdvice() {
 		return advice;
 	}
 
+	/** {@inheritDoc} */
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
+	/** {@inheritDoc} */
 	public String getDescription() {
 		return description;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public String toString() {
 		return getStatus() + " - " + getItemText();

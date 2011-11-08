@@ -18,8 +18,15 @@ package org.anadix.impl;
 import org.anadix.Report;
 import org.anadix.ReportItem;
 
+/**
+ * Simple formatter for Anadix reports. Produces output that should be used for debuging mainly.
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public class SimpleReportFormatter extends DefaultReportFormatter {
 
+	/** {@inheritDoc} */
 	public String format(Report report) {
 		StringBuilder sb = new StringBuilder();
 
@@ -75,6 +82,7 @@ public class SimpleReportFormatter extends DefaultReportFormatter {
 		return sb.toString();
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public String getReportFileExtension() {
 		return "txt";

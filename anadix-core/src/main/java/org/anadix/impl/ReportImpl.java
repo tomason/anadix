@@ -25,6 +25,12 @@ import org.anadix.Source;
 import org.drools.runtime.ClassObjectFilter;
 import org.drools.runtime.StatefulKnowledgeSession;
 
+/**
+ * <p>ReportImpl class.</p>
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public class ReportImpl implements Report {
 	private final List<ReportItem> errors = new ArrayList<ReportItem>();
 	private final List<ReportItem> warnings = new ArrayList<ReportItem>();
@@ -34,6 +40,12 @@ public class ReportImpl implements Report {
 
 	private final Source source;
 
+	/**
+	 * Constructor
+	 *
+	 * @param ksession - session to generate report from
+	 * @param source - source that was analyzed
+	 */
 	public ReportImpl(StatefulKnowledgeSession ksession, Source source) {
 		if (source == null) {
 			throw new NullPointerException("source must not be null");
@@ -67,34 +79,42 @@ public class ReportImpl implements Report {
 		}
 	}
 
+	/** {@inheritDoc} */
 	public Source getSource() {
 		return source;
 	}
 
+	/** {@inheritDoc} */
 	public List<ReportItem> getOks() {
 		return Collections.unmodifiableList(oks);
 	}
 
+	/** {@inheritDoc} */
 	public List<ReportItem> getWarnings() {
 		return Collections.unmodifiableList(warnings);
 	}
 
+	/** {@inheritDoc} */
 	public List<ReportItem> getErrors() {
 		return Collections.unmodifiableList(errors);
 	}
 
+	/** {@inheritDoc} */
 	public List<ReportItem> getManuals() {
 		return manuals;
 	}
 
+	/** {@inheritDoc} */
 	public List<ReportItem> getInfos() {
 		return infos;
 	}
 
+	/** {@inheritDoc} */
 	public String report() {
 		return new SimpleReportFormatter().format(this);
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public String toString() {
 		return report();
