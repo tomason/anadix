@@ -27,14 +27,25 @@ abstract class AbstractSource implements Source {
 	private static final Logger logger = Logger.getLogger(AbstractSource.class);
 	private final String description;
 
+	/**
+	 * Constructor
+	 *
+	 * @param description - descritpion of the source
+	 */
 	public AbstractSource(String description) {
 		this.description = description;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public String getDescription() {
 		return description;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public String getText() {
 		StringBuilder result = new StringBuilder();
 		BufferedReader br = null;
@@ -62,6 +73,9 @@ abstract class AbstractSource implements Source {
 		return result.toString();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Reader getReader() {
 		return new InputStreamReader(getStream());
 	}

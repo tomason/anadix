@@ -15,20 +15,45 @@
  */
 package org.anadix.exceptions;
 
+/**
+ * Represents the exception during source handling.
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public class SourceException extends Exception {
 	private static final long serialVersionUID = -2279894355884568950L;
 
+	/**
+	 * Constructor
+	 */
 	public SourceException() {
 	}
 
+	/**
+	 * Constructor
+	 *
+	 * @param message - message to pass
+	 */
 	public SourceException(String message) {
 		super(message);
 	}
 
+	/**
+	 * Constructor
+	 *
+	 * @param cause - cause of the exception
+	 */
 	public SourceException(Throwable cause) {
 		super(cause);
 	}
 
+	/**
+	 * Constructor
+	 *
+	 * @param message - message to pass
+	 * @param cause - cause of the exception
+	 */
 	public SourceException(String message, Throwable cause) {
 		super(message, cause);
 	}

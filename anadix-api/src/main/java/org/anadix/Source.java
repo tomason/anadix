@@ -20,26 +20,35 @@ import java.io.Reader;
 
 /**
  * Represents a source for analysis
- * 
+ *
  * @author tomason
+ * @version $Id: $
  */
 public interface Source {
 	/**
-	 * @return description of the source (eg. filename, url, classpath)
+	 * Gets the description of the source (eg. filename, url, classpath)
+	 *
+	 * @return description of the source
 	 */
 	String getDescription();
 
 	/**
+	 * Gets the source as a String. If for example the source reads a stream then the whole stream is read and returned as a String.
+	 *
 	 * @return source as a String
 	 */
 	String getText();
 
 	/**
+	 * Gets reader representation of the source
+	 *
 	 * @return source as a Reader
 	 */
 	Reader getReader();
 
 	/**
+	 * Gets stream representation of the source 
+	 *
 	 * @return source as a Stream
 	 */
 	InputStream getStream();

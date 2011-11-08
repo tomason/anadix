@@ -24,8 +24,9 @@ import org.drools.io.Resource;
  * Resource for Drools engine.
  * Convinience class to group Resource, ResourceType and ResourceConfiguration
  * into one class.
- * 
+ *
  * @author tomason
+ * @version $Id: $
  */
 public class DroolsResource {
 	private final Resource resource;
@@ -34,7 +35,7 @@ public class DroolsResource {
 
 	/**
 	 * Constructs DroolsResource without configuration
-	 * 
+	 *
 	 * @param resource - Resource as returned by org.drools.io.ResourceFactory
 	 * @param type - type of resource
 	 */
@@ -44,7 +45,7 @@ public class DroolsResource {
 
 	/**
 	 * Constructs DroolsResource without configuration
-	 * 
+	 *
 	 * @param resource - Resource as returned by org.drools.io.ResourceFactory
 	 * @param type - type of resource
 	 * @param configuration - configuration for the KnowledgeBuilder
@@ -63,6 +64,8 @@ public class DroolsResource {
 	}
 
 	/**
+	 * Gets the resource represented by this instance
+	 *
 	 * @return resource
 	 */
 	public Resource getResource() {
@@ -70,6 +73,8 @@ public class DroolsResource {
 	}
 
 	/**
+	 * Gets the type of resource represented by this instance
+	 *
 	 * @return type of resource
 	 */
 	public ResourceType getType() {
@@ -77,6 +82,8 @@ public class DroolsResource {
 	}
 
 	/**
+	 * Gets the configuration of resource represented by this instance
+	 *
 	 * @return resource configuration
 	 */
 	public ResourceConfiguration getConfiguration() {
@@ -85,7 +92,7 @@ public class DroolsResource {
 
 	/**
 	 * Adds this resource to given KnowledgeBuilder to be compiled
-	 * 
+	 *
 	 * @param kbuilder - KnowledgeBuilder to add this resource to
 	 */
 	public void insertInto(KnowledgeBuilder kbuilder) {

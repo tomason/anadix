@@ -20,8 +20,9 @@ import java.io.Writer;
 
 /**
  * Class used to format results of analysis stored in Report class.
- * 
+ *
  * @author tomason
+ * @version $Id: $
  */
 public interface ReportFormatter {
 
@@ -29,7 +30,7 @@ public interface ReportFormatter {
 	 * Most important method that returns String containing formatted results.
 	 * The content of the String depends on implementation of this method, it
 	 * may be simple text as well as XML, HTML or any other format.
-	 * 
+	 *
 	 * @param report - report to create output from
 	 * @return formatted Report as a String
 	 */
@@ -37,23 +38,26 @@ public interface ReportFormatter {
 
 	/**
 	 * Formats the Report and stores the results of formatting to given OutputStream
-	 * 
+	 *
 	 * @param report - report to format
-	 * @param os - stream to store the formatted report to
+	 * @param stream - instance of OutputStream used to store the report
 	 */
 	void formatAndStore(Report report, OutputStream stream);
 
 	/**
 	 * Formats the Report and stores the results of formatting to given Writer
-	 * 
+	 *
 	 * @param report - report to format
-	 * @param w - writer to store the formatted report to
+	 * @param writer - instance of Writer used to store the report
 	 */
 	void formatAndStore(Report report, Writer writer);
 
 	/**
+	 * Gets the extension that should be used for report files when storing formatted reports.
+	 *
 	 * @return extension of newly created report files or null if no extension
 	 * is necessary
+	 * @since 0.4.0
 	 */
 	String getReportFileExtension();
 }

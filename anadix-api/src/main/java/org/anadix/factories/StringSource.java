@@ -26,10 +26,21 @@ class StringSource implements Source {
 	private final String source;
 	private final String description;
 
+	/**
+	 * Constructor
+	 *
+	 * @param source - instance of String representing the source
+	 */
 	public StringSource(String source) {
 		this(source, null);
 	}
 
+	/**
+	 * Constructor
+	 *
+	 * @param source - instance of String representing the source
+	 * @param description - description of the source
+	 */
 	public StringSource(String source, String description) {
 		if (source == null) {
 			throw new NullPointerException("source can't be null");
@@ -38,18 +49,30 @@ class StringSource implements Source {
 		this.description = description;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public String getDescription() {
 		return description;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public String getText() {
 		return source;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Reader getReader() {
 		return new StringReader(source);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public InputStream getStream() {
 		return new ByteArrayInputStream(source.getBytes());
 	}

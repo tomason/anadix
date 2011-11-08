@@ -27,10 +27,10 @@ import org.jboss.logging.Logger;
 
 /**
  * Creates instances of various objects used by analyzer
- * 
+ *
  * @deprecated Use org.anadix.Anadix instead.
- * 
  * @author tomason
+ * @version $Id: $
  */
 @Deprecated
 public final class ObjectFactory {
@@ -49,10 +49,10 @@ public final class ObjectFactory {
 	/**
 	 * Creates new instance of Parser by invoking default constructor in
 	 * class defined by given class name.
-	 * 
+	 *
 	 * @param className - name of the class to be constructed
 	 * @return new instance of Parser
-	 * @throws InstantiationException - when exception occurs during creating
+	 * @throws java.lang.InstantiationException - when exception occurs during creating
 	 * new instance
 	 */
 	public static Parser newParser(String className) throws InstantiationException {
@@ -66,10 +66,10 @@ public final class ObjectFactory {
 	/**
 	 * Creates new instance of Parser by invoking default constructor in
 	 * given class.
-	 * 
+	 *
 	 * @param clazz - class to be constructed
 	 * @return new instance of Parser
-	 * @throws InstantiationException - when exception occurs during creating
+	 * @throws java.lang.InstantiationException - when exception occurs during creating
 	 * new instance
 	 */
 	public static Parser newParser(Class<? extends Parser> clazz) throws InstantiationException {
@@ -80,10 +80,10 @@ public final class ObjectFactory {
 	 * Creates new instance of ConditionSet by invoking default constructor in
 	 * class defined by given class name. If null is given as a parameter
 	 * default ConditionSet is constructed.
-	 * 
+	 *
 	 * @param className - name of the class to be constructed
 	 * @return new instance of ConditionSet
-	 * @throws InstantiationException - when exception occurs during creating
+	 * @throws java.lang.InstantiationException - when exception occurs during creating
 	 * new instance
 	 */
 	public static ConditionSet newConditionSet(String className) throws InstantiationException {
@@ -97,10 +97,10 @@ public final class ObjectFactory {
 	/**
 	 * Creates new instance of ConditionSet by invoking default constructor in
 	 * given class.
-	 * 
+	 *
 	 * @param clazz - class to be constructed
 	 * @return new instance of ConditionSet
-	 * @throws InstantiationException - when exception occurs during creating
+	 * @throws java.lang.InstantiationException - when exception occurs during creating
 	 * new instance
 	 */
 	public static ConditionSet newConditionSet(Class<? extends ConditionSet> clazz) throws InstantiationException {
@@ -110,9 +110,9 @@ public final class ObjectFactory {
 	/**
 	 * Creates a new instance of analyzer using default Parser and default
 	 * ConditionSet
-	 * 
+	 *
 	 * @return new instance of Analyzer
-	 * @throws InstantiationException - when exception occurs during creating
+	 * @throws java.lang.InstantiationException - when exception occurs during creating
 	 * new instance
 	 */
 	public static Analyzer newAnalyzer() throws InstantiationException {
@@ -125,10 +125,10 @@ public final class ObjectFactory {
 	/**
 	 * Creates a new instance of analyzer using given condition set and
 	 * default Parser
-	 * 
+	 *
 	 * @param conditionsClass - conditions to use
 	 * @return new instance of Analyzer
-	 * @throws InstantiationException - when exception occurs during creating
+	 * @throws java.lang.InstantiationException - when exception occurs during creating
 	 * new instance
 	 */
 	public static Analyzer newAnalyzer(Class<? extends ConditionSet> conditionsClass) throws InstantiationException {
@@ -141,11 +141,11 @@ public final class ObjectFactory {
 	/**
 	 * Creates a new instance of analyzer using given condition set and
 	 * parser
-	 * 
+	 *
 	 * @param parserClass - parser to use
 	 * @param conditionsClass - conditions to use
 	 * @return new instance of Analyzer
-	 * @throws InstantiationException - when exception occurs during creating
+	 * @throws java.lang.InstantiationException - when exception occurs during creating
 	 * new instance
 	 */
 	public static Analyzer newAnalyzer(
@@ -159,11 +159,11 @@ public final class ObjectFactory {
 
 	/**
 	 * Creates a new instance of analyzer using given Parser and ConditionSet
-	 * 
+	 *
 	 * @param p - Parser to use
 	 * @param c - ConditionSet to use
 	 * @return new instance of Analyzer
-	 * @throws InstantiationException - when exception occurs during creating
+	 * @throws java.lang.InstantiationException - when exception occurs during creating
 	 * new instance
 	 */
 	public static Analyzer newAnalyzer(Parser p, ConditionSet c) throws InstantiationException {
@@ -179,9 +179,9 @@ public final class ObjectFactory {
 
 	/**
 	 * Creates a new instance of default ReportFormatter.
-	 * 
+	 *
 	 * @return new instance of ReportFormatter
-	 * @throws InstantiationException - when exception occurs during creating
+	 * @throws java.lang.InstantiationException - when exception occurs during creating
 	 * new instance
 	 */
 	public static ReportFormatter newFormatter() throws InstantiationException {
@@ -191,10 +191,10 @@ public final class ObjectFactory {
 	/**
 	 * Creates a new instance of ReportFormatter by invoking default constructor in
 	 * class defined by given class name.
-	 * 
+	 *
 	 * @param className - name of the class to be constructed
 	 * @return new instance of ReportFormatter
-	 * @throws InstantiationException - when exception occurs during creating
+	 * @throws java.lang.InstantiationException - when exception occurs during creating
 	 * new instance
 	 */
 	public static ReportFormatter newFormatter(String className) throws InstantiationException {
@@ -208,10 +208,10 @@ public final class ObjectFactory {
 	/**
 	 * Creates a new instance of ReportFormatter by invoking default constructor in
 	 * class defined by given class.
-	 * 
+	 *
 	 * @param clazz - class to be constructed
 	 * @return new instance of ReportFormatter
-	 * @throws InstantiationException - when exception occurs during creating
+	 * @throws java.lang.InstantiationException - when exception occurs during creating
 	 * new instance
 	 */
 	public static ReportFormatter newFormatter(Class<? extends ReportFormatter> clazz) throws InstantiationException {

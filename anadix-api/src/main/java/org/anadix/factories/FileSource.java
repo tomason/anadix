@@ -26,6 +26,12 @@ import org.jboss.logging.Logger;
 class FileSource extends AbstractSource {
 	private final File source;
 
+	/**
+	 * Constructor
+	 *
+	 * @param source - a file this source can be read from
+	 * @throws org.anadix.exceptions.SourceException if the file doesn't exist
+	 */
 	public FileSource(File source) throws SourceException {
 		super(source.getAbsolutePath());
 		if (!source.exists()) {
@@ -34,6 +40,9 @@ class FileSource extends AbstractSource {
 		this.source = source;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public InputStream getStream() {
 		try {
 			return new FileInputStream(source);

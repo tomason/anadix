@@ -26,6 +26,12 @@ class URLSource extends AbstractSource {
 	private static final Logger logger = Logger.getLogger(URLSource.class);
 	private final URL url;
 
+	/**
+	 * Constructor
+	 *
+	 * @param url - URL to get the source from
+	 * @throws org.anadix.exceptions.SourceException if the stream to URL can't be opened
+	 */
 	public URLSource(URL url) throws SourceException {
 		super(url.toExternalForm());
 		this.url = url;
@@ -38,6 +44,9 @@ class URLSource extends AbstractSource {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public InputStream getStream() {
 		try {

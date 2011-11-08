@@ -15,20 +15,45 @@
  */
 package org.anadix.exceptions;
 
+/**
+ * Represents the exception during parsing.
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public class ParserException extends Exception {
 	private static final long serialVersionUID = -5499359537494913863L;
 
+	/**
+	 * Constructor
+	 */
 	public ParserException() {
 	}
 
+	/**
+	 * Constructor
+	 *
+	 * @param message - message to pass
+	 */
 	public ParserException(String message) {
 		super(message);
 	}
 
+	/**
+	 * Constructor
+	 *
+	 * @param cause - cause of the exception
+	 */
 	public ParserException(Throwable cause) {
 		super(cause);
 	}
 
+	/**
+	 * Constructor
+	 *
+	 * @param message - message to pass
+	 * @param cause - cause of the exception
+	 */
 	public ParserException(String message, Throwable cause) {
 		super(message, cause);
 	}

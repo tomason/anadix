@@ -19,16 +19,21 @@ package org.anadix;
  * Represents single item in report. Otherwise it is a simple object.
  * It has two mandatory attributes - status and itemText. Optional attributes
  * provide more detailed information in final report file.
- * 
+ *
  * @author tomason
+ * @version $Id: $
  */
 public interface ReportItem {
 	/**
+	 * Gets the item status.
+	 *
 	 * @return item status
 	 */
 	ItemStatus getStatus();
 
 	/**
+	 * Gets the basic item text.
+	 *
 	 * @return basic item text
 	 */
 	String getItemText();
@@ -37,24 +42,28 @@ public interface ReportItem {
 	 * Sets the advice - advice should contain some suggestion how to fix
 	 * the problem. Therefore it makes sense only for ReportItems with status
 	 * ERROR or WARNING.
-	 * 
+	 *
 	 * @param advice - advice how to fix a reported problem
 	 */
 	void setAdvice(String advice);
 
 	/**
+	 * Gets advice on how to fix a problem or how to perform the manual check.
+	 *
 	 * @return advice how to fix a reported problem
 	 */
 	String getAdvice();
 
 	/**
 	 * Sets the more detailed description of the ReportItem
-	 * 
+	 *
 	 * @param description - detailed description of ReportItem
 	 */
 	void setDescription(String description);
 
 	/**
+	 * Gets more detailed description of this report item.
+	 *
 	 * @return detailed description of ReportItem
 	 */
 	String getDescription();

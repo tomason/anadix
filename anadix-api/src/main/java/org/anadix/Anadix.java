@@ -18,8 +18,10 @@ import org.jboss.logging.Logger;
  * implementations of Parser, ConditionSet and ReportFormatter used.
  * All operations are done either with default implementations (Section508, Swingparser
  * and SimpleRepportFormatter) or with the implementations provided.
- * 
+ *
  * @author tomason
+ * @version $Id: $
+ * @since 0.4.0
  */
 public final class Anadix {
 	private static final String DEFAULT_CONDITIONS = "org.anadix.section508.Section508";
@@ -52,9 +54,9 @@ public final class Anadix {
 	 * Creates a new Analyzer instance.
 	 * For creation of Analyzer are used ConditionSet and Parser classes that were
 	 * set before of the default ones (Section508, Swingparser).
-	 * 
+	 *
 	 * @return new instance of Analyzer
-	 * @throws InstantiationException when problem occurs during Analyzer creation
+	 * @throws java.lang.InstantiationException when problem occurs during Analyzer creation
 	 */
 	public static Analyzer newAnalyzer() throws InstantiationException {
 		return INSTANCE.createAnalyzer(null, null);
@@ -65,10 +67,10 @@ public final class Anadix {
 	 * For creation of Analyzer is used ConditionSet instance passed as a parameter
 	 * and Parser class that was set before or the default one defined in
 	 * ConditionSet in method getDefaultParser.
-	 * 
-	 * @param - conditions instance of ConditionSet used to analyze parsed sources
+	 *
+	 * @param conditions - instance of ConditionSet used to analyze parsed sources
 	 * @return new instance of Analyzer
-	 * @throws InstantiationException when problem occurs during Analyzer creation
+	 * @throws java.lang.InstantiationException when problem occurs during Analyzer creation
 	 */
 	public static Analyzer newAnalyzer(ConditionSet conditions) throws InstantiationException {
 		return INSTANCE.createAnalyzer(conditions, null);
@@ -78,11 +80,11 @@ public final class Anadix {
 	 * Creates a new Analyzer instance.
 	 * For creation of Analyzer are used ConditionSet and Parser instances passed
 	 * as parameters.
-	 * 
-	 * @param - conditions instance of ConditionSet used to analyze parsed sources
-	 * @param - parser instance of Parser used to parse sources
+	 *
+	 * @param conditions - instance of ConditionSet used to analyze parsed sources
+	 * @param parser - instance of Parser used to parse sources
 	 * @return new instance of Analyzer
-	 * @throws InstantiationException when problem occurs during Analyzer creation
+	 * @throws java.lang.InstantiationException when problem occurs during Analyzer creation
 	 */
 	public static Analyzer newAnalyzer(ConditionSet conditions, Parser parser) throws InstantiationException {
 		return INSTANCE.createAnalyzer(conditions, parser);
@@ -94,8 +96,8 @@ public final class Anadix {
 	 * (SimpleReportFormatter). Reports are stored either to directory set before via
 	 * setReportDirectory method or to the default one (./reports). The default name
 	 * is report_{counter}.{formatter.getDefaultExtension}.
-	 * 
-	 * @param - report instance of Report received upon successful analysis
+	 *
+	 * @param report - instance of Report received upon successful analysis
 	 * @return true if the Report was formatted and saved, false otherwise
 	 */
 	public static boolean formatReport(Report report) {
@@ -109,9 +111,9 @@ public final class Anadix {
 	 * ReportFormatter class used is the one set before or the default one
 	 * (SimpleReportFormatter). Reports are stored either to directory set before via
 	 * setReportDirectory method or to the default one (./reports).
-	 * 
-	 * @param - report instance of Report received upon sucessful analysis
-	 * @param - fileName name of the file to store results to
+	 *
+	 * @param report - instance of Report received upon successful analysis
+	 * @param fileName - name of the file to store results to
 	 * @return true if the Report was formatted and saved, false otherwise
 	 */
 	public static boolean formatReport(Report report, String fileName) {
@@ -145,7 +147,7 @@ public final class Anadix {
 
 	/**
 	 * Sets the Parser class that is to be used by default
-	 * 
+	 *
 	 * @param clazz - instance of class extending Parser
 	 * @return true if the default Parser was changed, false otherwise
 	 */
@@ -160,7 +162,7 @@ public final class Anadix {
 
 	/**
 	 * Sets the ConditionSet class that is to be used by default
-	 * 
+	 *
 	 * @param clazz - instance of class extending ConditionSet
 	 * @return true if the default ConditionSet was changed, false otherwise
 	 */
@@ -175,7 +177,7 @@ public final class Anadix {
 
 	/**
 	 * Sets the ReportFormatter class that is to be used by default
-	 * 
+	 *
 	 * @param clazz - instance of class extending ReportFormatter
 	 * @return true if the default ReportFormatter was changed, false otherwise
 	 */
@@ -190,7 +192,7 @@ public final class Anadix {
 
 	/**
 	 * Sets the directory where all reports are stored
-	 * 
+	 *
 	 * @param path - instance of File pointing to a directory
 	 * @return true if the directory was changed, false otherwise
 	 */

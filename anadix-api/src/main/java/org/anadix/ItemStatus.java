@@ -17,8 +17,9 @@ package org.anadix;
 
 /**
  * Enumeration of statuses for report items
- * 
+ *
  * @author tomason
+ * @version $Id: $
  */
 public enum ItemStatus {
 	/**

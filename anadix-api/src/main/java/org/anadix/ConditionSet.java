@@ -24,12 +24,15 @@ import org.anadix.utils.DroolsResource;
  * To ensure compatibility with parser the ElementFactory used for this
  * condition set has to be of a same class or subclass of ElementFactory used
  * in parser. This is checked during creation of analyzer.
- * 
+ *
  * @author tomason
+ * @version $Id: $
  */
 public interface ConditionSet {
 
 	/**
+	 * Gets the name of this condition set
+	 *
 	 * @return name of this condition set
 	 */
 	String getName();
@@ -37,17 +40,21 @@ public interface ConditionSet {
 	/**
 	 * The most important method - returns resources (typically DRL files)
 	 * used by Drools engine to analyze requested sources
-	 * 
+	 *
 	 * @return collection of DroolsResources
 	 */
 	Collection<DroolsResource> getDroolsResources();
 
 	/**
+	 * Gets class of used implementation of ElementFactory. The element factory class must be subclass or same class as the one used in Parser.
+	 *
 	 * @return class of used implementation of ElementFactory
 	 */
 	Class<? extends ElementFactory> getElementFactoryClass();
 
 	/**
+	 * Gets class of the default Parser. This is important in situation when no parser is specified.
+	 *
 	 * @return class used as a default parser
 	 */
 	Class<? extends Parser> getDefaultParser();

@@ -22,6 +22,12 @@ import org.anadix.exceptions.SourceException;
 class ClassPathSource extends AbstractSource {
 	private final String resourceName;
 
+	/**
+	 * Constructor
+	 *
+	 * @param resource - path to get this source from
+	 * @throws org.anadix.exceptions.SourceException if resource could not be found
+	 */
 	public ClassPathSource(String resource) throws SourceException {
 		super(resource);
 		if (getClass().getResource(resource) == null) {
@@ -30,6 +36,9 @@ class ClassPathSource extends AbstractSource {
 		this.resourceName = resource;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public InputStream getStream() {
 		return getClass().getResourceAsStream(resourceName);
 	}

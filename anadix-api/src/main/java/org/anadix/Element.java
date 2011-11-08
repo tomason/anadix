@@ -17,13 +17,15 @@ package org.anadix;
 
 /**
  * Class representing the smallest units of Source.
- * 
+ *
  * @author tomason
+ * @version $Id: $
  */
 public interface Element {
 
 	/**
 	 * Gets the name of the element
+	 *
 	 * @return name of the element
 	 */
 	String getName();
@@ -31,6 +33,7 @@ public interface Element {
 	/**
 	 * Gets the source of the element
 	 * (could be source code, location, etc.)
+	 *
 	 * @return source of the element
 	 */
 	String getSource();

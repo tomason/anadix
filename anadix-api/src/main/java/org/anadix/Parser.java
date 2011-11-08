@@ -31,16 +31,17 @@ import org.anadix.utils.DroolsResource;
  *   <li>actualy parses given sources - by implementing method
  *   		parse</li>
  * </ul>where
- * 
+ *
  * @author tomason
+ * @version $Id: $
  */
 public interface Parser {
 
 	/**
 	 * Parses given source and inserts Elements through ElementFactory
-	 * 
+	 *
 	 * @param source - source to parse
-	 * @throws ParserException - when something goes wrong during parsing
+	 * @throws org.anadix.exceptions.ParserException - when something goes wrong during parsing
 	 */
 	void parse(Source source) throws ParserException;
 
@@ -48,7 +49,7 @@ public interface Parser {
 	 * Returns resources (typically DRL files) used by Drools engine
 	 * to process parser output. If no such resources are used this method
 	 * returns empty collection
-	 * 
+	 *
 	 * @return collection of DroolsResources
 	 */
 	Collection<DroolsResource> getDroolsResources();
@@ -56,7 +57,7 @@ public interface Parser {
 	/**
 	 * Returns class implementing ElementFactory that is used to insert
 	 * elements into Drools working memory
-	 * 
+	 *
 	 * @return instance of Class<? extends ElementFactory>
 	 */
 	Class<? extends ElementFactory> getElementFactoryClass();
@@ -64,7 +65,7 @@ public interface Parser {
 	/**
 	 * Inserts the instance of Element factory of a class defined by method
 	 * getElementFactoryClass
-	 * 
+	 *
 	 * @param factory - instance of ElementFactory
 	 */
 	void setElementFactory(ElementFactory factory);

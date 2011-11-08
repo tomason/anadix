@@ -24,8 +24,9 @@ import org.jboss.logging.Logger;
 
 /**
  * Creates instances of Source for different types of sources
- * 
+ *
  * @author tomason
+ * @version $Id: $
  */
 public final class SourceFactory {
 	private static final Logger logger = Logger.getLogger(SourceFactory.class);
@@ -35,10 +36,10 @@ public final class SourceFactory {
 
 	/**
 	 * Creates a new source pointing at a file
-	 * 
+	 *
 	 * @param file - file to read a source from
 	 * @return instance of Source
-	 * @throws SourceException - if any error occurs during creation of new Source
+	 * @throws org.anadix.exceptions.SourceException - if any error occurs during creation of new Source
 	 */
 	public static Source newFileSource(File file) throws SourceException {
 		return newFileSource(file, cacheByDefault);
@@ -46,11 +47,11 @@ public final class SourceFactory {
 
 	/**
 	 * Creates a new source pointing at a file
-	 * 
+	 *
 	 * @param file - file to read a source from
 	 * @param cache - whether to cache the result in memory
 	 * @return instance of Source
-	 * @throws SourceException - if any error occurs during creation of new Source
+	 * @throws org.anadix.exceptions.SourceException - if any error occurs during creation of new Source
 	 */
 	public static Source newFileSource(File file, boolean cache) throws SourceException {
 		if (!file.canRead()) {
@@ -67,10 +68,10 @@ public final class SourceFactory {
 
 	/**
 	 * Creates a new source pointing at a file
-	 * 
+	 *
 	 * @param filename - path to file to read a source from
 	 * @return instance of Source
-	 * @throws SourceException - if any error occurs during creation of new Source
+	 * @throws org.anadix.exceptions.SourceException - if any error occurs during creation of new Source
 	 */
 	public static Source newFileSource(String filename) throws SourceException {
 		return newFileSource(filename, cacheByDefault);
@@ -78,11 +79,11 @@ public final class SourceFactory {
 
 	/**
 	 * Creates a new source pointing at a file
-	 * 
+	 *
 	 * @param filename - path to file to read a source from
 	 * @param cache - whether to cache the result in memory
 	 * @return instance of Source
-	 * @throws SourceException - if any error occurs during creation of new Source
+	 * @throws org.anadix.exceptions.SourceException - if any error occurs during creation of new Source
 	 */
 	public static Source newFileSource(String filename, boolean cache) throws SourceException {
 		return newFileSource(new File(filename), cache);
@@ -90,7 +91,7 @@ public final class SourceFactory {
 
 	/**
 	 * Creates a new source from a String
-	 * 
+	 *
 	 * @param source - String containing the actual source
 	 * @return instance of Source
 	 */
@@ -100,7 +101,7 @@ public final class SourceFactory {
 
 	/**
 	 * Creates a new source from a String
-	 * 
+	 *
 	 * @param source - String containing the actual source
 	 * @param description - descripton of the Source
 	 * @return instance of Source
@@ -112,10 +113,10 @@ public final class SourceFactory {
 	/**
 	 * Creates a new Source from a classpath resource.
 	 * The resource must be on classpath and reachable by default classloader!
-	 * 
+	 *
 	 * @param resource - path to the resource
 	 * @return instance of Source
-	 * @throws SourceException - if any error occurs during creation of new Source
+	 * @throws org.anadix.exceptions.SourceException - if any error occurs during creation of new Source
 	 */
 	public static Source newClassPathSource(String resource) throws SourceException {
 		return newClassPathSource(resource, cacheByDefault);
@@ -124,11 +125,11 @@ public final class SourceFactory {
 	/**
 	 * Creates a new Source from a classpath resource.
 	 * The resource must be on classpath and reachable by default classloader!
-	 * 
+	 *
 	 * @param resource - path to the resource
 	 * @param cache - whether to cache the result in memory
 	 * @return instance of Source
-	 * @throws SourceException - if any error occurs during creation of new Source
+	 * @throws org.anadix.exceptions.SourceException - if any error occurs during creation of new Source
 	 */
 	public static Source newClassPathSource(String resource, boolean cache) throws SourceException {
 		Source s = new ClassPathSource(resource);
@@ -143,10 +144,10 @@ public final class SourceFactory {
 	/**
 	 * Creates a new Source from an URL resource.
 	 * The URL must exist and be valid!
-	 * 
+	 *
 	 * @param url - URL to get resource from
 	 * @return instance of Source
-	 * @throws SourceException - if any error occurs during creation of new Source
+	 * @throws org.anadix.exceptions.SourceException - if any error occurs during creation of new Source
 	 */
 	public static Source newURLSource(URL url) throws SourceException {
 		return newURLSource(url, cacheByDefault);
@@ -155,11 +156,11 @@ public final class SourceFactory {
 	/**
 	 * Creates a new Source from an URL resource.
 	 * The URL must exist and be valid!
-	 * 
+	 *
 	 * @param url - URL to get resource from
 	 * @param cache - whether to cache the result in memory
 	 * @return instance of Source
-	 * @throws SourceException - if any error occurs during creation of new Source
+	 * @throws org.anadix.exceptions.SourceException - if any error occurs during creation of new Source
 	 */
 	public static Source newURLSource(URL url, boolean cache) throws SourceException {
 		Source s = new URLSource(url);
