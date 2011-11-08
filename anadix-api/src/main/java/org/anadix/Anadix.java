@@ -14,8 +14,8 @@ import org.jboss.logging.Logger;
 
 /**
  * Main class to interact with Anadix analyzing engine. The basic methods are
- * provided for creation of analyzer, setting the implementations of Parser,
- * ConditionSet and ReportFormatter used and finally report formatting.
+ * provided for creation of analyzer, report formatting and setting the
+ * implementations of Parser, ConditionSet and ReportFormatter used.
  * All operations are done either with default implementations (Section508, Swingparser
  * and SimpleRepportFormatter) or with the implementations provided.
  * 
@@ -48,25 +48,81 @@ public final class Anadix {
 	private Anadix() {}
 
 	/////////////////////////////// public API /////////////////////////////////////
+	/**
+	 * Creates a new Analyzer instance.
+	 * For creation of Analyzer are used ConditionSet and Parser classes that were
+	 * set before of the default ones (Section508, Swingparser).
+	 * 
+	 * @return new instance of Analyzer
+	 * @throws InstantiationException when problem occurs during Analyzer creation
+	 */
 	public static Analyzer newAnalyzer() throws InstantiationException {
 		return INSTANCE.createAnalyzer(null, null);
 	}
 
+	/**
+	 * Creates a new Analyzer instance.
+	 * For creation of Analyzer is used ConditionSet instance passed as a parameter
+	 * and Parser class that was set before or the default one defined in
+	 * ConditionSet in method getDefaultParser.
+	 * 
+	 * @param - conditions instance of ConditionSet used to analyze parsed sources
+	 * @return new instance of Analyzer
+	 * @throws InstantiationException when problem occurs during Analyzer creation
+	 */
 	public static Analyzer newAnalyzer(ConditionSet conditions) throws InstantiationException {
 		return INSTANCE.createAnalyzer(conditions, null);
 	}
 
+	/**
+	 * Creates a new Analyzer instance.
+	 * For creation of Analyzer are used ConditionSet and Parser instances passed
+	 * as parameters.
+	 * 
+	 * @param - conditions instance of ConditionSet used to analyze parsed sources
+	 * @param - parser instance of Parser used to parse sources
+	 * @return new instance of Analyzer
+	 * @throws InstantiationException when problem occurs during Analyzer creation
+	 */
 	public static Analyzer newAnalyzer(ConditionSet conditions, Parser parser) throws InstantiationException {
 		return INSTANCE.createAnalyzer(conditions, parser);
 	}
 
+	/**
+	 * Tries to format given report and store it in report directory.
+	 * ReportFormatter class used is the one set before or the default one
+	 * (SimpleReportFormatter). Reports are stored either to directory set before via
+	 * setReportDirectory method or to the default one (./reports). The default name
+	 * is report_{counter}.{formatter.getDefaultExtension}.
+	 * 
+	 * @param - report instance of Report received upon successful analysis
+	 * @return true if the Report was formatted and saved, false otherwise
+	 */
 	public static boolean formatReport(Report report) {
-		File output = new File(INSTANCE.getReportDir(), "report");
-
-		return formatReport(report, output);
+		return formatReport(report, "report");
 	}
 
-	public static boolean formatReport(Report report, File output) {
+	/**
+	 * Tries to format given report and store it in the report directory under
+	 * specified name. The name is appended with _{counter} so if the file with given
+	 * name already exists it is not replaced.
+	 * ReportFormatter class used is the one set before or the default one
+	 * (SimpleReportFormatter). Reports are stored either to directory set before via
+	 * setReportDirectory method or to the default one (./reports).
+	 * 
+	 * @param - report instance of Report received upon sucessful analysis
+	 * @param - fileName name of the file to store results to
+	 * @return true if the Report was formatted and saved, false otherwise
+	 */
+	public static boolean formatReport(Report report, String fileName) {
+		ReportFormatter formatter;
+		try {
+			formatter = INSTANCE.createFormatter();
+		} catch (InstantiationException ex) {
+			return false;
+		}
+
+		File output = createFile(INSTANCE.getReportDir(), fileName, formatter.getReportFileExtension());
 		Writer writer;
 		try {
 			writer = new FileWriter(output);
@@ -75,11 +131,7 @@ public final class Anadix {
 			return false;
 		}
 
-		try {
-			INSTANCE.createFormatter().formatAndStore(report, writer);
-		} catch (InstantiationException ex) {
-			return false;
-		}
+		formatter.formatAndStore(report, writer);
 
 		try {
 			writer.close();
@@ -91,6 +143,12 @@ public final class Anadix {
 		return true;
 	}
 
+	/**
+	 * Sets the Parser class that is to be used by default
+	 * 
+	 * @param clazz - instance of class extending Parser
+	 * @return true if the default Parser was changed, false otherwise
+	 */
 	public static synchronized boolean setDefaultParser(Class<? extends Parser> clazz) {
 		if (!checkClass(clazz)) {
 			return false;
@@ -100,6 +158,12 @@ public final class Anadix {
 		return true;
 	}
 
+	/**
+	 * Sets the ConditionSet class that is to be used by default
+	 * 
+	 * @param clazz - instance of class extending ConditionSet
+	 * @return true if the default ConditionSet was changed, false otherwise
+	 */
 	public static synchronized boolean setDefaultConditionSet(Class<? extends ConditionSet> clazz) {
 		if (!checkClass(clazz)) {
 			return false;
@@ -109,6 +173,12 @@ public final class Anadix {
 		return true;
 	}
 
+	/**
+	 * Sets the ReportFormatter class that is to be used by default
+	 * 
+	 * @param clazz - instance of class extending ReportFormatter
+	 * @return true if the default ReportFormatter was changed, false otherwise
+	 */
 	public static synchronized boolean setDefaultFormatter(Class<? extends ReportFormatter> clazz) {
 		if (!checkClass(clazz)) {
 			return false;
@@ -118,6 +188,12 @@ public final class Anadix {
 		return true;
 	}
 
+	/**
+	 * Sets the directory where all reports are stored
+	 * 
+	 * @param path - instance of File pointing to a directory
+	 * @return true if the directory was changed, false otherwise
+	 */
 	public static synchronized boolean setReportDirectory(File path) {
 		if (!path.exists()) {
 			if (!path.mkdirs()) {
@@ -191,6 +267,33 @@ public final class Anadix {
 		}
 
 		return createInstance(formatter);
+	}
+
+	private static synchronized File createFile(File directory, String name, String extension) {
+		String pattern;
+		if (extension == null) {
+			pattern = String.format("%s_%s", name, "%03d");
+		} else {
+			pattern = String.format("%s_%s.%s", name, "%03d", extension);
+		}
+
+		return createFile(directory, pattern, 0);
+	}
+
+	private static synchronized File createFile(File dir, String pattern, int counter) {
+		File f = new File(dir, String.format(pattern, counter));
+
+		try {
+			if (f.createNewFile()) {
+				return f;
+			} else {
+				return createFile(dir, pattern, ++counter);
+			}
+		} catch (IOException ex) {
+			logger.warn("Error creating report file", ex);
+			return createFile(dir, pattern, ++counter);
+		}
+
 	}
 
 	private File getReportDir() {
