@@ -1,15 +1,17 @@
 \documentclass{report}
 
 \usepackage[utf8]{inputenc}
+\usepackage{hyperref}
 
 \title{Anadix user guide}
 \author{Tomas Schlosser}
+
 
 \begin{document}
 \maketitle
 \tableofcontents
 
-\chapter{Introduction}
+\chapter{Overview}
 Anadix is a tool for analyzing HTML files for Section 508 compliance. It uses
 Drools rule engine as a core that is used to create classes from parsed HTML
 elements and to evaluate rules checking Section 508 compliance. Anadix can be
@@ -19,18 +21,94 @@ used for HTML file parsing with custom written parser using different HTML
 parser implementation. Anadix also provides integration with different tools -
 currently it is only Apache Ant, but integration with Selenium is planned.
 
-\chapter{Start guide}
+\chapter{Getting started}
+To start using anadix you need only Java SE 6 or above. But if you want to build
+Anadix from source you will need Git and Apache Maven as well. 
+\section{Requiered environment}
+Only a few prerequisities are required for 
+\begin{description}
+  \item[Java SE 6] is a runtime environment and Anadix can't run without it 
+  (\url{http://www.java.com/getjava/}).
+  \item[Git] is source control manger that is needed only if you want to build
+  Anadix from sources (\url{http://git-scm.com/}).
+  \item[Apache Maven] is a project management tool that is needed only if you
+  want to build Anadix from sources (\url{http://maven.apache.org/}).
+\end{description}
 
-\section{Instalation}
-Download from git
+\section{Acquiring binaries}
+Basically there are two ways to obtain binary archives (jar) to run Anadix
+analyzer.
+\subsection{Download binaries from Github}
+The fastest way to get Anadix binaries is to download zip file from Github
+(\url{http://github.com/tomason/anadix/downloads}, 
+\url{http://github.com/downloads/tomason/anadix/anadix-distribution-0.4.0.zip}).
+
+\subsection{Build Anadix from sources}
+If you want to get the latest version or you want to build the binaries
+yourself or you want to change something you should download the sources and
+build the binaries from sources.
+\begin{itemize}
+  \item Clone the git repository:
+    \begin{verbatim}
+git clone git@github.com:tomason/anadix.git
+	\end{verbatim}
+  \item Change working directory:
+	\begin{verbatim}
+cd anadix
+	\end{verbatim}
+  \item Checkout tag or branch (optional):
+    \begin{verbatim}
+git checkout anadix-0.4.0
+    \end{verbatim}
+  \item Build binaries using Apache Maven:
+    \begin{verbatim}
+mvn clean install
+	\end{verbatim}
+\end{itemize}
+Binaries obtained this way can be found in directory
+'anadix-distribution/target' in ananadix-distribution-0.4.0.zip archive.
 
 \section{Usage}
+Anadix is an engine for analyzing and has no user interface so you have to embed
+the libraries in your application. There are two ways to get the binaries to
+embed the libreries to your application.
+\begin{description}
+  \item[Copy to classpath] required libraries and then use them in your
+  application.
+  \item[Use Apache Maven] to manage dependencies of your application. However
+  please note that Anadix is not in central Maven repositories and therefore you
+  have to build it locally using:
+    \begin{verbatim}
+mvn clean install
+	\end{verbatim}
+  If someone else wants to use your project then they must build the anadix from
+  sources as well.
+  Adding Anadix to your Maven project is easy:
+    \begin{verbatim}
+<dependency>
+  <groupId>org.anadix</groupId>
+  <artifactId>anadix-section508</artifactId>
+  <version>0.4.0</version>
+</dependency>
+    \end{verbatim}
+  Since section508 has all the necessary libraries as transitive dependencies
+  (api, core, html, swingparser) you don't need to specify any other
+  dependencies.
+\end{description}
 
-\section{Reports}
-
-\chapter{Developement}
+\chapter*{Usage}
 blah blah blah
-\section{API}
+\section*{API}
 org.anadix.*
+\section*{Analysis}
+
+\section*{Reports}
+
+\section*{Custom classes}
+
+\chapter*{Integration}
+\section*{Ant}
+\section*{Selenium}
+
 
 \end{document}
