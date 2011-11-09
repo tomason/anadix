@@ -18,14 +18,31 @@ package org.anadix.section508.report;
 import org.anadix.ItemStatus;
 import org.anadix.html.ImgTag;
 
+/**
+ * Report item indicating that &lt;IMG&gt; has ismap attribute defined
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public class ImgIsMap extends Section508ReportItem {
 	private static final String KEY_MANUAL = "img.has.textlinks";
 	private static final String KEY_WARNING = "img.is.map";
 
+	/**
+	 * Constructor
+	 *
+	 * @param cause &lt;IMG&gt; tag that has ismap attribute defined
+	 */
 	public ImgIsMap(ImgTag cause) {
 		this(cause, false);
 	}
 
+	/**
+	 * Constructor
+	 *
+	 * @param cause &lt;IMG&gt; tag that has ismap attribute defined
+	 * @param warning mark as warning (true) or as manual check (false)
+	 */
 	public ImgIsMap(ImgTag cause, boolean warning) {
 		super((warning ? ItemStatus.WARNING : ItemStatus.MANUAL),
 				(warning ? KEY_WARNING : KEY_MANUAL),

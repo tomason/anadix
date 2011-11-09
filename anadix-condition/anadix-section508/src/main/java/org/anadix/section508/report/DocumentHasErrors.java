@@ -17,9 +17,18 @@ package org.anadix.section508.report;
 
 import org.anadix.ItemStatus;
 
+/**
+ * Info report saying that document has errors and you can provide text version of the page.
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public class DocumentHasErrors extends Section508ReportItem {
-	public static final String KEY = "document.has.error";
+	private static final String KEY = "document.has.error";
 
+	/**
+	 * Constructor
+	 */
 	public DocumentHasErrors() {
 		super(ItemStatus.INFO, KEY);
 

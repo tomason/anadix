@@ -18,9 +18,20 @@ package org.anadix.section508.report;
 import org.anadix.ItemStatus;
 import org.anadix.html.TrTag;
 
+/**
+ * Error report indicating that row in data table is missing header
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public class RowMissingHeader extends Section508ReportItem {
 	private static final String KEY = "row.missing.header";
 
+	/**
+	 * Constructor
+	 *
+	 * @param row &lt;TR&gt; tag that is not starting with &lt;TH&gt;
+	 */
 	public RowMissingHeader(TrTag row) {
 		super(ItemStatus.ERROR, KEY, row.getSource());
 

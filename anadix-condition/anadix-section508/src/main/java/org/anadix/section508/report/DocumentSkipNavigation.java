@@ -17,9 +17,18 @@ package org.anadix.section508.report;
 
 import org.anadix.ItemStatus;
 
+/**
+ * Manual check requiring to check whether page provides a way to skip navigation links.
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public class DocumentSkipNavigation extends Section508ReportItem {
 	private static final String KEY = "document.skip.navigation";
 
+	/**
+	 * Constructor
+	 */
 	public DocumentSkipNavigation() {
 		super(ItemStatus.MANUAL, KEY);
 

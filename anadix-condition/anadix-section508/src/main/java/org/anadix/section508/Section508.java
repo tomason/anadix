@@ -28,11 +28,27 @@ import org.drools.builder.ResourceType;
 import org.drools.io.ResourceFactory;
 
 
+/**
+ * Set of conditions to check for Section 508 compliance
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public class Section508 implements ConditionSet {
+	/**
+	 *	{@inheritDoc}
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String getName() {
 		return "Section 508";
 	}
 
+	/**
+	 *	{@inheritDoc}
+	 *
+	 * @return a {@link java.util.Collection} object.
+	 */
 	public Collection<DroolsResource> getDroolsResources() {
 		Collection<DroolsResource> result = new ArrayList<DroolsResource>();
 
@@ -66,10 +82,20 @@ public class Section508 implements ConditionSet {
 		return result;
 	}
 
+	/**
+	 *	{@inheritDoc}
+	 *
+	 * @return a {@link java.lang.Class} object.
+	 */
 	public Class<? extends ElementFactory> getElementFactoryClass() {
 		return HTMLElementFactory.class;
 	}
 
+	/**
+	 *	{@inheritDoc}
+	 *
+	 * @return a {@link java.lang.Class} object.
+	 */
 	public Class<? extends Parser> getDefaultParser() {
 		return SwingParser.class;
 	}

@@ -21,21 +21,42 @@ import org.anadix.html.FramesetTag;
 import org.anadix.html.HtmlElement;
 import org.anadix.html.IframeTag;
 
+/**
+ * Error report indicating &lt;FRAME&gt;, &lt;IFRAME&gt; or &lt;FRAMESET&gt; is missing title attribute
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public class FrameMissingTitle extends Section508ReportItem {
 	private static final String KEY = "frame.missing.title";
 
+	/**
+	 * Constructor
+	 *
+	 * @param cause &lt;FRAME&gt; that is missing title
+	 */
 	public FrameMissingTitle(FrameTag cause) {
 		this((HtmlElement)cause);
 
 		setDescription(formatDescriptionString(KEY, "Frame"));
 	}
 
+	/**
+	 * Constructor
+	 *
+	 * @param cause &lt;IFRAME&gt; that is missing title
+	 */
 	public FrameMissingTitle(IframeTag cause) {
 		this((HtmlElement)cause);
 
 		setDescription(formatDescriptionString(KEY, "Inline frame (<iframe>)"));
 	}
 
+	/**
+	 * Constructor
+	 *
+	 * @param cause &lt;FRAMESET&gt; that is missing title
+	 */
 	public FrameMissingTitle(FramesetTag cause) {
 		this((HtmlElement)cause);
 

@@ -17,9 +17,18 @@ package org.anadix.section508.report;
 
 import org.anadix.ItemStatus;
 
+/**
+ * Error report indicating that web page using &lt;SRIPT&gt; is missing &lt;NOSRIPT&gt; version of page.
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public class DocumentMissingNoscript extends Section508ReportItem {
-	public static final String KEY = "document.missing.noscript";
+	private static final String KEY = "document.missing.noscript";
 
+	/**
+	 * Constructor
+	 */
 	public DocumentMissingNoscript() {
 		super(ItemStatus.ERROR, KEY);
 

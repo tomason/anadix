@@ -18,9 +18,20 @@ package org.anadix.section508.report;
 import org.anadix.ItemStatus;
 import org.anadix.html.InputTag;
 
+/**
+ * Error report indicating &lt;INPUT&gt; tag in &lt;FORM&gt; is missing associated &lt;LABEL&gt;
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public class InputMissingLabel extends Section508ReportItem {
 	private static final String KEY = "input.missing.label";
 
+	/**
+	 * Constructor
+	 *
+	 * @param cause &lt;INPUT&gt; without &lt;LABEL&gt;
+	 */
 	public InputMissingLabel(InputTag cause) {
 		super(ItemStatus.ERROR, KEY, cause.getSource(), cause.getPosition());
 

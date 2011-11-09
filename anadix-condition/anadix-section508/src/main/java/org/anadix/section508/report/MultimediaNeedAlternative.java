@@ -18,9 +18,20 @@ package org.anadix.section508.report;
 import org.anadix.ItemStatus;
 import org.anadix.html.HtmlElement;
 
+/**
+ * Manual check requiring multimedia to have alternative format
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public class MultimediaNeedAlternative extends Section508ReportItem {
 	private static final String KEY = "multimedia.needs.alternative";
 
+	/**
+	 * Constructor
+	 *
+	 * @param cause element that is multimedia
+	 */
 	public MultimediaNeedAlternative(HtmlElement cause) {
 		super(ItemStatus.MANUAL, KEY, cause.getSource(), cause.getPosition());
 

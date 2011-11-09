@@ -17,10 +17,23 @@ package org.anadix.section508;
 
 import java.awt.Color;
 
+/**
+ * A class that is used to count and compare contrast between two colors
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public final class ContrastUtility {
 
 	private ContrastUtility() {}
 
+	/**
+	 * Normalizes the representation of color to the 32bit form starting with #.
+	 * 17 basic colors are normalized as well.
+	 *
+	 * @param color - some color representation
+	 * @return color in range #000000 to #FFFFFF
+	 */
 	public static String normalizeColor(String color) {
 		if (color == null) {
 			throw new NullPointerException("color must not be null");
@@ -82,6 +95,13 @@ public final class ContrastUtility {
 		throw new IllegalArgumentException("Can't parse color: " + color);
 	}
 
+	/**
+	 * Counts relative luminence of a color. For more information see
+	 * <a href="http://www.w3.org/TR/2007/WD-WCAG20-TECHS-20070517/Overview.html#G18">WCAG 2.0</a>.
+	 *
+	 * @param color - color in form #{32bit in hexadecimal}
+	 * @return a relative luminence
+	 */
 	public static double countRelativeLuminance(String color) {
 		if (color == null) {
 			return -1;
@@ -118,6 +138,13 @@ public final class ContrastUtility {
 		return luminance;
 	}
 
+	/**
+	 * Counts contrast ratio between two colors
+	 *
+	 * @param luminance1 relative luminance of one color
+	 * @param luminance2 relative luminance of the other color
+	 * @return a number between [1, infinity)
+	 */
 	public static double getContrastRatio(double luminance1, double luminance2) {
 		double l1 = Math.max(luminance1, luminance2);
 		double l2 = Math.min(luminance1, luminance2);

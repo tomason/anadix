@@ -18,9 +18,20 @@ package org.anadix.section508.report;
 import org.anadix.ItemStatus;
 import org.anadix.html.TdTag;
 
+/**
+ * Error report generated for &lt;TD&gt; tags that are missing association with headers.
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public class CellMissingAssociation extends Section508ReportItem {
 	private static final String KEY = "cell.missing.association";
 
+	/**
+	 * Constructor
+	 *
+	 * @param cause - data cell that caused error
+	 */
 	public CellMissingAssociation(TdTag cause) {
 		super(ItemStatus.ERROR, KEY, cause.getSource(), cause.getPosition());
 

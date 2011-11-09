@@ -18,9 +18,20 @@ package org.anadix.section508.report;
 import org.anadix.ItemStatus;
 import org.anadix.html.HtmlElement;
 
+/**
+ * Manual check requiring the objects on page to comply to Section 508 (applets, plugins, etc.)
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public class ObjectCompliesConditions extends Section508ReportItem {
 	private static final String KEY = "object.complies.conditions";
 
+	/**
+	 * Constructor
+	 *
+	 * @param cause element that needs to be checked
+	 */
 	public ObjectCompliesConditions(HtmlElement cause) {
 		super(ItemStatus.MANUAL, KEY, cause.getSource(), cause.getPosition());
 

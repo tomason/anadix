@@ -18,9 +18,20 @@ package org.anadix.section508.report;
 import org.anadix.ItemStatus;
 import org.anadix.html.HtmlElement;
 
+/**
+ * Error report indicating that element has too little contrast between itself and the background
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public class ElementWrongContrast extends Section508ReportItem {
-	public static final String KEY = "element.wrong.contrast";
+	private static final String KEY = "element.wrong.contrast";
 
+	/**
+	 * Constructor
+	 *
+	 * @param cause element that has too little contrast
+	 */
 	public ElementWrongContrast(HtmlElement cause) {
 		super(ItemStatus.ERROR, KEY, cause.getSource(), cause.getPosition());
 

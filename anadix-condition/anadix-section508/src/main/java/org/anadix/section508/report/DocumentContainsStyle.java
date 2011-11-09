@@ -17,9 +17,18 @@ package org.anadix.section508.report;
 
 import org.anadix.ItemStatus;
 
+/**
+ * Manual ReportItem that indicates that style is used in document and it needs to be checked whether the document is readable without the stylesheet.
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public class DocumentContainsStyle extends Section508ReportItem {
-	public static final String KEY = "document.contains.style";
+	private static final String KEY = "document.contains.style";
 
+	/**
+	 * Constructor
+	 */
 	public DocumentContainsStyle() {
 		super(ItemStatus.MANUAL, KEY);
 

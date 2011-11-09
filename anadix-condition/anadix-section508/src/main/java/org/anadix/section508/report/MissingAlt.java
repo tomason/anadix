@@ -24,28 +24,64 @@ import org.anadix.html.ImgTag;
 import org.anadix.html.InputTag;
 import org.anadix.html.ObjectTag;
 
+/**
+ * Error report indicating various tags are missing alt attributes
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public class MissingAlt extends Section508ReportItem {
 
+	/**
+	 * Constructor
+	 *
+	 * @param cause &lt;APPLET&gt; missing alt
+	 */
 	public MissingAlt(AppletTag cause) {
 		this(cause, "applet.missing.alt");
 	}
 
+	/**
+	 * Constructor
+	 *
+	 * @param cause &lt;AREA&gt; missing alt
+	 */
 	public MissingAlt(AreaTag cause) {
 		this(cause, "area.missing.alt");
 	}
 
+	/**
+	 * Constructor
+	 *
+	 * @param cause &lt;IFRAME&gt;
+	 */
 	public MissingAlt(IframeTag cause) {
 		this(cause, "iframe.missing.content");
 	}
 
+	/**
+	 * Constructor
+	 *
+	 * @param cause &lt;IMG&gt;
+	 */
 	public MissingAlt(ImgTag cause) {
 		this(cause, "img.missing.alt");
 	}
 
+	/**
+	 * Constructor
+	 *
+	 * @param cause &lt;INPUT&gt; missing alt
+	 */
 	public MissingAlt(InputTag cause) {
 		this(cause, "input.missing.alt");
 	}
 
+	/**
+	 * Constructor
+	 *
+	 * @param cause &lt;OBJECT&gt; missing alt
+	 */
 	public MissingAlt(ObjectTag cause) {
 		this(cause, "object.missing.content");
 	}

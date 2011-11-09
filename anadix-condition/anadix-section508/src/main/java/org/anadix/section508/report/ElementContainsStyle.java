@@ -18,9 +18,20 @@ package org.anadix.section508.report;
 import org.anadix.ItemStatus;
 import org.anadix.html.CoreAttributes;
 
+/**
+ * Warning report says that styles should not be used inline but rather in linked files
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public class ElementContainsStyle extends Section508ReportItem {
-	public static final String KEY = "element.contains.style";
+	private static final String KEY = "element.contains.style";
 
+	/**
+	 * Constructor
+	 *
+	 * @param cause element that contains style
+	 */
 	public ElementContainsStyle(CoreAttributes cause) {
 		super(ItemStatus.WARNING, KEY, cause.getSource(), cause.getPosition());
 

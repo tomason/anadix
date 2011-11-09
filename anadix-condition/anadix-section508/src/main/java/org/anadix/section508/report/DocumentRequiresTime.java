@@ -17,9 +17,18 @@ package org.anadix.section508.report;
 
 import org.anadix.ItemStatus;
 
+/**
+ * Manual check requiring to check whether page doesn't require timely response
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public class DocumentRequiresTime extends Section508ReportItem {
 	private static final String KEY = "document.requires.time";
 
+	/**
+	 * Constructor
+	 */
 	public DocumentRequiresTime() {
 		super(ItemStatus.MANUAL, KEY);
 

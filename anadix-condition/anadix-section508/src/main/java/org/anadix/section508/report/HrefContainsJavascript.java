@@ -20,15 +20,31 @@ import org.anadix.html.ATag;
 import org.anadix.html.AreaTag;
 import org.anadix.html.HtmlElement;
 
+/**
+ * Warning report saying that &lt;A&gt; or &lt;AREA&gt; is using javascript as href attribute
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public class HrefContainsJavascript extends Section508ReportItem {
 	private static final String KEY = "href.contains.javascript";
 
+	/**
+	 * Constructor
+	 *
+	 * @param cause &lt;A&gt; tag using javascript
+	 */
 	public HrefContainsJavascript(ATag cause) {
 		this((HtmlElement)cause);
 
 		setDescription(formatDescriptionString(KEY, "Anchor (<a>)"));
 	}
 
+	/**
+	 * Constructor
+	 *
+	 * @param cause &lt;AREA&gt; tag using javascript
+	 */
 	public HrefContainsJavascript(AreaTag cause) {
 		this((HtmlElement)cause);
 

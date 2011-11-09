@@ -18,9 +18,20 @@ package org.anadix.section508.report;
 import org.anadix.ItemStatus;
 import org.anadix.html.ImgTag;
 
+/**
+ * Manual check requiring the &lt;IMG&gt; to be checked that it is only decorative
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public class ImgEmptyAlt extends Section508ReportItem {
 	private static final String KEY = "img.empty.alt";
 
+	/**
+	 * Constructor
+	 *
+	 * @param cause &lt;IMG&gt; tag with empty alt attribute
+	 */
 	public ImgEmptyAlt(ImgTag cause) {
 		super(ItemStatus.MANUAL, KEY, cause.getSource(), cause.getPosition());
 

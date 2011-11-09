@@ -18,9 +18,21 @@ package org.anadix.section508.report;
 import org.anadix.ItemStatus;
 import org.anadix.html.HtmlElement;
 
+/**
+ * Manual check requiring to check whether color mentioned in text does not convey information
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public class TextContainsColor extends Section508ReportItem {
 	private static final String KEY = "text.contains.color";
 
+	/**
+	 * Constructor
+	 *
+	 * @param cause element containing text with color
+	 * @param color color contained in text
+	 */
 	public TextContainsColor(HtmlElement cause, String color) {
 		super(ItemStatus.MANUAL, KEY, cause.getSource(), cause.getPosition(), color);
 

@@ -18,9 +18,20 @@ package org.anadix.section508.report;
 import org.anadix.ItemStatus;
 import org.anadix.html.TableTag;
 
+/**
+ * Error report generated for &lt;TABLE&gt; that is missing header for row or column.
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public class ColumnMissingHeader extends Section508ReportItem {
 	private static final String KEY = "column.missing.header";
 
+	/**
+	 * Constructor
+	 *
+	 * @param cause - table that caused the error
+	 */
 	public ColumnMissingHeader(TableTag cause) {
 		super(ItemStatus.ERROR, KEY, cause.getSource(), cause.getPosition());
 
