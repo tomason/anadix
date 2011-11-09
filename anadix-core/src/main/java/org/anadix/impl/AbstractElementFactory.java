@@ -35,12 +35,12 @@ public abstract class AbstractElementFactory implements ElementFactory {
 	private final StatefulKnowledgeSession ksession;
 
 	/**
-	 * <p>createFactory.</p>
+	 * Creates a new instance of ElementFactory of given class.
 	 *
-	 * @param clazz a {@link java.lang.Class} object.
-	 * @param session a {@link org.drools.runtime.StatefulKnowledgeSession} object.
-	 * @param <T> a T object.
-	 * @return a T object.
+	 * @param clazz class of ElementFactory to construct
+	 * @param session session to use within this ElementFactory
+	 * @param <T> a class extending ElementFactory
+	 * @return a new instance of ElementFactory of given type
 	 */
 	public static <T extends ElementFactory> T createFactory(Class<T> clazz, StatefulKnowledgeSession session) {
 		if (clazz == null) {
@@ -84,7 +84,7 @@ public abstract class AbstractElementFactory implements ElementFactory {
 	}
 
 	/**
-	 * Gets all Element instances in the underlying session 
+	 * Gets all Element instances in the underlying session
 	 *
 	 * @return collection of Elements in session
 	 */
