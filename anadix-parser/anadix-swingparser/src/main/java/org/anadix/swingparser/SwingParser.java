@@ -36,16 +36,27 @@ import org.drools.decisiontable.InputType;
 import org.drools.io.ResourceFactory;
 
 
+/**
+ * Parser implementation based on parser from package javax.swing.text.html.parser.
+ * Uses set of rules to recognize different tags and HTMLElementFactory to insert those tags into working memory. Rules are created from a template (rule-template.drt) and different tag names are stored in tags.csv. There are also some common rules (swingparser.drl) to manipulate tags position and source.
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public class SwingParser implements Parser {
 	private static final Logger logger = Logger.getLogger(SwingParser.class);
 
 	private final ParserDelegator parser;
 	private HTMLElementFactory factory;
 
+	/**
+	 * Constructor
+	 */
 	public SwingParser() {
 		parser = new ParserDelegator();
 	}
 
+	/** {@inheritDoc} */
 	public void parse(Source source) throws ParserException {
 		if (factory != null) {
 			try {
@@ -60,6 +71,7 @@ public class SwingParser implements Parser {
 		}
 	}
 
+	/** {@inheritDoc} */
 	public Collection<DroolsResource> getDroolsResources() {
 		Collection<DroolsResource> result = new ArrayList<DroolsResource>();
 
@@ -104,10 +116,12 @@ public class SwingParser implements Parser {
 		return result;
 	}
 
+	/** {@inheritDoc} */
 	public Class<? extends ElementFactory> getElementFactoryClass() {
 		return HTMLElementFactory.class;
 	}
 
+	/** {@inheritDoc} */
 	public void setElementFactory(ElementFactory factory) {
 		if (getElementFactoryClass().isAssignableFrom(factory.getClass())) {
 			this.factory = (HTMLElementFactory)factory;

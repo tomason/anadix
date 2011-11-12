@@ -18,9 +18,22 @@ package org.anadix.swingparser;
 import java.math.BigInteger;
 import java.util.Properties;
 
+/**
+ * Event representing end of the tag (eg. &lt;/h1&gt;)
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public class EndTagEvent extends TagEvent {
 	private static final long serialVersionUID = -5227752432914046430L;
 
+	/**
+	 * Constructor
+	 *
+	 * @param ID in of the tag
+	 * @param tagName name of the tag
+	 * @param position position in document
+	 */
 	public EndTagEvent(BigInteger ID, String tagName, int position) {
 		super(ID, tagName, new Properties(), position);
 	}

@@ -18,13 +18,36 @@ package org.anadix.swingparser;
 import java.math.BigInteger;
 import java.util.Properties;
 
+/**
+ * Event representing simple tag (eg. &lt;img src="..." alt="..." /&gt;)
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public class SimpleTagEvent extends TagEvent {
 	private static final long serialVersionUID = -1334268142511377077L;
 
+	/**
+	 * Constructor
+	 *
+	 * @param id if of a tag
+	 * @param tagName name of he tag
+	 * @param attributes attributes of the tag
+	 * @param position position in document
+	 */
 	public SimpleTagEvent(BigInteger ID, String tagName, Properties attributes, int position) {
 		super(ID, tagName, attributes, position);
 	}
 
+	/**
+	 * Constructor
+	 *
+	 * @param id if of a tag
+	 * @param tagName name of he tag
+	 * @param attributes attributes of the tag
+	 * @param position position in document
+	 * @param source source code of the tag
+	 */
 	public SimpleTagEvent(BigInteger ID, String tagName, Properties attributes, int position, String source) {
 		super(ID, tagName, attributes, position, source);
 	}

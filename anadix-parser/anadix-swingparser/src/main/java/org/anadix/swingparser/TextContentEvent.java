@@ -18,6 +18,12 @@ package org.anadix.swingparser;
 import java.io.Serializable;
 import java.math.BigInteger;
 
+/**
+ * <p>TextContentEvent class.</p>
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public class TextContentEvent implements Serializable {
 	private static final long serialVersionUID = 030L;
 
@@ -25,28 +31,57 @@ public class TextContentEvent implements Serializable {
 	private final String textContent;
 	private final int position;
 
+	/**
+	 * <p>Constructor for TextContentEvent.</p>
+	 *
+	 * @param id a {@link java.math.BigInteger} object.
+	 * @param textContent a {@link java.lang.String} object.
+	 */
 	public TextContentEvent(BigInteger id, String textContent) {
 		this(id, textContent, 0);
 	}
 
+	/**
+	 * <p>Constructor for TextContentEvent.</p>
+	 *
+	 * @param id a {@link java.math.BigInteger} object.
+	 * @param textContent a {@link java.lang.String} object.
+	 * @param position a int.
+	 */
 	public TextContentEvent(BigInteger id, String textContent, int position) {
 		this.id = id;
 		this.textContent = textContent;
 		this.position = position;
 	}
 
+	/**
+	 * <p>Getter for the field <code>id</code>.</p>
+	 *
+	 * @return a {@link java.math.BigInteger} object.
+	 */
 	public BigInteger getId() {
 		return id;
 	}
 
+	/**
+	 * <p>Getter for the field <code>textContent</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String getTextContent() {
 		return textContent;
 	}
 
+	/**
+	 * <p>Getter for the field <code>position</code>.</p>
+	 *
+	 * @return a int.
+	 */
 	public int getPosition() {
 		return position;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -55,6 +90,7 @@ public class TextContentEvent implements Serializable {
 		return result;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {

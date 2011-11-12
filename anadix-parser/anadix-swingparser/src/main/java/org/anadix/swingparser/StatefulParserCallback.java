@@ -27,6 +27,12 @@ import org.anadix.html.HTMLElementFactory;
 import org.apache.log4j.Logger;
 
 
+/**
+ * Callback class that handles the events from swingparser
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public class StatefulParserCallback extends ParserCallback {
 	private static final Logger logger = Logger.getLogger(StatefulParserCallback.class);
 	private static final BigInteger JUMP = BigInteger.valueOf(100L);
@@ -37,10 +43,21 @@ public class StatefulParserCallback extends ParserCallback {
 
 	private BigInteger ID = BigInteger.ZERO;
 
+	/**
+	 * Constructor
+	 *
+	 * @param factory instance of HTMLElementFactory used for inserting events
+	 */
 	public StatefulParserCallback(HTMLElementFactory factory) {
 		this(factory, null);
 	}
 
+	/**
+	 * Constructor
+	 *
+	 * @param factory instance of HTMLElementFactory used for inserting events
+	 * @param source HTML source code
+	 */
 	public StatefulParserCallback(HTMLElementFactory factory, String source) {
 		this.factory = factory;
 		this.source = source;
@@ -48,6 +65,7 @@ public class StatefulParserCallback extends ParserCallback {
 		factory.setGlobal("jump", JUMP);
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void handleSimpleTag(Tag t, MutableAttributeSet a, int pos) {
 		ID = ID.add(BigInteger.ONE);
@@ -63,6 +81,7 @@ public class StatefulParserCallback extends ParserCallback {
 		}
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void handleStartTag(Tag t, MutableAttributeSet a, int pos) {
 		ID = ID.add(BigInteger.ONE);
@@ -80,6 +99,7 @@ public class StatefulParserCallback extends ParserCallback {
 		ID = ID.multiply(JUMP);
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void handleEndTag(Tag t, int pos) {
 		ID = ID.divide(JUMP);
@@ -89,6 +109,7 @@ public class StatefulParserCallback extends ParserCallback {
 		factory.insertEvent(ENTRY_POINT, e);
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void handleText(char[] data, int pos) {
 		TextContentEvent e = new TextContentEvent(ID.divide(JUMP), new String(data), pos);
@@ -96,6 +117,7 @@ public class StatefulParserCallback extends ParserCallback {
 		factory.insertEvent(ENTRY_POINT, e);
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void handleError(String errorMsg, int pos) {
 		logger.error(errorMsg);

@@ -20,6 +20,12 @@ import java.math.BigInteger;
 import java.util.Properties;
 
 
+/**
+ * Abstract class for events from parser to the Drools engine
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public abstract class TagEvent implements Serializable {
 	private static final long serialVersionUID = -2820923796385117574L;
 
@@ -29,10 +35,27 @@ public abstract class TagEvent implements Serializable {
 	private final int position;
 	private final String source;
 
+	/**
+	 * Constructor
+	 *
+	 * @param id if of a tag
+	 * @param tagName name of he tag
+	 * @param attributes attributes of the tag
+	 * @param position position in document
+	 */
 	public TagEvent(BigInteger id, String tagName, Properties attributes, int position) {
 		this(id, tagName, attributes, position, null);
 	}
 
+	/**
+	 * Constructor
+	 *
+	 * @param id if of a tag
+	 * @param tagName name of he tag
+	 * @param attributes attributes of the tag
+	 * @param position position in document
+	 * @param source source code of the tag
+	 */
 	public TagEvent(BigInteger id, String tagName, Properties attributes, int position, String source) {
 		if (id == null) {
 			throw new NullPointerException("id can't be null");
@@ -53,26 +76,52 @@ public abstract class TagEvent implements Serializable {
 		this.source = source;
 	}
 
+	/**
+	 * Gets the id of the tag
+	 *
+	 * @return id of the tag
+	 */
 	public BigInteger getId() {
 		return id;
 	}
 
+	/**
+	 * Gets the name of the tag
+	 *
+	 * @return name of the tag
+	 */
 	public String getTagName() {
 		return tagName;
 	}
 
+	/**
+	 * Gets the attributes of the tag
+	 *
+	 * @return attributes of the tag
+	 */
 	public Properties getAttributes() {
 		return attributes;
 	}
 
+	/**
+	 * Gets the position of the tag
+	 *
+	 * @return position of the tag
+	 */
 	public int getPosition() {
 		return position;
 	}
 
+	/**
+	 * Gets the source code ot the tag
+	 *
+	 * @return source code of the tag
+	 */
 	public String getSource() {
 		return source;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -81,6 +130,7 @@ public abstract class TagEvent implements Serializable {
 		return result;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -96,6 +146,7 @@ public abstract class TagEvent implements Serializable {
 		return id.equals(other.getId());
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public String toString() {
 		return String.format(

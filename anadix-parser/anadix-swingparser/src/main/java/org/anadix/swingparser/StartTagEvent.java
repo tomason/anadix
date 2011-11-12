@@ -18,13 +18,36 @@ package org.anadix.swingparser;
 import java.math.BigInteger;
 import java.util.Properties;
 
+/**
+ * Event representing start of the pair tag (eg. &lt;h1&gt;)
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public class StartTagEvent extends TagEvent {
 	private static final long serialVersionUID = -4954582531613018733L;
 
+	/**
+	 * Constructor
+	 *
+	 * @param id if of a tag
+	 * @param tagName name of he tag
+	 * @param attributes attributes of the tag
+	 * @param position position in document
+	 */
 	public StartTagEvent(BigInteger ID, String name, Properties attributes, int position) {
 		super(ID, name, attributes, position);
 	}
 
+	/**
+	 * Constructor
+	 *
+	 * @param id if of a tag
+	 * @param tagName name of he tag
+	 * @param attributes attributes of the tag
+	 * @param position position in document
+	 * @param source source code of the tag
+	 */
 	public StartTagEvent(BigInteger ID, String name, Properties attributes, int position, String source) {
 		super(ID, name, attributes, position, source);
 	}
