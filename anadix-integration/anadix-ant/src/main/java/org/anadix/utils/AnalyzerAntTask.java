@@ -16,50 +16,93 @@
 package org.anadix.utils;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.anadix.Anadix;
 import org.anadix.Analyzer;
 import org.anadix.Report;
-import org.anadix.ReportFormatter;
 import org.anadix.Source;
 import org.anadix.exceptions.SourceException;
-import org.anadix.factories.ObjectFactory;
 import org.anadix.factories.SourceFactory;
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Project;
 import org.apache.tools.ant.taskdefs.MatchingTask;
 
+/**
+ * Ant task for analyzing files in source directory.
+ * All attributes are optional since they have the default values set.
+ * Default values:
+ * <ul>
+ *   <li>parserClass - defined in org.anadix.Anadix</li>
+ *   <li>conditionSetClass - defined in org.anadix.Anadix</li>
+ *   <li>formatterClass - defined in org.anadix.Anadix</li>
+ *   <li>sourcesDir - 'src'</li>
+ *   <li>reportsDir - defined in org.anadix.Anadix</li>
+ * </ul>
+ *
+ * @see org.anadix.Anadix
+ * @author tomason
+ * @version $Id: $
+ */
 public class AnalyzerAntTask extends MatchingTask {
-	private String parserClass = null;
-	private String conditionSetClass = null;
-	private String formatterClass = null;
 	private File sourcesDir = new File("src");
-	private File reportsDir = new File("report");
 
+	/**
+	 * Sets the parser used
+	 *
+	 * @param parserClass parser class name
+	 */
 	public void setParserClass(String parserClass) {
-		this.parserClass = parserClass;
+		if (!Anadix.setDefaultParser(parserClass)) {
+			log("Unable to set parser class " + parserClass, Project.MSG_ERR);
+		}
 	}
 
+	/**
+	 * Sets the condition set used
+	 *
+	 * @param conditionSetClass condition set class name
+	 */
 	public void setConditionSetClass(String conditionSetClass) {
-		this.conditionSetClass = conditionSetClass;
+		if (!Anadix.setDefaultParser(conditionSetClass)) {
+			log("Unable to set condition set class " + conditionSetClass, Project.MSG_ERR);
+		}
 	}
 
+	/**
+	 * Sets the formatter used
+	 *
+	 * @param formatterClass formatter class name
+	 */
 	public void setFormatterClass(String formatterClass) {
-		this.formatterClass = formatterClass;
+		if (!Anadix.setDefaultParser(formatterClass)) {
+			log("Unable to set formatter class " + formatterClass, Project.MSG_ERR);
+		}
 	}
 
+	/**
+	 * Sets the directory to load source files from
+	 *
+	 * @param dir instance of File denoting the directory
+	 */
 	public void setSourcesDir(File dir) {
 		this.sourcesDir = dir;
 	}
 
+	/**
+	 * Sets the directory to store reports
+	 *
+	 * @param reportsDir instance of File denoting the directory
+	 */
 	public void setReportsDir(File reportsDir) {
-		this.reportsDir = reportsDir;
+		if (!Anadix.setReportDirectory(reportsDir)) {
+			log("Unable to set reports dir", Project.MSG_ERR);
+		}
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void execute() throws BuildException {
 		log("Starting...", Project.MSG_INFO);
@@ -67,53 +110,14 @@ public class AnalyzerAntTask extends MatchingTask {
 		log("Created an instance of analyzer", Project.MSG_INFO);
 		Map<String, Report> results = analyze(a, sourcesDir);
 
-		if (!reportsDir.exists()) {
-			if (!reportsDir.mkdirs()) {
-				throw new BuildException("Could not create directory structure for " + reportsDir);
-			}
-		}
 		for (Entry<String, Report> entry : results.entrySet()) {
-			File result = new File(reportsDir, entry.getKey());
-			if (result.exists()) {
-				if (!result.delete()) {
-					throw new BuildException("Could not delete " + result);
-				}
-			}
-			if (!result.getParentFile().mkdirs()) {
-				throw new BuildException("Could not create directory structure for " + result);
-			}
-
-			PrintWriter pw = null;
-			try {
-				pw = new PrintWriter(result);
-
-				ReportFormatter formatter = ObjectFactory.newFormatter(formatterClass);
-				formatter.formatAndStore(entry.getValue(), pw);
-			} catch (InstantiationException ex) {
-				throw new BuildException("Unable to instantiate formatter", ex);
-			} catch (IOException ex) {
-				throw new BuildException("Unable to save report " + result, ex);
-			} finally {
-				if (pw != null) {
-					pw.flush();
-					pw.close();
-				}
-			}
+			Anadix.formatReport(entry.getValue(), entry.getKey());
 		}
 	}
 
 	private Analyzer createAnalyzer() throws BuildException {
 		try {
-			Analyzer a;
-			if (parserClass != null && parserClass.length() > 0) {
-				a = ObjectFactory.newAnalyzer(
-						ObjectFactory.newParser(parserClass),
-						ObjectFactory.newConditionSet(conditionSetClass));
-			} else {
-				a = ObjectFactory.newAnalyzer(null, ObjectFactory.newConditionSet(conditionSetClass));
-			}
-
-			return a;
+			return Anadix.newAnalyzer();
 		} catch (InstantiationException ex) {
 			throw new BuildException("Unable to istantiate Analyzer " + ex, ex);
 		}
@@ -129,7 +133,7 @@ public class AnalyzerAntTask extends MatchingTask {
 		} else {
 			log("Starting analysis of " + file, Project.MSG_VERBOSE);
 			String fileName = getRelativePath(sourcesDir, file);
-			if (fileName.contains(".") && fileName.lastIndexOf('.') > 0) {
+			if (fileName.contains(".") && fileName.lastIndexOf('.') > fileName.lastIndexOf(System.getProperty("path.separator"))) {
 				fileName = fileName.substring(0, fileName.lastIndexOf('.'));
 			}
 			result.put(
