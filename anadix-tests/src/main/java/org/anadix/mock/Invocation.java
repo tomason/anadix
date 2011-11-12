@@ -15,10 +15,22 @@
  */
 package org.anadix.mock;
 
+/**
+ * Represents an invocation of a method
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public class Invocation {
 	private final String name;
 	private final Object[] arguments;
 
+	/**
+	 * Constructor
+	 *
+	 * @param name name of a method that was invoked
+	 * @param arguments arguments which the method was invoked with
+	 */
 	public Invocation(String name, Object... arguments) {
 		if (name == null || arguments == null) {
 			throw new NullPointerException();
@@ -27,10 +39,20 @@ public class Invocation {
 		this.arguments = arguments;
 	}
 
+	/**
+	 * Gets the invocation arguments
+	 *
+	 * @return an array of objects passed as arguments
+	 */
 	public Object[] getArguments() {
 		return arguments;
 	}
 
+	/**
+	 * Gets the name of the method invoked
+	 *
+	 * @return name of invoked method
+	 */
 	public String getName() {
 		return name;
 	}

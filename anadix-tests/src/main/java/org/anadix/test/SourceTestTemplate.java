@@ -26,11 +26,24 @@ import java.util.Set;
 
 import org.testng.annotations.DataProvider;
 
+/**
+ * Default superclass for tests
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public abstract class SourceTestTemplate {
+	/** Path to the test resource file */
 	protected static final String resourcePath = "/SourceTestFile.html";
+	/** Text of the resource file */
 	protected static final String sourceText =
 			readStream(SourceTestTemplate.class.getResourceAsStream(resourcePath));
 
+	/**
+	 * Data provider preparing Boolean values - null, true and false
+	 *
+	 * @return data provider (Iterator<Object[]>)
+	 */
 	@DataProvider(name = "booleans")
 	public Iterator<Object[]> prepareBooleans() {
 		Set<Object[]> s = new HashSet<Object[]>();
@@ -41,10 +54,22 @@ public abstract class SourceTestTemplate {
 		return s.iterator();
 	}
 
+	/**
+	 * Reads the whole stream and returns the text in it
+	 *
+	 * @param InputStream to read
+	 * @return text in the stream
+	 */
 	protected static String readStream(InputStream is) {
 		return readReader(new InputStreamReader(is));
 	}
 
+	/**
+	 * Reads the whole reader and returns the text in it
+	 *
+	 * @param r Reader to read
+	 * @return text in reader
+	 */
 	protected static String readReader(Reader r) {
 		try {
 			BufferedReader br = new BufferedReader(r);

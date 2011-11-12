@@ -23,25 +23,35 @@ import org.anadix.ElementFactory;
 import org.anadix.Parser;
 import org.anadix.utils.DroolsResource;
 
+/**
+ * Mock implementation of ConditionSet
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public class MockConditionSet extends Mock implements ConditionSet {
+	/** {@inheritDoc} */
 	public String getName() {
 		methodInvoked(new Invocation("getName"));
 
 		return "";
 	}
 
+	/** {@inheritDoc} */
 	public Collection<DroolsResource> getDroolsResources() {
 		methodInvoked(new Invocation("getDroolsResources"));
 
 		return new ArrayList<DroolsResource>();
 	}
 
+	/** {@inheritDoc} */
 	public Class<? extends ElementFactory> getElementFactoryClass() {
 		methodInvoked(new Invocation("getElementFactoryClass"));
 
 		return MockElementFactory.class;
 	}
 
+	/** {@inheritDoc} */
 	public Class<? extends Parser> getDefaultParser() {
 		methodInvoked(new Invocation("getDefaultParser"));
 

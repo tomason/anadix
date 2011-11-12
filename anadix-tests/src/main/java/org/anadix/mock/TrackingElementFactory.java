@@ -27,24 +27,36 @@ import org.anadix.html.HTMLElementFactory;
 import org.anadix.html.HtmlElement;
 import org.drools.runtime.StatefulKnowledgeSession;
 
+/**
+ * <p>TrackingElementFactory class.</p>
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public class TrackingElementFactory extends HTMLElementFactory {
 	private final List<Element> elements = new ArrayList<Element>();
 	private final Map<String, List<Object>> events = new HashMap<String, List<Object>>();
 
+	/**
+	 * <p>Constructor for TrackingElementFactory.</p>
+	 */
 	public TrackingElementFactory() {
 		super(org.mockito.Mockito.mock(StatefulKnowledgeSession.class));
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void insertElement(Element element) {
 		elements.add(element);
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void insertElement(HtmlElement element) {
 		elements.add(element);
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void insertEvent(String entrypoint, Object event) {
 		List<Object> entrypointList = events.get(entrypoint);
@@ -57,21 +69,30 @@ public class TrackingElementFactory extends HTMLElementFactory {
 		}
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public Collection<Element> getElements() {
 		return Collections.unmodifiableCollection(elements);
 	}
 
+	/**
+	 * Gets the collection of events inserted through this ElementFactory to specified entry point.
+	 *
+	 * @param entrypoint entry point name
+	 * @return collection of events inserted
+	 */
 	public Collection<Object> getEvents(String entrypoint) {
 		Collection<Object> result = events.get(entrypoint);
 		return result == null ? null : Collections.unmodifiableCollection(result);
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void setGlobal(String name, Object instance) {
 		// no need
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void setAsGlobal(String name) {
 		// no need

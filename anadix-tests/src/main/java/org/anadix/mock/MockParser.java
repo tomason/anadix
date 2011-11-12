@@ -24,7 +24,14 @@ import org.anadix.Source;
 import org.anadix.exceptions.ParserException;
 import org.anadix.utils.DroolsResource;
 
+/**
+ * Mock implementation of parser
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public class MockParser extends Mock implements Parser {
+	/** {@inheritDoc} */
 	public void parse(Source source) throws ParserException {
 		methodInvoked(new Invocation("parse", source));
 
@@ -33,16 +40,19 @@ public class MockParser extends Mock implements Parser {
 		}
 	}
 
+	/** {@inheritDoc} */
 	public Collection<DroolsResource> getDroolsResources() {
 		methodInvoked(new Invocation("getDroolsResources"));
 
 		return new ArrayList<DroolsResource>();
 	}
 
+	/** {@inheritDoc} */
 	public Class<? extends ElementFactory> getElementFactoryClass() {
 		return MockElementFactory.class;
 	}
 
+	/** {@inheritDoc} */
 	public void setElementFactory(ElementFactory factory) {
 		methodInvoked(new Invocation("setElementFactory", factory));
 	}

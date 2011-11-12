@@ -22,26 +22,37 @@ import org.anadix.Element;
 import org.anadix.ElementFactory;
 
 
+/**
+ * Mock implementation of ElementFactory
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public class MockElementFactory extends Mock implements ElementFactory {
+	/** {@inheritDoc} */
 	public Collection<Element> getElements() {
 		methodInvoked(new Invocation("getElements"));
 
 		return new ArrayList<Element>();
 	}
 
+	/** {@inheritDoc} */
 	public void setGlobal(String name, Object instance) {
 		methodInvoked(new Invocation("setGlobal", name, instance));
 
 	}
 
+	/** {@inheritDoc} */
 	public void setAsGlobal(String name) {
 		methodInvoked(new Invocation("setAsGlobal", name));
 	}
 
+	/** {@inheritDoc} */
 	public void insertElement(Element element) {
 		methodInvoked(new Invocation("insertElement", element));
 	}
 
+	/** {@inheritDoc} */
 	public void insertEvent(String entrypoint, Object event) {
 		methodInvoked(new Invocation("insertEvent", entrypoint, event));
 	}
