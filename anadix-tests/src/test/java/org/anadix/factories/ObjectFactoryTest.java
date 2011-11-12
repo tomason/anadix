@@ -27,6 +27,7 @@ import org.mockito.Mockito;
 import org.testng.annotations.Test;
 
 @Test
+@Deprecated
 public class ObjectFactoryTest {
 	@Test(groups = "parser", expectedExceptions = NullPointerException.class)
 	public void testNewParser1() throws Exception {
