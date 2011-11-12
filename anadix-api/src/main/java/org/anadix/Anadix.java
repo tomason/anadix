@@ -148,7 +148,25 @@ public final class Anadix {
 	/**
 	 * Sets the Parser class that is to be used by default
 	 *
-	 * @param clazz - instance of class extending Parser
+	 * @param clazz Parser class
+	 * @return true if the default Parser was changed, false otherwise
+	 */
+	public static synchronized boolean setDefaultParser(String clazz) {
+		Class<? extends Parser> parserClass = null;
+		try {
+			parserClass = Anadix.<Parser>createClass(clazz);
+		} catch (InstantiationException ex) {
+			logger.warn("Unable to set Parser " + clazz, ex);
+			return false;
+		}
+
+		return setDefaultParser(parserClass);
+	}
+
+	/**
+	 * Sets the Parser class that is to be used by default
+	 *
+	 * @param clazz instance of class extending Parser
 	 * @return true if the default Parser was changed, false otherwise
 	 */
 	public static synchronized boolean setDefaultParser(Class<? extends Parser> clazz) {
@@ -160,6 +178,24 @@ public final class Anadix {
 		return true;
 	}
 
+	/**
+	 * Sets the ConditionSet class that is to be used by default
+	 *
+	 * @param clazz ConditionSet class
+	 * @return true if the default ConditionSet was changed, false otherwise
+	 */
+	public static synchronized boolean setDefaultConditionSet(String clazz) {
+		Class<? extends ConditionSet> conditionsClass = null;
+		try {
+			conditionsClass = Anadix.<ConditionSet>createClass(clazz);
+		} catch (InstantiationException ex) {
+			logger.warn("Unable to set ConditionSet " + clazz, ex);
+			return false;
+		}
+
+		return setDefaultConditionSet(conditionsClass);
+	}
+	
 	/**
 	 * Sets the ConditionSet class that is to be used by default
 	 *
@@ -175,6 +211,24 @@ public final class Anadix {
 		return true;
 	}
 
+	/**
+	 * Sets the ReportFormatter class that is to be used by default
+	 *
+	 * @param clazz - instance of class extending ReportFormatter
+	 * @return true if the default ReportFormatter was changed, false otherwise
+	 */
+	public static synchronized boolean setDefaultFormatter(String clazz) {
+		Class<? extends ReportFormatter> formatterClass = null;
+		try {
+			formatterClass = Anadix.<ReportFormatter>createClass(clazz);
+		} catch (InstantiationException ex) {
+			logger.warn("Unable to set ConditionSet " + clazz, ex);
+			return false;
+		}
+
+		return setDefaultFormatter(formatterClass);
+	}
+	
 	/**
 	 * Sets the ReportFormatter class that is to be used by default
 	 *
