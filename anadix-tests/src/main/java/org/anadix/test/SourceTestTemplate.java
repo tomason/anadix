@@ -57,7 +57,7 @@ public abstract class SourceTestTemplate {
 	/**
 	 * Reads the whole stream and returns the text in it
 	 *
-	 * @param InputStream to read
+	 * @param is InputStream to read
 	 * @return text in the stream
 	 */
 	protected static String readStream(InputStream is) {

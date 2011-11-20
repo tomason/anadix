@@ -48,7 +48,7 @@ public class SimpleTagEvent extends TagEvent {
 	 * @param position position in document
 	 * @param source source code of the tag
 	 */
-	public SimpleTagEvent(BigInteger ID, String tagName, Properties attributes, int position, String source) {
-		super(ID, tagName, attributes, position, source);
+	public SimpleTagEvent(BigInteger id, String tagName, Properties attributes, int position, String source) {
+		super(id, tagName, attributes, position, source);
 	}
 }

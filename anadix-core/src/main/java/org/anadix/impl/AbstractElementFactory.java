@@ -39,7 +39,6 @@ public abstract class AbstractElementFactory implements ElementFactory {
 	 *
 	 * @param clazz class of ElementFactory to construct
 	 * @param session session to use within this ElementFactory
-	 * @param <T> a class extending ElementFactory
 	 * @return a new instance of ElementFactory of given type
 	 */
 	public static <T extends ElementFactory> T createFactory(Class<T> clazz, StatefulKnowledgeSession session) {

@@ -35,8 +35,8 @@ public class StartTagEvent extends TagEvent {
 	 * @param attributes attributes of the tag
 	 * @param position position in document
 	 */
-	public StartTagEvent(BigInteger ID, String name, Properties attributes, int position) {
-		super(ID, name, attributes, position);
+	public StartTagEvent(BigInteger id, String tagName, Properties attributes, int position) {
+		super(id, tagName, attributes, position);
 	}
 
 	/**
@@ -48,7 +48,7 @@ public class StartTagEvent extends TagEvent {
 	 * @param position position in document
 	 * @param source source code of the tag
 	 */
-	public StartTagEvent(BigInteger ID, String name, Properties attributes, int position, String source) {
-		super(ID, name, attributes, position, source);
+	public StartTagEvent(BigInteger id, String tagName, Properties attributes, int position, String source) {
+		super(id, tagName, attributes, position, source);
 	}
 }

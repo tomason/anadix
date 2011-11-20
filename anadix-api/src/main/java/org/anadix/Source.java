@@ -47,7 +47,7 @@ public interface Source {
 	Reader getReader();
 
 	/**
-	 * Gets stream representation of the source 
+	 * Gets stream representation of the source
 	 *
 	 * @return source as a Stream
 	 */
