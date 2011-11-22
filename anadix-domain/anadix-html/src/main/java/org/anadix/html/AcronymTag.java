@@ -18,9 +18,10 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * Indicates an acronym (e.g., WAC, radar, etc.).
- * 
+ * Defines an acronym. See <a href="http://www.w3schools.com/tags/tag_acronym.asp">w3schools</a>.
+ *
  * @author tomason
+ * @version $Id: $
  */
 public class AcronymTag extends CommonAttributes {
 

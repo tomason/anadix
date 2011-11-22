@@ -18,9 +18,10 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * APPLET is deprecated (with all its attributes) in favor of OBJECT.
- * 
+ * Deprecated. Defines an embedded applet. See <a href="http://www.w3schools.com/tags/tag_applet.asp">w3schools</a>.
+ *
  * @author tomason
+ * @version $Id: $
  */
 public class AppletTag extends CoreAttributes {
 
@@ -29,98 +30,100 @@ public class AppletTag extends CoreAttributes {
 	}
 
 	/**
-	 * This attribute specifies the base URI for the applet. If this attribute
-	 * is not specified, then it defaults the same base URI as for the current
-	 * document. Values for this attribute may only refer to subdirectories of
-	 * the directory containing the current document. Note. While the
-	 * restriction on subdirectories is a departure from common practice and the
-	 * HTML 3.2 specification, the HTML Working Group has chosen to leave the
-	 * restriction in this version of the specification for security reasons.
+	 * Specifies a relative base URL for applets specified in the code attribute
+	 *
+	 * @return a relative base URL for applets specified in the code attribute
 	 */
 	public String getCodebase() {
 		return getAttribute("codebase");
 	}
 
 	/**
-	 * This attribute specifies a comma-separated list of URIs for archives
-	 * containing classes and other resources that will be "preloaded". The
-	 * classes are loaded using an instance of an AppletClassLoader with the
-	 * given codebase. Relative URIs for archives are interpreted with respect
-	 * to the applet's codebase. Preloading resources can significantly improve
-	 * the performance of applets.
+	 * Specifies the location of an archive file
+	 *
+	 * @return the location of an archive file
 	 */
 	public String getArchive() {
 		return getAttribute("archive");
 	}
 
 	/**
-	 * This attribute specifies either the name of the class file that contains
-	 * the applet's compiled applet subclass or the path to get the class,
-	 * including the class file itself. It is interpreted with respect to the
-	 * applet's codebase. One of code or object must be present.
+	 * Specifies the file name of a Java applet
+	 *
+	 * @return the file name of a Java applet
 	 */
 	public String getCode() {
 		return getAttribute("code");
 	}
 
 	/**
-	 * This attribute names a resource containing a serialized representation of
-	 * an applet's state. It is interpreted relative to the applet's codebase.
-	 * The serialized data contains the applet's class name but not the
-	 * implementation. The class name is used to retrieve the implementation
-	 * from a class file or archive.
-	 * 
-	 * When the applet is "deserialized" the start() method is invoked but not
-	 * the init() method. Attributes valid when the original object was
-	 * serialized are not restored. Any attributes passed to this APPLET
-	 * instance will be available to the applet. Authors should use this feature
-	 * with extreme caution. An applet should be stopped before it is
-	 * serialized.
-	 * 
-	 * Either code or object must be present. If both code and object are given,
-	 * it is an error if they provide different class names.
+	 * Specifies a reference to a serialized representation of an applet
+	 *
+	 * @return a reference to a serialized representation of an applet
 	 */
 	public String getObject() {
 		return getAttribute("object");
 	}
 
+	/**
+	 * Specifies an alternate text for an applet
+	 *
+	 * @return an alternate text for an applet
+	 */
 	public String getAlt() {
 		return getAttribute("alt");
 	}
 
 	/**
-	 * This attribute specifies a name for the applet instance, which makes it
-	 * possible for applets on the same page to find (and communicate with) each
-	 * other.
+	 * Defines the name for an applet (to use in scripts)
+	 *
+	 * @return the name for an applet
 	 */
 	public String getNameAttribute() {
 		return getAttribute("name");
 	}
 
 	/**
-	 * This attribute specifies the initial width of the applet's display area
-	 * (excluding any windows or dialogs that the applet creates).
+	 * Specifies the width of an applet
+	 *
+	 * @return the width of an applet
 	 */
 	public String getWidth() {
 		return getAttribute("width");
 	}
 
 	/**
-	 * This attribute specifies the initial height of the applet's display area
-	 * (excluding any windows or dialogs that the applet creates).
+	 * Specifies the height of an applet
+	 *
+	 * @return the height of an applet
 	 */
 	public String getHeight() {
 		return getAttribute("height");
 	}
 
+	/**
+	 * Specifies the alignment of an applet according to surrounding elements
+	 *
+	 * @return the alignment of an applet according to surrounding elements
+	 */
 	public String getAlign() {
 		return getAttribute("align");
 	}
 
+	/**
+	 * Defines the horizontal spacing around an applet
+	 *
+	 * @return the horizontal spacing around an applet
+	 */
 	public String getHspace() {
 		return getAttribute("hspace");
 	}
 
+	/**
+	 * Defines the vertical spacing around an applet
+	 *
+	 * @return the vertical spacing around an applet
+	 */
 	public String getVspace() {
 		return getAttribute("vspace");
 	}

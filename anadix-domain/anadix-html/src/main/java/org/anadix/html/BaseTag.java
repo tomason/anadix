@@ -17,6 +17,12 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
+/**
+ * Defines a default address or a default target for all links on a page. See <a href="http://www.w3schools.com/tags/tag_base.asp">w3schools</a>.
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public class BaseTag extends HtmlElement {
 
 	BaseTag(BigInteger id, HtmlElement parent, Attributes attributes) {
@@ -24,13 +30,20 @@ public class BaseTag extends HtmlElement {
 	}
 
 	/**
-	 * This attribute specifies an absolute URI that acts as the base URI for
-	 * resolving relative URIs.
+	 * Specifies a base URL for all relative URLs on a page.
+	 * Note: The base URL must be an absolute URL!
+	 *
+	 * @return a base URL for all relative URLs on a page.
 	 */
 	public String getHref() {
 		return getAttribute("href");
 	}
 
+	/**
+	 * Specifies where to open all the links on a page
+	 *
+	 * @return where to open all the links on a page
+	 */
 	public String getTarget() {
 		return getAttribute("target");
 	}

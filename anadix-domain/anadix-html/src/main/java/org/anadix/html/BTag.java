@@ -17,6 +17,12 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
+/**
+ * Defines bold text. See <a href="http://www.w3schools.com/tags/tag_font_style.asp">w3schools</a>.
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public class BTag extends CommonAttributes {
 
 	BTag(BigInteger id, HtmlElement parent, Attributes attributes) {

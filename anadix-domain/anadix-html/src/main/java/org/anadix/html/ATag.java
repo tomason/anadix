@@ -18,9 +18,10 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * http://www.w3.org/TR/1999/REC-html401-19991224/struct/links.html#edef-A
- * 
+ * Defines an anchor. See <a href="http://www.w3schools.com/tags/tag_a.asp">w3schools</a>.
+ *
  * @author tomason
+ * @version $Id: $
  */
 public class ATag extends CommonAttributes {
 
@@ -29,144 +30,122 @@ public class ATag extends CommonAttributes {
 	}
 
 	/**
-	 * This attribute specifies the character encoding of the resource
-	 * designated by the link. Please consult the section on character encodings
-	 * for more details.
-	 */
-	public String getCharset() {
-		return getAttribute("charset");
-	}
-
-	/**
-	 * This attribute gives an advisory hint as to the content type of the
-	 * content available at the link target address. It allows user agents to
-	 * opt to use a fallback mechanism rather than fetch the content if they are
-	 * advised that they will get content in a content type they do not support.
-	 * Authors who use this attribute take responsibility to manage the risk
-	 * that it may become inconsistent with the content available at the link
-	 * target address.
-	 */
-	public String getType() {
-		return getAttribute("type");
-	}
-
-	/**
-	 * This attribute names the current anchor so that it may be the destination
-	 * of another link. The value of this attribute must be a unique anchor
-	 * name. The scope of this name is the current document. Note that this
-	 * attribute shares the same name space as the id attribute.
-	 */
-	public String getNameAttribute() {
-		return getAttribute("name");
-	}
-
-	/**
-	 * This attribute specifies the location of a Web resource, thus defining a
-	 * link between the current element (the source anchor) and the destination
-	 * anchor defined by this attribute.
-	 */
-	public String getHref() {
-		return getAttribute("href");
-	}
-
-	/**
-	 * This attribute specifies the base language of the resource designated by
-	 * href and may only be used when href is specified.
-	 */
-	public String getHreflang() {
-		return getAttribute("hreflang");
-	}
-
-	public String getTarget() {
-		return getAttribute("target");
-	}
-
-	/**
-	 * This attribute describes the relationship from the current document to
-	 * the anchor specified by the href attribute. The value of this attribute
-	 * is a space-separated list of link types.
-	 */
-	public String getRel() {
-		return getAttribute("rel");
-	}
-
-	/**
-	 * This attribute is used to describe a reverse link from the anchor
-	 * specified by the href attribute to the current document. The value of
-	 * this attribute is a space-separated list of link types.
-	 */
-	public String getRev() {
-		return getAttribute("rev");
-	}
-
-	/**
-	 * This attribute assigns an access key to an element. An access key is a
-	 * single character from the document character set. Note. Authors should
-	 * consider the input method of the expected reader when specifying an
-	 * accesskey.
+	 * Specifies a keyboard shortcut to access an element
+	 *
+	 * @return a keyboard shortcut to access an element
 	 */
 	public String getAccesskey() {
 		return getAttribute("accesskey");
 	}
 
 	/**
-	 * This attribute specifies the shape of a region. Possible values:
-	 * 
-	 * default: Specifies the entire region. rect: Define a rectangular region.
-	 * circle: Define a circular region. poly: Define a polygonal region.
+	 * 	Specifies the character-set of a linked document
+	 *
+	 * @return the character-set of a linked document
 	 */
-	public String getShape() {
-		return getAttribute("shape");
+	public String getCharset() {
+		return getAttribute("charset");
 	}
-
+	
 	/**
-	 * This attribute specifies the position and shape on the screen. The number
-	 * and order of values depends on the shape being defined. Possible
-	 * combinations:
-	 * 
-	 * rect: left-x, top-y, right-x, bottom-y. circle: center-x, center-y,
-	 * radius. Note. When the radius value is a percentage value, user agents
-	 * should calculate the final radius value based on the associated object's
-	 * width and height. The radius should be the smaller value of the two.
-	 * poly: x1, y1, x2, y2, ..., xN, yN. The first x and y coordinate pair and
-	 * the last should be the same to close the polygon. When these coordinate
-	 * values are not the same, user agents should infer an additional
-	 * coordinate pair to close the polygon.
-	 * 
-	 * Coordinates are relative to the top, left corner of the object. All
-	 * values are lengths. All values are separated by commas.
+	 * Specifies the coordinates of a link
+	 *
+	 * @return the coordinates of a link
 	 */
 	public String getCoords() {
 		return getAttribute("coords");
 	}
 
 	/**
-	 * This attribute specifies the position of the current element in the
-	 * tabbing order for the current document. This value must be a number
-	 * between 0 and 32767. User agents should ignore leading zeros.
+	 * 	Specifies the destination of a link
+	 *
+	 * @return the destination of a link
 	 */
-	public String getTabindex() {
-		String value = getAttribute("tabindex");
-
-		// return value == null ? -1 : Integer.parseInt(value);
-		return value;
+	public String getHref() {
+		return getAttribute("href");
 	}
 
 	/**
-	 * The onfocus event occurs when an element receives focus either by the
-	 * pointing device or by tabbing navigation.
+	 * Specifies the language of a linked document
+	 *
+	 * @return the language of a linked document
+	 */
+	public String getHreflang() {
+		return getAttribute("hreflang");
+	}
+
+	/**
+	 * 	Specifies the name of an anchor
+	 *
+	 * @return 	the name of an anchor
+	 */
+	public String getNameAttribute() {
+		return getAttribute("name");
+	}
+
+	/**
+	 * Script to be run when an element loses focus
+	 * @return script to be run when an element loses focus
+	 *
+	 */
+	public String getOnblur() {
+		return getAttribute("onblur");
+	}
+
+	/**
+	 * Script to be run when an element gets focus
+	 *
+	 * @return script to be run when an element gets focus
 	 */
 	public String getOnfocus() {
 		return getAttribute("onfocus");
 	}
 
 	/**
-	 * The onblur event occurs when an element loses focus either by the
-	 * pointing device or by tabbing navigation. It may be used with the same
-	 * elements as onfocus.
+	 * Specifies the relationship between the current document and the linked document
+	 *
+	 * @return the relationship between the current document and the linked document
 	 */
-	public String getOnblur() {
-		return getAttribute("onblur");
+	public String getRel() {
+		return getAttribute("rel");
+	}
+
+	/**
+	 * Specifies the relationship between the linked document and the current document
+	 *
+	 * @return the relationship between the linked document and the current document
+	 */
+	public String getRev() {
+		return getAttribute("rev");
+	}
+
+	/**
+	 * Specifies the shape of a link
+	 *
+	 * @return the shape of a link
+	 */
+	public String getShape() {
+		return getAttribute("shape");
+	}
+
+	
+
+	/**
+	 * Specifies the tab order of an element
+	 *
+	 * @return the tab order of an element
+	 */
+	public String getTabindex() {
+		return getAttribute("tabindex");
+	}
+
+	/**
+	 * Specifies where to open the linked document
+	 *
+	 * @return where to open the linked document
+	 */
+	public String getTarget() {
+		return getAttribute("target");
 	}
 
 }

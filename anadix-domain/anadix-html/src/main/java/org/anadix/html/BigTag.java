@@ -18,13 +18,14 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * Renders text in a "large" font.
- * 
+ * Defines big text. See <a href="http://www.w3schools.com/tags/tag_font_style.asp">w3schools</a>.
+ *
  * @author tomason
+ * @version $Id: $
  */
 public class BigTag extends CommonAttributes {
 
-	public BigTag(BigInteger id, HtmlElement parent, Attributes attributes) {
+	BigTag(BigInteger id, HtmlElement parent, Attributes attributes) {
 		super(id, "big", parent, attributes);
 	}
 

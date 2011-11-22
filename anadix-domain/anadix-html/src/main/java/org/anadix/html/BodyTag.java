@@ -17,59 +17,85 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
+/**
+ * Defines the document's body. See <a href="http://www.w3schools.com/tags/tag_body.asp">w3schools</a>.
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public class BodyTag extends CommonAttributes {
 
 	BodyTag(BigInteger id, HtmlElement parent, Attributes attributes) {
 		super(id, "body", parent, attributes);
 	}
 
+	/**
+	 * Script to be run when a document load
+	 *
+	 * @return script to be run when a document load
+	 */
 	public String getOnload() {
 		return getAttribute("onload");
 	}
 
+	/**
+	 * Script to be run when a document unload
+	 *
+	 * @return script to be run when a document unload
+	 */
 	public String getOnunload() {
 		return getAttribute("onunload");
 	}
 
 	/**
-	 * Deprecated. The value of this attribute is a URI that designates an image
-	 * resource. The image generally tiles the background (for visual browsers).
+	 * Deprecated. Use styles instead. Specifies a background image for a document
+	 *
+	 * @return a background image for a document
 	 */
 	public String getBackground() {
 		return getAttribute("background");
 	}
 
+	/**
+	 * Deprecated. Use styles instead. Specifies the background color of a document
+	 *
+	 * @return the background color of a document
+	 */
 	public String getBgcolor() {
 		return getAttribute("bgcolor");
 	}
 
 	/**
-	 * Deprecated. This attribute sets the foreground color for text (for visual
-	 * browsers).
+	 * Deprecated. Use styles instead. Specifies the color of the text in a document
+	 *
+	 * @return the color of the text in a document
 	 */
 	public String getText() {
 		return getAttribute("text");
 	}
 
 	/**
-	 * Deprecated. This attribute sets the color of text marking unvisited
-	 * hypertext links (for visual browsers).
+	 * Deprecated. Use styles instead. Specifies the default color of unvisited links in a document
+	 *
+	 * @return the default color of unvisited links in a document
 	 */
 	public String getLink() {
 		return getAttribute("link");
 	}
 
 	/**
-	 * Deprecated. This attribute sets the color of text marking visited
-	 * hypertext links (for visual browsers).
+	 * Deprecated. Use styles instead. Specifies the color of the visited links in a document
+	 *
+	 * @return the color of the visited links in a document
 	 */
 	public String getVlink() {
 		return getAttribute("vlink");
 	}
 
 	/**
-	 * Deprecated. This attribute sets the color of text marking hypertext links
-	 * when selected by the user (for visual browsers).
+	 * Deprecated. Use styles instead. Specifies the color of an active link in a document
+	 *
+	 * @return the color of an active link in a document
 	 */
 	public String getAlink() {
 		return getAttribute("alink");

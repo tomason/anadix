@@ -18,9 +18,10 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * FONT and BASEFONT are deprecated.
- * 
+ * Deprecated. Defines a default font, color, or size for the text in a page. See <a href="http://www.w3schools.com/tags/tag_basefont.asp">w3schools</a>.
+ *
  * @author tomason
+ * @version $Id: $
  */
 public class BasefontTag extends HtmlElement {
 
@@ -28,34 +29,37 @@ public class BasefontTag extends HtmlElement {
 		super(id, "basefont", parent, attributes);
 	}
 
+	/**
+	 * Specifies a unique id for an element
+	 *
+	 * @return a unique id for an element
+	 */
 	public String getIdAttribute() {
 		return getAttribute("id");
 	}
 
 	/**
-	 * size = cdata [CN] Deprecated. This attribute sets the size of the font.
-	 * Possible values:
-	 * 
-	 * An integer between 1 and 7. This sets the font to some fixed size, whose
-	 * rendering depends on the user agent. Not all user agents may render all
-	 * seven sizes. A relative increase in font size. The value "+1" means one
-	 * size larger. The value "-3" means three sizes smaller. All sizes belong
-	 * to the scale of 1 to 7.
+	 * Deprecated. Use styles instead. Specifies the default size of text in a document
+	 *
+	 * @return the default size of text in a document
 	 */
 	public String getSize() {
 		return getAttribute("size");
 	}
 
 	/**
-	 * Deprecated. This attribute sets the text color.
+	 * Deprecated. Use styles instead. Specifies the default color for text in a document
+	 *
+	 * @return the default color for text in a document
 	 */
 	public String getColor() {
 		return getAttribute("color");
 	}
 
 	/**
-	 * Deprecated. This attribute defines a comma-separated list of font names
-	 * the user agent should search for in order of preference.
+	 * Deprecated. Use styles instead. Specifies the default font for text in a document
+	 *
+	 * @return the default font for text in a document
 	 */
 	public String getFace() {
 		return getAttribute("face");

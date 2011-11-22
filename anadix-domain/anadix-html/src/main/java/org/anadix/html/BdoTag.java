@@ -17,22 +17,31 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
+/**
+ * Defines the text direction. See <a href="http://www.w3schools.com/tags/tag_bdo.asp">w3schools</a>.
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public class BdoTag extends CoreAttributes {
 
 	BdoTag(BigInteger id, HtmlElement parent, Attributes attributes) {
 		super(id, "bdo", parent, attributes);
 	}
 
+	/**
+	 * Specifies a language code for the content in an element
+	 *
+	 * @return a language code for the content in an element
+	 */
 	public String getLang() {
 		return getAttribute("lang");
 	}
 
 	/**
-	 * This mandatory attribute specifies the base direction of the element's
-	 * text content. This direction overrides the inherent directionality of
-	 * characters as defined in [UNICODE]. Possible values:
-	 * 
-	 * LTR: Left-to-right text. RTL: Right-to-left text.
+	 * Specifies the text direction of the text inside a bdo element
+	 *
+	 * @return the text direction of the text
 	 */
 	public String getDir() {
 		return getAttribute("dir");

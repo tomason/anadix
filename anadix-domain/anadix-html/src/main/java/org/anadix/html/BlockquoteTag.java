@@ -17,6 +17,12 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
+/**
+ * Defines a long quotation. See <a href="http://www.w3schools.com/tags/tag_blockquote.asp">w3schools</a>.
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public class BlockquoteTag extends CommonAttributes {
 
 	BlockquoteTag(BigInteger id, HtmlElement parent, Attributes attributes) {
@@ -24,9 +30,9 @@ public class BlockquoteTag extends CommonAttributes {
 	}
 
 	/**
-	 * The value of this attribute is a URI that designates a source document or
-	 * message. This attribute is intended to give information about the source
-	 * from which the quotation was borrowed.
+	 * Specifies the source of a quotation
+	 *
+	 * @return the source of a quotation
 	 */
 	public String getCite() {
 		return getAttribute("cite");

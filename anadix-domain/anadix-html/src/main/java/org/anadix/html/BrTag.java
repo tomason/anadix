@@ -17,14 +17,16 @@ package org.anadix.html;
 
 import java.math.BigInteger;
 
+/**
+ * Defines a single line break. See <a href="http://www.w3schools.com/tags/tag_br.asp">w3schools</a>.
+ *
+ * @author tomason
+ * @version $Id: $
+ */
 public class BrTag extends CoreAttributes {
 
 	BrTag(BigInteger id, HtmlElement parent, Attributes attributes) {
 		super(id, "br", parent, attributes);
-	}
-
-	public String getClear() {
-		return getAttribute("clear");
 	}
 
 }

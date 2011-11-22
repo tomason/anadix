@@ -18,9 +18,10 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * Indicates an abbreviated form (e.g., WWW, HTTP, URI, Mass., etc.).
- * 
+ * Defines an abbreviation. See <a href="http://www.w3schools.com/tags/tag_abbr.asp">w3schools</a>.
+ *
  * @author tomason
+ * @version $Id: $
  */
 public class AbbrTag extends CommonAttributes {
 

@@ -18,11 +18,10 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * The ADDRESS element may be used by authors to supply contact information for
- * a document or a major part of a document such as a form. This element often
- * appears at the beginning or end of a document.
- * 
+ * 	Defines contact information for the author/owner of a document. See <a href="http://www.w3schools.com/tags/tag_address.asp">w3schools</a>.
+ *
  * @author tomason
+ * @version $Id: $
  */
 public class AddressTag extends CommonAttributes {
 
