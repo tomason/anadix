@@ -1,6 +1,8 @@
 package org.anadix;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
@@ -11,6 +13,8 @@ import javassist.ClassPool;
 import javassist.NotFoundException;
 
 import org.jboss.logging.Logger;
+
+import com.thoughtworks.xstream.XStream;
 
 /**
  * Main class to interact with Anadix analyzing engine. The basic methods are
@@ -35,6 +39,8 @@ public final class Anadix {
 	private static Class<? extends ConditionSet> conditions;
 	private static Class<? extends ReportFormatter> formatter;
 	private static File reportDir;
+	
+	private final XStream xstream;
 
 	static {
 		try {
@@ -47,7 +53,9 @@ public final class Anadix {
 
 	private static final Anadix INSTANCE = new Anadix();
 
-	private Anadix() {}
+	private Anadix() {
+		xstream = new XStream();
+	}
 
 	/////////////////////////////// public API /////////////////////////////////////
 	/**
@@ -270,6 +278,29 @@ public final class Anadix {
 		return true;
 	}
 
+	/**
+	 * Serializes the report to a file for later use.
+	 * 
+	 * @param report Report to serialize
+	 * @param target file to store report to
+	 * @throws FileNotFoundException if the file exists but is a directory rather than a
+	 * regular file, does not exist but cannot be created, or cannot be opened for any
+	 * other reason
+	 */
+	public static void serializeReport(Report report, File target) throws FileNotFoundException {
+		INSTANCE.xstream.toXML(report, new FileOutputStream(target));
+	}
+	
+	/**
+	 * Deserializes the serialized report from a file.
+	 * 
+	 * @param source file from which the report should be deserialized
+	 * @return instance of Report
+	 */
+	public static Report deserializeReport(File source) {
+		return (Report)INSTANCE.xstream.fromXML(source);
+	}
+	
 	/////////////////////////////// private methods ////////////////////////////////
 	private static boolean checkClass(Class<?> clazz) {
 		try {
