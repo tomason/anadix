@@ -1,6 +1,8 @@
+# Maven build path
+target
 
-**/target
-
-**/.settings/*
-**/.classpath
-**/.project
+# Eclipse settings
+.settings
+.classpath
+.project
+.texlipse
