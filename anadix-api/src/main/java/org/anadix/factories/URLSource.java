@@ -18,6 +18,7 @@ package org.anadix.factories;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.net.URLConnection;
 
 import org.anadix.exceptions.SourceException;
 import org.jboss.logging.Logger;
@@ -37,7 +38,9 @@ class URLSource extends AbstractSource {
 		this.url = url;
 
 		try {
-			url.openStream();
+			URLConnection c = url.openConnection();
+			c.setConnectTimeout(1000);
+			c.connect();
 		} catch (IOException ex) {
 			logger.error("Unable to open stream", ex);
 			throw new SourceException("Unable to open stream " + url, ex);
