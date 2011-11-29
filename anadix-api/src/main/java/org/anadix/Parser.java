@@ -40,6 +40,7 @@ public interface Parser {
     /**
      * Parses given source and inserts Elements through ElementFactory
      *
+     * @param factory - ElementFactory to be used
      * @param source - source to parse
      * @throws org.anadix.exceptions.ParserException - when something goes wrong during parsing
      */
