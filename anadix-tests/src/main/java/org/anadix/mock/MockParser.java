@@ -31,29 +31,24 @@ import org.anadix.utils.DroolsResource;
  * @version $Id: $
  */
 public class MockParser extends Mock implements Parser {
-	/** {@inheritDoc} */
-	public void parse(Source source) throws ParserException {
-		methodInvoked(new Invocation("parse", source));
+    /** {@inheritDoc} */
+    public void parse(ElementFactory factory, Source source) throws ParserException {
+        methodInvoked(new Invocation("parse", source));
 
-		if (doThrow()) {
-			throw new ParserException();
-		}
-	}
+        if (doThrow()) {
+            throw new ParserException();
+        }
+    }
 
-	/** {@inheritDoc} */
-	public Collection<DroolsResource> getDroolsResources() {
-		methodInvoked(new Invocation("getDroolsResources"));
+    /** {@inheritDoc} */
+    public Collection<DroolsResource> getDroolsResources() {
+        methodInvoked(new Invocation("getDroolsResources"));
 
-		return new ArrayList<DroolsResource>();
-	}
+        return new ArrayList<DroolsResource>();
+    }
 
-	/** {@inheritDoc} */
-	public Class<? extends ElementFactory> getElementFactoryClass() {
-		return MockElementFactory.class;
-	}
-
-	/** {@inheritDoc} */
-	public void setElementFactory(ElementFactory factory) {
-		methodInvoked(new Invocation("setElementFactory", factory));
-	}
+    /** {@inheritDoc} */
+    public Class<? extends ElementFactory> getElementFactoryClass() {
+        return MockElementFactory.class;
+    }
 }

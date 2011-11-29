@@ -15,55 +15,50 @@
  */
 package org.anadix.swingparser;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
 
-import org.anadix.ElementFactory;
 import org.anadix.Source;
 import org.anadix.factories.SourceFactory;
 import org.anadix.html.HTMLElementFactory;
+import org.anadix.mock.MockElementFactory;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 @Test
 public class SwingParserTest {
-	private HTMLElementFactory factory;
-	private SwingParser parser;
+    private HTMLElementFactory factory;
+    private SwingParser parser;
+    private Source source;
 
-	@BeforeMethod(alwaysRun = true)
-	public void prepareInstances() {
-		factory = mock(HTMLElementFactory.class);
-		parser = new SwingParser();
-	}
+    @BeforeMethod(alwaysRun = true)
+    public void prepareInstances() {
+        factory = mock(HTMLElementFactory.class);
+        parser = new SwingParser();
+        source = SourceFactory.newStringSource("<html><head></head><body></body></html>");
+    }
 
-	@Test(expectedExceptions = RuntimeException.class)
-	public void testParse1() throws Exception {
-		parser.parse(null);
-	}
+    @Test(expectedExceptions = RuntimeException.class)
+    public void testParse1() throws Exception {
+        parser.parse(null, null);
+    }
 
-	@Test(expectedExceptions = NullPointerException.class)
-	public void testParse2() throws Exception {
-		parser.setElementFactory(factory);
-		parser.parse(null);
-	}
+    @Test(expectedExceptions = NullPointerException.class)
+    public void testParse2() throws Exception {
+        parser.parse(factory, null);
+    }
 
-	public void testParse3() throws Exception {
-		parser.setElementFactory(factory);
-		Source s = SourceFactory.newStringSource("<html><head></head><body></body></html>");
+    @Test(expectedExceptions = NullPointerException.class)
+    public void testParse3() throws Exception {
+        parser.parse(null, source);
+    }
 
-		parser.parse(s);
-	}
+    @Test(expectedExceptions = RuntimeException.class)
+    public void testParse4() throws Exception {
+        parser.parse(new MockElementFactory(), source);
+    }
 
-	@Test(expectedExceptions = NullPointerException.class)
-	public void testSetElementFactory1() {
-		parser.setElementFactory(null);
-	}
+    public void testParse5() throws Exception {
+        parser.parse(factory, source);
+    }
 
-	@Test(expectedExceptions = RuntimeException.class)
-	public void testSetElementFactory2() {
-		parser.setElementFactory(mock(ElementFactory.class));
-	}
-
-	public void testSetElementFactory3() {
-		parser.setElementFactory(factory);
-	}
 }
