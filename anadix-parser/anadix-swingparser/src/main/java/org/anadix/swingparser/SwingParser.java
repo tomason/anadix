@@ -44,92 +44,82 @@ import org.drools.io.ResourceFactory;
  * @version $Id: $
  */
 public class SwingParser implements Parser {
-	private static final Logger logger = Logger.getLogger(SwingParser.class);
+    private static final Logger logger = Logger.getLogger(SwingParser.class);
 
-	private final ParserDelegator parser;
-	private HTMLElementFactory factory;
+    private final ParserDelegator parser;
+    private HTMLElementFactory factory;
 
-	/**
-	 * Constructor
-	 */
-	public SwingParser() {
-		parser = new ParserDelegator();
-	}
+    /**
+     * Constructor
+     */
+    public SwingParser() {
+        parser = new ParserDelegator();
+    }
 
-	/** {@inheritDoc} */
-	public void parse(Source source) throws ParserException {
-		if (factory != null) {
-			try {
-				parser.parse(source.getReader(), new StatefulParserCallback(factory, source.getText()), true);
-			} catch (IOException e) {
-				logger.fatal("Exception during parsing", e);
-				throw new ParserException("Unable to parse source", e);
-			}
-		} else {
-			logger.fatal("Factory '" + getElementFactoryClass().getName() + "' is uninitialised!");
-			throw new RuntimeException("Uninitialised factory");
-		}
-	}
+    /** {@inheritDoc} */
+    public void parse(ElementFactory factory, Source source) throws ParserException {
+        if (factory != null && factory instanceof HTMLElementFactory) {
+            factory.setAsGlobal("elementFactory");
+            try {
+                parser.parse(source.getReader(), new StatefulParserCallback((HTMLElementFactory)factory, source.getText()), true);
+            } catch (IOException e) {
+                logger.fatal("Exception during parsing", e);
+                throw new ParserException("Unable to parse source", e);
+            }
+        } else {
+            logger.fatal("Factory '" + getElementFactoryClass().getName() + "' is uninitialised!");
+            throw new RuntimeException("Uninitialised factory");
+        }
+    }
 
-	/** {@inheritDoc} */
-	public Collection<DroolsResource> getDroolsResources() {
-		Collection<DroolsResource> result = new ArrayList<DroolsResource>();
+    /** {@inheritDoc} */
+    public Collection<DroolsResource> getDroolsResources() {
+        Collection<DroolsResource> result = new ArrayList<DroolsResource>();
 
-		ExternalSpreadsheetCompiler compiler = new ExternalSpreadsheetCompiler();
-		InputStream csvStream = null;
-		InputStream templateStream = null;
-		try {
-			csvStream = SwingParser.class.getResourceAsStream("tags.csv");
-			templateStream = SwingParser.class.getResourceAsStream("rule-template.drt");
+        ExternalSpreadsheetCompiler compiler = new ExternalSpreadsheetCompiler();
+        InputStream csvStream = null;
+        InputStream templateStream = null;
+        try {
+            csvStream = SwingParser.class.getResourceAsStream("tags.csv");
+            templateStream = SwingParser.class.getResourceAsStream("rule-template.drt");
 
-			String generated = compiler.compile(csvStream, templateStream, InputType.CSV, 2, 1);
-			logger.debug(generated);
+            String generated = compiler.compile(csvStream, templateStream, InputType.CSV, 2, 1);
+            logger.debug(generated);
 
-			// add expanded template
-			result.add(new DroolsResource(
-					ResourceFactory.newReaderResource(new StringReader(generated)),
-					ResourceType.DRL));
-		} finally {
-			if (csvStream != null) {
-				try {
-					csvStream.close();
-				} catch (IOException ex) {
-					logger.fatal("could not close csvStream", ex);
-					throw new RuntimeException(ex);
-				}
-			}
-			if (templateStream != null) {
-				try {
-					templateStream.close();
-				} catch (IOException ex) {
-					logger.fatal("could not close templateStream", ex);
-					throw new RuntimeException(ex);
-				}
-			}
-		}
+            // add expanded template
+            result.add(new DroolsResource(
+                    ResourceFactory.newReaderResource(new StringReader(generated)),
+                    ResourceType.DRL));
+        } finally {
+            if (csvStream != null) {
+                try {
+                    csvStream.close();
+                } catch (IOException ex) {
+                    logger.fatal("could not close csvStream", ex);
+                    throw new RuntimeException(ex);
+                }
+            }
+            if (templateStream != null) {
+                try {
+                    templateStream.close();
+                } catch (IOException ex) {
+                    logger.fatal("could not close templateStream", ex);
+                    throw new RuntimeException(ex);
+                }
+            }
+        }
 
-		// add common rules - to insert <html>
-		result.add(new DroolsResource(
-				ResourceFactory.newInputStreamResource(SwingParser.class.getResourceAsStream("swingparser.drl")),
-				ResourceType.DRL));
+        // add common rules - to insert <html>
+        result.add(new DroolsResource(
+                ResourceFactory.newInputStreamResource(SwingParser.class.getResourceAsStream("swingparser.drl")),
+                ResourceType.DRL));
 
-		return result;
-	}
+        return result;
+    }
 
-	/** {@inheritDoc} */
-	public Class<? extends ElementFactory> getElementFactoryClass() {
-		return HTMLElementFactory.class;
-	}
+    /** {@inheritDoc} */
+    public Class<? extends ElementFactory> getElementFactoryClass() {
+        return HTMLElementFactory.class;
+    }
 
-	/** {@inheritDoc} */
-	public void setElementFactory(ElementFactory factory) {
-		if (getElementFactoryClass().isAssignableFrom(factory.getClass())) {
-			this.factory = (HTMLElementFactory)factory;
-			this.factory.setAsGlobal("elementFactory");
-		} else {
-			logger.fatal(String.format("Wrong element factory given: expected '%s' and got '%s'",
-					getElementFactoryClass().getName(), factory.getClass().getName()));
-			throw new RuntimeException("Can't assign " + factory.getClass() + " to " + getClass());
-		}
-	}
 }

@@ -37,36 +37,28 @@ import org.anadix.utils.DroolsResource;
  */
 public interface Parser {
 
-	/**
-	 * Parses given source and inserts Elements through ElementFactory
-	 *
-	 * @param source - source to parse
-	 * @throws org.anadix.exceptions.ParserException - when something goes wrong during parsing
-	 */
-	void parse(Source source) throws ParserException;
+    /**
+     * Parses given source and inserts Elements through ElementFactory
+     *
+     * @param source - source to parse
+     * @throws org.anadix.exceptions.ParserException - when something goes wrong during parsing
+     */
+    void parse(ElementFactory factory, Source source) throws ParserException;
 
-	/**
-	 * Returns resources (typically DRL files) used by Drools engine
-	 * to process parser output. If no such resources are used this method
-	 * returns empty collection
-	 *
-	 * @return collection of DroolsResources
-	 */
-	Collection<DroolsResource> getDroolsResources();
+    /**
+     * Returns resources (typically DRL files) used by Drools engine
+     * to process parser output. If no such resources are used this method
+     * returns empty collection
+     *
+     * @return collection of DroolsResources
+     */
+    Collection<DroolsResource> getDroolsResources();
 
-	/**
-	 * Returns class implementing ElementFactory that is used to insert
-	 * elements into Drools working memory
-	 *
-	 * @return instance of Class<? extends ElementFactory>
-	 */
-	Class<? extends ElementFactory> getElementFactoryClass();
-
-	/**
-	 * Inserts the instance of Element factory of a class defined by method
-	 * getElementFactoryClass
-	 *
-	 * @param factory - instance of ElementFactory
-	 */
-	void setElementFactory(ElementFactory factory);
+    /**
+     * Returns class implementing ElementFactory that is used to insert
+     * elements into Drools working memory
+     *
+     * @return instance of Class<? extends ElementFactory>
+     */
+    Class<? extends ElementFactory> getElementFactoryClass();
 }

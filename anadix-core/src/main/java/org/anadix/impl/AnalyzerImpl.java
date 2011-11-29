@@ -43,98 +43,96 @@ import org.jboss.logging.Logger;
  * @version $Id: $
  */
 public class AnalyzerImpl implements Analyzer {
-	private static final Logger logger = Logger.getLogger(Analyzer.class);
+    private static final Logger logger = Logger.getLogger(Analyzer.class);
 
-	private final Parser parser;
-	private final ConditionSet conditions;
-	private final KnowledgeBase kbase;
+    private final Parser parser;
+    private final ConditionSet conditions;
+    private final KnowledgeBase kbase;
 
-	/**
-	 * Constructor
-	 *
-	 * @param parser - parser used to parse sources
-	 * @param conditions - set of conditions to evaluate for every source
-	 */
-	public AnalyzerImpl(Parser parser, ConditionSet conditions) {
-		this.parser = parser;
-		this.conditions = conditions;
+    /**
+     * Constructor
+     *
+     * @param parser - parser used to parse sources
+     * @param conditions - set of conditions to evaluate for every source
+     */
+    public AnalyzerImpl(Parser parser, ConditionSet conditions) {
+        this.parser = parser;
+        this.conditions = conditions;
 
-		if (!parser.getElementFactoryClass().isAssignableFrom(conditions.getElementFactoryClass())) {
-			throw new IllegalStateException("Parser " + parser.getClass() + " and condition set " + conditions.getClass() + " don't match");
-		}
+        if (!parser.getElementFactoryClass().isAssignableFrom(conditions.getElementFactoryClass())) {
+            throw new IllegalStateException("Parser " + parser.getClass() + " and condition set " + conditions.getClass() + " don't match");
+        }
 
-		kbase = createKnowledgeBase();
-	}
+        kbase = createKnowledgeBase();
+    }
 
-	/** {@inheritDoc} */
-	public Report analyze(Source source) {
-		if (source == null) {
-			throw new NullPointerException("source must not be null");
-		}
-		StatefulKnowledgeSession ksession = kbase.newStatefulKnowledgeSession();
+    /** {@inheritDoc} */
+    public Report analyze(Source source) {
+        if (source == null) {
+            throw new NullPointerException("source must not be null");
+        }
+        StatefulKnowledgeSession ksession = kbase.newStatefulKnowledgeSession();
 
-		ksession.addEventListener(new DebugAgendaEventListener(Logger.getLogger(getClass())));
-		ksession.addEventListener(new DebugWorkingMemoryEventListener(Logger.getLogger(getClass())));
+        ksession.addEventListener(new DebugAgendaEventListener(Logger.getLogger(getClass())));
+        ksession.addEventListener(new DebugWorkingMemoryEventListener(Logger.getLogger(getClass())));
 
 
-		ElementFactory ef = AbstractElementFactory.createFactory(
-				conditions.getElementFactoryClass(),
-				ksession
-				);
+        ElementFactory ef = AbstractElementFactory.createFactory(
+                conditions.getElementFactoryClass(),
+                ksession
+                );
 
-		parser.setElementFactory(ef);
+        try {
+            parser.parse(ef, source);
+        } catch (ParserException ex) {
+            logger.error(ex);
+        }
 
-		try {
-			parser.parse(source);
-		} catch (ParserException ex) {
-			logger.error(ex);
-		}
+        ksession.fireAllRules();
 
-		ksession.fireAllRules();
+        Report report = new ReportImpl(ksession, source);
 
-		Report report = new ReportImpl(ksession, source);
+        ksession.dispose();
 
-		ksession.dispose();
+        return report;
+    }
 
-		return report;
-	}
+    private KnowledgeBase createKnowledgeBase() {
+        KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
 
-	private KnowledgeBase createKnowledgeBase() {
-		KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
+        Collection<DroolsResource> c;
+        if ((c = parser.getDroolsResources()) != null) {
+            for (DroolsResource res : c) {
+                res.insertInto(kbuilder);
+            }
+            if (kbuilder.hasErrors()) {
+                throw new RuntimeException("Parser resources: " + kbuilder.getErrors().toString());
+            }
+        } else {
+            logger.warnf("Parser %s returned null resources!", parser.getClass().getName());
+        }
 
-		Collection<DroolsResource> c;
-		if ((c = parser.getDroolsResources()) != null) {
-			for (DroolsResource res : c) {
-				res.insertInto(kbuilder);
-			}
-			if (kbuilder.hasErrors()) {
-				throw new RuntimeException("Parser resources: " + kbuilder.getErrors().toString());
-			}
-		} else {
-			logger.warnf("Parser %s returned null resources!", parser.getClass().getName());
-		}
+        if ((c = conditions.getDroolsResources()) != null) {
+            for (DroolsResource res : c) {
+                res.insertInto(kbuilder);
+            }
+            if (kbuilder.hasErrors()) {
+                throw new RuntimeException("ConditionSet resources: " + kbuilder.getErrors().toString());
+            }
+        } else {
+            logger.warnf("Condition set %s returned null resources!", conditions.getClass().getName());
+        }
 
-		if ((c = conditions.getDroolsResources()) != null) {
-			for (DroolsResource res : c) {
-				res.insertInto(kbuilder);
-			}
-			if (kbuilder.hasErrors()) {
-				throw new RuntimeException("ConditionSet resources: " + kbuilder.getErrors().toString());
-			}
-		} else {
-			logger.warnf("Condition set %s returned null resources!", conditions.getClass().getName());
-		}
+        KnowledgeBase kbase = KnowledgeBaseFactory.newKnowledgeBase();
+        kbase.addKnowledgePackages(kbuilder.getKnowledgePackages());
 
-		KnowledgeBase kbase = KnowledgeBaseFactory.newKnowledgeBase();
-		kbase.addKnowledgePackages(kbuilder.getKnowledgePackages());
+        for (KnowledgePackage pkg : kbase.getKnowledgePackages()) {
+            logger.tracef(" > %s", pkg.getName());
+            for (Rule r : pkg.getRules()) {
+                logger.tracef("  |- %s", r.getName());
+            }
+        }
 
-		for (KnowledgePackage pkg : kbase.getKnowledgePackages()) {
-			logger.tracef(" > %s", pkg.getName());
-			for (Rule r : pkg.getRules()) {
-				logger.tracef("  |- %s", r.getName());
-			}
-		}
-
-		return kbase;
-	}
+        return kbase;
+    }
 }
