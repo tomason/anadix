@@ -47,7 +47,6 @@ public class SwingParser implements Parser {
     private static final Logger logger = Logger.getLogger(SwingParser.class);
 
     private final ParserDelegator parser;
-    private HTMLElementFactory factory;
 
     /**
      * Constructor
@@ -58,7 +57,10 @@ public class SwingParser implements Parser {
 
     /** {@inheritDoc} */
     public void parse(ElementFactory factory, Source source) throws ParserException {
-        if (factory != null && factory instanceof HTMLElementFactory) {
+        if (factory == null) {
+            throw new NullPointerException("factory can't be null");
+        }
+        if (factory instanceof HTMLElementFactory) {
             factory.setAsGlobal("elementFactory");
             try {
                 parser.parse(source.getReader(), new StatefulParserCallback((HTMLElementFactory)factory, source.getText()), true);
@@ -67,7 +69,7 @@ public class SwingParser implements Parser {
                 throw new ParserException("Unable to parse source", e);
             }
         } else {
-            logger.fatal("Factory '" + getElementFactoryClass().getName() + "' is uninitialised!");
+            logger.fatal("Factory '" + factory.getClass().getName() + "' does not match '" + getElementFactoryClass().getName() + "'!");
             throw new RuntimeException("Uninitialised factory");
         }
     }
