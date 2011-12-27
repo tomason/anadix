@@ -70,7 +70,7 @@ public class SwingParser implements Parser {
             }
         } else {
             logger.fatal("Factory '" + factory.getClass().getName() + "' does not match '" + getElementFactoryClass().getName() + "'!");
-            throw new RuntimeException("Uninitialised factory");
+            throw new RuntimeException("Wrong factory");
         }
     }
 
