@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
+  <!-- To enable pushing to Maven Central -->
+  <parent>
+    <groupId>org.sonatype.oss</groupId>
+    <artifactId>oss-parent</artifactId>
+    <version>7</version>
+  </parent>
+
   <groupId>org.anadix</groupId>
-  <artifactId>anadix-parent</artifactId>
+  <artifactId>anadix</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Anadix parent project</name>
-
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-  </properties>
-
+  <description>Anadix is rule-based analysis engine</description>
+  <url>http://www.anadix.org</url>
 
   <licenses>
     <license>
@@ -23,23 +28,53 @@
     </license>
   </licenses>
 
+  <scm>
+    <url>scm:git:git@github.com:tomason/anadix.git</url>
+    <connection>scm:git:git@github.com:tomason/anadix.git</connection>
+    <developerConnection>scm:git:git@github.com:tomason/anadix.git</developerConnection>
+  </scm>
+
+  <developers>
+    <developer>
+      <id>tomason</id>
+      <name>Tomas Schlosser</name>
+      <email>Schlosser.T@seznam.cz</email>
+      <timezone>1</timezone>
+    </developer>
+  </developers>
+  
+  <issueManagement>
+    <system>GitHub</system>
+    <url>https://github.com/tomason/anadix/issues</url>
+  </issueManagement>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.jboss.logging</groupId>
+      <artifactId>jboss-logging</artifactId>
+      <version>3.0.1.GA</version>
+    </dependency>
+  </dependencies>
+
   <modules>
-  	<module>anadix-api</module>
+    <module>anadix-api</module>
     <module>anadix-core</module>
     
-    <module>anadix-domain</module>
-    <module>anadix-parser</module>
-    <module>anadix-condition</module>
+    <module>domains</module>
+    <module>parsers</module>
+    <module>conditions</module>
   	
-  	<module>anadix-integration</module>
-    <module>anadix-example</module>
-    
-    <module>anadix-tests</module>
+    <module>integration</module>
   </modules>
   
   <build>
-  	<pluginManagement>
-  	  <plugins>
+    <pluginManagement>
+      <plugins>
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>2.3.2</version>
@@ -61,7 +96,7 @@
 	      <version>2.5.1</version>
         </plugin>
       </plugins>
-  	</pluginManagement>
+    </pluginManagement>
     <plugins>
       <plugin>
         <artifactId>maven-release-plugin</artifactId>
@@ -77,81 +112,81 @@
       <id>cobertura</id>
       <build>
         <plugins>
-	      <plugin>
-	        <groupId>org.codehaus.mojo</groupId>
-	        <artifactId>cobertura-maven-plugin</artifactId>
-	        <executions>
-	          <execution>
-	            <phase>process-classes</phase>
-	            <goals>
-	              <goal>cobertura</goal>
-	            </goals>
-	            <configuration>
-	              <attach>true</attach>
-	              <aggregate>true</aggregate>
-	              <classifier>cobertura</classifier>
-	              <instrumentation>
-	                <excludes>
-	                  <exclude>**/*Test*</exclude>
-	                  <exclude>**/mock/**</exclude>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>cobertura-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <phase>process-classes</phase>
+                <goals>
+                  <goal>cobertura</goal>
+                </goals>
+                <configuration>
+                  <attach>true</attach>
+                  <aggregate>true</aggregate>
+                  <classifier>cobertura</classifier>
+                  <instrumentation>
+                    <excludes>
+                      <exclude>**/*Test*</exclude>
+                      <exclude>**/mock/**</exclude>
                       <exclude>**/test/**</exclude>
-	                </excludes>
-	              </instrumentation>
-	            </configuration>
-	          </execution>
-	        </executions>
-	      </plugin>
-	      <plugin>
-	        <artifactId>maven-jar-plugin</artifactId>
-	        <version>2.3.2</version>
-	        <executions>
-	          <execution>
-	            <phase>generate-test-sources</phase>
-	            <goals>
-	              <goal>jar</goal>
-	            </goals>
-	            <configuration>
-	              <classesDirectory>${project.build.directory}/generated-classes/cobertura</classesDirectory>
-	              <classifier>cobertura</classifier>
-	            </configuration>
-	          </execution>
-	        </executions>
-	      </plugin>
-	      <plugin>
-	        <artifactId>maven-install-plugin</artifactId>
-	        <version>2.3.1</version>
-	        <executions>
-	          <execution>
-	            <phase>process-test-sources</phase>
-	            <goals>
-	              <goal>install</goal>
-	            </goals>
-	            <configuration>
-	              <classifier>cobertura</classifier>
-	            </configuration>
-	          </execution>
-	        </executions>
-	      </plugin>
-	    </plugins>
-	  </build>
+                    </excludes>
+                  </instrumentation>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <artifactId>maven-jar-plugin</artifactId>
+            <version>2.3.2</version>
+            <executions>
+              <execution>
+                <phase>generate-test-sources</phase>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+                <configuration>
+                  <classesDirectory>${project.build.directory}/generated-classes/cobertura</classesDirectory>
+                  <classifier>cobertura</classifier>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <artifactId>maven-install-plugin</artifactId>
+            <version>2.3.1</version>
+            <executions>
+              <execution>
+                <phase>process-test-sources</phase>
+                <goals>
+                  <goal>install</goal>
+                </goals>
+                <configuration>
+                  <classifier>cobertura</classifier>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
 	  
-	  <dependencies>
-	    <dependency>
-	      <groupId>net.sourceforge.cobertura</groupId>
-	      <artifactId>cobertura</artifactId>
-	      <version>1.9.4</version>
-	    </dependency>
-	  </dependencies>
+      <dependencies>
+        <dependency>
+          <groupId>net.sourceforge.cobertura</groupId>
+          <artifactId>cobertura</artifactId>
+          <version>1.9.4</version>
+        </dependency>
+      </dependencies>
     </profile>
     <profile>
-      <id>distribution</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
+      <id>full</id>
       
       <modules>
-        <module>anadix-docs</module>
-        <module>anadix-distribution</module>
+        <module>anadix-tests</module>
+      
+        <module>examples</module>
+        <module>documentation</module>
+        <module>distribution</module>
       </modules>
       
       <build>
@@ -168,46 +203,40 @@
             </executions>
           </plugin>
           <plugin>
-          	<artifactId>maven-source-plugin</artifactId>
-          	<executions>
-          	  <execution>
-          	    <phase>package</phase>
-          	    <goals>
-          	      <goal>jar</goal>
-          	    </goals>
-          	  </execution>
-          	</executions>
+            <artifactId>maven-source-plugin</artifactId>
+            <executions>
+              <execution>
+                <phase>package</phase>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+              </execution>
+            </executions>
           </plugin>
         </plugins>
       </build>
     </profile>
+	<profile>
+	  <id>pgp-sign</id>
+	  <build>
+	    <plugins>
+	      <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.4</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+	    </plugins>
+	  </build>
+	</profile>
   </profiles>
-  
-  <developers>
-    <developer>
-      <id>tomason</id>
-      <name>Tomas Schlosser</name>
-      <email>Schlosser.T@seznam.cz</email>
-      <timezone>1</timezone>
-    </developer>
-  </developers>
-  
-  <scm>
-  	<url>scm:git:git@github.com:tomason/anadix.git</url>
-  	<connection>scm:git:git@github.com:tomason/anadix.git</connection>
-  	<developerConnection>scm:git:git@github.com:tomason/anadix.git</developerConnection>
-  </scm>
-  
-  <issueManagement>
-    <system>GitHub</system>
-    <url>https://github.com/tomason/anadix/issues</url>
-  </issueManagement>
-  
-  <dependencies>
-  	<dependency>
-  		<groupId>org.jboss.logging</groupId>
-  		<artifactId>jboss-logging</artifactId>
-  		<version>3.0.1.GA</version>
-  	</dependency>
-  </dependencies>
+
 </project>

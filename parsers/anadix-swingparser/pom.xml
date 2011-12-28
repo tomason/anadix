@@ -3,30 +3,30 @@
   <modelVersion>4.0.0</modelVersion>
   
   <parent>
-    <artifactId>anadix</artifactId>
-    <groupId>org.anadix</groupId>
+    <artifactId>parsers</artifactId>
+    <groupId>org.anadix.parsers</groupId>
     <version>1.0.0-SNAPSHOT</version>
     <relativePath>..</relativePath>
   </parent>
   
-  <artifactId>anadix-core</artifactId>
-  <name>Anadix implementation</name>
- 
+  <artifactId>anadix-swingparser</artifactId>
+  <name>Anadix default parser</name>
+  
   <dependencies>
   	<dependency>
-  		<groupId>org.anadix</groupId>
-  		<artifactId>anadix-api</artifactId>
+  		<groupId>org.anadix.domains</groupId>
+  		<artifactId>anadix-html</artifactId>
   		<version>${project.version}</version>
   	</dependency>
   	<dependency>
   		<groupId>org.drools</groupId>
-  		<artifactId>drools-compiler</artifactId>
+  		<artifactId>drools-decisiontables</artifactId>
   		<version>5.3.0.Final</version>
   	</dependency>
   	<dependency>
-  	  <groupId>org.drools</groupId>
-  	  <artifactId>drools-core</artifactId>
-  	  <version>5.3.0.Final</version>
-  	</dependency>
+  		<groupId>org.drools</groupId>
+  		<artifactId>drools-templates</artifactId>
+  		<version>5.3.0.Final</version>
+  	</dependency>	
   </dependencies>
 </project>

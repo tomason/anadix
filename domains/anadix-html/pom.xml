@@ -3,15 +3,15 @@
   <modelVersion>4.0.0</modelVersion>
   
   <parent>
-    <artifactId>anadix</artifactId>
-    <groupId>org.anadix</groupId>
+    <artifactId>domains</artifactId>
+    <groupId>org.anadix.domains</groupId>
     <version>1.0.0-SNAPSHOT</version>
     <relativePath>..</relativePath>
   </parent>
   
-  <artifactId>anadix-core</artifactId>
-  <name>Anadix implementation</name>
- 
+  <artifactId>anadix-html</artifactId>
+  <name>Anadix HTML domain</name>
+
   <dependencies>
   	<dependency>
   		<groupId>org.anadix</groupId>
@@ -19,14 +19,9 @@
   		<version>${project.version}</version>
   	</dependency>
   	<dependency>
-  		<groupId>org.drools</groupId>
-  		<artifactId>drools-compiler</artifactId>
-  		<version>5.3.0.Final</version>
-  	</dependency>
-  	<dependency>
-  	  <groupId>org.drools</groupId>
-  	  <artifactId>drools-core</artifactId>
-  	  <version>5.3.0.Final</version>
+  		<groupId>org.anadix</groupId>
+  		<artifactId>anadix-core</artifactId>
+  		<version>${project.version}</version>
   	</dependency>
   </dependencies>
 </project>
