@@ -86,6 +86,11 @@
       <artifactId>anadix-ant</artifactId>
       <version>${project.version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.anadix</groupId>
+      <artifactId>anadix-selenium</artifactId>
+      <version>${project.version}</version>
+    </dependency>
     
     <dependency>
       <groupId>org.anadix</groupId>
