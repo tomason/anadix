@@ -22,10 +22,10 @@ parser implementation. Anadix also provides integration with different tools -
 currently it is only Apache Ant, but integration with Selenium is planned.
 
 \chapter{Getting started}
-To start using anadix you need only Java SE 6 or above. But if you want to build
+To start using Anadix you need only Java SE 6 or above. But if you want to build
 Anadix from source you will need Git and Apache Maven as well. 
-\section{Requiered environment}
-Only a few prerequisities are required for 
+\section{Required environment}
+Only a few prerequisites are required for successfully running Anadix:
 \begin{description}
   \item[Java SE 6] is a runtime environment and Anadix can't run without it 
   (\url{http://www.java.com/getjava/}).
@@ -38,10 +38,13 @@ Only a few prerequisities are required for
 \section{Acquiring binaries}
 Basically there are two ways to obtain binary archives (jar) to run Anadix
 analyzer.
+\subsection{Fork a repository from Github}
+The best option in case you want to change the code and then contribute it back to the project. For information on how to do that see \url{http://help.github.com/fork-a-repo/}.
+
 \subsection{Download binaries from Github}
 The fastest way to get Anadix binaries is to download zip file from Github
 (\url{http://github.com/tomason/anadix/downloads}, 
-\url{http://github.com/downloads/tomason/anadix/anadix-distribution-0.4.0.zip}).
+\url{http://github.com/downloads/tomason/anadix/anadix-distribution-1.0.0.zip}).
 
 \subsection{Build Anadix from sources}
 If you want to get the latest version or you want to build the binaries
@@ -58,7 +61,7 @@ cd anadix
 	\end{verbatim}
   \item Checkout tag or branch (optional):
     \begin{verbatim}
-git checkout anadix-0.4.0
+git checkout anadix-1.0.0
     \end{verbatim}
   \item Build binaries using Apache Maven:
     \begin{verbatim}
@@ -66,29 +69,21 @@ mvn clean install
 	\end{verbatim}
 \end{itemize}
 Binaries obtained this way can be found in directory
-'anadix-distribution/target' in ananadix-distribution-0.4.0.zip archive.
+'anadix-distribution/target' in anadix-distribution-1.0.0.zip archive.
 
 \section{Usage}
 Anadix is an engine for analyzing and has no user interface so you have to embed
 the libraries in your application. There are two ways to get the binaries to
-embed the libreries to your application.
+embed the libraries to your application.
 \begin{description}
   \item[Copy to classpath] required libraries and then use them in your
   application.
-  \item[Use Apache Maven] to manage dependencies of your application. However
-  please note that Anadix is not in central Maven repositories and therefore you
-  have to build it locally using:
-    \begin{verbatim}
-mvn clean install
-	\end{verbatim}
-  If someone else wants to use your project then they must build the anadix from
-  sources as well.
-  Adding Anadix to your Maven project is easy:
+  \item[Use Apache Maven] to manage dependencies of your application. Adding Anadix to your Maven project is easy:
     \begin{verbatim}
 <dependency>
   <groupId>org.anadix</groupId>
   <artifactId>anadix-section508</artifactId>
-  <version>0.4.0</version>
+  <version>1.0.0</version>
 </dependency>
     \end{verbatim}
   Since section508 has all the necessary libraries as transitive dependencies
@@ -100,8 +95,8 @@ mvn clean install
 Currently Anadix offers an engine to analyze whatever can be analyzed. For that
 purpose Drools rule engine is used. In the basic configuration only a Section
 508 compliance of web pages is provided but it is possible to write parser for
-any kind of data you can think of (eg. read data from files, database,
-filesystem) and condition set for any purpose. Section 508 compliance testing
+any kind of data you can think of (e.g. read data from files, database,
+file system) and condition set for any purpose. Section 508 compliance testing
 bring the parser of HTML files and HTML domain that can be reused, replaced or
 just extended.
 
@@ -111,8 +106,7 @@ API consists of several basic interfaces and two classes:
 \item[org.anadix.Anadix] creates instances of Analyzer and to set default
 implementations of most important interfaces.
 \item[org.anadix.factories.SourceFactory] creates Sources for analysis from
-different types of sources (URL, Stream, Reader, String). IMPORTANT: Use caching
-only for text resources!
+different types of sources (URL, Stream, Reader, String). Every creating sources (except the one for StringSource) has two methods~-- one with the source parameter only and the other with source parameter and boolean value. The sources are cached by default (the whole source is read and text is saved into StringSource that is stored in memory), caching the sources can be turned off by passing false value as a second parameter to the source creation method. IMPORTANT: Use caching only for text resources!
 \item[org.anadix.Analyzer] provides only one simple method - analyze that takes
 parameter Source and produces Report.
 \item[org.anadix.ElementFactory] serves several purposes: ensures the Parser and
@@ -156,7 +150,7 @@ per ItemStatus. ReportItem contains several fields:
   \item[Advice] field for advice what to do with the report or (in case of
   error or warning) how to fix it.
 \end{description}
-Reports hold all the information neccessary to create a human readable report.
+Reports hold all the information necessary to create a human readable report.
 That is done through ReportFormatter class that can generate any form of output.
 Currently only a very simple formatter is implemented that is best used for
 debugging purposes but holds no real value. This will be addressed in future
@@ -201,7 +195,7 @@ source file.
 
 \section*{Selenium}
 Integration with Selenium is planned as the first priority is to analyze web
-pages. It will store the webpages after every click and analyze them by users
+pages. It will store the web pages after every click and analyze them by users
 decision - right after storing, when the method is called or never letting user
 analyze the sources himself.
 
