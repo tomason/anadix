@@ -1,8 +1,15 @@
 # Maven build path
 target
 
+
 # Eclipse settings
 .settings
 .classpath
 .project
 .texlipse
+
+
+# Outputs
+logs
+reports
+sources
