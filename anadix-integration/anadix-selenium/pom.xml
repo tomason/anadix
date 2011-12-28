@@ -22,10 +22,5 @@
   	  <artifactId>anadix-api</artifactId>
   	  <version>${project.version}</version>
     </dependency>
-    <dependency>
-      <groupId>org.anadix</groupId>
-      <artifactId>anadix-core</artifactId>
-  	  <version>${project.version}</version>
-    </dependency>
   </dependencies>
 </project>
