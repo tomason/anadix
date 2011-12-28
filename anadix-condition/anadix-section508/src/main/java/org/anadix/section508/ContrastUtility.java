@@ -91,6 +91,17 @@ public final class ContrastUtility {
 		if ("aqua".equalsIgnoreCase(color)) {
 			return "#00FFFF";
 		}
+		if (color.startsWith("rgb(")) {
+			String c = color.substring(5, color.length() - 1);
+			String[] split = c.split(",");
+
+			String result = "#";
+			for (String no : split) {
+				result += Integer.toHexString(Integer.parseInt(no.trim()));
+			}
+
+			return result;
+		}
 
 		throw new IllegalArgumentException("Can't parse color: " + color);
 	}
