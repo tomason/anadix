@@ -25,7 +25,7 @@
   
   <dependencies>
     <dependency>
-      <groupId>org.anadix</groupId>
+      <groupId>org.anadix.conditions</groupId>
       <artifactId>anadix-section508</artifactId>
       <version>${project.version}</version>
     </dependency>

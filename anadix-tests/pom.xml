@@ -73,22 +73,22 @@
 	      <version>${project.version}</version>
 	    </dependency>
 	    <dependency>
-	      <groupId>org.anadix</groupId>
+	      <groupId>org.anadix.domains</groupId>
 	      <artifactId>anadix-html</artifactId>
 	      <version>${project.version}</version>
 	    </dependency>
 	    <dependency>
-	      <groupId>org.anadix</groupId>
+	      <groupId>org.anadix.parsers</groupId>
 	      <artifactId>anadix-swingparser</artifactId>
 	      <version>${project.version}</version>
 	    </dependency>
 	    <dependency>
-	      <groupId>org.anadix</groupId>
+	      <groupId>org.anadix.conditions</groupId>
 	      <artifactId>anadix-section508</artifactId>
 	      <version>${project.version}</version>
 	    </dependency>
 	    <dependency>
-	      <groupId>org.anadix</groupId>
+	      <groupId>org.anadix.integration</groupId>
 	      <artifactId>anadix-ant</artifactId>
 	      <version>${project.version}</version>
 	    </dependency>
