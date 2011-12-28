@@ -20,6 +20,8 @@ import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.jboss.logging.Logger;
+
 /**
  * Class representing set of element's attributes. Contains both the attributes
  * contained in tag and contained in style.
@@ -85,7 +87,7 @@ public class Attributes {
 	}
 
 	/**
-	 * Gets names of all attributes 
+	 * Gets names of all attributes
 	 *
 	 * @return Collection of attribute names
 	 */
@@ -113,6 +115,10 @@ public class Attributes {
 			}
 
 			String[] split = prop.split(":");
+			if (split.length < 2) {
+				Logger.getLogger(Attributes.class).warnf("CSS property without value: '%s'", prop);
+				continue;
+			}
 			result.setProperty(split[0].trim(), split[1].trim());
 		}
 
