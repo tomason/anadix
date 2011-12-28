@@ -14,5 +14,6 @@
   
   <modules>
     <module>anadix-ant</module>
+    <module>anadix-selenium</module>
   </modules>
 </project>
