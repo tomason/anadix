@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>SmallTag class.</p>
+ * Defines smaller text
  *
  * @author tomason
  * @version $Id: $

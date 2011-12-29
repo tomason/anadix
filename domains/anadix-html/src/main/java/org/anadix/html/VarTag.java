@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * Indicates an instance of a variable or program argument.
+ * Defines a variable
  *
  * @author tomason
  * @version $Id: $

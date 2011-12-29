@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>PTag class.</p>
+ * Defines a paragraph
  *
  * @author tomason
  * @version $Id: $
@@ -30,9 +30,9 @@ public class PTag extends CommonAttributes {
 	}
 
 	/**
-	 * <p>getAlign.</p>
+	 * Specifies the alignment of the text within a paragraph
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return alignment of paragraph
 	 */
 	public String getAlign() {
 		return getAttribute("align");

@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * Indicates stronger emphasis.
+ * Defines strong text
  *
  * @author tomason
  * @version $Id: $

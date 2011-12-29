@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>TbodyTag class.</p>
+ * Groups the body content in a table
  *
  * @author tomason
  * @version $Id: $
@@ -29,37 +29,38 @@ public class TbodyTag extends CommonAttributes {
 		super(id, "tbody", parent, attributes);
 	}
 
+
 	/**
-	 * <p>getAlign.</p>
+	 * Aligns the content inside the <thead> element
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return alignment of content
 	 */
 	public String getAlign() {
 		return getAttribute("align");
 	}
 
 	/**
-	 * <p>getChar.</p>
+	 * Aligns the content inside the element to a character
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return character
 	 */
 	public String getChar() {
 		return getAttribute("char");
 	}
 
 	/**
-	 * <p>getCharoff.</p>
+	 * Sets the number of characters the content inside the element will be aligned from the character specified by the char attribute
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return number
 	 */
 	public String getCharoff() {
 		return getAttribute("charoff");
 	}
 
 	/**
-	 * <p>getValign.</p>
+	 * Vertical aligns the content inside the element
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return vertical alignment
 	 */
 	public String getValign() {
 		return getAttribute("valign");

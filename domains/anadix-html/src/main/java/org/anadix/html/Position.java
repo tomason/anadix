@@ -1,14 +1,34 @@
 package org.anadix.html;
 
+/**
+ * Representation of position of a character in document.
+ * It offers two variations: Either the position of a character or
+ * as a line, column pair. Please note that both representations at
+ * once are not supported.
+ * 
+ * @author tomason
+ * @version $Id: $
+ */
 public class Position {
 	private final int characterNumber;
 	private final int lineNumber;
 	private final int columnNumber;
 
+	/**
+	 * Constructor
+	 * 
+	 * @param characterNumber number of a character in document
+	 */
 	public Position(int characterNumber) {
 		this(characterNumber, -1, -1);
 	}
 
+	/**
+	 * Constructor
+	 * 
+	 * @param lineNumber number of line character is on
+	 * @param columnNumber number of column character is on
+	 */
 	public Position(int lineNumber, int columnNumber) {
 		this(-1, lineNumber, columnNumber);
 	}
@@ -19,18 +39,34 @@ public class Position {
 		this.columnNumber = columnNumber;
 	}
 
+	/**
+	 * Gets the character number from the beginning of the document
+	 * 
+	 * @return character number or -1 if line, column pair is used
+	 */
 	public int getCharacterNumber() {
 		return characterNumber;
 	}
 
+	/**
+	 * Gets the line number
+	 * 
+	 * @return line number or -1 if character number is used
+	 */
 	public int getLineNumber() {
 		return lineNumber;
 	}
 
+	/**
+	 * Gets the column number
+	 * 
+	 * @return column number or -1 if character number is used
+	 */
 	public int getColumnNumber() {
 		return columnNumber;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public int hashCode() {
 		final int prime = 2011;
@@ -41,6 +77,7 @@ public class Position {
 		return result;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -59,6 +96,7 @@ public class Position {
 		return true;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public String toString() {
 		if (characterNumber > 0) {

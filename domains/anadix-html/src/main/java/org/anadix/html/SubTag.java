@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>SubTag class.</p>
+ * Defines subscripted text
  *
  * @author tomason
  * @version $Id: $

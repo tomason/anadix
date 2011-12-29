@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>PreTag class.</p>
+ * Defines preformatted text
  *
  * @author tomason
  * @version $Id: $
@@ -30,9 +30,9 @@ public class PreTag extends CommonAttributes {
 	}
 
 	/**
-	 * <p>getWidth.</p>
+	 * Specifies the maximum number of characters per line
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return number of characters per line
 	 */
 	public String getWidth() {
 		return getAttribute("width");

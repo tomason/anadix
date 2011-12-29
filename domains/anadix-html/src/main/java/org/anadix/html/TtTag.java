@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>TtTag class.</p>
+ * Defines teletype text
  *
  * @author tomason
  * @version $Id: $

@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>QTag class.</p>
+ * Defines a short quotation
  *
  * @author tomason
  * @version $Id: $
@@ -30,9 +30,9 @@ public class QTag extends CommonAttributes {
 	}
 
 	/**
-	 * <p>getCite.</p>
+	 * Specifies the source URL of the quote
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return URL of source
 	 */
 	public String getCite() {
 		return getAttribute("cite");

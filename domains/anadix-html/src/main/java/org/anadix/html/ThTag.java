@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>ThTag class.</p>
+ * Defines a header cell in a table
  *
  * @author tomason
  * @version $Id: $
@@ -30,18 +30,18 @@ public class ThTag extends CommonAttributes {
 	}
 
 	/**
-	 * <p>getAbbr.</p>
+	 * Specifies an abbreviated version of the content in a cell
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return text
 	 */
 	public String getAbbr() {
 		return getAttribute("abbr");
 	}
 
 	/**
-	 * <p>getAxis.</p>
+	 * Categorizes cells
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return category name
 	 */
 	public String getAxis() {
 		return getAttribute("axis");
@@ -57,99 +57,99 @@ public class ThTag extends CommonAttributes {
 	}
 
 	/**
-	 * <p>getScope.</p>
+	 * Defines a way to associate header cells and data cells in a table
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return scope of the header
 	 */
 	public String getScope() {
 		return getAttribute("scope");
 	}
 
 	/**
-	 * <p>getRowspan.</p>
+	 * Sets the number of rows a cell should span
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return number
 	 */
 	public String getRowspan() {
 		return getAttribute("rowspan");
 	}
 
 	/**
-	 * <p>getColspan.</p>
+	 * Sets the number of columns a cell should span
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return number
 	 */
 	public String getColspan() {
 		return getAttribute("colspan");
 	}
 
 	/**
-	 * <p>getAlign.</p>
+	 * Aligns the content in a cell
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return alignment of the cell
 	 */
 	public String getAlign() {
 		return getAttribute("align");
 	}
 
 	/**
-	 * <p>getChar.</p>
+	 * Aligns the content in a cell to a character
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return character
 	 */
 	public String getChar() {
 		return getAttribute("char");
 	}
 
 	/**
-	 * <p>getCharoff.</p>
+	 * Sets the number of characters the content will be aligned from the character specified by the char attribute
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return number
 	 */
 	public String getCharoff() {
 		return getAttribute("charoff");
 	}
 
 	/**
-	 * <p>getValign.</p>
+	 * Vertical aligns the content in a cell
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return vertical alignment
 	 */
 	public String getValign() {
 		return getAttribute("valign");
 	}
 
 	/**
-	 * <p>getNowrap.</p>
+	 * Specifies that the content inside a cell should not wrap
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return nowrap or null
 	 */
 	public String getNowrap() {
 		return getAttribute("nowrap");
 	}
 
 	/**
-	 * <p>getBgcolor.</p>
+	 * Specifies the background color of a cell
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return background color
 	 */
 	public String getBgcolor() {
 		return getAttribute("bgcolor");
 	}
 
 	/**
-	 * <p>getWidth.</p>
+	 * Specifies the width of a cell
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return width of cell
 	 */
 	public String getWidth() {
 		return getAttribute("width");
 	}
 
 	/**
-	 * <p>getHeight.</p>
+	 * Sets the height of a cell
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return height of cell
 	 */
 	public String getHeight() {
 		return getAttribute("height");

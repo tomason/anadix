@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>ParamTag class.</p>
+ * Defines a parameter for an object
  *
  * @author tomason
  * @version $Id: $
@@ -30,45 +30,45 @@ public class ParamTag extends HtmlElement {
 	}
 
 	/**
-	 * <p>getIdAttribute.</p>
+	 * Specifies a unique id for an element
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return unique element id
 	 */
 	public String getIdAttribute() {
 		return getAttribute("id");
 	}
 
 	/**
-	 * <p>getNameAttribute.</p>
+	 * Specifies the name of a parameter
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return name of the element
 	 */
 	public String getNameAttribute() {
 		return getAttribute("name");
 	}
 
 	/**
-	 * <p>getValue.</p>
+	 * Specifies the value of the parameter
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return value of the parameter
 	 */
 	public String getValue() {
 		return getAttribute("value");
 	}
 
 	/**
-	 * <p>getValuetype.</p>
+	 * Specifies the type of the value
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return type of the value
 	 */
 	public String getValuetype() {
 		return getAttribute("valuetype");
 	}
 
 	/**
-	 * <p>getType.</p>
+	 * Specifies the MIME type of the parameter
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return MIME type of the parameter
 	 */
 	public String getType() {
 		return getAttribute("type");

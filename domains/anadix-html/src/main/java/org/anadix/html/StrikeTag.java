@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>StrikeTag class.</p>
+ * Defines strikethrough text
  *
  * @author tomason
  * @version $Id: $

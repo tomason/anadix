@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>ScriptTag class.</p>
+ * Defines a client-side script
  *
  * @author tomason
  * @version $Id: $
@@ -30,18 +30,18 @@ public class ScriptTag extends HtmlElement {
 	}
 
 	/**
-	 * <p>getCharset.</p>
+	 * Specifies the character encoding used in an external script file
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return charset of script
 	 */
 	public String getCharset() {
 		return getAttribute("charset");
 	}
 
 	/**
-	 * <p>getType.</p>
+	 * Specifies the MIME type of the script
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return MIME type of the script
 	 */
 	public String getType() {
 		return getAttribute("type");
@@ -57,18 +57,18 @@ public class ScriptTag extends HtmlElement {
 	}
 
 	/**
-	 * <p>getSrc.</p>
+	 * Specifies the URL of an external script file
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return URL of external script
 	 */
 	public String getSrc() {
 		return getAttribute("src");
 	}
 
 	/**
-	 * <p>getDefer.</p>
+	 * Specifies that the script is executed when the page has finished parsing (only for external scripts)
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return whether to run script after page parsing
 	 */
 	public String getDefer() {
 		return getAttribute("defer");

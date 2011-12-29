@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>SupTag class.</p>
+ * Defines superscripted text
  *
  * @author tomason
  * @version $Id: $

@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * Designates sample output from programs, scripts, etc.
+ * Defines sample output from a computer program
  *
  * @author tomason
  * @version $Id: $

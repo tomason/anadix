@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>StyleTag class.</p>
+ * Defines style information for a document
  *
  * @author tomason
  * @version $Id: $
@@ -30,45 +30,45 @@ public class StyleTag extends HtmlElement {
 	}
 
 	/**
-	 * <p>getLang.</p>
+	 * Specifies a language code for the content in an element
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return language code
 	 */
 	public String getLang() {
 		return getAttribute("lang");
 	}
 
 	/**
-	 * <p>getDir.</p>
+	 * Specifies the text direction for the content in an element
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return text direction
 	 */
 	public String getDir() {
 		return getAttribute("dir");
 	}
 
 	/**
-	 * <p>getType.</p>
+	 * Specifies the MIME type of the style sheet
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return MIME type of the style sheet
 	 */
 	public String getType() {
 		return getAttribute("type");
 	}
 
 	/**
-	 * <p>getMedia.</p>
+	 * Specifies what media/device the media resource is optimized for
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return what is the resource optimized for
 	 */
 	public String getMedia() {
 		return getAttribute("media");
 	}
 
 	/**
-	 * <p>getTitle.</p>
+	 * Specifies extra information about an element
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return title of the element
 	 */
 	public String getTitle() {
 		return getAttribute("title");

@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>TrTag class.</p>
+ * Defines a row in a table
  *
  * @author tomason
  * @version $Id: $
@@ -30,45 +30,45 @@ public class TrTag extends CommonAttributes {
 	}
 
 	/**
-	 * <p>getAlign.</p>
+	 * Aligns the content in a table row
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return alignment of the row
 	 */
 	public String getAlign() {
 		return getAttribute("align");
 	}
 
 	/**
-	 * <p>getChar.</p>
+	 * Aligns the content in a table row to a character
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return character
 	 */
 	public String getChar() {
 		return getAttribute("char");
 	}
 
 	/**
-	 * <p>getCharoff.</p>
+	 * Sets the number of characters the content will be aligned from the character specified by the char attribute
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return number
 	 */
 	public String getCharoff() {
 		return getAttribute("charoff");
 	}
 
 	/**
-	 * <p>getValign.</p>
+	 * Vertical aligns the content in a table row
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return vertical alignment
 	 */
 	public String getValign() {
 		return getAttribute("valign");
 	}
 
 	/**
-	 * <p>getBgcolor.</p>
+	 * Specifies a background color for a table row
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return backgroud color
 	 */
 	public String getBgcolor() {
 		return getAttribute("bgcolor");

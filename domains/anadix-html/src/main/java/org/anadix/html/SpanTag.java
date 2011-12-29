@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>SpanTag class.</p>
+ * Defines a section in a document
  *
  * @author tomason
  * @version $Id: $

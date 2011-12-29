@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>UlTag class.</p>
+ * Defines an unordered list
  *
  * @author tomason
  * @version $Id: $
@@ -30,18 +30,18 @@ public class UlTag extends CommonAttributes {
 	}
 
 	/**
-	 * <p>getType.</p>
+	 * Specifies the kind of marker to use in the list
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return bullet type
 	 */
 	public String getType() {
 		return getAttribute("type");
 	}
 
 	/**
-	 * <p>getCompact.</p>
+	 * Specifies that the list should render smaller than normal
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return "compact" or null
 	 */
 	public String getCompact() {
 		return getAttribute("compact");

@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>TextareaTag class.</p>
+ * Defines a multiline input control (text area)
  *
  * @author tomason
  * @version $Id: $
@@ -30,99 +30,99 @@ public class TextareaTag extends CommonAttributes {
 	}
 
 	/**
-	 * <p>getNameAttribute.</p>
+	 * Specifies the name for a text area
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return name of the element
 	 */
 	public String getNameAttribute() {
 		return getAttribute("name");
 	}
 
 	/**
-	 * <p>getRows.</p>
+	 * Specifies the visible number of lines in a text area
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return number
 	 */
 	public String getRows() {
 		return getAttribute("rows");
 	}
 
 	/**
-	 * <p>getCols.</p>
+	 * Specifies the visible width of a text area
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return number
 	 */
 	public String getCols() {
 		return getAttribute("cols");
 	}
 
 	/**
-	 * <p>getDisabled.</p>
+	 * Specifies that a text area should be disabled
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return "disabled" or null
 	 */
 	public String getDisabled() {
 		return getAttribute("disabled");
 	}
 
 	/**
-	 * <p>getReadonly.</p>
+	 * Specifies that a text area should be read-only
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return "readonly" or null
 	 */
 	public String getReadonly() {
 		return getAttribute("readonly");
 	}
 
 	/**
-	 * <p>getTabindex.</p>
+	 * Specifies the tab order of an element
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return number
 	 */
 	public String getTabindex() {
 		return getAttribute("tabindex");
 	}
 
 	/**
-	 * <p>getAccesskey.</p>
+	 * Specifies a keyboard shortcut to access an element
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return character
 	 */
 	public String getAccesskey() {
 		return getAttribute("accesskey");
 	}
 
 	/**
-	 * <p>getOnfocus.</p>
+	 * Script to be run when an element gets focus
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return script
 	 */
 	public String getOnfocus() {
 		return getAttribute("onfocus");
 	}
 
 	/**
-	 * <p>getOnblur.</p>
+	 * Script to be run when an element loses focus
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return script
 	 */
 	public String getOnblur() {
 		return getAttribute("onblur");
 	}
 
 	/**
-	 * <p>getOnselect.</p>
+	 * Script to be run when an element is selected
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return script
 	 */
 	public String getOnselect() {
 		return getAttribute("onselect");
 	}
 
 	/**
-	 * <p>getOnchange.</p>
+	 * Script to be run when an element change
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return script
 	 */
 	public String getOnchange() {
 		return getAttribute("onchange");

@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>TableTag class.</p>
+ * Defines a table
  *
  * @author tomason
  * @version $Id: $
@@ -30,81 +30,81 @@ public class TableTag extends CommonAttributes {
 	}
 
 	/**
-	 * <p>getSummary.</p>
+	 * Specifies a summary of the content of a table
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return text
 	 */
 	public String getSummary() {
 		return getAttribute("summary");
 	}
 
 	/**
-	 * <p>getWidth.</p>
+	 * Specifies the width of a table
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return width of the table
 	 */
 	public String getWidth() {
 		return getAttribute("width");
 	}
 
 	/**
-	 * <p>getBorder.</p>
+	 * Specifies the width of the borders around a table
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return number
 	 */
 	public String getBorder() {
 		return getAttribute("border");
 	}
 
 	/**
-	 * <p>getFrame.</p>
+	 * Specifies which parts of the outside borders that should be visible
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return list of outside border parts
 	 */
 	public String getFrame() {
 		return getAttribute("frame");
 	}
 
 	/**
-	 * <p>getRules.</p>
+	 * Specifies which parts of the inside borders that should be visible
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return list of inside border parts
 	 */
 	public String getRules() {
 		return getAttribute("rules");
 	}
 
 	/**
-	 * <p>getCellspacing.</p>
+	 * Specifies the space between cells
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return number
 	 */
 	public String getCellspacing() {
 		return getAttribute("cellspacing");
 	}
 
 	/**
-	 * <p>getCellpadding.</p>
+	 * Specifies the space between the cell wall and the cell content
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return number
 	 */
 	public String getCellpadding() {
 		return getAttribute("cellpadding");
 	}
 
 	/**
-	 * <p>getAlign.</p>
+	 * Specifies the alignment of a table according to surrounding text
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return alignment
 	 */
 	public String getAlign() {
 		return getAttribute("align");
 	}
 
 	/**
-	 * <p>getBgcolor.</p>
+	 * Specifies the background color for a table
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return color
 	 */
 	public String getBgcolor() {
 		return getAttribute("bgcolor");

@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>SelectTag class.</p>
+ * Defines a drop-down list
  *
  * @author tomason
  * @version $Id: $
@@ -30,72 +30,72 @@ public class SelectTag extends CommonAttributes {
 	}
 
 	/**
-	 * <p>getNameAttribute.</p>
+	 * Defines a name for the drop-down list
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return name of the element
 	 */
 	public String getNameAttribute() {
 		return getAttribute("name");
 	}
 
 	/**
-	 * <p>getSize.</p>
+	 * Defines the number of visible options in a drop-down list
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return number of visible options
 	 */
 	public String getSize() {
 		return getAttribute("size");
 	}
 
 	/**
-	 * <p>getMultiple.</p>
+	 * Specifies that multiple options can be selected at once
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return whether more options can be selected
 	 */
 	public String getMultiple() {
 		return getAttribute("multiple");
 	}
 
 	/**
-	 * <p>getDisabled.</p>
+	 * Specifies that a drop-down list should be disabled
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return whether the list is disabled
 	 */
 	public String getDisabled() {
 		return getAttribute("disabled");
 	}
 
 	/**
-	 * <p>getTabindex.</p>
+	 * Specifies the tab order of an element
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return tabindex of the element
 	 */
 	public String getTabindex() {
 		return getAttribute("tabindex");
 	}
 
 	/**
-	 * <p>getOnfocus.</p>
+	 * Script to be run when an element gets focus
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return script when the element gets focus
 	 */
 	public String getOnfocus() {
 		return getAttribute("onfocus");
 	}
 
 	/**
-	 * <p>getOnblur.</p>
+	 * Script to be run when an element loses focus
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return script when the element looses focus
 	 */
 	public String getOnblur() {
 		return getAttribute("onblur");
 	}
 
 	/**
-	 * <p>getOnchange.</p>
+	 * Script to be run when an element change
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return script when element changes
 	 */
 	public String getOnchange() {
 		return getAttribute("onchange");

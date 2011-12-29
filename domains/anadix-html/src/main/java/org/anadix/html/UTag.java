@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>UTag class.</p>
+ * Defines underlined text
  *
  * @author tomason
  * @version $Id: $
