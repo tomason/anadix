@@ -217,7 +217,7 @@
       </build>
     </profile>
 	<profile>
-	  <id>pgp-sign</id>
+	  <id>maven-central</id>
 	  <build>
 	    <plugins>
 	      <plugin>
@@ -230,6 +230,28 @@
                 <phase>verify</phase>
                 <goals>
                   <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <executions>
+              <execution>
+                <phase>package</phase>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <artifactId>maven-source-plugin</artifactId>
+            <executions>
+              <execution>
+                <phase>package</phase>
+                <goals>
+                  <goal>jar</goal>
                 </goals>
               </execution>
             </executions>
