@@ -25,8 +25,9 @@ import org.anadix.ItemStatus;
  */
 public class DocumentContainsStyle extends Section508ReportItem {
 	private static final String KEY = "document.contains.style";
-	public static final String INLINE = "inline";
+	public static final String LINKED = "linked";
 	public static final String HEAD = "head";
+	public static final String INLINE = "inline";
 
 	/**
 	 * Constructor

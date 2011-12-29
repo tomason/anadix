@@ -24,6 +24,15 @@ rule "stylesheets present"
 			LinkTag( rel == "stylesheet" )
 		)
 	then
+		insertLogical(new DocumentContainsStyle(DocumentContainsStyle.LINKED));
+end
+
+rule "style present"
+	when
+		exists(
+			StyleTag( )
+		)
+	then
 		insertLogical(new DocumentContainsStyle(DocumentContainsStyle.HEAD));
 end
 
