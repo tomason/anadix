@@ -27,7 +27,7 @@ limitations under the License.
   <dependencySets>
     <dependencySet>
       <includes>
-        <include>org.anadix:anadix*:jar:*</include>
+        <include>org.anadix*:anadix*:jar:*</include>
       </includes>
       <outputDirectory>/</outputDirectory>
       <useStrictFiltering>true</useStrictFiltering>
@@ -35,7 +35,7 @@ limitations under the License.
   
     <dependencySet>
       <excludes>
-        <exclude>org.anadix:anadix*</exclude>
+        <exclude>org.anadix*:anadix*</exclude>
       </excludes>
       <outputDirectory>/lib</outputDirectory>
       <useStrictFiltering>true</useStrictFiltering>
@@ -43,7 +43,7 @@ limitations under the License.
     
     <dependencySet>
       <includes>
-        <include>org.anadix:anadix-docs*</include>
+        <include>org.anadix:documentation</include>
       </includes>
       <outputDirectory>/doc</outputDirectory>
       <unpack>true</unpack>

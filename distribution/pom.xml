@@ -72,7 +72,7 @@
       <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>org.anadix</groupId>
+      <groupId>org.anadix.parsers</groupId>
       <artifactId>anadix-swingparser</artifactId>
       <version>${project.version}</version>
     </dependency>
@@ -82,12 +82,12 @@
       <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>org.anadix</groupId>
+      <groupId>org.anadix.integration</groupId>
       <artifactId>anadix-ant</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>org.anadix</groupId>
+      <groupId>org.anadix.integration</groupId>
       <artifactId>anadix-selenium</artifactId>
       <version>${project.version}</version>
     </dependency>
