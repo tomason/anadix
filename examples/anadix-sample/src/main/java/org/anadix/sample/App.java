@@ -11,18 +11,9 @@ import org.anadix.factories.SourceFactory;
 import org.anadix.impl.XHTMLReportFormatter;
 import org.anadix.section508.Section508;
 
-/**
- * <p>App class.</p>
- *
- * @author tomason
- * @version $Id: $
- */
+
 public class App {
-	/**
-	 * <p>main.</p>
-	 *
-	 * @param args an array of {@link java.lang.String} objects.
-	 */
+
 	public static void main( String[] args ) {
 		String[] filenames = new String[] {
 				//"Drools-5.2.0.html",	//commented out as it takes the longest
@@ -31,9 +22,9 @@ public class App {
 				"seznam.cz.html",
 				"redhat.com.html"
 		};
-		
+
 		Anadix.setDefaultFormatter(XHTMLReportFormatter.class);
-		
+
 		try {
 			Analyzer a = Anadix.newAnalyzer(new Section508());
 			for (String filename: filenames) {
@@ -41,7 +32,7 @@ public class App {
 				Anadix.formatReport(r);
 				System.out.println(r.report());
 			}
-			
+
 			Report r = a.analyze(SourceFactory.newURLSource(new URL("http://section508.gov")));
 			Anadix.formatReport(r);
 			System.out.println(r.report());
