@@ -16,7 +16,9 @@
 package org.anadix.swingparser;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.List;
 import java.util.Properties;
 
 import javax.swing.text.MutableAttributeSet;
@@ -24,6 +26,7 @@ import javax.swing.text.html.HTML.Tag;
 import javax.swing.text.html.HTMLEditorKit.ParserCallback;
 
 import org.anadix.html.HTMLElementFactory;
+import org.anadix.html.Position;
 import org.apache.log4j.Logger;
 
 
@@ -40,6 +43,8 @@ public class StatefulParserCallback extends ParserCallback {
 
 	private final HTMLElementFactory factory;
 	private final String source;
+
+	private final int[] lines;
 
 	private BigInteger ID = BigInteger.ZERO;
 
@@ -63,6 +68,7 @@ public class StatefulParserCallback extends ParserCallback {
 		this.source = source;
 
 		factory.setGlobal("jump", JUMP);
+		this.lines = countLines(this.source);
 	}
 
 	/** {@inheritDoc} */
@@ -71,7 +77,7 @@ public class StatefulParserCallback extends ParserCallback {
 		ID = ID.add(BigInteger.ONE);
 
 		TagEvent e = new SimpleTagEvent(
-				ID, t.toString(), parseAttributes(a), pos,
+				ID, t.toString(), parseAttributes(a), createPosition(pos),
 				getSource(t.toString(), pos));
 
 		if (e.getSource() != null && e.getSource().replace(" ", "").length() == e.getTagName().length() + 3) {
@@ -87,7 +93,7 @@ public class StatefulParserCallback extends ParserCallback {
 		ID = ID.add(BigInteger.ONE);
 
 		TagEvent e = new StartTagEvent(
-				ID, t.toString(), parseAttributes(a), pos,
+				ID, t.toString(), parseAttributes(a), createPosition(pos),
 				getSource(t.toString(), pos));
 
 		if (e.getSource() != null && e.getSource().replace(" ", "").length() == e.getTagName().length() + 3) {
@@ -104,7 +110,7 @@ public class StatefulParserCallback extends ParserCallback {
 	public void handleEndTag(Tag t, int pos) {
 		ID = ID.divide(JUMP);
 
-		TagEvent e = new EndTagEvent(ID, t.toString().toLowerCase(), pos);
+		TagEvent e = new EndTagEvent(ID, t.toString().toLowerCase(), createPosition(pos));
 
 		factory.insertEvent(ENTRY_POINT, e);
 	}
@@ -121,6 +127,26 @@ public class StatefulParserCallback extends ParserCallback {
 	@Override
 	public void handleError(String errorMsg, int pos) {
 		logger.error(errorMsg);
+	}
+
+	private static int[] countLines(String source) {
+		if (source == null) {
+			return null;
+		}
+		List<Integer> list = new ArrayList<Integer>();
+
+		int pos = 0;
+		while((pos = source.indexOf('\n', pos)) != -1) {
+			list.add(pos);
+			pos++;
+		}
+
+		int[] result = new int[list.size()];
+		for (int i = 0; i < list.size(); i++) {
+			result[i] = list.get(i);
+		}
+
+		return result;
 	}
 
 	private Properties parseAttributes(MutableAttributeSet attributes) {
@@ -163,5 +189,21 @@ public class StatefulParserCallback extends ParserCallback {
 
 		logger.error(String.format("Could not find tag %s starting at %s", tagName, position));
 		return "!" + tagName + "(" + beginIndex + "," + endIndex + ") - " + source.substring(position, position + 50);
+	}
+
+	private Position createPosition(int position) {
+		if (lines == null || lines.length < 1) {
+			return new Position(position);
+		} else {
+			int line = 0;
+			int col = 0;
+
+			int i = 0;
+			while (position > lines[i++]);
+			line = i;						// keep i+1 => lines start from 1
+			col = position - lines[i - 2];  // but let's subtract from previous line
+
+			return new Position(line, col);
+		}
 	}
 }

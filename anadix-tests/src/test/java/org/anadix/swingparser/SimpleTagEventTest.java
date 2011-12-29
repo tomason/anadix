@@ -18,6 +18,7 @@ package org.anadix.swingparser;
 import java.math.BigInteger;
 import java.util.Properties;
 
+import org.anadix.html.Position;
 import org.testng.annotations.Test;
 
 @Test
@@ -25,7 +26,7 @@ public class SimpleTagEventTest {
 	private static final BigInteger id = new BigInteger("14");
 	private static final String tagName = "img";
 	private static final Properties attributes = new Properties();
-	private static final int position = 42;
+	private static final Position position = new Position(42);
 	private static final String source = "<img />";
 
 	public void testConstructor1() {
@@ -52,9 +53,8 @@ public class SimpleTagEventTest {
 		new SimpleTagEvent(id, tagName, null, position);
 	}
 
-	@Test(expectedExceptions = IllegalArgumentException.class)
 	public void testConstructor6() {
-		new SimpleTagEvent(id, tagName, attributes, -1);
+		new SimpleTagEvent(id, tagName, attributes, null);
 	}
 
 
@@ -82,9 +82,8 @@ public class SimpleTagEventTest {
 		new SimpleTagEvent(id, tagName, null, position, source);
 	}
 
-	@Test(expectedExceptions = IllegalArgumentException.class)
 	public void testConstructor12() {
-		new SimpleTagEvent(id, tagName, attributes, -1, source);
+		new SimpleTagEvent(id, tagName, attributes, null, source);
 	}
 
 	public void testConstructor13() {

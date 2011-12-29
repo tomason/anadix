@@ -26,7 +26,7 @@ import org.anadix.Element;
  * and text content.
  * The mandatory attributes are unmodifiable as they define the element. The optional ones
  * ones can be assigned and changed as necessary. The only constructor is package protected
- * as instances of HTML element should only be created through {@link HTMLElementFactory}. 
+ * as instances of HTML element should only be created through {@link HTMLElementFactory}.
  *
  * @author tomason
  * @version $Id: $
@@ -37,7 +37,7 @@ public abstract class HtmlElement implements Element, Comparable<HtmlElement> {
 	private final HtmlElement parent;
 	private final Attributes attributes;
 
-	private int position;
+	private Position position;
 	private String source;
 	private String textContent;
 
@@ -46,7 +46,7 @@ public abstract class HtmlElement implements Element, Comparable<HtmlElement> {
 			String name,
 			HtmlElement parent,
 			Attributes attributes) {
-		this(id, name, parent, attributes, null, 0, null);
+		this(id, name, parent, attributes, null, null, null);
 	}
 
 	private HtmlElement(
@@ -55,7 +55,7 @@ public abstract class HtmlElement implements Element, Comparable<HtmlElement> {
 			HtmlElement parent,
 			Attributes attributes,
 			String source,
-			int position,
+			Position position,
 			String textContent) {
 		if (id == null) {
 			throw new NullPointerException("id can't be null");
@@ -78,7 +78,7 @@ public abstract class HtmlElement implements Element, Comparable<HtmlElement> {
 	}
 
 	/**
-	 * Gets the id of the element (not the attribute id but the id as assigned by pasrser) 
+	 * Gets the id of the element (not the attribute id but the id as assigned by pasrser)
 	 *
 	 * @return id of the element
 	 */
@@ -104,7 +104,7 @@ public abstract class HtmlElement implements Element, Comparable<HtmlElement> {
 		return parent;
 	}
 
-	
+
 	/**
 	 * Gets the list of attributes of the element
 	 *
@@ -114,7 +114,7 @@ public abstract class HtmlElement implements Element, Comparable<HtmlElement> {
 		return attributes;
 	}
 
-	
+
 	/**
 	 * Gets value of attribute by name
 	 *
@@ -124,7 +124,7 @@ public abstract class HtmlElement implements Element, Comparable<HtmlElement> {
 	public String getAttribute(String name) {
 		return getAttributes().getAttribute(name);
 	}
-	
+
 
 	/**
 	 * Sets the source of the element
@@ -146,16 +146,16 @@ public abstract class HtmlElement implements Element, Comparable<HtmlElement> {
 	public String getSource() {
 		return source;
 	}
-	
+
 
 	/**
 	 * Sets the position of the element
 	 *
 	 * @param position position of the element
 	 */
-	public void setPosition(int position) {
-		if (position < 0) {
-			throw new IllegalArgumentException("position must be greater then or equal to 0");
+	public void setPosition(Position position) {
+		if (position == null) {
+			throw new NullPointerException("position can't be null");
 		}
 		this.position = position;
 	}
@@ -165,7 +165,7 @@ public abstract class HtmlElement implements Element, Comparable<HtmlElement> {
 	 *
 	 * @return position of the element
 	 */
-	public int getPosition() {
+	public Position getPosition() {
 		return position;
 	}
 

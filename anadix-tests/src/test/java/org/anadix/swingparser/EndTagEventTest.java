@@ -17,13 +17,14 @@ package org.anadix.swingparser;
 
 import java.math.BigInteger;
 
+import org.anadix.html.Position;
 import org.testng.annotations.Test;
 
 @Test
 public class EndTagEventTest {
 	private static final BigInteger id = new BigInteger("14");
 	private static final String tagName = "html";
-	private static final int position = 42;
+	private static final Position position = new Position(42);
 
 	public void testConstructor1() {
 		new EndTagEvent(id, tagName, position);
@@ -44,8 +45,7 @@ public class EndTagEventTest {
 		new EndTagEvent(id, "", position);
 	}
 
-	@Test(expectedExceptions = IllegalArgumentException.class)
 	public void testConstructor5() {
-		new EndTagEvent(id, tagName, -1);
+		new EndTagEvent(id, tagName, null);
 	}
 }

@@ -19,6 +19,8 @@ import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.Properties;
 
+import org.anadix.html.Position;
+
 
 /**
  * Abstract class for events from parser to the Drools engine
@@ -32,7 +34,7 @@ public abstract class TagEvent implements Serializable {
 	private final BigInteger id;
 	private final String tagName;
 	private final Properties attributes;
-	private final int position;
+	private final Position position;
 	private final String source;
 
 	/**
@@ -43,7 +45,7 @@ public abstract class TagEvent implements Serializable {
 	 * @param attributes attributes of the tag
 	 * @param position position in document
 	 */
-	public TagEvent(BigInteger id, String tagName, Properties attributes, int position) {
+	public TagEvent(BigInteger id, String tagName, Properties attributes, Position position) {
 		this(id, tagName, attributes, position, null);
 	}
 
@@ -56,7 +58,7 @@ public abstract class TagEvent implements Serializable {
 	 * @param position position in document
 	 * @param source source code of the tag
 	 */
-	public TagEvent(BigInteger id, String tagName, Properties attributes, int position, String source) {
+	public TagEvent(BigInteger id, String tagName, Properties attributes, Position position, String source) {
 		if (id == null) {
 			throw new NullPointerException("id can't be null");
 		}
@@ -65,9 +67,6 @@ public abstract class TagEvent implements Serializable {
 		}
 		if (attributes == null) {
 			throw new NullPointerException("attributes can't be null");
-		}
-		if (position < 0) {
-			throw new IllegalArgumentException("position must be greater than or equal to 0");
 		}
 		this.id = id;
 		this.tagName = tagName.toLowerCase();
@@ -108,7 +107,7 @@ public abstract class TagEvent implements Serializable {
 	 *
 	 * @return position of the tag
 	 */
-	public int getPosition() {
+	public Position getPosition() {
 		return position;
 	}
 

@@ -76,3 +76,51 @@ rule "SetTextContent"
 			setTextContent($text);
 		}
 end
+
+rule "SetPositionPair"
+	no-loop
+	salience 1000
+	when
+		StartTagEvent( $id : id, $pos : position != null ) from entry-point "parser"
+		element : HtmlElement( id == $id )
+	then
+		modify(element) {
+			setPosition($pos);
+		}
+end
+
+rule "SetPositionSimple"
+	no-loop
+	salience 1000
+	when
+		SimpleTagEvent( $id : id, $pos : position != null ) from entry-point "parser"
+		element : HtmlElement( id == $id )
+	then
+		modify(element) {
+			setPosition($pos);
+		}
+end
+
+rule "SetSourcePair"
+	no-loop
+	salience 1000
+	when
+		StartTagEvent( $id : id, $source : source != null ) from entry-point "parser"
+		element : HtmlElement( id == $id )
+	then
+		modify(element) {
+			setSource($source);
+		}
+end
+
+rule "SetSourceSingle"
+	no-loop
+	salience 1000
+	when
+		SimpleTagEvent( $id : id, $source : source != null ) from entry-point "parser"
+		element : HtmlElement( id == $id )
+	then
+		modify(element) {
+			setSource($source);
+		}
+end

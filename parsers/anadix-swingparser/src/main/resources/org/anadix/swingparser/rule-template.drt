@@ -40,11 +40,7 @@ rule "@{tagName} pair"
         	HtmlElement( position == tag.position )
         )
     then
-        HtmlElement e = elementFactory.create@{tagClass}(tag.getId(), parent, tag.getAttributes());
-        
-        e.setPosition(tag.getPosition());
-        e.setSource(tag.getSource());
-        
+        HtmlElement e = elementFactory.create@{tagClass}(tag.getId(), parent, tag.getAttributes());       
         elementFactory.insertElement(e);
 end
 
@@ -59,10 +55,6 @@ rule "@{tagName} single"
         )
     then
         HtmlElement e = elementFactory.create@{tagClass}(tag.getId(), parent, tag.getAttributes());
-        
-        e.setPosition(tag.getPosition());
-        e.setSource(tag.getSource());
-        
         elementFactory.insertElement(e);
 end
 

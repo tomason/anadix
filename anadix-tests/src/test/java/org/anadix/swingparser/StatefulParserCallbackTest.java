@@ -15,7 +15,9 @@
  */
 package org.anadix.swingparser;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertNull;
 
 import java.math.BigInteger;
 import java.util.Collection;
@@ -27,6 +29,7 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.html.HTML.Tag;
 
 import org.anadix.html.HTMLElementFactory;
+import org.anadix.html.Position;
 import org.anadix.mock.TrackingElementFactory;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -49,11 +52,13 @@ public class StatefulParserCallbackTest {
 					"    </iframe>\n" +
 					"  </body>\n" +
 					"</html>\n";
-	private static final int iframePosition = source.indexOf("<iframe");
-	private static final int h1Position = source.indexOf("<h1");
-	private static final int imgPosition = source.indexOf("<img");
+	private static final Position iframePosition = new Position(source.indexOf("<iframe"));
+	private static final int h1Pos = source.indexOf("<h1");
+	private static final Position h1Position = new Position(6, 7);
+	private static final int imgPos = source.indexOf("<img");
+	private static final Position imgPosition = new Position(7, 7);
 	//private static final int iframeEndPosition = source.indexOf("</iframe>");
-	private static final int h1EndPosition = source.indexOf("</h1>");
+	private static final Position h1EndPosition = new Position(source.indexOf("</h1>"));
 	private static final String ENTRY_POINT = "parser";
 
 	@BeforeMethod(alwaysRun = true)
@@ -88,7 +93,7 @@ public class StatefulParserCallbackTest {
 		MutableAttributeSet a = new SimpleAttributeSet();
 		a.addAttribute("src", imgSrc);
 
-		return new Object[][] { new Object[] { Tag.IMG, a, imgPosition } };
+		return new Object[][] { new Object[] { Tag.IMG, a, imgPos } };
 	}
 
 	@DataProvider(name = "start")
@@ -96,7 +101,7 @@ public class StatefulParserCallbackTest {
 		MutableAttributeSet a = new SimpleAttributeSet();
 		a.addAttribute("style", h1Style);
 
-		return new Object[][] { new Object[] { Tag.H1, a, h1Position } };
+		return new Object[][] { new Object[] { Tag.H1, a, h1Pos } };
 	}
 
 	@DataProvider(name = "end")
@@ -104,7 +109,7 @@ public class StatefulParserCallbackTest {
 		MutableAttributeSet a = new SimpleAttributeSet();
 		a.addAttribute("style", h1Style);
 
-		return new Object[][] { new Object[] { Tag.H1, a, h1EndPosition } };
+		return new Object[][] { new Object[] { Tag.H1, a, h1EndPosition.getCharacterNumber() } };
 	}
 
 	@Test(dataProvider = "simple")
@@ -123,7 +128,7 @@ public class StatefulParserCallbackTest {
 
 		assertEquals(event.getId(), BigInteger.ONE);
 		assertEquals(event.getTagName(), "img");
-		assertEquals(event.getPosition(), imgPosition);
+		assertEquals(event.getPosition().getCharacterNumber(), imgPos);
 		assertNull(event.getSource());
 
 		Properties attributes = event.getAttributes();
@@ -183,7 +188,7 @@ public class StatefulParserCallbackTest {
 
 		assertEquals(event.getId(), BigInteger.ONE);
 		assertEquals(event.getTagName(), "h1");
-		assertEquals(event.getPosition(), h1Position);
+		assertEquals(event.getPosition().getCharacterNumber(), h1Pos);
 		assertNull(event.getSource());
 
 		Properties attributes = event.getAttributes();
@@ -255,6 +260,6 @@ public class StatefulParserCallbackTest {
 	public void testHandleError() {
 		StatefulParserCallback spc = new StatefulParserCallback(factory);
 
-		spc.handleError("iframe is invalid tag name", iframePosition);
+		spc.handleError("iframe is invalid tag name", iframePosition.getCharacterNumber());
 	}
 }

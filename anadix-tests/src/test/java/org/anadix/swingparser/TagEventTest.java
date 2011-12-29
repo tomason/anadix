@@ -15,11 +15,16 @@
  */
 package org.anadix.swingparser;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertNotEquals;
+import static org.testng.Assert.assertNull;
+import static org.testng.Assert.assertTrue;
 
 import java.math.BigInteger;
 import java.util.Properties;
 
+import org.anadix.html.Position;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -28,7 +33,7 @@ public class TagEventTest {
 	private static final BigInteger id = new BigInteger("14");
 	private static final String tagName = "img";
 	private static final Properties attributes = new Properties();
-	private static final int position = 42;
+	private static final Position position = new Position(42);
 	private static final String source = "<img />";
 
 	public void testConstructor1() {
@@ -55,9 +60,8 @@ public class TagEventTest {
 		new MockTagEvent(id, tagName, null, position);
 	}
 
-	@Test(expectedExceptions = IllegalArgumentException.class)
 	public void testConstructor6() {
-		new MockTagEvent(id, tagName, attributes, -1);
+		new MockTagEvent(id, tagName, attributes, null);
 	}
 
 
@@ -85,9 +89,8 @@ public class TagEventTest {
 		new MockTagEvent(id, tagName, null, position, source);
 	}
 
-	@Test(expectedExceptions = IllegalArgumentException.class)
 	public void testConstructor12() {
-		new MockTagEvent(id, tagName, attributes, -1, source);
+		new MockTagEvent(id, tagName, attributes, null, source);
 	}
 
 	public void testConstructor13() {
@@ -134,7 +137,7 @@ public class TagEventTest {
 
 	public void testHashCode() {
 		TagEvent e1 = mock;
-		TagEvent e2 = new MockTagEvent(id, "html", new Properties(), 0);
+		TagEvent e2 = new MockTagEvent(id, "html", new Properties(), new Position(0));
 		TagEvent e3 = new MockTagEvent(new BigInteger("15"), tagName, attributes, position);
 
 		assertEquals(e1.hashCode(), e1.hashCode());
@@ -145,7 +148,7 @@ public class TagEventTest {
 
 	public void testEquals() {
 		TagEvent e1 = mock;
-		TagEvent e2 = new MockTagEvent(id, "html", new Properties(), 0);
+		TagEvent e2 = new MockTagEvent(id, "html", new Properties(), new Position(0));
 		TagEvent e3 = new MockTagEvent(new BigInteger("15"), tagName, attributes, position);
 
 		assertTrue(e1.equals(e1));
@@ -162,7 +165,7 @@ public class TagEventTest {
 
 		assertTrue(toString.contains(id.toString()));
 		assertTrue(toString.contains(tagName));
-		assertTrue(toString.contains(Integer.toString(position)));
+		assertTrue(toString.contains(position.toString()));
 		assertTrue(toString.contains(attributes.toString()));
 		assertFalse(toString.contains(source));
 	}
@@ -170,11 +173,11 @@ public class TagEventTest {
 	private class MockTagEvent extends TagEvent {
 		private static final long serialVersionUID = -646381465297639866L;
 
-		public MockTagEvent(BigInteger id, String tagName, Properties attributes, int position, String source) {
+		public MockTagEvent(BigInteger id, String tagName, Properties attributes, Position position, String source) {
 			super(id, tagName, attributes, position, source);
 		}
 
-		public MockTagEvent(BigInteger id, String tagName, Properties attributes, int position) {
+		public MockTagEvent(BigInteger id, String tagName, Properties attributes, Position position) {
 			super(id, tagName, attributes, position);
 		}
 	}

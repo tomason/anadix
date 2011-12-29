@@ -15,8 +15,10 @@
  */
 package org.anadix.html;
 
-import static org.mockito.Mockito.*;
-import static org.testng.Assert.*;
+import static org.mockito.Mockito.mock;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNull;
+import static org.testng.Assert.assertTrue;
 
 import java.math.BigInteger;
 import java.util.Properties;
@@ -30,7 +32,7 @@ public class HtmlElementTest {
 	private static final HtmlElement parent = mock(HtmlElement.class);
 	private static final Attributes attributes = new Attributes(new Properties());
 	private static final String name = "html";
-	private static final int position = 42;
+	private static final Position position = new Position(42);
 	private static final String source = "<html><head></head><body><img /></body></html>";
 	private static final String textContent = "some text content";
 
@@ -83,13 +85,13 @@ public class HtmlElementTest {
 		assertEquals(mock.getParent(), parent);
 	}
 
-	@Test(expectedExceptions = IllegalArgumentException.class)
+	@Test(expectedExceptions = {NullPointerException.class})
 	public void testPosition1() {
-		mock.setPosition(-position);
+		mock.setPosition(null);
 	}
 
 	public void testPosition2() {
-		assertEquals(mock.getPosition(), 0);
+		assertNull(mock.getPosition());
 
 		mock.setPosition(position);
 		assertEquals(mock.getPosition(), position);
@@ -134,7 +136,7 @@ public class HtmlElementTest {
 
 		assertTrue(toString.startsWith(name));
 		assertTrue(toString.contains(id.toString()));
-		assertTrue(toString.contains(Integer.toString(position)));
+		assertTrue(toString.contains(position.toString()));
 		assertTrue(toString.contains(attributes.toString()));
 	}
 

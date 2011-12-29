@@ -18,6 +18,8 @@ package org.anadix.swingparser;
 import java.math.BigInteger;
 import java.util.Properties;
 
+import org.anadix.html.Position;
+
 /**
  * Event representing end of the tag (eg. &lt;/h1&gt;)
  *
@@ -34,7 +36,7 @@ public class EndTagEvent extends TagEvent {
 	 * @param tagName name of the tag
 	 * @param position position in document
 	 */
-	public EndTagEvent(BigInteger ID, String tagName, int position) {
+	public EndTagEvent(BigInteger ID, String tagName, Position position) {
 		super(ID, tagName, new Properties(), position);
 	}
 }

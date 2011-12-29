@@ -18,6 +18,8 @@ package org.anadix.swingparser;
 import java.math.BigInteger;
 import java.util.Properties;
 
+import org.anadix.html.Position;
+
 /**
  * Event representing start of the pair tag (eg. &lt;h1&gt;)
  *
@@ -35,7 +37,7 @@ public class StartTagEvent extends TagEvent {
 	 * @param attributes attributes of the tag
 	 * @param position position in document
 	 */
-	public StartTagEvent(BigInteger id, String tagName, Properties attributes, int position) {
+	public StartTagEvent(BigInteger id, String tagName, Properties attributes, Position position) {
 		super(id, tagName, attributes, position);
 	}
 
@@ -48,7 +50,7 @@ public class StartTagEvent extends TagEvent {
 	 * @param position position in document
 	 * @param source source code of the tag
 	 */
-	public StartTagEvent(BigInteger id, String tagName, Properties attributes, int position, String source) {
+	public StartTagEvent(BigInteger id, String tagName, Properties attributes, Position position, String source) {
 		super(id, tagName, attributes, position, source);
 	}
 }

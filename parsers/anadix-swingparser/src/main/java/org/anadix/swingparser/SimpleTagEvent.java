@@ -18,6 +18,8 @@ package org.anadix.swingparser;
 import java.math.BigInteger;
 import java.util.Properties;
 
+import org.anadix.html.Position;
+
 /**
  * Event representing simple tag (eg. &lt;img src="..." alt="..." /&gt;)
  *
@@ -35,7 +37,7 @@ public class SimpleTagEvent extends TagEvent {
 	 * @param attributes attributes of the tag
 	 * @param position position in document
 	 */
-	public SimpleTagEvent(BigInteger ID, String tagName, Properties attributes, int position) {
+	public SimpleTagEvent(BigInteger ID, String tagName, Properties attributes, Position position) {
 		super(ID, tagName, attributes, position);
 	}
 
@@ -48,7 +50,7 @@ public class SimpleTagEvent extends TagEvent {
 	 * @param position position in document
 	 * @param source source code of the tag
 	 */
-	public SimpleTagEvent(BigInteger id, String tagName, Properties attributes, int position, String source) {
+	public SimpleTagEvent(BigInteger id, String tagName, Properties attributes, Position position, String source) {
 		super(id, tagName, attributes, position, source);
 	}
 }
