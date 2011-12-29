@@ -20,16 +20,20 @@ import org.anadix.section508.report.*
 
 rule "stylesheets present"
 	when
-		( or 
-			exists(
-				LinkTag( rel == "stylesheet" )
-			)
-			exists (
-				CoreAttributes( style != null )
-			)
+		exists( 
+			LinkTag( rel == "stylesheet" )
 		)
 	then
-		insert(new DocumentContainsStyle());
+		insertLogical(new DocumentContainsStyle(DocumentContainsStyle.HEAD));
+end
+
+rule "inline stylesheets present"
+	when
+		exists(
+			CoreAttributes( style != null )
+		)
+	then
+		insertLogical(new DocumentContainsStyle(DocumentContainsStyle.INLINE));
 end
 
 rule "styles in tags"

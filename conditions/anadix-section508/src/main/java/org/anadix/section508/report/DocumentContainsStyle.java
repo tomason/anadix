@@ -25,12 +25,14 @@ import org.anadix.ItemStatus;
  */
 public class DocumentContainsStyle extends Section508ReportItem {
 	private static final String KEY = "document.contains.style";
+	public static final String INLINE = "inline";
+	public static final String HEAD = "head";
 
 	/**
 	 * Constructor
 	 */
-	public DocumentContainsStyle() {
-		super(ItemStatus.MANUAL, KEY);
+	public DocumentContainsStyle(String type) {
+		super(ItemStatus.MANUAL, "document.contains.style." + type);
 
 		setDescription(formatDescriptionString(KEY));
 		setAdvice(formatAdviceString(KEY));
