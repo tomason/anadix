@@ -201,7 +201,7 @@ public class StatefulParserCallback extends ParserCallback {
 			int i = 0;
 			while (position > lines[i++]);
 			line = i;						// keep i+1 => lines start from 1
-			col = position - lines[i - 2];  // but let's subtract from previous line
+			col = position - (i > 1 ? lines[i - 2] : 0);  // but let's subtract from previous line
 
 			return new Position(line, col);
 		}

@@ -70,9 +70,9 @@ rule "SetTextContent"
 	salience 1000
 	when
 		e : TextContentEvent( $id : id, $text : textContent != null ) from entry-point "parser"
-		parent : HtmlElement( id == $id )
+		element : HtmlElement( id == $id, textContent == null )
 	then
-		modify(parent) {
+		modify(element) {
 			setTextContent($text);
 		}
 end
@@ -82,7 +82,7 @@ rule "SetPositionPair"
 	salience 1000
 	when
 		StartTagEvent( $id : id, $pos : position != null ) from entry-point "parser"
-		element : HtmlElement( id == $id )
+		element : HtmlElement( id == $id, position == null )
 	then
 		modify(element) {
 			setPosition($pos);
@@ -94,7 +94,7 @@ rule "SetPositionSimple"
 	salience 1000
 	when
 		SimpleTagEvent( $id : id, $pos : position != null ) from entry-point "parser"
-		element : HtmlElement( id == $id )
+		element : HtmlElement( id == $id, position == null )
 	then
 		modify(element) {
 			setPosition($pos);
@@ -106,7 +106,7 @@ rule "SetSourcePair"
 	salience 1000
 	when
 		StartTagEvent( $id : id, $source : source != null ) from entry-point "parser"
-		element : HtmlElement( id == $id )
+		element : HtmlElement( id == $id, source == null )
 	then
 		modify(element) {
 			setSource($source);
@@ -118,7 +118,7 @@ rule "SetSourceSingle"
 	salience 1000
 	when
 		SimpleTagEvent( $id : id, $source : source != null ) from entry-point "parser"
-		element : HtmlElement( id == $id )
+		element : HtmlElement( id == $id, source == null )
 	then
 		modify(element) {
 			setSource($source);
