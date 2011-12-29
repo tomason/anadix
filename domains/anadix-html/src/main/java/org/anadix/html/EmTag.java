@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * Indicates emphasis.
+ * Renders as emphasized text
  *
  * @author tomason
  * @version $Id: $

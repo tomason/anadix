@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>OptionTag class.</p>
+ * Defines an option in a drop-down list
  *
  * @author tomason
  * @version $Id: $
@@ -30,36 +30,36 @@ public class OptionTag extends CommonAttributes {
 	}
 
 	/**
-	 * <p>getSelected.</p>
+	 * Specifies that an option should be pre-selected when the page loads
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return whether option is selected
 	 */
 	public String getSelected() {
 		return getAttribute("selected");
 	}
 
 	/**
-	 * <p>getDisabled.</p>
+	 * Specifies that an option should be disabled
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return whether the option should be disabled
 	 */
 	public String getDisabled() {
 		return getAttribute("disabled");
 	}
 
 	/**
-	 * <p>getLabel.</p>
+	 * Specifies a shorter label for an option
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return label for the option
 	 */
 	public String getLabel() {
 		return getAttribute("label");
 	}
 
 	/**
-	 * <p>getValue.</p>
+	 * Specifies the value to be sent to a server
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return value sent to server
 	 */
 	public String getValue() {
 		return getAttribute("value");

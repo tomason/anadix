@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>ObjectTag class.</p>
+ * Defines an embedded object
  *
  * @author tomason
  * @version $Id: $
@@ -30,153 +30,153 @@ public class ObjectTag extends CommonAttributes {
 	}
 
 	/**
-	 * <p>getDeclare.</p>
+	 * Defines that the object should only be declared, not created or instantiated until needed
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return whether to instantiate lazily
 	 */
 	public String getDeclare() {
 		return getAttribute("declare");
 	}
 
 	/**
-	 * <p>getClassid.</p>
+	 * Defines a class ID value as set in the Windows Registry or a URL
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return class id
 	 */
 	public String getClassid() {
 		return getAttribute("classid");
 	}
 
 	/**
-	 * <p>getCodebase.</p>
+	 * Defines where to find the code for the object
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return URL with code base
 	 */
 	public String getCodebase() {
 		return getAttribute("codebase");
 	}
 
 	/**
-	 * <p>getData.</p>
+	 * Specifies the URL of the resource to be used by the object
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return URL of data
 	 */
 	public String getData() {
 		return getAttribute("data");
 	}
 
 	/**
-	 * <p>getType.</p>
+	 * Specifies the MIME type of data specified in the data attribute
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return MIME type of data
 	 */
 	public String getType() {
 		return getAttribute("type");
 	}
 
 	/**
-	 * <p>getCodetype.</p>
+	 * The internet media type of the code referred to by the classid attribute
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return MIME type of media
 	 */
 	public String getCodetype() {
 		return getAttribute("codetype");
 	}
 
 	/**
-	 * <p>getArchive.</p>
+	 * A space separated list of URL's to archives. The archives contains resources relevant to the object
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return list of resources
 	 */
 	public String getArchive() {
 		return getAttribute("archive");
 	}
 
 	/**
-	 * <p>getStandby.</p>
+	 * Defines a text to display while the object is loading
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return text to be displayed while loading
 	 */
 	public String getStandby() {
 		return getAttribute("standby");
 	}
 
 	/**
-	 * <p>getHeight.</p>
+	 * Specifies the height of the object
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return height of the object
 	 */
 	public String getHeight() {
 		return getAttribute("height");
 	}
 
 	/**
-	 * <p>getWidth.</p>
+	 * Specifies the width of the object
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return width of the object
 	 */
 	public String getWidth() {
 		return getAttribute("width");
 	}
 
 	/**
-	 * <p>getUsemap.</p>
+	 * Specifies the name of a client-side image map to be used with the object
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return name of the map
 	 */
 	public String getUsemap() {
 		return getAttribute("usemap");
 	}
 
 	/**
-	 * <p>getNameAttribute.</p>
+	 * Specifies a name for the object
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return name of the object
 	 */
 	public String getNameAttribute() {
 		return getAttribute("name");
 	}
 
 	/**
-	 * <p>getTabindex.</p>
+	 * Specifies the tab order of an element
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return tab indedx
 	 */
 	public String getTabindex() {
 		return getAttribute("tabindex");
 	}
 
 	/**
-	 * <p>getAlign.</p>
+	 * Specifies the alignment of the element according to surrounding elements
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return alignment of the element
 	 */
 	public String getAlign() {
 		return getAttribute("align");
 	}
 
 	/**
-	 * <p>getBorder.</p>
+	 * Specifies the width of the border around an element
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return width of the border
 	 */
 	public String getBorder() {
 		return getAttribute("border");
 	}
 
 	/**
-	 * <p>getHspace.</p>
+	 * Specifies the whitespace on left and right side of an object
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return horizontal whitespace
 	 */
 	public String getHspace() {
 		return getAttribute("hspace");
 	}
 
 	/**
-	 * <p>getVspace.</p>
+	 * Specifies the whitespace on top and bottom of an object
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return vertical whitespace
 	 */
 	public String getVspace() {
 		return getAttribute("vspace");

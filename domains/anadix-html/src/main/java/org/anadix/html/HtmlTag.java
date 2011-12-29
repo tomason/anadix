@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>HtmlTag class.</p>
+ * Defines the root of an HTML document
  *
  * @author tomason
  * @version $Id: $
@@ -36,18 +36,18 @@ public class HtmlTag extends HtmlElement {
 	}
 
 	/**
-	 * <p>getLang.</p>
+	 * Specifies a language code for the content in an element
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return language code
 	 */
 	public String getLang() {
 		return getAttribute("lang");
 	}
 
 	/**
-	 * <p>getDir.</p>
+	 * Specifies the text direction for the content in an element
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return text direction
 	 */
 	public String getDir() {
 		return getAttribute("dir");

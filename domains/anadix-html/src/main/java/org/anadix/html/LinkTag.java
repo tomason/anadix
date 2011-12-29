@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>LinkTag class.</p>
+ * Defines the relationship between a document and an external resource
  *
  * @author tomason
  * @version $Id: $
@@ -29,72 +29,72 @@ public class LinkTag extends CommonAttributes {
 	}
 
 	/**
-	 * <p>getCharset.</p>
+	 * Specifies the character encoding of the linked document
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return encoding of document
 	 */
 	public String getCharset() {
 		return getAttribute("charset");
 	}
 
 	/**
-	 * <p>getHref.</p>
+	 * Specifies the location of the linked document
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return URL of the document
 	 */
 	public String getHref() {
 		return getAttribute("href");
 	}
 
 	/**
-	 * <p>getHreflang.</p>
+	 * Specifies the language of the text in the linked document
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return language code
 	 */
 	public String getHreflang() {
 		return getAttribute("hreflang");
 	}
 
 	/**
-	 * <p>getType.</p>
+	 * Specifies the MIME type of the linked document
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return MIME type
 	 */
 	public String getType() {
 		return getAttribute("type");
 	}
 
 	/**
-	 * <p>getRel.</p>
+	 * Specifies the relationship between the current document and the linked document
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return type of relationship
 	 */
 	public String getRel() {
 		return getAttribute("rel");
 	}
 
 	/**
-	 * <p>getRev.</p>
+	 * Specifies the relationship between the linked document and the current document
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return type of relationship
 	 */
 	public String getRev() {
 		return getAttribute("rev");
 	}
 
 	/**
-	 * <p>getMedia.</p>
+	 * Specifies on what device the linked document will be displayed
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return device to display document on
 	 */
 	public String getMedia() {
 		return getAttribute("media");
 	}
 
 	/**
-	 * <p>getTarget.</p>
+	 * Specifies where the linked document is to be loaded
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return where to load the linked document
 	 */
 	public String getTarget() {
 		return getAttribute("target");

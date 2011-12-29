@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>OptgroupTag class.</p>
+ * Defines a group of related options in a drop-down list
  *
  * @author tomason
  * @version $Id: $
@@ -30,18 +30,18 @@ public class OptgroupTag extends CommonAttributes {
 	}
 
 	/**
-	 * <p>getDisabled.</p>
+	 * Specifies that an option-group should be disabled
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return whether the group is disabled
 	 */
 	public String getDisabled() {
 		return getAttribute("disabled");
 	}
 
 	/**
-	 * <p>getLabel.</p>
+	 * Specifies a label for an option-group
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return label for the group
 	 */
 	public String getLabel() {
 		return getAttribute("label");

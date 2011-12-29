@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>DdTag class.</p>
+ * Defines a description of an item in a definition list
  *
  * @author tomason
  * @version $Id: $

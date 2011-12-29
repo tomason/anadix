@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>CaptionTag class.</p>
+ * Defines a table caption
  *
  * @author tomason
  * @version $Id: $
@@ -30,10 +30,9 @@ public class CaptionTag extends CommonAttributes {
 	}
 
 	/**
-	 * Deprecated. For visual user agents, this attribute specifies the position
-	 * of the caption with respect to the table.
+	 * Defines the alignment of a caption
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return alignment of the caption
 	 */
 	public String getAlign() {
 		return getAttribute("align");

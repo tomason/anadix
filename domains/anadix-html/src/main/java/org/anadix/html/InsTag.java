@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>InsTag class.</p>
+ * Defines text that has been inserted into a document
  *
  * @author tomason
  * @version $Id: $
@@ -30,21 +30,18 @@ public class InsTag extends CommonAttributes {
 	}
 
 	/**
-	 * The value of this attribute is a URI that designates a source document or
-	 * message. This attribute is intended to point to information explaining
-	 * why a document was changed.
+	 * Specifies a URL to a document that explains the reason why the text was inserted/changed
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return URL to explaining document
 	 */
 	public String getCite() {
 		return getAttribute("cite");
 	}
 
 	/**
-	 * The value of this attribute specifies the date and time when the change
-	 * was made.
+	 * Specifies the date and time when the text was inserted/changed
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return date and time of change
 	 */
 	public String getDatetime() {
 		return getAttribute("datetime");

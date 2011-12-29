@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>IframeTag class.</p>
+ * Defines an inline frame
  *
  * @author tomason
  * @version $Id: $
@@ -30,90 +30,90 @@ public class IframeTag extends CommonAttributes {
 	}
 
 	/**
-	 * <p>getLongdesc.</p>
+	 * Specifies a page that contains a long description of the content of an element
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return URL of long description
 	 */
 	public String getLongdesc() {
 		return getAttribute("longdesc");
 	}
 
 	/**
-	 * <p>getNameAttribute.</p>
+	 * Specifies the name of an element
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return name of the frame
 	 */
 	public String getNameAttribute() {
 		return getAttribute("name");
 	}
 
 	/**
-	 * <p>getSrc.</p>
+	 * Specifies the address of the document to embed in the element
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return URL of the source
 	 */
 	public String getSrc() {
 		return getAttribute("src");
 	}
 
 	/**
-	 * <p>getFrameborder.</p>
+	 * Specifies whether or not to display a border around an element
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return whether to display border
 	 */
 	public String getFrameborder() {
 		return getAttribute("frameborder");
 	}
 
 	/**
-	 * <p>getMarginwidth.</p>
+	 * Specifies the left and right margins of the content of an element
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return horizontal margin
 	 */
 	public String getMarginwidth() {
 		return getAttribute("marginwidth");
 	}
 
 	/**
-	 * <p>getMarginheight.</p>
+	 * Specifies the top and bottom margins of the content of an element
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return vertical margin
 	 */
 	public String getMarginheight() {
 		return getAttribute("marginheight");
 	}
 
 	/**
-	 * <p>getScrolling.</p>
+	 * Specifies whether or not to display scrollbars in an element
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return whether to display scrolling
 	 */
 	public String getScrolling() {
 		return getAttribute("scrolling");
 	}
 
 	/**
-	 * <p>getAlign.</p>
+	 * Specifies the alignment of an according to surrounding elements
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return align of the frame
 	 */
 	public String getAlign() {
 		return getAttribute("align");
 	}
 
 	/**
-	 * <p>getHeight.</p>
+	 * Specifies the height of an element
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return height of frame
 	 */
 	public String getHeight() {
 		return getAttribute("height");
 	}
 
 	/**
-	 * <p>getWidth.</p>
+	 * Specifies the width of an element
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return width of the frame
 	 */
 	public String getWidth() {
 		return getAttribute("width");

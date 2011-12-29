@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>HrTag class.</p>
+ * Defines a horizontal line
  *
  * @author tomason
  * @version $Id: $
@@ -30,36 +30,36 @@ public class HrTag extends CommonAttributes {
 	}
 
 	/**
-	 * <p>getAlign.</p>
+	 * Specifies the alignment of an element
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return alignment of the element
 	 */
 	public String getAlign() {
 		return getAttribute("align");
 	}
 
 	/**
-	 * <p>getNoshade.</p>
+	 * Specifies that a element should render in one solid color (noshaded), instead of a shaded color
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return whether to be shaded
 	 */
 	public String getNoshade() {
 		return getAttribute("noshade");
 	}
 
 	/**
-	 * <p>getSize.</p>
+	 * Specifies the height of a <hr> element
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return height of element
 	 */
 	public String getSize() {
 		return getAttribute("size");
 	}
 
 	/**
-	 * <p>getWidth.</p>
+	 * Specifies the width of a <hr> element
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return width of element
 	 */
 	public String getWidth() {
 		return getAttribute("width");

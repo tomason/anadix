@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>DivTag class.</p>
+ * Defines a section in a document
  *
  * @author tomason
  * @version $Id: $
@@ -30,9 +30,9 @@ public class DivTag extends CommonAttributes {
 	}
 
 	/**
-	 * <p>getAlign.</p>
+	 * Specifies the alignment of the content inside a &lt;div&gt; element
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return alignment of content
 	 */
 	public String getAlign() {
 		return getAttribute("align");

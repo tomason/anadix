@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>HeadTag class.</p>
+ * Defines information about the document
  *
  * @author tomason
  * @version $Id: $
@@ -30,27 +30,27 @@ public class HeadTag extends HtmlElement {
 	}
 
 	/**
-	 * <p>getLang.</p>
+	 * Specifies a language code for the content in an element
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return language code
 	 */
 	public String getLang() {
 		return getAttribute("lang");
 	}
 
 	/**
-	 * <p>getDir.</p>
+	 * Specifies the text direction for the content in an element
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return text direction
 	 */
 	public String getDir() {
 		return getAttribute("dir");
 	}
 
 	/**
-	 * <p>getProfile.</p>
+	 * Specifies a URL to a document that contains a set of rules. The rules can be read by browsers to clearly understand the information in the <meta> tag's content attribute
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return URL of a profile
 	 */
 	public String getProfile() {
 		return getAttribute("profile");

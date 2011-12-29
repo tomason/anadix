@@ -23,9 +23,9 @@ abstract class HTag extends CoreAttributes {
 	}
 
 	/**
-	 * <p>getAlign.</p>
+	 * Specifies the alignment of a heading
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return alignment of the heading
 	 */
 	public String getAlign() {
 		return getAttribute("align");

@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * Designates a fragment of computer code.
+ * Defines a piece of computer code
  *
  * @author tomason
  * @version $Id: $

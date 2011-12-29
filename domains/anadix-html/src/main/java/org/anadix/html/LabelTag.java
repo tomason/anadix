@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>LabelTag class.</p>
+ * Defines a label for an &lt;input&gt; element
  *
  * @author tomason
  * @version $Id: $
@@ -30,36 +30,36 @@ public class LabelTag extends CommonAttributes {
 	}
 
 	/**
-	 * <p>getFor.</p>
+	 * 	Specifies which form element a label is bound to
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return id of the element
 	 */
 	public String getFor() {
 		return getAttribute("for");
 	}
 
 	/**
-	 * <p>getAccesskey.</p>
+	 * Specifies a keyboard shortcut to access an element
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return keybord shortcut
 	 */
 	public String getAccesskey() {
 		return getAttribute("accesskey");
 	}
 
 	/**
-	 * <p>getOnfocus.</p>
+	 * Script to be run when an element gets focus
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return script when the element gets focus
 	 */
 	public String getOnfocus() {
 		return getAttribute("onfocus");
 	}
 
 	/**
-	 * <p>getOnblur.</p>
+	 * Script to be run when an element loses focus
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return script when element looses focus
 	 */
 	public String getOnblur() {
 		return getAttribute("onblur");

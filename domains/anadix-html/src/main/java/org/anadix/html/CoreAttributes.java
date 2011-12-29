@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * %coreattrs
+ * Superclass with definition of core attributes
  *
  * @author tomason
  * @version $Id: $
@@ -26,12 +26,12 @@ import java.math.BigInteger;
 public abstract class CoreAttributes extends HtmlElement {
 
 	/**
-	 * <p>Constructor for CoreAttributes.</p>
+	 * Constructor
 	 *
-	 * @param id a {@link java.math.BigInteger} object.
-	 * @param name a {@link java.lang.String} object.
-	 * @param parent a {@link org.anadix.html.HtmlElement} object.
-	 * @param attributes a {@link org.anadix.html.Attributes} object.
+	 * @param id id of element (not the attribute)
+	 * @param name name of the element (tag name)
+	 * @param parent parent element
+	 * @param attributes attributes of the element
 	 */
 	public CoreAttributes(BigInteger id, String name, HtmlElement parent,
 			Attributes attributes) {
@@ -39,40 +39,36 @@ public abstract class CoreAttributes extends HtmlElement {
 	}
 
 	/**
-	 * This attribute assigns a name to an element. This name must be unique in
-	 * a document.
+	 * Specifies a unique id for an element
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return unique id of the element
 	 */
 	public String getIdAttribute() {
 		return getAttribute("id");
 	}
 
 	/**
-	 * This attribute assigns a class name or set of class names to an element.
-	 * Any number of elements may be assigned the same class name or names.
-	 * Multiple class names must be separated by white space characters.
+	 * Specifies a classname for an element
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return classname of the element
 	 */
 	public String getClassAttribute() {
 		return getAttribute("class");
 	}
 
 	/**
-	 * This attribute specifies style information for the current element.
+	 * Specifies an inline style for an element
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return style of the element
 	 */
 	public String getStyle() {
 		return getAttribute("style");
 	}
 
 	/**
-	 * This attribute offers advisory information about the element for which it
-	 * is set.
+	 * Specifies extra information about an element
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return extra information about the element
 	 */
 	public String getTitle() {
 		return getAttribute("title");

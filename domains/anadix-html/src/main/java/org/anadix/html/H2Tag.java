@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>H2Tag class.</p>
+ * Defines HTML heading
  *
  * @author tomason
  * @version $Id: $

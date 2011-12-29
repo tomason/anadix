@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>NoframesTag class.</p>
+ * Defines an alternate content for users that do not support frames
  *
  * @author tomason
  * @version $Id: $

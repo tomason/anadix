@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>FontTag class.</p>
+ * Defines font, color, and size for text
  *
  * @author tomason
  * @version $Id: $
@@ -30,45 +30,45 @@ public class FontTag extends CoreAttributes {
 	}
 
 	/**
-	 * <p>getLang.</p>
+	 * Specifies a language code for the content in an element
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return language code
 	 */
 	public String getLang() {
 		return getAttribute("lang");
 	}
 
 	/**
-	 * <p>getDir.</p>
+	 * Specifies the text direction for the content in an element
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return text direction
 	 */
 	public String getDir() {
 		return getAttribute("dir");
 	}
 
 	/**
-	 * <p>getSize.</p>
+	 * Specifies the size of text
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return size of text
 	 */
 	public String getSize() {
 		return getAttribute("size");
 	}
 
 	/**
-	 * <p>getColor.</p>
+	 * Specifies the color of text
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return color of text
 	 */
 	public String getColor() {
 		return getAttribute("color");
 	}
 
 	/**
-	 * <p>getFace.</p>
+	 * Specifies the font of text
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return font of text
 	 */
 	public String getFace() {
 		return getAttribute("face");

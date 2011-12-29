@@ -19,7 +19,7 @@ import java.math.BigInteger;
 
 
 /**
- * <p>ImgTag class.</p>
+ * Defines an image
  *
  * @author tomason
  * @version $Id: $
@@ -31,27 +31,27 @@ public class ImgTag extends CommonAttributes {
 	}
 
 	/**
-	 * <p>getSrc.</p>
+	 * Specifies the URL of an image
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return URL of the image
 	 */
 	public String getSrc() {
 		return getAttribute("src");
 	}
 
 	/**
-	 * <p>getAlt.</p>
+	 * Specifies an alternate text for an image
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return alternative text
 	 */
 	public String getAlt() {
 		return getAttribute("alt");
 	}
 
 	/**
-	 * <p>getLongdesc.</p>
+	 * Specifies the URL to a document that contains a long description of an image
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return URL with long description
 	 */
 	public String getLongdesc() {
 		return getAttribute("longdesc");
@@ -67,72 +67,72 @@ public class ImgTag extends CommonAttributes {
 	}
 
 	/**
-	 * <p>getHeight.</p>
+	 * Specifies the height of an image
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return height of image
 	 */
 	public String getHeight() {
 		return getAttribute("height");
 	}
 
 	/**
-	 * <p>getWidth.</p>
+	 * Specifies the width of an image
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return width of the image
 	 */
 	public String getWidth() {
 		return getAttribute("width");
 	}
 
 	/**
-	 * <p>getUsemap.</p>
+	 * Specifies an image as a client-side image-map
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return whether the image is client-side map
 	 */
 	public String getUsemap() {
 		return getAttribute("usemap");
 	}
 
 	/**
-	 * <p>getIsmap.</p>
+	 * Specifies an image as a server-side image-map
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return whether image is server-side map
 	 */
 	public String getIsmap() {
 		return getAttribute("ismap");
 	}
 
 	/**
-	 * <p>getAlign.</p>
+	 * Specifies the alignment of an image according to surrounding elements
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return alignment of an image
 	 */
 	public String getAlign() {
 		return getAttribute("align");
 	}
 
 	/**
-	 * <p>getBorder.</p>
+	 * Specifies the width of the border around an image
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return width of the border
 	 */
 	public String getBorder() {
 		return getAttribute("border");
 	}
 
 	/**
-	 * <p>getHspace.</p>
+	 * Specifies the whitespace on left and right side of an image
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return horizontal whitespace width
 	 */
 	public String getHspace() {
 		return getAttribute("hspace");
 	}
 
 	/**
-	 * <p>getVspace.</p>
+	 * Specifies the whitespace on top and bottom of an image
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return vertical whitespace height
 	 */
 	public String getVspace() {
 		return getAttribute("vspace");

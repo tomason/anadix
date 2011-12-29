@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>ITag class.</p>
+ * Defines italic text
  *
  * @author tomason
  * @version $Id: $

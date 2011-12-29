@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>MenuTag class.</p>
+ * Defines a menu list
  *
  * @author tomason
  * @version $Id: $
@@ -30,9 +30,9 @@ public class MenuTag extends CommonAttributes {
 	}
 
 	/**
-	 * <p>getCompact.</p>
+	 * Specifies that the list should render smaller than normal
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return whether the list should be smaller
 	 */
 	public String getCompact() {
 		return getAttribute("compact");

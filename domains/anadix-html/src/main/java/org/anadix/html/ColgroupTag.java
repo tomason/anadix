@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>ColgroupTag class.</p>
+ * Specifies a group of one or more columns in a table for formatting
  *
  * @author tomason
  * @version $Id: $
@@ -30,63 +30,54 @@ public class ColgroupTag extends CommonAttributes {
 	}
 
 	/**
-	 * This attribute, whose value must be an integer > 0, specifies the number
-	 * of columns "spanned" by the COL element; the COL element shares its
-	 * attributes with all the columns it spans. The default value for this
-	 * attribute is 1 (i.e., the COL element refers to a single column). If the
-	 * span attribute is set to N > 1, the current COL element shares its
-	 * attributes with the next N-1 columns.
+	 * Specifies the number of columns a column group should span
 	 *
-	 * @return a int.
+	 * @return number of columns this group spans
 	 */
-	public int getSpan() {
-		String value = getAttribute("span");
-
-		return (value == null) ? 1 : Integer.parseInt(value);
+	public String getSpan() {
+		return getAttribute("span");
 	}
 
 	/**
-	 * This attribute specifies a default width for each column spanned by the
-	 * current COL element. It has the same meaning as the width attribute for
-	 * the COLGROUP element and overrides it.
+	 * Specifies the width of a column group
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return width of columns
 	 */
 	public String getWidth() {
 		return getAttribute("width");
 	}
 
 	/**
-	 * <p>getAlign.</p>
+	 * Aligns the content in a column group
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return align of the content
 	 */
 	public String getAlign() {
 		return getAttribute("align");
 	}
 
 	/**
-	 * <p>getChar.</p>
+	 * Aligns the content in a column group to a character
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return align of the content to a character
 	 */
 	public String getChar() {
 		return getAttribute("char");
 	}
 
 	/**
-	 * <p>getCharoff.</p>
+	 * Sets the number of characters the content will be aligned from the character specified by the char attribute
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return number of characters to by aligned with char attribute
 	 */
 	public String getCharoff() {
 		return getAttribute("charoff");
 	}
 
 	/**
-	 * <p>getValign.</p>
+	 * Vertical aligns the content in a column group
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return vertical align of content
 	 */
 	public String getValign() {
 		return getAttribute("valign");

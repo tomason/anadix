@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>MetaTag class.</p>
+ * Defines metadata about an HTML document
  *
  * @author tomason
  * @version $Id: $
@@ -30,54 +30,54 @@ public class MetaTag extends HtmlElement {
 	}
 
 	/**
-	 * <p>getLang.</p>
+	 * Specifies a language code for the content in an element
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return language code
 	 */
 	public String getLang() {
 		return getAttribute("lang");
 	}
 
 	/**
-	 * <p>getDir.</p>
+	 * Specifies the text direction for the content in an element
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return text direction
 	 */
 	public String getDir() {
 		return getAttribute("dir");
 	}
 
 	/**
-	 * <p>getHttpEquiv.</p>
+	 * Provides an HTTP header for the information/value of the content attribute
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return HTTP header
 	 */
 	public String getHttpEquiv() {
 		return getAttribute("http-equiv");
 	}
 
 	/**
-	 * <p>getNameAttribute.</p>
+	 * Provides a name for the information in the content attribute
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return name for the information
 	 */
 	public String getNameAttribute() {
 		return getAttribute("name");
 	}
 
 	/**
-	 * <p>getContent.</p>
+	 * Gives the value associated with the http-equiv or name attribute
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return value of meta information
 	 */
 	public String getContent() {
 		return getAttributes().getAttribute("content");
 	}
 
 	/**
-	 * <p>getScheme.</p>
+	 * Specifies a scheme to be used to interpret the value of the content attribute
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return scheme to interpret the value
 	 */
 	public String getScheme() {
 		return getAttribute("scheme");

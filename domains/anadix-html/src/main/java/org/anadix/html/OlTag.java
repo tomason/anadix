@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>OlTag class.</p>
+ * Defines an ordered list
  *
  * @author tomason
  * @version $Id: $
@@ -30,27 +30,27 @@ public class OlTag extends CommonAttributes {
 	}
 
 	/**
-	 * <p>getType.</p>
+	 * Specifies the kind of marker to use in the list
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return type of marker
 	 */
 	public String getType() {
 		return getAttribute("type");
 	}
 
 	/**
-	 * <p>getCompact.</p>
+	 * Specifies that the list should render smaller than normal
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return whether the list is smaller
 	 */
 	public String getCompact() {
 		return getAttribute("compact");
 	}
 
 	/**
-	 * <p>getStart.</p>
+	 * Specifies the start value of an ordered list
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return start value
 	 */
 	public String getStart() {
 		return getAttribute("start");

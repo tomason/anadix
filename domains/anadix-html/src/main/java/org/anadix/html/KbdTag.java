@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * Indicates text to be entered by the user.
+ * Defines keyboard input
  *
  * @author tomason
  * @version $Id: $

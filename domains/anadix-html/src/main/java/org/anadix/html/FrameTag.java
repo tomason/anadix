@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>FrameTag class.</p>
+ * Defines a window (a frame) in a frameset
  *
  * @author tomason
  * @version $Id: $
@@ -30,72 +30,72 @@ public class FrameTag extends CoreAttributes {
 	}
 
 	/**
-	 * <p>getLongdesc.</p>
+	 * Specifies a page that contains a long description of the content of a frame
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return URL of page with long description
 	 */
 	public String getLongdesc() {
 		return getAttribute("longdesc");
 	}
 
 	/**
-	 * <p>getNameAttribute.</p>
+	 * Specifies the name of a frame
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return name of the frame
 	 */
 	public String getNameAttribute() {
 		return getAttribute("name");
 	}
 
 	/**
-	 * <p>getSrc.</p>
+	 * Specifies the URL of the document to show in a frame
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return url of content
 	 */
 	public String getSrc() {
 		return getAttribute("src");
 	}
 
 	/**
-	 * <p>getFrameborder.</p>
+	 * Specifies whether or not to display a border around a frame
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return display a border
 	 */
 	public String getFrameborder() {
 		return getAttribute("frameborder");
 	}
 
 	/**
-	 * <p>getMarginwidth.</p>
+	 * Specifies the left and right margins of a frame
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return horizontal margin
 	 */
 	public String getMarginwidth() {
 		return getAttribute("marginwidth");
 	}
 
 	/**
-	 * <p>getMarginheight.</p>
+	 * Specifies the top and bottom margins of a frame
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return vertical margin
 	 */
 	public String getMarginheight() {
 		return getAttribute("marginheight");
 	}
 
 	/**
-	 * <p>getNoresize.</p>
+	 * Specifies that a frame is not resizable
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return whether the frame is resizable
 	 */
 	public String getNoresize() {
 		return getAttribute("noresize");
 	}
 
 	/**
-	 * <p>getScrolling.</p>
+	 * Specifies whether or not to display scrollbars in a frame
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return whether the frame has scrolling visible
 	 */
 	public String getScrolling() {
 		return getAttribute("scrolling");

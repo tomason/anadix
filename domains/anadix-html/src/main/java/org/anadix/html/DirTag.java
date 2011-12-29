@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>DirTag class.</p>
+ * Defines a directory list
  *
  * @author tomason
  * @version $Id: $
@@ -30,9 +30,9 @@ public class DirTag extends CommonAttributes {
 	}
 
 	/**
-	 * <p>getCompact.</p>
+	 * Specifies that the list should render smaller than normal
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return render a smaller list
 	 */
 	public String getCompact() {
 		return getAttribute("compact");

@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>LiTag class.</p>
+ * Defines a list item
  *
  * @author tomason
  * @version $Id: $
@@ -30,18 +30,18 @@ public class LiTag extends CommonAttributes {
 	}
 
 	/**
-	 * <p>getType.</p>
+	 * Specifies which kind of bullet point will be used
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return type of bullet
 	 */
 	public String getType() {
 		return getAttribute("type");
 	}
 
 	/**
-	 * <p>getValue.</p>
+	 * Specifies the value of a list item. The following list items will increment from that number (only for &lt;ol&gt; lists)
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return value of item
 	 */
 	public String getValue() {
 		return getAttribute("value");

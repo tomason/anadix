@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>NoscriptTag class.</p>
+ * Defines an alternate content for users that do not support client-side scripts
  *
  * @author tomason
  * @version $Id: $

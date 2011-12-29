@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>FormTag class.</p>
+ * Defines an HTML form for user input
  *
  * @author tomason
  * @version $Id: $
@@ -30,81 +30,81 @@ public class FormTag extends CommonAttributes {
 	}
 
 	/**
-	 * <p>getAction.</p>
+	 * Specifies where to send the form-data when a form is submitted
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return where to send data
 	 */
 	public String getAction() {
 		return getAttribute("action");
 	}
 
 	/**
-	 * <p>getMethod.</p>
+	 * Specifies the HTTP method to use when sending form-data
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return HTTP method to send data
 	 */
 	public String getMethod() {
 		return getAttribute("method");
 	}
 
 	/**
-	 * <p>getEnctype.</p>
+	 * Specifies how the form-data should be encoded when submitting it to the server (only for method="post")
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return data encoding
 	 */
 	public String getEnctype() {
 		return getAttribute("enctype");
 	}
 
 	/**
-	 * <p>getAccept.</p>
+	 * Specifies the types of files that the server accepts (that can be submitted through a file upload)
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return type of files accepted
 	 */
 	public String getAccept() {
 		return getAttribute("accept");
 	}
 
 	/**
-	 * <p>getNameAttribute.</p>
+	 * Specifies the name of a form
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return name of the form
 	 */
 	public String getNameAttribute() {
 		return getAttribute("name");
 	}
 
 	/**
-	 * <p>getOnsubmit.</p>
+	 * Script to be run when a form is submitted
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return script to be run when submitting
 	 */
 	public String getOnsubmit() {
 		return getAttribute("onsubmit");
 	}
 
 	/**
-	 * <p>getOnreset.</p>
+	 * Script to be run when a form is reset
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return script to be run when resetting
 	 */
 	public String getOnreset() {
 		return getAttribute("onreset");
 	}
 
 	/**
-	 * <p>getTarget.</p>
+	 * Specifies where to display the response that is received after submitting the form
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return where to show response
 	 */
 	public String getTarget() {
 		return getAttribute("target");
 	}
 
 	/**
-	 * <p>getAcceptCharset.</p>
+	 * Specifies a list of character encodings that the server accepts
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return list of accepted charsets
 	 */
 	public String getAcceptCharset() {
 		return getAttribute("accept-charset");

@@ -18,8 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * The CENTER element is exactly equivalent to specifying the DIV element with
- * the align attribute set to "center". The CENTER element is deprecated.
+ * Defines centered text
  *
  * @author tomason
  * @version $Id: $

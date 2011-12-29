@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>FieldsetTag class.</p>
+ * Groups related elements in a form
  *
  * @author tomason
  * @version $Id: $

@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>InputTag class.</p>
+ * Defines an input control
  *
  * @author tomason
  * @version $Id: $
@@ -30,90 +30,90 @@ public class InputTag extends CommonAttributes {
 	}
 
 	/**
-	 * <p>getType.</p>
+	 * Specifies the type of an element
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return type of the element
 	 */
 	public String getType() {
 		return getAttribute("type");
 	}
 
 	/**
-	 * <p>getNameAttribute.</p>
+	 * Specifies the name of an element
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return name of the element
 	 */
 	public String getNameAttribute() {
 		return getAttribute("name");
 	}
 
 	/**
-	 * <p>getValue.</p>
+	 * 	Specifies the value of an element
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return value of the element
 	 */
 	public String getValue() {
 		return getAttribute("value");
 	}
 
 	/**
-	 * <p>getChecked.</p>
+	 * Specifies that an <input> element should be preselected when the page loads (for type="checkbox" or type="radio")
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return whether the element should be checked
 	 */
 	public String getChecked() {
 		return getAttribute("checked");
 	}
 
 	/**
-	 * <p>getDisabled.</p>
+	 * Specifies that an <input> element should be disabled
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return whether the element should be disabled
 	 */
 	public String getDisabled() {
 		return getAttribute("disabled");
 	}
 
 	/**
-	 * <p>getReadonly.</p>
+	 * Specifies that an input field should be read-only
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return whether the element is read-only
 	 */
 	public String getReadonly() {
 		return getAttribute("readonly");
 	}
 
 	/**
-	 * <p>getSize.</p>
+	 * Specifies the width, in characters, of an element
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return width of the element
 	 */
 	public String getSize() {
 		return getAttribute("size");
 	}
 
 	/**
-	 * <p>getMaxlength.</p>
+	 * Specifies the maximum number of characters allowed in an <input> element
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return maximum number of characters
 	 */
 	public String getMaxlength() {
 		return getAttribute("maxlength");
 	}
 
 	/**
-	 * <p>getSrc.</p>
+	 * Specifies the URL of the image to use as a submit button (only for type="image")
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return URL of image
 	 */
 	public String getSrc() {
 		return getAttribute("src");
 	}
 
 	/**
-	 * <p>getAlt.</p>
+	 * Specifies an alternate text for an image (only for type="image")
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return alternative text
 	 */
 	public String getAlt() {
 		return getAttribute("alt");
@@ -138,72 +138,72 @@ public class InputTag extends CommonAttributes {
 	}
 
 	/**
-	 * <p>getTabindex.</p>
+	 * Specifies the tab order of an element
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return tab order of the element
 	 */
 	public String getTabindex() {
 		return getAttribute("tabindex");
 	}
 
 	/**
-	 * <p>getAccesskey.</p>
+	 * Specifies a keyboard shortcut to access an element
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return shortcut for the element
 	 */
 	public String getAccesskey() {
 		return getAttribute("accesskey");
 	}
 
 	/**
-	 * <p>getOnfocus.</p>
+	 * Script to be run when an element gets focus
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return script when element gets focus
 	 */
 	public String getOnfocus() {
 		return getAttribute("onfocus");
 	}
 
 	/**
-	 * <p>getOnblur.</p>
+	 * Script to be run when an element loses focus
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return script when element looses focus
 	 */
 	public String getOnblur() {
 		return getAttribute("onblur");
 	}
 
 	/**
-	 * <p>getOnselect.</p>
+	 * Script to be run when an element is selected
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return script when element is selected
 	 */
 	public String getOnselect() {
 		return getAttribute("onselect");
 	}
 
 	/**
-	 * <p>getOnchange.</p>
+	 * Script to be run when an element change
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return script when the element is changed
 	 */
 	public String getOnchange() {
 		return getAttribute("onchange");
 	}
 
 	/**
-	 * <p>getAccept.</p>
+	 * Specifies the types of files that the server accepts (only for type="file")
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return type of files the server accepts
 	 */
 	public String getAccept() {
 		return getAttribute("accept");
 	}
 
 	/**
-	 * <p>getAlign.</p>
+	 * Specifies the alignment of an image input (only for type="image")
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return alignment of input
 	 */
 	public String getAlign() {
 		return getAttribute("align");

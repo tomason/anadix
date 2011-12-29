@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * Indicates that this is the defining instance of the enclosed term.
+ * Defines a definition term
  *
  * @author tomason
  * @version $Id: $

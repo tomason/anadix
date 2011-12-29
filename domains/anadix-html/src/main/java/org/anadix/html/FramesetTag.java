@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>FramesetTag class.</p>
+ * Defines a set of frames
  *
  * @author tomason
  * @version $Id: $
@@ -30,36 +30,36 @@ public class FramesetTag extends CoreAttributes {
 	}
 
 	/**
-	 * <p>getRows.</p>
+	 * Specifies the number and size of rows in a frameset
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return number of rows
 	 */
 	public String getRows() {
 		return getAttribute("rows");
 	}
 
 	/**
-	 * <p>getCols.</p>
+	 * Specifies the number and size of columns in a frameset
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return number of columns
 	 */
 	public String getCols() {
 		return getAttribute("cols");
 	}
 
 	/**
-	 * <p>getOnload.</p>
+	 * Script to be run when a document load
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return script when document is loaded
 	 */
 	public String getOnload() {
 		return getAttribute("onload");
 	}
 
 	/**
-	 * <p>getOnunload.</p>
+	 * Script to be run when a document unload
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return script when document is unloaded
 	 */
 	public String getOnunload() {
 		return getAttribute("onunload");

@@ -18,7 +18,7 @@ package org.anadix.html;
 import java.math.BigInteger;
 
 /**
- * <p>MapTag class.</p>
+ * 	Defines a client-side image-map
  *
  * @author tomason
  * @version $Id: $
@@ -30,9 +30,9 @@ public class MapTag extends CommonAttributes {
 	}
 
 	/**
-	 * <p>getNameAttribute.</p>
+	 * Specifies the name for an image-map
 	 *
-	 * @return a {@link java.lang.String} object.
+	 * @return name of the map
 	 */
 	public String getNameAttribute() {
 		return getAttribute("name");
