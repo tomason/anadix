@@ -22,185 +22,200 @@ import com.thoughtworks.selenium.CommandProcessor;
 import com.thoughtworks.selenium.DefaultSelenium;
 
 public class AnadixSelenium extends DefaultSelenium {
-	private List<Source> sources = new ArrayList<Source>();
-	private List<Report> reports = new ArrayList<Report>();
-	private List<Throwable> exceptions = new ArrayList<Throwable>();
-	private File sourcesDir = new File("sources");
-	private File reportsDir = new File("reports");
-	private MultithreadedAnalyzer analyzer;
+    private final List<Source> sources = new ArrayList<Source>();
+    private final List<Report> reports = new ArrayList<Report>();
+    private final List<Throwable> exceptions = new ArrayList<Throwable>();
+    private File sourcesDir = new File("sources");
+    private File reportsDir = new File("reports");
+    private MultithreadedAnalyzer analyzer;
 
-	public AnadixSelenium(CommandProcessor processor) {
-		super(processor);
-	}
+    public AnadixSelenium(CommandProcessor processor) {
+        super(processor);
+    }
 
-	public AnadixSelenium(String serverHost, int serverPort, String browserStartCommand, String browserURL) {
-		super(serverHost, serverPort, browserStartCommand, browserURL);
-	}
+    public AnadixSelenium(String serverHost, int serverPort, String browserStartCommand, String browserURL) {
+        super(serverHost, serverPort, browserStartCommand, browserURL);
+    }
 
-	@Override
-	public void click(String locator) {
-		analyzeCurrentPage();
-		super.click(locator);
-	}
+    @Override
+    public void click(String locator) {
+        analyzeCurrentPage();
+        super.click(locator);
+    }
 
-	@Override
-	public void clickAt(String locator, String coordString) {
-		analyzeCurrentPage();
-		super.clickAt(locator, coordString);
-	}
+    @Override
+    public void clickAt(String locator, String coordString) {
+        analyzeCurrentPage();
+        super.clickAt(locator, coordString);
+    }
 
-	@Override
-	public void submit(String formLocator) {
-		analyzeCurrentPage();
-		super.submit(formLocator);
-	}
+    @Override
+    public void submit(String formLocator) {
+        analyzeCurrentPage();
+        super.submit(formLocator);
+    }
 
-	private void analyzeCurrentPage() {
-		if (analyzer != null) {
-			int id = analyzer.submittAnalysis(SourceFactory.newStringSource(getHtmlSource(), getTitle()));
-			try {
-				reports.add(analyzer.getResult(id));
-			} catch (ResultException ex) {
-				throw new RuntimeException("Error durring analysis", ex);
-			}
-		} else {
-			File f = storeHtml(sourcesDir, getTitle(), getHtmlSource());
-			try {
-				sources.add(SourceFactory.newFileSource(f, false));
-			} catch (SourceException ex) {
-				throw new RuntimeException("Error during source creation", ex);
-			}
-		}
-	}
+    private void analyzeCurrentPage() {
+        if (analyzer != null) {
+            int id = analyzer.submittAnalysis(SourceFactory.newStringSource(getHtmlSource(), getTitle()));
+            try {
+                reports.add(analyzer.getResult(id));
+            } catch (ResultException ex) {
+                throw new RuntimeException("Error durring analysis", ex);
+            }
+        } else {
+            File f = storeHtml(getSourcesDir(), getTitle(), getHtmlSource());
+            try {
+                sources.add(SourceFactory.newFileSource(f, false));
+            } catch (SourceException ex) {
+                throw new RuntimeException("Error during source creation", ex);
+            }
+        }
+    }
 
-	public void analyzeStoredPages() throws InstantiationException {
-		analyzeStoredPages(Anadix.newAnalyzer());
-	}
+    public void analyzeStoredPages() throws InstantiationException {
+        analyzeStoredPages(Anadix.newAnalyzer());
+    }
 
-	public void analyzeStoredPages(Analyzer analyzer) {
-		MultithreadedAnalyzer ma = new MultithreadedAnalyzer(analyzer);
-		try {
-			List<Integer> ids = new ArrayList<Integer>();
+    public void analyzeStoredPages(Analyzer analyzer) {
+        MultithreadedAnalyzer ma = new MultithreadedAnalyzer(analyzer);
+        try {
+            List<Integer> ids = new ArrayList<Integer>();
 
-			for (Source s : getStoredSources()) {
-				ids.add(ma.submittAnalysis(s));
-			}
+            for (Source s : getStoredSources()) {
+                ids.add(ma.submittAnalysis(s));
+            }
 
-			Iterator<Integer> it;
-			int id;
-			Report r;
-			while (ids.size() > 0) {
-				for (it = ids.iterator(); it.hasNext();) {
-					id = it.next();
-					try {
-						if ((r = ma.getResult(id, false)) != null) {
-							reports.add(r);
-							it.remove();
-						}
-					} catch (ResultException ex) {
-						exceptions.add(ex);
-						it.remove();
-					}
-				}
-			}
-		} finally {
-			ma.dispose();
-		}
-	}
+            Iterator<Integer> it;
+            int id;
+            Report r;
+            while (ids.size() > 0) {
+                for (it = ids.iterator(); it.hasNext();) {
+                    id = it.next();
+                    try {
+                        if ((r = ma.getResult(id, false)) != null) {
+                            reports.add(r);
+                            it.remove();
+                        }
+                    } catch (ResultException ex) {
+                        exceptions.add(ex);
+                        it.remove();
+                    }
+                }
+            }
+        } finally {
+            ma.dispose();
+        }
+    }
 
-	public Collection<Source> getStoredSources() {
-		return Collections.unmodifiableCollection(sources);
-	}
+    public Collection<Source> getStoredSources() {
+        return Collections.unmodifiableCollection(sources);
+    }
 
-	public Collection<Report> getStoredReports() {
-		return Collections.unmodifiableCollection(reports);
-	}
+    public Collection<Report> getStoredReports() {
+        return Collections.unmodifiableCollection(reports);
+    }
 
-	public Collection<Throwable> getExceptions() {
-		return Collections.unmodifiableCollection(exceptions);
-	}
+    public Collection<Throwable> getExceptions() {
+        return Collections.unmodifiableCollection(exceptions);
+    }
 
-	public void dumpReports() {
-		File f;
-		for (Report report : getStoredReports()) {
-			f = storeHtml(reportsDir, report.getSource().getDescription(), "");
-			try {
-				Anadix.serializeReport(report, f);
-			} catch (FileNotFoundException ex) {
-				throw new RuntimeException(ex);
-			}
-		}
-	}
+    public void dumpReports() {
+        File f;
+        for (Report report : getStoredReports()) {
+            f = storeHtml(getReportsDir(), report.getSource().getDescription(), "");
+            try {
+                Anadix.serializeReport(report, f);
+            } catch (FileNotFoundException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+    }
 
-	public void dumpReports(ReportFormatter formatter) {
-		for (Report report : getStoredReports()) {
-			storeHtml(reportsDir, report.getSource().getDescription(), formatter.format(report));
-		}
-	}
+    public void dumpReports(ReportFormatter formatter) {
+        for (Report report : getStoredReports()) {
+            storeHtml(getReportsDir(), report.getSource().getDescription(), formatter.format(report));
+        }
+    }
 
-	public File getSourcesDir() {
-		return sourcesDir;
-	}
+    public File getSourcesDir() {
+        if (!sourcesDir.exists()) {
+            sourcesDir.mkdir();
+        }
+        return sourcesDir;
+    }
 
-	public void setSourcesDir(File sourcesDir) {
-		this.sourcesDir = sourcesDir;
-	}
+    public void setSourcesDir(File sourcesDir) {
+        this.sourcesDir = sourcesDir;
+    }
 
-	public File getReportsDir() {
-		return reportsDir;
-	}
+    public File getReportsDir() {
+        if (!reportsDir.exists()) {
+            reportsDir.mkdir();
+        }
+        return reportsDir;
+    }
 
-	public void setReportsDir(File reportsDir) {
-		this.reportsDir = reportsDir;
-	}
+    public void setReportsDir(File reportsDir) {
+        this.reportsDir = reportsDir;
+    }
 
-	public MultithreadedAnalyzer getAnalyzer() {
-		return analyzer;
-	}
+    public MultithreadedAnalyzer getAnalyzer() {
+        return analyzer;
+    }
 
-	public void setAnalyzer(Analyzer analyzer) {
-		if (this.analyzer != null) {
-			this.analyzer.dispose();
-		}
-		if (analyzer == null) {
-			this.analyzer = null;
-		} else {
-			this.analyzer = new MultithreadedAnalyzer(analyzer);
-		}
-	}
+    public void setAnalyzer(Analyzer analyzer) {
+        if (this.analyzer != null) {
+            this.analyzer.dispose();
+        }
+        if (analyzer == null) {
+            this.analyzer = null;
+        } else {
+            this.analyzer = new MultithreadedAnalyzer(analyzer);
+        }
+    }
 
-	public void dispose() {
-		analyzer.dispose();
-	}
+    public void dispose() {
+        analyzer.dispose();
+    }
 
-	private static File storeHtml(File directory, String name, String source) {
-		int i = 0;
-		File resultFile;
+    private static File storeHtml(File directory, String name, String source) {
+        return storeHtml(directory, name, source, true);
+    }
 
-		name = name.replace("http://", "").replace("/", "_");
+    private static File storeHtml(File directory, String name, String source, boolean retry) {
+        int i = 0;
+        File resultFile;
 
-		while ((resultFile = new File(directory, String.format("%s_%s.html", name, i++))).exists());
+        name = name.replace("http://", "").replace("/", "_");
 
-		try {
-			resultFile.createNewFile();
-		} catch (IOException e) {
-			// retry
-			return storeHtml(directory, name, source);
-		}
+        while ((resultFile = new File(directory, String.format("%s_%s.html", name, i++))).exists()) {
+            ;
+        }
 
-		PrintWriter pw = null;
-		try {
-			pw = new PrintWriter(resultFile);
-			pw.println(source);
-			pw.flush();
-		} catch (FileNotFoundException ex) {
-			throw new RuntimeException("This ought to not happen", ex);
-		} finally {
-			if (pw != null) {
-				pw.close();
-			}
-		}
+        try {
+            resultFile.createNewFile();
+        } catch (IOException e) {
+            if (retry) {
+                return storeHtml(directory, name, source, false);
+            } else {
+                throw new RuntimeException("Unable to create file " + resultFile.getAbsolutePath(), e);
+            }
+        }
 
-		return resultFile;
-	}
+        PrintWriter pw = null;
+        try {
+            pw = new PrintWriter(resultFile);
+            pw.println(source);
+            pw.flush();
+        } catch (FileNotFoundException ex) {
+            throw new RuntimeException("This ought to not happen", ex);
+        } finally {
+            if (pw != null) {
+                pw.close();
+            }
+        }
+
+        return resultFile;
+    }
 }
