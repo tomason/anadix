@@ -7,8 +7,7 @@ import org.drools.event.rule.AgendaGroupPoppedEvent;
 import org.drools.event.rule.AgendaGroupPushedEvent;
 import org.drools.event.rule.BeforeActivationFiredEvent;
 import org.drools.event.rule.DefaultAgendaEventListener;
-import org.jboss.logging.Logger;
-import org.jboss.logging.Logger.Level;
+import org.slf4j.Logger;
 
 /**
  * My implementation of AgendaEventListener from Drools. It is used to log the information to given logger.
@@ -19,7 +18,6 @@ import org.jboss.logging.Logger.Level;
  */
 public class DebugAgendaEventListener extends DefaultAgendaEventListener {
 	private final Logger logger;
-	private final Level level;
 
 	/**
 	 * Constructor
@@ -27,54 +25,43 @@ public class DebugAgendaEventListener extends DefaultAgendaEventListener {
 	 * @param logger - logger to log to
 	 */
 	public DebugAgendaEventListener(Logger logger) {
-		this(logger, Level.DEBUG);
-	}
-
-	/**
-	 * Constructor
-	 *
-	 * @param logger - logger to log to
-	 * @param level - level to log messages with
-	 */
-	public DebugAgendaEventListener(Logger logger, Level level) {
-		this.logger = logger;
-		this.level = level;
+	    this.logger = logger;
 	}
 
 	/** {@inheritDoc} */
 	@Override
 	public void activationCreated(ActivationCreatedEvent event) {
-		logger.log(level, event);
+		logger.debug("{}", event);
 	}
 
 	/** {@inheritDoc} */
 	@Override
 	public void activationCancelled(ActivationCancelledEvent event) {
-		logger.log(level, event);
+		logger.debug("{}", event);
 	}
 
 	/** {@inheritDoc} */
 	@Override
 	public void beforeActivationFired(BeforeActivationFiredEvent event) {
-		logger.log(level, event);
+		logger.debug("{}", event);
 	}
 
 	/** {@inheritDoc} */
 	@Override
 	public void afterActivationFired(AfterActivationFiredEvent event) {
-		logger.log(level, event);
+		logger.debug("{}", event);
 	}
 
 	/** {@inheritDoc} */
 	@Override
 	public void agendaGroupPushed(AgendaGroupPushedEvent event) {
-		logger.log(level, event);
+		logger.debug("{}", event);
 	}
 
 	/** {@inheritDoc} */
 	@Override
 	public void agendaGroupPopped(AgendaGroupPoppedEvent event) {
-		logger.log(level, event);
+		logger.debug("{}", event);
 	}
 
 }

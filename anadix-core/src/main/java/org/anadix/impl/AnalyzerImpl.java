@@ -34,7 +34,8 @@ import org.drools.builder.KnowledgeBuilderFactory;
 import org.drools.definition.KnowledgePackage;
 import org.drools.definition.rule.Rule;
 import org.drools.runtime.StatefulKnowledgeSession;
-import org.jboss.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Implementation of Analyzer class
@@ -43,7 +44,7 @@ import org.jboss.logging.Logger;
  * @version $Id: $
  */
 public class AnalyzerImpl implements Analyzer {
-    private static final Logger logger = Logger.getLogger(Analyzer.class);
+    private static final Logger logger = LoggerFactory.getLogger(Analyzer.class);
 
     private final Parser parser;
     private final ConditionSet conditions;
@@ -73,8 +74,8 @@ public class AnalyzerImpl implements Analyzer {
         }
         StatefulKnowledgeSession ksession = kbase.newStatefulKnowledgeSession();
 
-        ksession.addEventListener(new DebugAgendaEventListener(Logger.getLogger(getClass())));
-        ksession.addEventListener(new DebugWorkingMemoryEventListener(Logger.getLogger(getClass())));
+        ksession.addEventListener(new DebugAgendaEventListener(LoggerFactory.getLogger(getClass())));
+        ksession.addEventListener(new DebugWorkingMemoryEventListener(LoggerFactory.getLogger(getClass())));
 
 
         ElementFactory ef = AbstractElementFactory.createFactory(
@@ -85,7 +86,7 @@ public class AnalyzerImpl implements Analyzer {
         try {
             parser.parse(ef, source);
         } catch (ParserException ex) {
-            logger.error(ex);
+            logger.error("Exception during parsing", ex);
         }
 
         ksession.fireAllRules();
@@ -109,7 +110,7 @@ public class AnalyzerImpl implements Analyzer {
                 throw new RuntimeException("Parser resources: " + kbuilder.getErrors().toString());
             }
         } else {
-            logger.warnf("Parser %s returned null resources!", parser.getClass().getName());
+            logger.warn("Parser {} returned null resources!", parser.getClass().getName());
         }
 
         if ((c = conditions.getDroolsResources()) != null) {
@@ -120,16 +121,16 @@ public class AnalyzerImpl implements Analyzer {
                 throw new RuntimeException("ConditionSet resources: " + kbuilder.getErrors().toString());
             }
         } else {
-            logger.warnf("Condition set %s returned null resources!", conditions.getClass().getName());
+            logger.warn("Condition set {} returned null resources!", conditions.getClass().getName());
         }
 
         KnowledgeBase kbase = KnowledgeBaseFactory.newKnowledgeBase();
         kbase.addKnowledgePackages(kbuilder.getKnowledgePackages());
 
         for (KnowledgePackage pkg : kbase.getKnowledgePackages()) {
-            logger.tracef(" > %s", pkg.getName());
+            logger.trace(" > {}", pkg.getName());
             for (Rule r : pkg.getRules()) {
-                logger.tracef("  |- %s", r.getName());
+                logger.trace("  |- {}", r.getName());
             }
         }
 

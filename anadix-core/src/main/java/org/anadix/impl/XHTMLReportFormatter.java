@@ -15,13 +15,14 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.anadix.Report;
 import org.anadix.ReportItem;
-import org.jboss.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 public class XHTMLReportFormatter extends DefaultReportFormatter {
-	private static Logger logger = Logger.getLogger(XHTMLReportFormatter.class);
+	private static Logger logger = LoggerFactory.getLogger(XHTMLReportFormatter.class);
 	
 	@Override
 	public String getReportFileExtension() {
@@ -64,7 +65,7 @@ public class XHTMLReportFormatter extends DefaultReportFormatter {
 				body.appendChild(createResultTable(report.getInfos(), doc));
 			}
 		} catch (ParserConfigurationException ex) {
-			logger.fatal("Unable to create document", ex);
+			logger.error("Unable to create document", ex);
 		}
 		
 		try {
@@ -74,11 +75,11 @@ public class XHTMLReportFormatter extends DefaultReportFormatter {
 			
 			result = sw.toString();
 		} catch (TransformerConfigurationException ex) {
-			logger.fatal("Unable to create transformer", ex);
+			logger.error("Unable to create transformer", ex);
 		} catch (TransformerFactoryConfigurationError ex) {
-			logger.fatal("Unable to create transformer", ex);
+			logger.error("Unable to create transformer", ex);
 		} catch (TransformerException ex) {
-			logger.fatal("Unable to transform document", ex);
+			logger.error("Unable to transform document", ex);
 		}
 		
 		return result;
