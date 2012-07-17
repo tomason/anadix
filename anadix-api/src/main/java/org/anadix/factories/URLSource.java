@@ -21,10 +21,11 @@ import java.net.URL;
 import java.net.URLConnection;
 
 import org.anadix.exceptions.SourceException;
-import org.jboss.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 class URLSource extends AbstractSource {
-	private static final Logger logger = Logger.getLogger(URLSource.class);
+	private static final Logger logger = LoggerFactory.getLogger(URLSource.class);
 	private final URL url;
 
 	/**
@@ -55,7 +56,7 @@ class URLSource extends AbstractSource {
 		try {
 			return url.openStream();
 		} catch (IOException ex) {
-			logger.fatal("Unable to open stream", ex);
+			logger.error("Unable to open stream", ex);
 			throw new RuntimeException("Unable to open stream on " + url);
 		}
 	}

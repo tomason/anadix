@@ -21,7 +21,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 import org.anadix.exceptions.SourceException;
-import org.jboss.logging.Logger;
+import org.slf4j.LoggerFactory;
 
 class FileSource extends AbstractSource {
 	private final File source;
@@ -47,7 +47,7 @@ class FileSource extends AbstractSource {
 		try {
 			return new FileInputStream(source);
 		} catch (FileNotFoundException e) {
-			Logger.getLogger(getClass()).fatal("Unable to find file", e);
+			LoggerFactory.getLogger(getClass()).error("Unable to find file", e);
 			throw new RuntimeException("Unable to find file", e);
 		}
 	}

@@ -21,10 +21,11 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 
 import org.anadix.Source;
-import org.jboss.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 abstract class AbstractSource implements Source {
-	private static final Logger logger = Logger.getLogger(AbstractSource.class);
+	private static final Logger logger = LoggerFactory.getLogger(AbstractSource.class);
 	private final String description;
 
 	/**
@@ -64,7 +65,7 @@ abstract class AbstractSource implements Source {
 				try {
 					br.close();
 				} catch (IOException e) {
-					logger.fatal("Unable to close BufferedReader", e);
+					logger.error("Unable to close BufferedReader", e);
 					throw new RuntimeException("Unable to close BufferedReader", e);
 				}
 			}

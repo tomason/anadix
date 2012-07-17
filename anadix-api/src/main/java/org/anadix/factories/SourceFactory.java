@@ -20,7 +20,8 @@ import java.net.URL;
 
 import org.anadix.Source;
 import org.anadix.exceptions.SourceException;
-import org.jboss.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Creates instances of Source for different types of sources
@@ -29,7 +30,7 @@ import org.jboss.logging.Logger;
  * @version $Id: $
  */
 public final class SourceFactory {
-	private static final Logger logger = Logger.getLogger(SourceFactory.class);
+	private static final Logger logger = LoggerFactory.getLogger(SourceFactory.class);
 	// FIXME add some settings to change caching policy
 	private static final boolean cacheByDefault = true;
 	private SourceFactory() {}
@@ -59,7 +60,7 @@ public final class SourceFactory {
 		}
 		Source s = new FileSource(file);
 		if (cache) {
-			logger.debugf("Caching file source from '%s'", file.getAbsoluteFile());
+			logger.debug("Caching file source from '{}'", file.getAbsoluteFile());
 			return newStringSource(s.getText(), s.getDescription());
 		} else {
 			return s;
@@ -134,7 +135,7 @@ public final class SourceFactory {
 	public static Source newClassPathSource(String resource, boolean cache) throws SourceException {
 		Source s = new ClassPathSource(resource);
 		if (cache) {
-			logger.debugf("Caching classpath source from '%s'", resource);
+			logger.debug("Caching classpath source from '{}'", resource);
 			return newStringSource(s.getText(), s.getDescription());
 		} else {
 			return s;
@@ -165,7 +166,7 @@ public final class SourceFactory {
 	public static Source newURLSource(URL url, boolean cache) throws SourceException {
 		Source s = new URLSource(url);
 		if (cache) {
-			logger.debugf("Caching URL source from '%s'", url.toExternalForm());
+			logger.debug("Caching URL source from '{}'", url.toExternalForm());
 			return newStringSource(s.getText(), s.getDescription());
 		} else {
 			return s;

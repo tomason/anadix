@@ -22,7 +22,8 @@ import org.anadix.Analyzer;
 import org.anadix.ConditionSet;
 import org.anadix.Parser;
 import org.anadix.ReportFormatter;
-import org.jboss.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -34,7 +35,7 @@ import org.jboss.logging.Logger;
  */
 @Deprecated
 public final class ObjectFactory {
-	private static final Logger logger = Logger.getLogger(ObjectFactory.class);
+	private static final Logger logger = LoggerFactory.getLogger(ObjectFactory.class);
 	// FIXME allow configuring default classes (or at the very least the defaultConditions)
 	// FIXME think about making this 'org.anadix.Anadix' class as it's
 	// practically the main thing Anadix offers. When redoing this enhance capabilities

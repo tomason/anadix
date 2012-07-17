@@ -8,11 +8,12 @@ import java.io.IOException;
 import java.io.Writer;
 import java.lang.reflect.Constructor;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javassist.CannotCompileException;
 import javassist.ClassPool;
 import javassist.NotFoundException;
-
-import org.jboss.logging.Logger;
 
 import com.thoughtworks.xstream.XStream;
 
@@ -33,7 +34,7 @@ public final class Anadix {
 	private static final String DEFAULT_REPORT_DIR = "reports";
 
 	private static final Class<?> analyzer;
-	private static final Logger logger = Logger.getLogger(Anadix.class);
+	private static final Logger logger = LoggerFactory.getLogger(Anadix.class);
 
 	private static Class<? extends Parser> parser;
 	private static Class<? extends ConditionSet> conditions;
@@ -46,7 +47,7 @@ public final class Anadix {
 		try {
 			analyzer = Class.forName("org.anadix.impl.AnalyzerImpl");
 		} catch (ClassNotFoundException ex) {
-			logger.fatal(ex);
+			logger.error("Unable to find AnalyzerImpl class", ex);
 			throw new RuntimeException("Unable to find AnalyzerImpl class", ex);
 		}
 	}
@@ -343,7 +344,7 @@ public final class Anadix {
 		} catch (RuntimeException ex) {
 			throw ex;
 		} catch (Exception ex) {
-			logger.fatal(ex);
+			logger.error("Unable to instantiate AnalyzerImpl", ex);
 			throw new RuntimeException("Unable to instantiate AnalyzerImpl", ex);
 		}
 	}
@@ -397,10 +398,10 @@ public final class Anadix {
 		try {
 			return ClassPool.getDefault().get(clazz).toClass();
 		} catch (NotFoundException ex) {
-			logger.error(ex);
+			logger.error("Couldn't find class", ex);
 			throw new InstantiationException(clazz);
 		} catch (CannotCompileException ex) {
-			logger.error(ex);
+			logger.error("Couldn't compile class", ex);
 			throw new InstantiationException(clazz);
 		}
 	}
@@ -409,10 +410,10 @@ public final class Anadix {
 		try {
 			return clazz.newInstance();
 		} catch (InstantiationException ex) {
-			logger.error(ex);
+			logger.error("Couldn't instantiate class", ex);
 			throw new InstantiationException(conditions.getName());
 		} catch (IllegalAccessException ex) {
-			logger.error(ex);
+			logger.error("Couldn't access constructor", ex);
 			throw new InstantiationException(conditions.getName());
 		}
 	}
