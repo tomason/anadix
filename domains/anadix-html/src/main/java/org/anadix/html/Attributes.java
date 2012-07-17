@@ -20,7 +20,7 @@ import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.jboss.logging.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Class representing set of element's attributes. Contains both the attributes
@@ -116,7 +116,7 @@ public class Attributes {
 
 			String[] split = prop.split(":");
 			if (split.length < 2) {
-				Logger.getLogger(Attributes.class).warnf("CSS property without value: '%s'", prop);
+				LoggerFactory.getLogger(Attributes.class).warn("CSS property without value: '{}'", prop);
 				continue;
 			}
 			result.setProperty(split[0].trim(), split[1].trim());
