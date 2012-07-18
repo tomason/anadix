@@ -27,7 +27,9 @@ import javax.swing.text.html.HTMLEditorKit.ParserCallback;
 
 import org.anadix.html.HTMLElementFactory;
 import org.anadix.html.Position;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 
 /**
@@ -37,7 +39,7 @@ import org.apache.log4j.Logger;
  * @version $Id: $
  */
 public class StatefulParserCallback extends ParserCallback {
-	private static final Logger logger = Logger.getLogger(StatefulParserCallback.class);
+	private static final Logger logger = LoggerFactory.getLogger(StatefulParserCallback.class);
 	private static final BigInteger JUMP = BigInteger.valueOf(100L);
 	private static final String ENTRY_POINT = "parser";
 
